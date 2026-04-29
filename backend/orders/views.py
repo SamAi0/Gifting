@@ -1,11 +1,12 @@
-import razorpay
 from django.conf import settings
 from rest_framework import viewsets, permissions, status, views
 from rest_framework.response import Response
 from .models import Cart, CartItem, Order, OrderItem, Address
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer, AddressSerializer
 
-client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+def get_razorpay_client():
+    import razorpay
+    return razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
 class CartView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -53,6 +54,7 @@ class CreateOrderView(views.APIView):
         total_amount = cart.total_price
         
         # Create Razorpay Order
+        client = get_razorpay_client()
         razorpay_order = client.order.create({
             "amount": int(total_amount * 100), # amount in paise
             "currency": "INR",
@@ -103,6 +105,7 @@ class VerifyPaymentView(views.APIView):
         }
 
         try:
+            client = get_razorpay_client()
             client.utility.verify_payment_signature(params_dict)
             order = Order.objects.get(razorpay_order_id=razorpay_order_id)
             order.status = 'PAID'
