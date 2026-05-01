@@ -3,6 +3,12 @@ import axios from 'axios';
 const VITE_API_URL = import.meta.env.VITE_API_URL || 'https://gifting-5pic.onrender.com';
 const API_BASE_URL = `${VITE_API_URL.replace(/\/$/, '')}/api`;
 
+export const getImageUrl = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  return `${VITE_API_URL.replace(/\/$/, '')}${path}`;
+};
+
 
 const api = axios.create({
   baseURL: API_BASE_URL,
