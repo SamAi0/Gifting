@@ -18,8 +18,24 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import JsonResponse
+
+def home(request):
+    return JsonResponse({
+        "status": "online",
+        "message": "Gifting API is running 🚀",
+        "endpoints": [
+            "/api/products/",
+            "/api/orders/",
+            "/admin/"
+        ]
+    })
+
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path('', home, name='home'),
+    path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('api/', include('products.urls')),
