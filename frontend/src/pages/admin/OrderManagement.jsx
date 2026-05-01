@@ -8,6 +8,7 @@ import {
 
 const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
+  const filteredOrders = orders; // Simple mapping for now
 
   const fetchOrders = useCallback(async () => {
     try {

@@ -8,8 +8,23 @@ from simple_history.admin import SimpleHistoryAdmin
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 0
-    readonly_fields = ('product', 'quantity', 'price', 'customization_text', 'customization_image')
+    readonly_fields = ('product', 'quantity', 'price', 'customization_text', 'customization_image_preview', 'logo_image_preview', 'customization_data')
+    fields = ('product', 'quantity', 'price', 'customization_text', 'customization_image_preview', 'logo_image_preview', 'customization_data')
     can_delete = False
+
+    def customization_image_preview(self, obj):
+        if obj.customization_image:
+            return format_html('<img src="{}" style="width: 100px; height: 100px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;" />', obj.customization_image.url)
+        return "No Mockup"
+    
+    customization_image_preview.short_description = 'Mockup Preview'
+
+    def logo_image_preview(self, obj):
+        if obj.logo_image:
+            return format_html('<img src="{}" style="width: 100px; height: 100px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;" />', obj.logo_image.url)
+        return "No Logo"
+    
+    logo_image_preview.short_description = 'Original Logo'
 
 @admin.register(Order)
 class OrderAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):

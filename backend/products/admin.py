@@ -10,9 +10,14 @@ import json
 
 class SafeJSONEditorWidget(JSONEditorWidget):
     def format_value(self, value):
-        if value is None or value == "":
-            return "[]"
-        return super().format_value(value)
+        if value is None or value == "" or (isinstance(value, str) and not value.strip()):
+            return []
+        try:
+            if isinstance(value, str):
+                return json.loads(value)
+            return value
+        except (ValueError, TypeError, json.JSONDecodeError):
+            return []
 
 @admin.register(Category)
 class CategoryAdmin(ImportExportModelAdmin):

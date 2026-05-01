@@ -11,10 +11,24 @@ class AddressSerializer(serializers.ModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
     product_details = ProductSerializer(source='product', read_only=True)
     subtotal = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    customization_image = serializers.SerializerMethodField()
+    logo_image = serializers.SerializerMethodField()
 
     class Meta:
         model = CartItem
-        fields = ('id', 'product', 'product_details', 'quantity', 'customization_text', 'customization_image', 'subtotal')
+        fields = ('id', 'product', 'product_details', 'quantity', 'customization_text', 'customization_image', 'customization_data', 'logo_image', 'subtotal')
+
+    def get_customization_image(self, obj):
+        request = self.context.get('request')
+        if obj.customization_image and request:
+            return request.build_absolute_uri(obj.customization_image.url)
+        return obj.customization_image.url if obj.customization_image else None
+
+    def get_logo_image(self, obj):
+        request = self.context.get('request')
+        if obj.logo_image and request:
+            return request.build_absolute_uri(obj.logo_image.url)
+        return obj.logo_image.url if obj.logo_image else None
 
 class CartSerializer(serializers.ModelSerializer):
     items = CartItemSerializer(many=True, read_only=True)
@@ -26,16 +40,31 @@ class CartSerializer(serializers.ModelSerializer):
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product_details = ProductSerializer(source='product', read_only=True)
+    customization_image = serializers.SerializerMethodField()
+    logo_image = serializers.SerializerMethodField()
 
     class Meta:
         model = OrderItem
-        fields = ('id', 'product', 'product_details', 'quantity', 'price', 'customization_text', 'customization_image')
+        fields = ('id', 'product', 'product_details', 'quantity', 'price', 'customization_text', 'customization_image', 'customization_data', 'logo_image')
+
+    def get_customization_image(self, obj):
+        request = self.context.get('request')
+        if obj.customization_image and request:
+            return request.build_absolute_uri(obj.customization_image.url)
+        return obj.customization_image.url if obj.customization_image else None
+
+    def get_logo_image(self, obj):
+        request = self.context.get('request')
+        if obj.logo_image and request:
+            return request.build_absolute_uri(obj.logo_image.url)
+        return obj.logo_image.url if obj.logo_image else None
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
     user_name = serializers.CharField(source='user.username', read_only=True)
+    address_details = AddressSerializer(source='address', read_only=True)
 
     class Meta:
         model = Order
-        fields = ('id', 'user', 'user_name', 'address', 'total_amount', 'status', 'razorpay_order_id', 'created_at', 'items')
+        fields = ('id', 'user', 'user_name', 'address', 'address_details', 'total_amount', 'status', 'razorpay_order_id', 'created_at', 'items')
         read_only_fields = ('total_amount', 'razorpay_order_id', 'created_at')

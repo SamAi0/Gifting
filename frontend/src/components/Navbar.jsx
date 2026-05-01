@@ -108,6 +108,12 @@ const Navbar = () => {
                       <User size={16} />
                     </div>
                     <span className="hidden lg:inline">{user.username}</span>
+                    <Link 
+                      to="/orders" 
+                      className={`ml-2 text-xs hover:text-primary transition-colors ${isScrolled ? 'text-slate-500' : 'text-slate-300'}`}
+                    >
+                      My Orders
+                    </Link>
                     {user.is_staff && (
                       <Link 
                         to="/admin-panel" 
@@ -181,6 +187,16 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
+              
+              <Link
+                to="/orders"
+                onClick={handleNavLinkClick}
+                className={`text-lg font-bold transition-colors ${
+                  location.pathname === '/orders' ? 'text-primary' : 'text-slate-600'
+                }`}
+              >
+                My Orders
+              </Link>
               
               {user?.is_staff && (
                 <Link
