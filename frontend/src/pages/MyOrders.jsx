@@ -1,27 +1,29 @@
-import { useState, useEffect } from 'react';
-import { Package, ChevronRight, ShoppingBag, MapPin, Clock, CheckCircle2, Wand2 } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Package, ShoppingBag, MapPin, Clock, Wand2 } from 'lucide-react';
 import api from '../api';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchOrders = useCallback(async () => {
+    try {
+      const res = await api.get('/orders/mine/');
+      setOrders(res.data);
+    } catch (err) {
+      console.error("Error fetching orders", err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const res = await api.get('/orders/mine/');
-        setOrders(res.data);
-      } catch (err) {
-        console.error("Error fetching orders", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchOrders();
     window.scrollTo(0, 0);
-  }, []);
+  }, [fetchOrders]);
 
   const getStatusColor = (status) => {
     switch (status) {

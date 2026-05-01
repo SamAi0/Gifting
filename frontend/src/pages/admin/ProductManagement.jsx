@@ -5,7 +5,6 @@ import {
   Search, 
   Edit2, 
   Trash2, 
-  CheckCircle2,
   XCircle,
   Image as ImageIcon
 } from 'lucide-react';
@@ -47,6 +46,7 @@ const ProductManagement = () => {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchData();
   }, [fetchData]);
 
