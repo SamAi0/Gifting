@@ -5,6 +5,10 @@ from .serializers import (
     BulkInquirySerializer,
     ContactMessageSerializer, TestimonialSerializer, SettingsSerializer
 )
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from products.models import Product
+from orders.models import Order
 
 class TestimonialListView(generics.ListAPIView):
     queryset = Testimonial.objects.all()
@@ -28,3 +32,18 @@ class ContactCreateView(generics.CreateAPIView):
 class BulkInquiryCreateView(generics.CreateAPIView):
     queryset = BulkInquiry.objects.all()
     serializer_class = BulkInquirySerializer
+
+class AdminStatsView(APIView):
+    permission_classes = [permissions.IsAdminUser]
+    
+    def get(self, request):
+        from django.db.models import Sum
+        revenue = Order.objects.filter(status='PAID').aggregate(total=Sum('total_amount'))['total'] or 0
+        data = {
+            "total_products": Product.objects.count(),
+            "total_orders": Order.objects.count(),
+            "pending_orders": Order.objects.filter(status='PENDING').count(),
+            "total_inquiries": BulkInquiry.objects.count(),
+            "total_revenue": float(revenue),
+        }
+        return Response(data)

@@ -12,27 +12,52 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import WhatsAppButton from './components/WhatsAppButton';
 
+// Admin Components
+import AdminLayout from './components/admin/AdminLayout';
+import AdminDashboard from './pages/admin/Dashboard';
+import ProductManagement from './pages/admin/ProductManagement';
+import OrderManagement from './pages/admin/OrderManagement';
+import BulkInquiry from './pages/BulkInquiry';
+
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductList />} />
-            <Route path="/products/:id" element={<ProductDetail />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        </main>
-        <Footer />
-        <WhatsAppButton />
-      </div>
+      <Routes>
+        {/* Admin Routes */}
+        <Route path="/admin-panel/*" element={
+          <AdminLayout>
+            <Routes>
+              <Route path="/" element={<AdminDashboard />} />
+              <Route path="/products" element={<ProductManagement />} />
+              <Route path="/orders" element={<OrderManagement />} />
+              <Route path="/inquiries" element={<BulkInquiry />} />
+            </Routes>
+          </AdminLayout>
+        } />
+
+        {/* Public Routes */}
+        <Route path="*" element={
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/products" element={<ProductList />} />
+                <Route path="/products/:id" element={<ProductDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/bulk-inquiry" element={<BulkInquiry />} />
+              </Routes>
+            </main>
+            <Footer />
+            <WhatsAppButton />
+          </div>
+        } />
+      </Routes>
     </Router>
   );
 }
