@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import api from '../../api';
 import { 
   Search, 
   Filter, 
-  Eye, 
-  MoreVertical,
-  Clock,
-  CheckCircle2,
-  Package,
-  Truck,
-  XCircle
+  Eye
 } from 'lucide-react';
 
 const OrderManagement = () => {
-  const [orders] = useState([
-    { id: 'ORD-1001', customer: 'Amit Sharma', date: '2026-04-30', status: 'PENDING', total: 1299, items: 3 },
-    { id: 'ORD-1002', customer: 'Priya Patel', date: '2026-04-29', status: 'PAID', total: 2450, items: 1 },
-    { id: 'ORD-1003', customer: 'Rahul Verma', date: '2026-04-28', status: 'SHIPPED', total: 899, items: 2 },
-    { id: 'ORD-1004', customer: 'Sneha Gupta', date: '2026-04-27', status: 'DELIVERED', total: 5400, items: 5 },
-  ]);
+  const [orders, setOrders] = useState([]);
+
+  const fetchOrders = useCallback(async () => {
+    try {
+      const response = await api.get('/orders/all-orders/');
+      setOrders(response.data);
+    } catch (err) {
+      console.error("Failed to fetch orders:", err);
+    }
+  }, []);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchOrders();
+  }, [fetchOrders]);
+
+  const updateStatus = async (id, status) => {
+    try {
+      await api.patch(`/orders/all-orders/${id}/`, { status });
+      fetchOrders();
+    } catch (err) {
+      console.error("Status update failed:", err);
+    }
+  };
 
   const getStatusStyle = (status) => {
     switch (status) {
@@ -66,18 +79,26 @@ const OrderManagement = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              {orders.map((order) => (
+              {filteredOrders.map((order) => (
                 <tr key={order.id} className="hover:bg-white/5 transition-colors">
-                  <td className="px-6 py-4 font-bold text-white">{order.id}</td>
-                  <td className="px-6 py-4">{order.customer}</td>
-                  <td className="px-6 py-4 text-gray-400">{order.date}</td>
-                  <td className="px-6 py-4">{order.items} items</td>
+                  <td className="px-6 py-4 font-bold text-white">#ORD-{order.id}</td>
+                  <td className="px-6 py-4">{order.user_name || order.user}</td>
+                  <td className="px-6 py-4 text-gray-400">{new Date(order.created_at).toLocaleDateString()}</td>
+                  <td className="px-6 py-4">{order.items?.length || 0} items</td>
                   <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${getStatusStyle(order.status)}`}>
-                      {order.status}
-                    </span>
+                    <select 
+                      value={order.status}
+                      onChange={(e) => updateStatus(order.id, e.target.value)}
+                      className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-transparent outline-none cursor-pointer ${getStatusStyle(order.status)}`}
+                    >
+                      <option value="PENDING">Pending</option>
+                      <option value="PAID">Paid</option>
+                      <option value="SHIPPED">Shipped</option>
+                      <option value="DELIVERED">Delivered</option>
+                      <option value="CANCELLED">Cancelled</option>
+                    </select>
                   </td>
-                  <td className="px-6 py-4 font-bold text-white">₹{order.total}</td>
+                  <td className="px-6 py-4 font-bold text-white">₹{order.total_amount}</td>
                   <td className="px-6 py-4 text-right">
                     <button className="p-2 hover:bg-white/10 rounded-lg text-[#D91656] transition-all">
                       <Eye size={18} />
@@ -85,6 +106,11 @@ const OrderManagement = () => {
                   </td>
                 </tr>
               ))}
+              {filteredOrders.length === 0 && (
+                <tr>
+                  <td colSpan="7" className="px-6 py-10 text-center text-gray-500">No orders found matching your search.</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

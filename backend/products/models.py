@@ -1,4 +1,5 @@
 from django.db import models
+from simple_history.models import HistoricalRecords
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -16,7 +17,7 @@ class Product(models.Model):
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     image = models.ImageField(upload_to='products/')
-    customization_config = models.TextField(null=True, blank=True, help_text="JSON string for customization zones (coordinates, font, etc.)")
+    customization_config = models.TextField(default='[]', help_text="JSON string for customization zones (coordinates, font, etc.)")
     stock = models.IntegerField(default=10)
     weight = models.DecimalField(max_digits=5, decimal_places=2, default=0.5, help_text="Weight in KG")
     is_trending = models.BooleanField(default=False)
@@ -24,6 +25,8 @@ class Product(models.Model):
     badge_text = models.CharField(max_length=50, null=True, blank=True, help_text="e.g. NEW, 50% OFF, BESTSELLER")
     badge_color = models.CharField(max_length=20, default="#D91656", help_text="Hex code or Tailwind color name")
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    history = HistoricalRecords()
     
     def __str__(self):
         return self.name

@@ -1,33 +1,67 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import Category, Product
+from import_export.admin import ImportExportModelAdmin
+from django.db import models
+from rangefilter.filters import DateRangeFilter
+from simple_history.admin import SimpleHistoryAdmin
+from django_json_widget.widgets import JSONEditorWidget
+import json
+
+class SafeJSONEditorWidget(JSONEditorWidget):
+    def format_value(self, value):
+        if value is None or value == "":
+            return "[]"
+        return super().format_value(value)
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+class CategoryAdmin(ImportExportModelAdmin):
+    list_display = ('name', 'id')
     search_fields = ('name',)
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'stock', 'is_trending', 'is_bulk_only', 'created_at')
-    list_filter = ('category', 'is_trending', 'is_bulk_only', 'created_at')
+class ProductAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
+    formfield_overrides = {
+        models.TextField: {'widget': SafeJSONEditorWidget},
+    }
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" />', obj.image.url)
+        return "No Image"
+    
+    image_preview.short_description = 'Preview'
+
+    list_display = ('image_preview', 'name', 'category', 'price', 'stock', 'is_trending', 'is_bulk_only')
+    list_filter = (
+        'category', 
+        'is_trending', 
+        'is_bulk_only', 
+        ('created_at', DateRangeFilter),
+    )
     search_fields = ('name', 'description')
     list_editable = ('price', 'stock', 'is_trending', 'is_bulk_only')
-    readonly_fields = ('created_at',)
+    readonly_fields = ('created_at', 'image_preview_large')
+    list_per_page = 20
+    
+    def image_preview_large(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 12px; border: 2px solid #ddd;" />', obj.image.url)
+        return "No Image"
+
     fieldsets = (
-        ('Basic Information', {
-            'fields': ('name', 'description', 'category', 'image', 'price', 'discount_price')
+        ('General Info', {
+            'fields': (('name', 'category'), 'description', ('image', 'image_preview_large'))
         }),
-        ('Inventory & Availability', {
-            'fields': ('stock', 'weight', 'is_trending', 'is_bulk_only')
+        ('Pricing & Inventory', {
+            'fields': (('price', 'discount_price'), ('stock', 'weight'), ('is_trending', 'is_bulk_only')),
+            'classes': ('extrapretty',),
         }),
-        ('Customization Config', {
-            'fields': ('customization_config',),
-            'description': 'JSON configuration for customization zones.'
+        ('Branding & Customization', {
+            'fields': ('customization_config', ('badge_text', 'badge_color')),
+            'description': 'Configure the live branding engine zones here using the interactive JSON editor.'
         }),
-        ('Badges & Labels', {
-            'fields': ('badge_text', 'badge_color')
-        }),
-        ('Metadata', {
+        ('System Info', {
             'fields': ('created_at',),
             'classes': ('collapse',)
         }),

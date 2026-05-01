@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import api from '../../api';
 import { 
   Package, 
   ShoppingCart, 
   TrendingUp, 
-  Users,
   ArrowUpRight,
   ArrowDownRight,
   MessageSquare
@@ -37,23 +37,12 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    // In a real app, fetch from API
-    // For now, using mock data or calling the endpoint if ready
     const fetchStats = async () => {
       try {
-        // const res = await api.get('/admin/stats/');
-        // setStats(res.data);
-        
-        // Mock data for initial load
-        setStats({
-          total_products: 48,
-          total_orders: 156,
-          pending_orders: 12,
-          total_inquiries: 34,
-          total_revenue: 124500
-        });
+        const response = await api.get('/admin/stats/');
+        setStats(response.data);
       } catch (err) {
-        console.error(err);
+        console.error("Failed to fetch stats:", err);
       }
     };
     fetchStats();
@@ -83,7 +72,7 @@ const Dashboard = () => {
           title="Active Products" 
           value={stats.total_products} 
           icon={<Package size={24} />} 
-          color-[#D91656]
+          color="[#D91656]"
         />
         <StatCard 
           title="New Inquiries" 
@@ -113,18 +102,27 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <tr key={i} className="hover:bg-white/5 transition-colors group">
-                    <td className="py-4 font-medium">#ORD-100{i}</td>
-                    <td className="py-4">User {i}</td>
+                {stats.recent_orders?.map((order) => (
+                  <tr key={order.id} className="hover:bg-white/5 transition-colors group">
+                    <td className="py-4 font-medium">#ORD-{order.id}</td>
+                    <td className="py-4 text-gray-300">{order.user_name}</td>
                     <td className="py-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500">
-                        Paid
+                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                        order.status === 'PAID' ? 'bg-emerald-500/10 text-emerald-500' : 
+                        order.status === 'PENDING' ? 'bg-amber-500/10 text-amber-500' :
+                        'bg-blue-500/10 text-blue-500'
+                      }`}>
+                        {order.status}
                       </span>
                     </td>
-                    <td className="py-4 font-bold">₹1,299</td>
+                    <td className="py-4 font-bold text-white">₹{order.total_amount}</td>
                   </tr>
                 ))}
+                {(!stats.recent_orders || stats.recent_orders.length === 0) && (
+                  <tr>
+                    <td colSpan="4" className="py-8 text-center text-gray-500">No recent orders</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -137,21 +135,24 @@ const Dashboard = () => {
             <button className="text-sm text-[#D91656] hover:underline font-medium">View All</button>
           </div>
           <div className="space-y-4">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors">
+            {stats.popular_products?.map((product) => (
+              <div key={product.id} className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 rounded-lg bg-gray-800 mr-4"></div>
+                  <img src={product.image} alt={product.name} className="w-12 h-12 rounded-lg bg-gray-800 mr-4 object-cover border border-white/5" />
                   <div>
-                    <p className="font-semibold text-sm">Product Name {i}</p>
-                    <p className="text-xs text-gray-500">Category Name</p>
+                    <p className="font-semibold text-sm">{product.name}</p>
+                    <p className="text-xs text-gray-500">{product.category_name}</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-sm">₹899</p>
-                  <p className="text-xs text-emerald-500">24 sold</p>
+                  <p className="font-bold text-sm text-white">₹{product.price}</p>
+                  <p className="text-xs text-emerald-400 font-medium">{product.stock} in stock</p>
                 </div>
               </div>
             ))}
+            {(!stats.popular_products || stats.popular_products.length === 0) && (
+              <p className="py-8 text-center text-gray-500">No products found</p>
+            )}
           </div>
         </div>
       </div>

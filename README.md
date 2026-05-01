@@ -22,7 +22,7 @@ Soham Gift is a **full-stack B2B corporate gifting e-commerce platform** that al
 - **Framework**: Django 4.2.30 (Python)
 - **API**: Django REST Framework 3.15.2
 - **Database**: SQLite (db.sqlite3)
-- **Authentication**: JWT (djangorestframework-simplejwt)
+- **Authentication**: JWT (customized to include `is_staff` for role management)
 - **CORS**: django-cors-headers
 - **Image Processing**: Pillow 10.4.0
 - **Payment Integration**: Razorpay (configured, placeholder keys)
@@ -182,13 +182,23 @@ Soham Gift is a **full-stack B2B corporate gifting e-commerce platform** that al
 - Protected routes for cart/checkout
 - User-specific order history
 
-### **6. Admin Dashboard**
-- URL: `http://127.0.0.1:8000/admin`
-- Credentials: `admin` / `admin123` (from seed_data.py)
-- Manage products, categories, testimonials
-- View bulk inquiries and contact messages
-- Update company settings dynamically
-- Order management
+### **6. Admin Dashboard (Dual-Management)**
+
+The platform features a dual admin system for flexibility and ease of use:
+
+**A. React Admin Panel (Modern & Fast)**
+- **URL**: `http://localhost:5173/admin-panel/`
+- **Access**: Visible in Navbar for admin/staff users.
+- **Features**:
+  - **Live Dashboard**: Real-time stats on Revenue, Orders, Products, and Inquiries.
+  - **Synchronized CRUD**: Full control over products and orders with instant backend synchronization.
+  - **Customization Management**: Direct management of product customization zones and placeholders.
+  - **Order Tracking**: Update order statuses (Pending, Paid, Shipped, etc.) with a single click.
+
+**B. Django Admin (Robust & Deep Management)**
+- **URL**: `http://127.0.0.1:8000/admin/`
+- **Credentials**: `admin` / `admin123` (from seed_data.py)
+- **Features**: Full database control, category management, testimonials, company settings, and inquiry review.
 
 ### **7. Responsive Premium Design**
 - Tailwind CSS v4 for utility-first styling
