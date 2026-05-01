@@ -13,7 +13,7 @@ class CartView(views.APIView):
 
     def get(self, request):
         cart, created = Cart.objects.get_or_create(user=request.user)
-        serializer = CartSerializer(cart)
+        serializer = CartSerializer(cart, context={'request': request})
         return Response(serializer.data)
 
 class CartItemViewSet(viewsets.ModelViewSet):
@@ -46,27 +46,38 @@ class CreateOrderView(views.APIView):
             return Response({"error": "Cart is empty"}, status=status.HTTP_400_BAD_REQUEST)
 
         address_id = request.data.get('address_id')
+        payment_method = request.data.get('payment_method', 'ONLINE') # Default to ONLINE
+        
         try:
             address = Address.objects.get(id=address_id, user=request.user)
         except Address.DoesNotExist:
             return Response({"error": "Invalid address"}, status=status.HTTP_400_BAD_REQUEST)
 
         total_amount = cart.total_price
+        razorpay_order_id = None
         
-        # Create Razorpay Order
-        client = get_razorpay_client()
-        razorpay_order = client.order.create({
-            "amount": int(total_amount * 100), # amount in paise
-            "currency": "INR",
-            "payment_capture": "1"
-        })
+        if payment_method == 'ONLINE':
+            # Create Razorpay Order
+            try:
+                client = get_razorpay_client()
+                razorpay_order = client.order.create({
+                    "amount": int(total_amount * 100), # amount in paise
+                    "currency": "INR",
+                    "payment_capture": "1"
+                })
+                razorpay_order_id = razorpay_order['id']
+            except Exception as e:
+                print(f"Razorpay Error: {e}")
+                return Response({"error": "Failed to create Razorpay order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         # Create local Order
         order = Order.objects.create(
             user=request.user,
             address=address,
             total_amount=total_amount,
-            razorpay_order_id=razorpay_order['id']
+            payment_method=payment_method,
+            razorpay_order_id=razorpay_order_id,
+            status='PLACED' if payment_method == 'COD' else 'PENDING'
         )
 
         # Move items from cart to order
@@ -77,7 +88,9 @@ class CreateOrderView(views.APIView):
                 quantity=item.quantity,
                 price=item.product.price,
                 customization_text=item.customization_text,
-                customization_image=item.customization_image
+                customization_image=item.customization_image,
+                customization_data=item.customization_data,
+                logo_image=item.logo_image
             )
         
         # Clear cart
@@ -85,9 +98,10 @@ class CreateOrderView(views.APIView):
 
         return Response({
             "order_id": order.id,
-            "razorpay_order_id": razorpay_order['id'],
+            "razorpay_order_id": razorpay_order_id,
             "amount": total_amount,
-            "key": settings.RAZORPAY_KEY_ID
+            "payment_method": payment_method,
+            "key": settings.RAZORPAY_KEY_ID if payment_method == 'ONLINE' else None
         })
 
 class VerifyPaymentView(views.APIView):
@@ -114,6 +128,14 @@ class VerifyPaymentView(views.APIView):
             return Response({"message": "Payment successful"})
         except Exception as e:
             return Response({"error": "Payment verification failed"}, status=status.HTTP_400_BAD_REQUEST)
+
+class UserOrderListView(views.APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        orders = Order.objects.filter(user=request.user).order_by('-created_at')
+        serializer = OrderSerializer(orders, many=True, context={'request': request})
+        return Response(serializer.data)
 
 class OrderViewSet(viewsets.ModelViewSet):
     """

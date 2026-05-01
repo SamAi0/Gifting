@@ -1,6 +1,6 @@
 import { Type, AlertCircle, RefreshCcw, Image as ImageIcon, X, Palette } from 'lucide-react';
 
-const CustomizerControls = ({ customText, setCustomText, zoneConfigs, logoImage, setLogoImage, textColor, setTextColor, onReset, warningMessage }) => {
+const CustomizerControls = ({ customText, setCustomText, zoneConfigs, logoImage, setLogoImage, onLogoUpload, textColor, setTextColor, onReset, warningMessage }) => {
   // zoneConfigs is an array of zone objects from customization.json
   const zoneCount = zoneConfigs?.length || 1;
   
@@ -17,11 +17,17 @@ const CustomizerControls = ({ customText, setCustomText, zoneConfigs, logoImage,
   const handleLogoUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // For preview
       const reader = new FileReader();
       reader.onload = (event) => {
         setLogoImage(event.target.result);
       };
       reader.readAsDataURL(file);
+      
+      // For backend submission
+      if (typeof onLogoUpload === 'function') {
+        onLogoUpload(file);
+      }
     }
   };
 

@@ -19,6 +19,7 @@ const ProductDetail = () => {
   const [customText, setCustomText] = useState('');
   const [textColor, setTextColor] = useState('#000000'); // Default to black
   const [logoImage, setLogoImage] = useState(null);
+  const [logoFile, setLogoFile] = useState(null);
   const [mockupImage, setMockupImage] = useState(null);
   const [isCustomizing, setIsCustomizing] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -77,7 +78,13 @@ const ProductDetail = () => {
         console.error('Failed to create custom image:', err);
       }
     }
-    addToCart(product.id, 1, customText, imageFile);
+    const customizationData = {
+      text: customText,
+      color: textColor,
+      timestamp: new Date().toISOString()
+    };
+
+    addToCart(product.id, 1, customText, imageFile, customizationData, logoFile);
     navigate('/cart');
   };
 
@@ -208,7 +215,8 @@ const ProductDetail = () => {
                       setTextColor={setTextColor}
                       logoImage={logoImage}
                       setLogoImage={setLogoImage}
-                      onReset={() => { setCustomText(''); setTextColor('#000000'); setLogoImage(null); setWarningMessage(''); }}
+                      onLogoUpload={setLogoFile}
+                      onReset={() => { setCustomText(''); setTextColor('#000000'); setLogoImage(null); setLogoFile(null); setWarningMessage(''); }}
                       warningMessage={warningMessage}
                     />
                   </div>

@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import MyOrders from './pages/MyOrders';
 import WhatsAppButton from './components/WhatsAppButton';
 
 // Admin Components
@@ -50,6 +51,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/orders" element={<MyOrders />} />
                 <Route path="/bulk-inquiry" element={<BulkInquiry />} />
               </Routes>
             </main>
