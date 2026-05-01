@@ -16,8 +16,23 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'discount_price', 'category', 'category_name', 'image', 'customization_zones', 'is_trending', 'is_bulk_only', 'stock', 'weight', 'badge_text', 'badge_color', 'created_at']
+        fields = [
+            'id', 'name', 'description', 'price', 'discount_price', 
+            'category', 'category_name', 'image', 'customization_zones', 
+            'customization_config', 'is_trending', 'is_bulk_only', 
+            'stock', 'weight', 'badge_text', 'badge_color', 'created_at'
+        ]
     
+    def validate_customization_config(self, value):
+        import json
+        if not value:
+            return "[]"
+        try:
+            json.loads(value)
+        except ValueError:
+            raise serializers.ValidationError("Invalid JSON format for customization config.")
+        return value
+
     def get_customization_zones(self, obj):
         import json
         if obj.customization_config:

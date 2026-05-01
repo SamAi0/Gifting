@@ -1,18 +1,19 @@
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework import viewsets, permissions
 from .models import Product, Category
 from api.serializers import ProductSerializer, CategorySerializer
 
-
-class ProductViewSet(viewsets.ReadOnlyModelViewSet):
+class ProductViewSet(viewsets.ModelViewSet):
     """
-    ViewSet for viewing products.
-    Supports filtering by category, trending status, and search.
+    ViewSet for viewing and editing products.
     """
     queryset = Product.objects.all().order_by('-created_at')
     serializer_class = ProductSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
     
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
+        return [permissions.AllowAny()]
+
     def get_queryset(self):
         queryset = Product.objects.all()
         category = self.request.query_params.get('category', None)
@@ -27,18 +28,20 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         if search:
             queryset = queryset.filter(name__icontains=search)
         
-        # Apply ordering
         valid_orderings = ['price', '-price', 'name', '-name', 'created_at', '-created_at']
         if ordering in valid_orderings:
             queryset = queryset.order_by(ordering)
             
         return queryset
 
-
-class CategoryListView(viewsets.ReadOnlyModelViewSet):
+class CategoryListView(viewsets.ModelViewSet):
     """
-    ViewSet for viewing categories.
+    ViewSet for viewing and editing categories.
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
+        return [permissions.AllowAny()]

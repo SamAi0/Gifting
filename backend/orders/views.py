@@ -114,3 +114,11 @@ class VerifyPaymentView(views.APIView):
             return Response({"message": "Payment successful"})
         except Exception as e:
             return Response({"error": "Payment verification failed"}, status=status.HTTP_400_BAD_REQUEST)
+
+class OrderViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for admins to manage orders.
+    """
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAdminUser]
+    queryset = Order.objects.all().order_by('-created_at')

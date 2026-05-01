@@ -33,8 +33,9 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
+    user_name = serializers.CharField(source='user.username', read_only=True)
 
     class Meta:
         model = Order
-        fields = ('id', 'address', 'total_amount', 'status', 'razorpay_order_id', 'created_at', 'items')
-        read_only_fields = ('total_amount', 'status', 'razorpay_order_id', 'created_at')
+        fields = ('id', 'user', 'user_name', 'address', 'total_amount', 'status', 'razorpay_order_id', 'created_at', 'items')
+        read_only_fields = ('total_amount', 'razorpay_order_id', 'created_at')

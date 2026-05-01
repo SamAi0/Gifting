@@ -13,3 +13,8 @@ setuptools>=75.0.0
 wheel
 
 razorpay==2.0.1
+django-jazzmin==3.0.1
+django-import-export==4.1.1
+django-json-widget==2.1.1
+django-admin-rangefilter==0.13.5
+django-simple-history==3.7.0

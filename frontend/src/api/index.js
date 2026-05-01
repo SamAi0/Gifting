@@ -26,6 +26,13 @@ export const registerUser = (userData) => api.post('/auth/register/', userData);
 export const fetchProducts = (params) => api.get('/products/', { params });
 export const fetchProductById = (id) => api.get(`/products/${id}/`);
 export const fetchCategories = () => api.get('/categories/');
+export const createProduct = (formData) => api.post('/products/', formData, {
+  headers: { 'Content-Type': 'multipart/form-data' }
+});
+export const updateProduct = (id, formData) => api.patch(`/products/${id}/`, formData, {
+  headers: { 'Content-Type': 'multipart/form-data' }
+});
+export const deleteProduct = (id) => api.delete(`/products/${id}/`);
 
 // Order & Cart endpoints
 export const fetchCart = () => api.get('/orders/cart/');
