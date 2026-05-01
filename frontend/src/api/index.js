@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://gifting-5pic.onrender.com/api';
+const VITE_API_URL = import.meta.env.VITE_API_URL || 'https://gifting-5pic.onrender.com';
+const API_BASE_URL = `${VITE_API_URL.replace(/\/$/, '')}/api`;
+
 
 const api = axios.create({
   baseURL: API_BASE_URL,
