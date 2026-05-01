@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const VITE_API_URL = import.meta.env.VITE_API_URL || 'https://gifting-5pic.onrender.com';
-const API_BASE_URL = `${VITE_API_URL.replace(/\/$/, '')}/api`;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://gifting-5pic.onrender.com/api';
 
 export const getImageUrl = (path) => {
   if (!path) return '';
   if (path.startsWith('http')) return path;
-  return `${VITE_API_URL.replace(/\/$/, '')}${path}`;
+  // Extract base domain from API_BASE_URL (removing /api)
+  const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
+  return `${baseUrl}${path}`;
 };
 
 
