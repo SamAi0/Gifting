@@ -37,10 +37,13 @@ urlpatterns = [
     path('', home, name='home'),
     path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path('api/', include('products.urls')),
-    path('api/auth/', include('authentication.urls')),
-    path('api/orders/', include('orders.urls')),
+    # Consolidated API URLs
+    path('api/', include([
+        path('', include('api.urls')),
+        path('', include('products.urls')),
+        path('auth/', include('authentication.urls')),
+        path('orders/', include('orders.urls')),
+    ])),
 ]
 
 # Serve media and static files in production
