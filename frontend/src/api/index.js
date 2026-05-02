@@ -1,21 +1,21 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://gifting-5pic.onrender.com/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://gifting-82j5.onrender.com//api';
 
 export const getImageUrl = (path) => {
   if (!path) return '';
-  
+
   // If it's already a full URL (like from Cloudinary or external source), return it
   if (path.startsWith('http://') || path.startsWith('https://')) {
     return path;
   }
-  
+
   // Extract base domain from API_BASE_URL (removing /api)
   const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
-  
+
   // Ensure path starts with /
   const formattedPath = path.startsWith('/') ? path : `/${path}`;
-  
+
   return `${baseUrl}${formattedPath}`;
 };
 
