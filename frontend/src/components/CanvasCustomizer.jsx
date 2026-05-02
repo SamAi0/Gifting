@@ -120,7 +120,14 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
           width: 500,
           height: 500,
           backgroundColor: '#f3f4f6',
-          selection: isMappingMode,
+          selection: true, // Always allow selection for drag and drop
+        });
+
+        // Update image on drag and drop or modification
+        fabricCanvas.current.on('object:modified', () => {
+          fabricCanvas.current.requestRenderAll();
+          const dataUrl = fabricCanvas.current.toDataURL({ format: 'png', quality: 1, multiplier: 2 });
+          onImageExport?.(dataUrl);
         });
 
         console.log('✅ Canvas initialized:', fabricCanvas.current);
@@ -283,15 +290,10 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
                originX: zone.originX || 'center',
                originY: zone.originY || 'center',
                angle: zone.angle || 0,
-               selectable: false, // Disable selection
-               evented: false, // Disable all events
-               hasControls: false, // Hide resizing handles
-               hasBorders: false, // Hide bounding box outline
-               lockMovementX: true, // Lock horizontal movement
-               lockMovementY: true, // Lock vertical movement
-               lockScalingX: true, // Lock horizontal scaling
-               lockScalingY: true, // Lock vertical scaling
-               lockRotation: true, // Lock rotation
+               selectable: true,
+               evented: true,
+               hasControls: true,
+               hasBorders: true,
                data: { zoneId: zone.id, isCurved: true, ...zone }
              });
              fabricCanvas.current.add(group);
@@ -306,15 +308,10 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
               fontFamily: zone.fontFamily || 'serif',
               fontSize: zone.fontSize || 40,
               textAlign: 'center',
-              selectable: false, // Disable selection
-              evented: false, // Disable all events
-              hasControls: false, // Hide resizing handles
-              hasBorders: false, // Hide bounding box outline
-              lockMovementX: true, // Lock horizontal movement
-              lockMovementY: true, // Lock vertical movement
-              lockScalingX: true, // Lock horizontal scaling
-              lockScalingY: true, // Lock vertical scaling
-              lockRotation: true, // Lock rotation
+              selectable: true,
+              evented: true,
+              hasControls: true,
+              hasBorders: true,
               fill: textColorRef.current || zone.fill || '#000',
               ...style,
               data: { zoneId: zone.id, ...zone }
@@ -447,31 +444,34 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
       // Handle Logo
       const updateLogo = async () => {
         const existingLogo = objects.find(o => o.data?.isLogo);
-        if (existingLogo) fabricCanvas.current.remove(existingLogo);
+        let currentLeft, currentTop, currentScaleX, currentScaleY;
+        
+        if (existingLogo) {
+          currentLeft = existingLogo.left;
+          currentTop = existingLogo.top;
+          currentScaleX = existingLogo.scaleX;
+          currentScaleY = existingLogo.scaleY;
+          fabricCanvas.current.remove(existingLogo);
+        }
 
         if (logoImage) {
           try {
             const img = await fabric.Image.fromURL(logoImage);
             const zone = productConfig.zones[0];
-            const left = (zone.x / 1000) * 500;
-            const top = (zone.y / 1000) * 500;
+            const left = currentLeft !== undefined ? currentLeft : (zone.x / 1000) * 500;
+            const top = currentTop !== undefined ? currentTop : (zone.y / 1000) * 500;
             const maxWidth = (zone.maxWidth / 1000) * 500;
-            const logoScale = (maxWidth * 0.8) / img.width;
+            const logoScale = currentScaleX !== undefined ? currentScaleX : (maxWidth * 0.8) / img.width;
             
             img.set({
               scaleX: logoScale,
-              scaleY: logoScale,
+              scaleY: currentScaleY !== undefined ? currentScaleY : logoScale,
               left, top,
               originX: 'center', originY: 'center',
-              selectable: false, // Disable selection
-              evented: false, // Disable all events
-              hasControls: false, // Hide resizing handles
-              hasBorders: false, // Hide bounding box outline
-              lockMovementX: true, // Lock horizontal movement
-              lockMovementY: true, // Lock vertical movement
-              lockScalingX: true, // Lock horizontal scaling
-              lockScalingY: true, // Lock vertical scaling
-              lockRotation: true, // Lock rotation
+              selectable: true,
+              evented: true,
+              hasControls: true,
+              hasBorders: true,
               data: { isLogo: true }
             });
             fabricCanvas.current.add(img);
