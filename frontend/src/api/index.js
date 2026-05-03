@@ -16,10 +16,8 @@ export const getImageUrl = (path) => {
   // Ensure path starts with /
   const formattedPath = path.startsWith('/') ? path : `/${path}`;
 
-  return `${baseUrl}${formattedPath}`;
+  return encodeURI(`${baseUrl}${formattedPath}`);
 };
-
-
 
 const api = axios.create({
   baseURL: API_BASE_URL,
