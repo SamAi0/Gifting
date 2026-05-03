@@ -32,8 +32,11 @@ class ProductAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
         return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     def image_preview(self, obj):
-        if obj.image:
-            return format_html('<img src="{}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" />', obj.image.url)
+        try:
+            if obj.image:
+                return format_html('<img src="{}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" />', obj.image.url)
+        except Exception:
+            return "Error loading image"
         return "No Image"
     
     image_preview.short_description = 'Preview'
@@ -51,8 +54,11 @@ class ProductAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
     list_per_page = 20
     
     def image_preview_large(self, obj):
-        if obj.image:
-            return format_html('<img src="{}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 12px; border: 2px solid #ddd;" />', obj.image.url)
+        try:
+            if obj.image:
+                return format_html('<img src="{}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 12px; border: 2px solid #ddd;" />', obj.image.url)
+        except Exception:
+            return "Error loading image"
         return "No Image"
 
     fieldsets = (
