@@ -11,29 +11,21 @@ class AddressSerializer(serializers.ModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
     product_details = ProductSerializer(source='product', read_only=True)
     subtotal = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
-    customization_image = serializers.SerializerMethodField()
-    logo_image = serializers.SerializerMethodField()
+    customization_image = serializers.ImageField(required=False, allow_null=True)
+    logo_image = serializers.ImageField(required=False, allow_null=True)
 
     class Meta:
         model = CartItem
         fields = ('id', 'product', 'product_details', 'quantity', 'customization_text', 'customization_image', 'customization_data', 'logo_image', 'subtotal')
 
-    def get_image_url(self, image_field):
-        if not image_field:
-            return None
-        url = image_field.url
-        if url.startswith('http'):
-            return url
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
         request = self.context.get('request')
-        if request:
-            return request.build_absolute_uri(url)
-        return url
-
-    def get_customization_image(self, obj):
-        return self.get_image_url(obj.customization_image)
-
-    def get_logo_image(self, obj):
-        return self.get_image_url(obj.logo_image)
+        if instance.customization_image and request:
+            ret['customization_image'] = request.build_absolute_uri(instance.customization_image.url)
+        if instance.logo_image and request:
+            ret['logo_image'] = request.build_absolute_uri(instance.logo_image.url)
+        return ret
 
 class CartSerializer(serializers.ModelSerializer):
     items = CartItemSerializer(many=True, read_only=True)
@@ -45,29 +37,21 @@ class CartSerializer(serializers.ModelSerializer):
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product_details = ProductSerializer(source='product', read_only=True)
-    customization_image = serializers.SerializerMethodField()
-    logo_image = serializers.SerializerMethodField()
+    customization_image = serializers.ImageField(required=False, allow_null=True)
+    logo_image = serializers.ImageField(required=False, allow_null=True)
 
     class Meta:
         model = OrderItem
         fields = ('id', 'product', 'product_details', 'quantity', 'price', 'customization_text', 'customization_image', 'customization_data', 'logo_image')
 
-    def get_image_url(self, image_field):
-        if not image_field:
-            return None
-        url = image_field.url
-        if url.startswith('http'):
-            return url
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
         request = self.context.get('request')
-        if request:
-            return request.build_absolute_uri(url)
-        return url
-
-    def get_customization_image(self, obj):
-        return self.get_image_url(obj.customization_image)
-
-    def get_logo_image(self, obj):
-        return self.get_image_url(obj.logo_image)
+        if instance.customization_image and request:
+            ret['customization_image'] = request.build_absolute_uri(instance.customization_image.url)
+        if instance.logo_image and request:
+            ret['logo_image'] = request.build_absolute_uri(instance.logo_image.url)
+        return ret
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
