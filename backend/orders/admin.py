@@ -81,6 +81,7 @@ class OrderAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
     def status_colored(self, obj):
         colors = {
             'PENDING': '#f39c12',
+            'PLACED': '#8e44ad',
             'PAID': '#2ecc71',
             'SHIPPED': '#3498db',
             'DELIVERED': '#16a085',

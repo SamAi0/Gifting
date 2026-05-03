@@ -23,8 +23,8 @@ class ProductViewSet(viewsets.ModelViewSet):
         
         if category:
             queryset = queryset.filter(category_id=category)
-        if is_trending:
-            queryset = queryset.filter(is_trending=True)
+        if is_trending is not None:
+            queryset = queryset.filter(is_trending=is_trending.lower() == 'true')
         if search:
             queryset = queryset.filter(name__icontains=search)
         

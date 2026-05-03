@@ -45,6 +45,7 @@ class CartItem(models.Model):
 class Order(models.Model):
     STATUS_CHOICES = (
         ('PENDING', 'Pending'),
+        ('PLACED', 'Placed (COD)'),
         ('PAID', 'Paid'),
         ('SHIPPED', 'Shipped'),
         ('DELIVERED', 'Delivered'),

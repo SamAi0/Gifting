@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Gift, ShieldCheck, Truck, Clock, ArrowRight, Star, ChevronRight, CheckCircle2, User } from 'lucide-react';
-import { fetchProducts, fetchCategories, fetchTestimonials } from '../api';
+import { fetchProducts, fetchCategories, fetchTestimonials, getImageUrl } from '../api';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 
@@ -149,7 +149,7 @@ const Home = () => {
                   <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500">
                     <div className="aspect-[4/5] overflow-hidden">
                       <img 
-                        src={product.image || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
+                        src={getImageUrl(product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         alt={product.name}
                       />

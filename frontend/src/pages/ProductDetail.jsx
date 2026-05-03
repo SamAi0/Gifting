@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Truck, ArrowLeft, MessageSquare, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package } from 'lucide-react';
-import { fetchProductById } from '../api';
+import { fetchProductById, getImageUrl } from '../api';
 import api from '../api';
 import CanvasCustomizer from '../components/CanvasCustomizer';
 import CustomizerControls from '../components/CustomizerControls';
@@ -142,7 +142,7 @@ const ProductDetail = () => {
                     key="static-image"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    src={product.image || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
+                    src={getImageUrl(product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
                     className="w-full h-full max-h-[600px] object-contain p-8 transition-transform duration-700 hover:scale-105"
                     alt={product.name}
                   />
@@ -374,7 +374,7 @@ const ProductDetail = () => {
                   >
                     <div className="bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500 border border-slate-100">
                        <div className="aspect-square bg-slate-50 overflow-hidden">
-                          <img src={rel.image} alt={rel.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                          <img src={getImageUrl(rel.image)} alt={rel.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                        </div>
                        <div className="p-8">
                           <h4 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors truncate">{rel.name}</h4>

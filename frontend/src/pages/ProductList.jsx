@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Search, Filter, ChevronDown, Package, Gift, LayoutGrid, List, ChevronRight } from 'lucide-react';
-import { fetchProducts, fetchCategories } from '../api';
+import { fetchProducts, fetchCategories, getImageUrl } from '../api';
 import { ProductCardSkeleton } from '../components/Skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -196,7 +196,7 @@ const ProductList = () => {
                       <div className="bg-white rounded-[2.5rem] shadow-premium hover-lift transition-all duration-500 overflow-hidden border border-transparent hover:border-slate-100">
                         <div className="relative aspect-[4/5] overflow-hidden bg-slate-50">
                           <img 
-                            src={product.image || `https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=800&q=80`} 
+                            src={getImageUrl(product.image) || `https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=800&q=80`} 
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             alt={product.name}
                           />

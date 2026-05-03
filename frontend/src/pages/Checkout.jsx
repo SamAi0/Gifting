@@ -2,11 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { MapPin, CreditCard, ShieldCheck, ArrowRight, CheckCircle2, ChevronLeft, Plus, Globe, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Checkout = () => {
   const { cart, fetchCart } = useCart();
+  const { user } = useAuth();
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -92,7 +94,7 @@ const Checkout = () => {
           currency: "INR",
           name: "Soham Gift",
           description: `Order #${order_id}`,
-          image: "https://sohamgift.com/logo.png", 
+          image: "https://res.cloudinary.com/dzt6vks8k/image/upload/v1/media/logo.png", 
           order_id: razorpay_order_id,
           handler: async function (response) {
             try {
@@ -108,8 +110,8 @@ const Checkout = () => {
             }
           },
           prefill: {
-            name: "Corporate Client", 
-            email: "corporate@example.com",
+            name: user?.username || "Valued Customer", 
+            email: user?.email || "",
           },
           theme: {
             color: "#D91656",

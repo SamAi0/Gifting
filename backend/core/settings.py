@@ -29,6 +29,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-fallback-for-dev-only')
 
+if not os.environ.get('DJANGO_SECRET_KEY') and not os.getenv("DEBUG", "False").lower() == "true":
+    from django.core.exceptions import ImproperlyConfigured
+    raise ImproperlyConfigured("The DJANGO_SECRET_KEY environment variable must be set in production.")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
