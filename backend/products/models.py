@@ -40,7 +40,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
-    image = models.ImageField(upload_to='products/')
+    image = models.CharField(max_length=255, null=True, blank=True, help_text="Path to image relative to static (e.g. products/pen.png)")
+    image_file = models.ImageField(upload_to='products/', null=True, blank=True, help_text="Upload a new product image (overrides static path)")
     customization_config = models.TextField(
         default=default_customization_config,
         help_text="JSON structure for customization zones (coordinates, font, etc.)"

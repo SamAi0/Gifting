@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Package, ShoppingBag, MapPin, Clock, Wand2 } from 'lucide-react';
-import api from '../api';
+import api, { getImageUrl } from '../api';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -107,7 +107,7 @@ const MyOrders = () => {
                          <div key={item.id} className="flex flex-col sm:flex-row gap-8 p-6 rounded-[2rem] bg-slate-50 border border-slate-100/50 hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 group">
                             <div className="w-full sm:w-32 h-32 bg-white rounded-2xl overflow-hidden shadow-sm flex-shrink-0 p-2">
                                <img 
-                                 src={item.product_details.image} 
+                                 src={getImageUrl(item.product_details.image)} 
                                  alt={item.product_details.name} 
                                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700" 
                                />
@@ -132,7 +132,7 @@ const MyOrders = () => {
                                     {item.customization_image && (
                                        <div className="flex items-center gap-4">
                                           <div className="w-16 h-16 rounded-lg bg-slate-900 overflow-hidden border-2 border-white shadow-md">
-                                             <img src={item.customization_image} alt="Mockup" className="w-full h-full object-contain" />
+                                             <img src={getImageUrl(item.customization_image)} alt="Mockup" className="w-full h-full object-contain" />
                                           </div>
                                           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Custom Mockup Applied</span>
                                        </div>
