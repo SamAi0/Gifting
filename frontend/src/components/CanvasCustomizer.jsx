@@ -456,7 +456,7 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
 
         if (logoImage) {
           try {
-            const img = await fabric.Image.fromURL(logoImage);
+            const img = await fabric.Image.fromURL(logoImage, { crossOrigin: 'anonymous' });
             const zone = productConfig.zones[0];
             const left = currentLeft !== undefined ? currentLeft : (zone.x / 1000) * 500;
             const top = currentTop !== undefined ? currentTop : (zone.y / 1000) * 500;
