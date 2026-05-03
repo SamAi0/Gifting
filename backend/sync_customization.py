@@ -26,22 +26,26 @@ def sync_customization_zones():
     )
     
     if not os.path.exists(json_path):
-        print(f"❌ customization.json not found at {json_path}")
+        print(f"[ERROR] customization.json not found at {json_path}")
         return
     
     with open(json_path, 'r') as f:
         customization_data = json.load(f)
     
-    print(f"📖 Loaded {len(customization_data)} products from customization.json")
+    print(f"[INFO] Loaded {len(customization_data)} products from customization.json")
     
     updated_count = 0
     not_found_count = 0
     
     for item in customization_data:
-        product_id = item.get('productId')
+        slug = item.get('slug')
+        product_id = item.get('productId') # Keep for logging fallback
         
         try:
-            product = Product.objects.get(id=product_id)
+            if slug:
+                product = Product.objects.get(slug=slug)
+            else:
+                product = Product.objects.get(id=product_id)
             
             # Extract zones only (without productId, productName, slug, baseImage)
             zones = item.get('zones', [])
@@ -50,19 +54,20 @@ def sync_customization_zones():
             product.customization_config = json.dumps(zones)
             product.save()
             
-            print(f"✅ Updated: {product.name} (ID: {product_id}) - {len(zones)} zones")
+            print(f"[SUCCESS] Updated: {product.name} (ID: {product_id}) - {len(zones)} zones")
             updated_count += 1
             
         except Product.DoesNotExist:
-            print(f"⚠️  Product ID {product_id} not found in database")
+            identifier = slug if slug else f"ID {product_id}"
+            print(f"[WARNING] Product {identifier} not found in database")
             not_found_count += 1
     
     print(f"\n{'='*50}")
-    print(f"✅ Successfully updated: {updated_count} products")
-    print(f"⚠️  Not found in database: {not_found_count} products")
+    print(f"[SUCCESS] Successfully updated: {updated_count} products")
+    print(f"[WARNING] Not found in database: {not_found_count} products")
     print(f"{'='*50}")
 
 if __name__ == '__main__':
-    print("🔄 Syncing customization.json to database...\n")
+    print("Syncing customization.json to database...\n")
     sync_customization_zones()
-    print("\n✨ Done! Your changes should now be visible on localhost.")
+    print("\nDone! Your changes should now be visible on localhost.")

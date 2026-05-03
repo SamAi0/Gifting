@@ -43,17 +43,14 @@ class ProductSerializer(serializers.ModelSerializer):
         return []
     
     def get_image(self, obj):
-        request = self.context.get('request')
+        if obj.image_file:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.image_file.url)
+            return obj.image_file.url
         if not obj.image:
             return None
-        
-        image_url = obj.image.url
-        if image_url.startswith('http'):
-            return image_url
-            
-        if request:
-            return request.build_absolute_uri(image_url)
-        return image_url
+        return obj.image
 
 class BulkInquirySerializer(serializers.ModelSerializer):
     class Meta:

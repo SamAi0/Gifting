@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.templatetags.static import static
 from .models import Category, Product
 from import_export.admin import ImportExportModelAdmin
 from django.db import models
@@ -33,8 +34,16 @@ class ProductAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
 
     def image_preview(self, obj):
         try:
-            if obj.image:
-                return format_html('<img src="{}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" />', obj.image.url)
+            if obj.image_file:
+                url = obj.image_file.url
+            elif obj.image:
+                # Use the path directly if it starts with /static/ or /media/
+                url = obj.image
+                if not (url.startswith('/static/') or url.startswith('/media/') or url.startswith('http')):
+                     url = static(url)
+            else:
+                return "No Image"
+            return format_html('<img src="{}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" />', url)
         except Exception:
             return "Error loading image"
         return "No Image"
@@ -55,15 +64,22 @@ class ProductAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
     
     def image_preview_large(self, obj):
         try:
-            if obj.image:
-                return format_html('<img src="{}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 12px; border: 2px solid #ddd;" />', obj.image.url)
+            if obj.image_file:
+                url = obj.image_file.url
+            elif obj.image:
+                url = obj.image
+                if not (url.startswith('/static/') or url.startswith('/media/') or url.startswith('http')):
+                     url = static(url)
+            else:
+                return "No Image"
+            return format_html('<img src="{}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 12px; border: 2px solid #ddd;" />', url)
         except Exception:
             return "Error loading image"
         return "No Image"
 
     fieldsets = (
         ('General Info', {
-            'fields': (('name', 'category'), 'description', ('image', 'image_preview_large'))
+            'fields': (('name', 'category'), 'description', ('image', 'image_file', 'image_preview_large'))
         }),
         ('Pricing & Inventory', {
             'fields': (('price', 'discount_price'), ('stock', 'weight'), ('is_trending', 'is_bulk_only')),
