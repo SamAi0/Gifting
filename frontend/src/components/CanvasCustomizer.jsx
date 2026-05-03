@@ -108,8 +108,8 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
       fabricCanvas.current = null;
     }
 
-    // Wait for DOM to be ready
-    const initCanvas = () => {
+    // Initialize Canvas
+    const initCanvas = async () => {
       if (!canvasRef.current) {
         devError('canvasRef.current is null');
         return;
@@ -120,7 +120,7 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
           width: 500,
           height: 500,
           backgroundColor: '#f3f4f6',
-          selection: true, // Always allow selection for drag and drop
+          selection: true,
         });
 
         // Update image on drag and drop or modification
@@ -131,18 +131,18 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
         });
 
         console.log('✅ Canvas initialized:', fabricCanvas.current);
-        console.log('🔍 Has getScenePoint:', typeof fabricCanvas.current.getScenePoint);
-        console.log('🔍 Has getPointer:', typeof fabricCanvas.current.getPointer);
-        
         devLog('Canvas initialized successfully');
-        loadBaseImage();
+        
+        // Load base image after canvas is ready
+        await loadBaseImage();
       } catch (error) {
         devError('Failed to initialize canvas:', error);
       }
     };
 
-    // Small delay to ensure DOM is ready
+    // Wait for DOM to be ready
     const timer = setTimeout(initCanvas, 100);
+
 
     // Function to setup mapping mode handlers - ALWAYS enabled
     const setupMappingModeHandlers = () => {
@@ -342,7 +342,7 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
       devLog('All zones initialized, canvas objects:', fabricCanvas.current.getObjects().length);
     };
 
-    loadBaseImage();
+    // Removed redundant loadBaseImage call here - now called inside initCanvas
 
     // Responsive scaling with ResizeObserver
     const resizeObserver = new ResizeObserver(entries => {

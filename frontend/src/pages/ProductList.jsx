@@ -6,16 +6,28 @@ import { ProductCardSkeleton } from '../components/Skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ProductList = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || "");
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || "");
+  const [minPrice, setMinPrice] = useState(searchParams.get('min_price') || "");
+  const [maxPrice, setMaxPrice] = useState(searchParams.get('max_price') || "");
   const [viewMode, setViewMode] = useState('grid');
-  const [sortBy, setSortBy] = useState('-created_at');
+  const [sortBy, setSortBy] = useState(searchParams.get('ordering') || '-created_at');
 
   useEffect(() => {
+    const updateURL = () => {
+      const params = {};
+      if (selectedCategory) params.category = selectedCategory;
+      if (searchQuery) params.search = searchQuery;
+      if (minPrice) params.min_price = minPrice;
+      if (maxPrice) params.max_price = maxPrice;
+      if (sortBy) params.ordering = sortBy;
+      setSearchParams(params);
+    };
+
     const loadData = async () => {
       setLoading(true);
       try {
@@ -25,6 +37,8 @@ const ProductList = () => {
         const params = {};
         if (selectedCategory) params.category = selectedCategory;
         if (searchQuery) params.search = searchQuery;
+        if (minPrice) params.min_price = minPrice;
+        if (maxPrice) params.max_price = maxPrice;
         if (sortBy) params.ordering = sortBy;
         
         const prodRes = await fetchProducts(params);
@@ -35,8 +49,14 @@ const ProductList = () => {
         setLoading(false);
       }
     };
-    loadData();
-  }, [selectedCategory, searchQuery, sortBy]);
+
+    const timer = setTimeout(() => {
+      loadData();
+      updateURL();
+    }, 400); // Debounce
+
+    return () => clearTimeout(timer);
+  }, [selectedCategory, searchQuery, sortBy, minPrice, maxPrice, setSearchParams]);
 
   return (
     <div className="pt-32 pb-32 bg-slate-50 min-h-screen">
@@ -113,6 +133,46 @@ const ProductList = () => {
                     </span>
                   </button>
                 ))}
+              </div>
+            </div>
+
+            {/* Price Filter */}
+            <div className="glass-card p-8 border-slate-200/50">
+              <div className="flex items-center gap-3 mb-8 font-bold text-slate-900 text-lg">
+                <Filter size={20} className="text-primary" />
+                Price Range
+              </div>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Min (₹)</label>
+                    <input 
+                      type="number" 
+                      placeholder="0"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:outline-none focus:border-primary text-sm font-bold"
+                      value={minPrice}
+                      onChange={(e) => setMinPrice(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Max (₹)</label>
+                    <input 
+                      type="number" 
+                      placeholder="5000"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:outline-none focus:border-primary text-sm font-bold"
+                      value={maxPrice}
+                      onChange={(e) => setMaxPrice(e.target.value)}
+                    />
+                  </div>
+                </div>
+                {(minPrice || maxPrice) && (
+                  <button 
+                    onClick={() => {setMinPrice(""); setMaxPrice("");}}
+                    className="w-full py-2 text-xs font-bold text-primary hover:text-primary-dark transition-colors uppercase tracking-widest"
+                  >
+                    Clear Price
+                  </button>
+                )}
               </div>
             </div>
 
@@ -268,7 +328,7 @@ const ProductList = () => {
                    <h3 className="text-2xl font-bold text-slate-900 mb-2">No results found</h3>
                    <p className="text-slate-400 mb-10 max-w-xs mx-auto">We couldn't find any gifts matching your search or filters.</p>
                    <button 
-                    onClick={() => {setSelectedCategory(""); setSearchQuery("");}} 
+                    onClick={() => {setSelectedCategory(""); setSearchQuery(""); setMinPrice(""); setMaxPrice("");}} 
                     className="btn-primary"
                    >
                      Clear All Filters
