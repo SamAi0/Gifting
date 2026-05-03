@@ -2,23 +2,14 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.templatetags.static import static
 from .models import Category, Product
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from django.db import models
 from rangefilter.filters import DateRangeFilter
 from simple_history.admin import SimpleHistoryAdmin
-from django_json_widget.widgets import JSONEditorWidget
-import json
+from core.widgets import SafeJSONEditorWidget
 
-class SafeJSONEditorWidget(JSONEditorWidget):
-    def format_value(self, value):
-        if value is None or value == "" or (isinstance(value, str) and not value.strip()):
-            return []
-        try:
-            if isinstance(value, str):
-                return json.loads(value)
-            return value
-        except (ValueError, TypeError, json.JSONDecodeError):
-            return []
+# Removed local SafeJSONEditorWidget definition
+
 
 @admin.register(Category)
 class CategoryAdmin(ImportExportModelAdmin):
@@ -26,10 +17,10 @@ class CategoryAdmin(ImportExportModelAdmin):
     search_fields = ('name',)
 
 @admin.register(Product)
-class ProductAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
+class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == 'customization_config':
-            kwargs['widget'] = SafeJSONEditorWidget
+            kwargs['widget'] = SafeJSONEditorWidget(mode='view')
         return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     def image_preview(self, obj):
