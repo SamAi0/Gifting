@@ -19,6 +19,8 @@ class ProductViewSet(viewsets.ModelViewSet):
         category = self.request.query_params.get('category', None)
         is_trending = self.request.query_params.get('is_trending', None)
         search = self.request.query_params.get('search', None)
+        min_price = self.request.query_params.get('min_price', None)
+        max_price = self.request.query_params.get('max_price', None)
         ordering = self.request.query_params.get('ordering', '-created_at')
         
         if category:
@@ -27,6 +29,10 @@ class ProductViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(is_trending=is_trending.lower() == 'true')
         if search:
             queryset = queryset.filter(name__icontains=search)
+        if min_price:
+            queryset = queryset.filter(price__gte=min_price)
+        if max_price:
+            queryset = queryset.filter(price__lte=max_price)
         
         valid_orderings = ['price', '-price', 'name', '-name', 'created_at', '-created_at']
         if ordering in valid_orderings:

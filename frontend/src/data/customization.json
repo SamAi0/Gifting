@@ -3,7 +3,7 @@
     "productId": 1,
     "productName": "Premium Ceramic Mug",
     "slug": "premium-ceramic-mug",
-    "baseImage": "/products/mug.png",
+    "baseImage": "/static/products/mug.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -28,7 +28,7 @@
     "productId": 2,
     "productName": "Luxury Leather Notebook",
     "slug": "luxury-leather-notebook",
-    "baseImage": "/products/notebook.png",
+    "baseImage": "/static/products/notebook.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -53,7 +53,7 @@
     "productId": 3,
     "productName": "Silver Metallic Pen",
     "slug": "silver-metallic-pen",
-    "baseImage": "/products/pen.png",
+    "baseImage": "/static/products/pen.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -78,7 +78,7 @@
     "productId": 4,
     "productName": "Classic Pen & Keychain Duo",
     "slug": "classic-pen-keychain-duo",
-    "baseImage": "/products/pen_and_keychain.png",
+    "baseImage": "/static/products/pen_and_keychain.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -120,7 +120,7 @@
     "productId": 5,
     "productName": "Stylish Pen & Keyring",
     "slug": "stylish-pen-keyring",
-    "baseImage": "/products/pen_key.png",
+    "baseImage": "/static/products/pen_key.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -162,7 +162,7 @@
     "productId": 6,
     "productName": "Executive Trio (Sr 125)",
     "slug": "executive-trio-sr-125",
-    "baseImage": "/products/Sr 125 Pen Keychain Cardholder.png",
+    "baseImage": "/static/products/sr_125_pen_keychain_cardholder.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -221,7 +221,7 @@
     "productId": 7,
     "productName": "Corporate Gift Set (Sr 126)",
     "slug": "corporate-gift-set-sr-126",
-    "baseImage": "/products/Sr 126 Pen Keychain Cardholder.png",
+    "baseImage": "/static/products/sr_126_pen_keychain_cardholder.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -280,7 +280,7 @@
     "productId": 8,
     "productName": "Perfumo Luxury Set (Sr 135)",
     "slug": "perfumo-luxury-set-sr-135",
-    "baseImage": "/products/Sr 135 Perfumo Set Wallet Perfume Pen & Cardholder.png",
+    "baseImage": "/static/products/sr_135_perfumo_set_wallet_perfume_pen_cardholder.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -356,7 +356,7 @@
     "productId": 9,
     "productName": "Red Elastic Notebook Set (Sr 139)",
     "slug": "red-elastic-notebook-set-sr-139",
-    "baseImage": "/products/Sr 139 Red Elastic Pen & Diary.png",
+    "baseImage": "/static/products/sr_139_red_elastic_pen_diary.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -398,7 +398,7 @@
     "productId": 10,
     "productName": "Black Mars Notebook Set (Sr 144)",
     "slug": "black-mars-notebook-set-sr-144",
-    "baseImage": "/products/Sr 144 Black Mars Pen & Diary.png",
+    "baseImage": "/static/products/sr_144_black_mars_pen_diary.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -440,7 +440,7 @@
     "productId": 11,
     "productName": "Premium Pen & Keychain (Sr 238)",
     "slug": "premium-pen-keychain-sr-238",
-    "baseImage": "/products/Sr 238 Pen & Keychain.png",
+    "baseImage": "/static/products/sr_238_pen_keychain.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -482,7 +482,7 @@
     "productId": 12,
     "productName": "Elegant Pen & Cardholder (Sr 242)",
     "slug": "elegant-pen-cardholder-sr-242",
-    "baseImage": "/products/Sr 242 Pen & Cardholder.png",
+    "baseImage": "/static/products/sr_242_pen_cardholder.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -524,7 +524,7 @@
     "productId": 13,
     "productName": "Male & Female Perfume Set (Sr 243)",
     "slug": "male-female-perfume-set-sr-243",
-    "baseImage": "/products/Sr 243 2 in 1 Perfumes Set Male & Female Perfumes.png",
+    "baseImage": "/static/products/sr_243_2_in_1_perfumes_set_male_female_perfumes.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -566,7 +566,7 @@
     "productId": 14,
     "productName": "Copper Hydration Set (Sr 264)",
     "slug": "copper-hydration-set-sr-264",
-    "baseImage": "/products/Sr 264 Copper Bottle & Mug Sets Blue500 ml Copper Bottle & 2 Mugs.png",
+    "baseImage": "/static/products/sr_264_copper_bottle_mug_sets_blue500_ml_copper_bottle_2_mugs.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -625,7 +625,7 @@
     "productId": 15,
     "productName": "HydroX Black Gift Set (Sr 294)",
     "slug": "hydrox-black-gift-set-sr-294",
-    "baseImage": "/products/Sr 294 HydroX Black Bottle Pen Keychain.png",
+    "baseImage": "/static/products/sr_294_hydrox_black_bottle_pen_keychain.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -684,7 +684,7 @@
     "productId": 16,
     "productName": "HydroX White Gift Set (Sr 295)",
     "slug": "hydrox-white-gift-set-sr-295",
-    "baseImage": "/products/Sr 295 HydroX White Bottle Pen Keychain.png",
+    "baseImage": "/static/products/sr_295_hydrox_white_bottle_pen_keychain.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -743,7 +743,7 @@
     "productId": 17,
     "productName": "Red Elastic Diary Set (Sr 140)",
     "slug": "red-elastic-diary-set-sr-140",
-    "baseImage": "/products/Sr 140 Red Elastic Pen & Diary.png",
+    "baseImage": "/static/products/sr_140_red_elastic_pen_diary.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -785,7 +785,7 @@
     "productId": 18,
     "productName": "Black Mars Diary Set (Sr 145)",
     "slug": "black-mars-diary-set-sr-145",
-    "baseImage": "/products/Sr 145 Black Mars Pen & Diary.png",
+    "baseImage": "/static/products/sr_145_black_mars_pen_diary.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -827,7 +827,7 @@
     "productId": 19,
     "productName": "Executive Pen & Keychain (Sr 240)",
     "slug": "executive-pen-keychain-sr-240",
-    "baseImage": "/products/Sr 240 Pen & Keychain.png",
+    "baseImage": "/static/products/sr_240_pen_keychain.png",
     "zones": [
       {
         "id": "text-zone-1",
@@ -869,7 +869,7 @@
     "productId": 20,
     "productName": "Professional Pen & Cardholder (Sr 247)",
     "slug": "professional-pen-cardholder-sr-247",
-    "baseImage": "/products/Sr 247 Pen & Cardholder.png",
+    "baseImage": "/static/products/sr_247_pen_cardholder.png",
     "zones": [
       {
         "id": "text-zone-1",
