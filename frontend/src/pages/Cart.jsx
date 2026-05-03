@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, ChevronLeft, ShieldCheck, Truck, Package } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getImageUrl } from '../api';
 
 const Cart = () => {
   const { cart, loading, removeFromCart, updateQuantity } = useCart();
@@ -55,7 +56,7 @@ const Cart = () => {
                 >
                   <div className="w-full md:w-40 h-40 bg-slate-50 rounded-3xl overflow-hidden flex-shrink-0 border border-slate-100 p-2">
                     <img 
-                      src={item.customization_image || item.product_details.image} 
+                      src={getImageUrl(item.customization_image || item.product_details.image)} 
                       alt={item.product_details.name}
                       className="w-full h-full object-contain mix-blend-multiply"
                     />

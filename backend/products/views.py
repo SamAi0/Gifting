@@ -1,44 +1,53 @@
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework import viewsets, permissions
 from .models import Product, Category
 from api.serializers import ProductSerializer, CategorySerializer
 
-
-class ProductViewSet(viewsets.ReadOnlyModelViewSet):
+class ProductViewSet(viewsets.ModelViewSet):
     """
-    ViewSet for viewing products.
-    Supports filtering by category, trending status, and search.
+    ViewSet for viewing and editing products.
     """
     queryset = Product.objects.all().order_by('-created_at')
     serializer_class = ProductSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
     
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
+        return [permissions.AllowAny()]
+
     def get_queryset(self):
         queryset = Product.objects.all()
         category = self.request.query_params.get('category', None)
         is_trending = self.request.query_params.get('is_trending', None)
         search = self.request.query_params.get('search', None)
+        min_price = self.request.query_params.get('min_price', None)
+        max_price = self.request.query_params.get('max_price', None)
         ordering = self.request.query_params.get('ordering', '-created_at')
         
         if category:
             queryset = queryset.filter(category_id=category)
-        if is_trending:
-            queryset = queryset.filter(is_trending=True)
+        if is_trending is not None:
+            queryset = queryset.filter(is_trending=is_trending.lower() == 'true')
         if search:
             queryset = queryset.filter(name__icontains=search)
+        if min_price:
+            queryset = queryset.filter(price__gte=min_price)
+        if max_price:
+            queryset = queryset.filter(price__lte=max_price)
         
-        # Apply ordering
         valid_orderings = ['price', '-price', 'name', '-name', 'created_at', '-created_at']
         if ordering in valid_orderings:
             queryset = queryset.order_by(ordering)
             
         return queryset
 
-
-class CategoryListView(viewsets.ReadOnlyModelViewSet):
+class CategoryListView(viewsets.ModelViewSet):
     """
-    ViewSet for viewing categories.
+    ViewSet for viewing and editing categories.
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
+        return [permissions.AllowAny()]

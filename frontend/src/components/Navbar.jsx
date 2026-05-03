@@ -108,6 +108,20 @@ const Navbar = () => {
                       <User size={16} />
                     </div>
                     <span className="hidden lg:inline">{user.username}</span>
+                    <Link 
+                      to="/orders" 
+                      className={`ml-2 text-xs hover:text-primary transition-colors ${isScrolled ? 'text-slate-500' : 'text-slate-300'}`}
+                    >
+                      My Orders
+                    </Link>
+                    {user.is_staff && (
+                      <Link 
+                        to="/admin-panel" 
+                        className="ml-2 text-xs bg-primary text-white px-2 py-1 rounded-md hover:bg-primary/80 transition-colors"
+                      >
+                        Dashboard
+                      </Link>
+                    )}
                   </div>
                   <button 
                     onClick={() => { logout(); navigate('/login'); }}
@@ -174,6 +188,26 @@ const Navbar = () => {
                 </Link>
               ))}
               
+              <Link
+                to="/orders"
+                onClick={handleNavLinkClick}
+                className={`text-lg font-bold transition-colors ${
+                  location.pathname === '/orders' ? 'text-primary' : 'text-slate-600'
+                }`}
+              >
+                My Orders
+              </Link>
+              
+              {user?.is_staff && (
+                <Link
+                  to="/admin-panel"
+                  onClick={handleNavLinkClick}
+                  className="text-lg font-bold text-primary"
+                >
+                  Admin Dashboard
+                </Link>
+              )}
+
               {user ? (
                  <div className="border-t border-slate-100 pt-5 flex justify-between items-center">
                    <div className="flex items-center gap-3 text-slate-900 font-bold">
