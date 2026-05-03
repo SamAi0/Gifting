@@ -2,11 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { MapPin, CreditCard, ShieldCheck, ArrowRight, CheckCircle2, ChevronLeft, Plus, Globe, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Checkout = () => {
   const { cart, fetchCart } = useCart();
+  const { user } = useAuth();
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -61,7 +63,9 @@ const Checkout = () => {
     });
   };
 
-  const handlePayment = async () => {
+  const [paymentMethod, setPaymentMethod] = useState('ONLINE');
+
+  const handleCheckout = async () => {
     if (!selectedAddress) {
       alert("Please select or add a shipping address");
       return;
@@ -69,54 +73,65 @@ const Checkout = () => {
 
     setIsProcessing(true);
     try {
-      const res = await loadRazorpay();
-      if (!res) {
-        alert("Razorpay SDK failed to load. Are you online?");
-        setIsProcessing(false);
-        return;
+      if (paymentMethod === 'ONLINE') {
+        const res = await loadRazorpay();
+        if (!res) {
+          alert("Razorpay SDK failed to load. Are you online?");
+          setIsProcessing(false);
+          return;
+        }
+
+        const orderRes = await api.post('/orders/create-order/', {
+          address_id: selectedAddress,
+          payment_method: 'ONLINE'
+        });
+
+        const { razorpay_order_id, amount, key, order_id } = orderRes.data;
+
+        const options = {
+          key: key,
+          amount: amount * 100,
+          currency: "INR",
+          name: "Soham Gift",
+          description: `Order #${order_id}`,
+          image: "https://res.cloudinary.com/dzt6vks8k/image/upload/v1/media/logo.png", 
+          order_id: razorpay_order_id,
+          handler: async function (response) {
+            try {
+              await api.post('/orders/verify-payment/', {
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              });
+              setOrderComplete(true);
+              fetchCart(); 
+            } catch {
+              alert("Payment verification failed");
+            }
+          },
+          prefill: {
+            name: user?.username || "Valued Customer", 
+            email: user?.email || "",
+          },
+          theme: {
+            color: "#D91656",
+          },
+        };
+
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open();
+      } else {
+        // Cash on Delivery
+        await api.post('/orders/create-order/', {
+          address_id: selectedAddress,
+          payment_method: 'COD'
+        });
+        setOrderComplete(true);
+        fetchCart();
       }
-
-      const orderRes = await api.post('/orders/create-order/', {
-        address_id: selectedAddress
-      });
-
-      const { razorpay_order_id, amount, key, order_id } = orderRes.data;
-
-      const options = {
-        key: key,
-        amount: amount * 100,
-        currency: "INR",
-        name: "Soham Gift",
-        description: `Order #${order_id}`,
-        image: "https://sohamgift.com/logo.png", 
-        order_id: razorpay_order_id,
-        handler: async function (response) {
-          try {
-            await api.post('/orders/verify-payment/', {
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-            });
-            setOrderComplete(true);
-            fetchCart(); 
-          } catch {
-            alert("Payment verification failed");
-          }
-        },
-        prefill: {
-          name: "Corporate Client", 
-          email: "corporate@example.com",
-        },
-        theme: {
-          color: "#D91656",
-        },
-      };
-
-      const rzp1 = new window.Razorpay(options);
-      rzp1.open();
     } catch (err) {
-      console.error("Payment initiation failed", err);
-      alert("Error starting payment process");
+      console.error("Checkout initiation failed", err);
+      alert("Error starting checkout process");
     } finally {
       setIsProcessing(false);
     }
@@ -259,7 +274,7 @@ const Checkout = () => {
               </form>
             </motion.section>
 
-            {/* Payment Method Info */}
+            {/* Payment Method Selection */}
             <motion.section 
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
@@ -267,26 +282,58 @@ const Checkout = () => {
                className="bg-white rounded-[3rem] p-8 md:p-12 shadow-premium border border-slate-100"
             >
                <div className="flex items-center gap-4 mb-10">
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                   <CreditCard size={24} />
-                </div>
-                <div>
-                   <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Payment Verification</h2>
-                   <p className="text-xs text-slate-400 font-medium">Global encrypted gateway for secure transactions.</p>
-                </div>
-              </div>
-              <div className="flex flex-col md:flex-row items-center gap-8 p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
-                  <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-sm">
-                     <img src="https://razorpay.com/assets/razorpay-glyph.svg" className="w-10 h-10" alt="Razorpay" />
+                 <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                    <CreditCard size={24} />
+                 </div>
+                 <div>
+                    <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Payment Method</h2>
+                    <p className="text-xs text-slate-400 font-medium">Choose how you'd like to pay for your order.</p>
+                 </div>
+               </div>
+
+               <div className="grid md:grid-cols-2 gap-6">
+                  <div 
+                    onClick={() => setPaymentMethod('ONLINE')}
+                    className={`p-6 rounded-[2rem] border-2 cursor-pointer transition-all duration-300 flex items-center gap-4 ${
+                      paymentMethod === 'ONLINE' ? 'border-primary bg-primary/5' : 'border-slate-50 bg-slate-50 hover:border-slate-200'
+                    }`}
+                  >
+                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'ONLINE' ? 'border-primary' : 'border-slate-300'}`}>
+                       {paymentMethod === 'ONLINE' && <div className="w-3 h-3 bg-primary rounded-full"></div>}
+                    </div>
+                    <div>
+                       <p className="font-bold text-slate-900">Online Payment</p>
+                       <p className="text-xs text-slate-500">Cards, UPI, Netbanking</p>
+                    </div>
                   </div>
-                  <div className="text-center md:text-left flex-grow">
-                    <p className="text-xl font-bold text-slate-900 mb-1">Razorpay Secure Integration</p>
-                    <p className="text-sm text-slate-500 font-medium">Supports All Major Cards, UPI, Netbanking, and Corporate Wallets.</p>
+
+                  <div 
+                    onClick={() => setPaymentMethod('COD')}
+                    className={`p-6 rounded-[2rem] border-2 cursor-pointer transition-all duration-300 flex items-center gap-4 ${
+                      paymentMethod === 'COD' ? 'border-primary bg-primary/5' : 'border-slate-50 bg-slate-50 hover:border-slate-200'
+                    }`}
+                  >
+                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'COD' ? 'border-primary' : 'border-slate-300'}`}>
+                       {paymentMethod === 'COD' && <div className="w-3 h-3 bg-primary rounded-full"></div>}
+                    </div>
+                    <div>
+                       <p className="font-bold text-slate-900">Cash on Delivery</p>
+                       <p className="text-xs text-slate-500">Pay when you receive</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-green-600 font-black text-[10px] uppercase tracking-widest bg-green-50 px-4 py-2 rounded-full border border-green-100">
-                     <Lock size={12} /> Encrypted
-                  </div>
-              </div>
+               </div>
+
+               {paymentMethod === 'ONLINE' && (
+                 <div className="mt-8 flex flex-col md:flex-row items-center gap-8 p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
+                    <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-sm">
+                       <img src="https://razorpay.com/assets/razorpay-glyph.svg" className="w-10 h-10" alt="Razorpay" />
+                    </div>
+                    <div className="text-center md:text-left flex-grow">
+                      <p className="text-xl font-bold text-slate-900 mb-1">Razorpay Secure Integration</p>
+                      <p className="text-sm text-slate-500 font-medium">Global encrypted gateway for secure transactions.</p>
+                    </div>
+                 </div>
+               )}
             </motion.section>
           </div>
 
@@ -326,18 +373,18 @@ const Checkout = () => {
 
               <div className="space-y-6">
                  <button 
-                   onClick={handlePayment}
+                   onClick={handleCheckout}
                    disabled={isProcessing || !cart?.items?.length}
                    className={`btn-primary w-full py-6 text-2xl shadow-2xl shadow-primary/30 group flex items-center justify-center gap-3 ${isProcessing ? 'opacity-50 grayscale' : ''}`}
                  >
                    {isProcessing ? (
                      <>
                        <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-                       Authorizing...
+                       Processing...
                      </>
                    ) : (
                      <>
-                        Pay Securely <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+                        {paymentMethod === 'COD' ? 'Confirm Order' : 'Pay Securely'} <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                      </>
                    )}
                  </button>

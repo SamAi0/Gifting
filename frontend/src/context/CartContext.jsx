@@ -59,7 +59,7 @@ export const CartProvider = ({ children }) => {
         };
     }, [token]);
 
-    const addToCart = async (productId, quantity = 1, customizationText = '', customizationImage = null) => {
+    const addToCart = async (productId, quantity = 1, customizationText = '', customizationImage = null, customizationData = null, logoImage = null) => {
         if (!token) {
             alert("Please login to add items to cart");
             return;
@@ -70,6 +70,8 @@ export const CartProvider = ({ children }) => {
         formData.append('quantity', quantity);
         if (customizationText) formData.append('customization_text', customizationText);
         if (customizationImage) formData.append('customization_image', customizationImage);
+        if (customizationData) formData.append('customization_data', JSON.stringify(customizationData));
+        if (logoImage) formData.append('logo_image', logoImage);
 
         try {
             await api.post('/orders/cart-items/', formData, {

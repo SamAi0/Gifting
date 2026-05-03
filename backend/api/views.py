@@ -37,13 +37,29 @@ class AdminStatsView(APIView):
     permission_classes = [permissions.IsAdminUser]
     
     def get(self, request):
-        from django.db.models import Sum
+        from django.db.models import Sum, Count
+        from orders.serializers import OrderSerializer
+        from .serializers import ProductSerializer
+
         revenue = Order.objects.filter(status='PAID').aggregate(total=Sum('total_amount'))['total'] or 0
+        
+        # Get 5 most recent orders
+        recent_orders_queryset = Order.objects.all().order_by('-created_at')[:5]
+        recent_orders = OrderSerializer(recent_orders_queryset, many=True, context={'request': request}).data
+
+        # Get top 5 products by order count (Popular Products)
+        popular_products_queryset = Product.objects.annotate(
+            num_orders=Count('orderitem')
+        ).order_by('-num_orders')[:5]
+        popular_products = ProductSerializer(popular_products_queryset, many=True, context={'request': request}).data
+
         data = {
             "total_products": Product.objects.count(),
             "total_orders": Order.objects.count(),
             "pending_orders": Order.objects.filter(status='PENDING').count(),
             "total_inquiries": BulkInquiry.objects.count(),
             "total_revenue": float(revenue),
+            "recent_orders": recent_orders,
+            "popular_products": popular_products,
         }
         return Response(data)

@@ -16,8 +16,23 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'discount_price', 'category', 'category_name', 'image', 'customization_zones', 'is_trending', 'is_bulk_only', 'stock', 'weight', 'badge_text', 'badge_color', 'created_at']
+        fields = [
+            'id', 'name', 'slug', 'description', 'price', 'discount_price', 
+            'category', 'category_name', 'image', 'customization_zones', 
+            'customization_config', 'is_trending', 'is_bulk_only', 
+            'stock', 'weight', 'badge_text', 'badge_color', 'created_at'
+        ]
     
+    def validate_customization_config(self, value):
+        import json
+        if not value:
+            return "[]"
+        try:
+            json.loads(value)
+        except ValueError:
+            raise serializers.ValidationError("Invalid JSON format for customization config.")
+        return value
+
     def get_customization_zones(self, obj):
         import json
         if obj.customization_config:
@@ -28,12 +43,14 @@ class ProductSerializer(serializers.ModelSerializer):
         return []
     
     def get_image(self, obj):
-        request = self.context.get('request')
-        if obj.image and request:
-            return request.build_absolute_uri(obj.image.url)
-        elif obj.image:
-            return obj.image.url
-        return None
+        if obj.image_file:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.image_file.url)
+            return obj.image_file.url
+        if not obj.image:
+            return None
+        return obj.image
 
 class BulkInquirySerializer(serializers.ModelSerializer):
     class Meta:
