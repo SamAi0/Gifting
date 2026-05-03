@@ -26,9 +26,10 @@ class CategoryAdmin(ImportExportModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
-    formfield_overrides = {
-        models.TextField: {'widget': SafeJSONEditorWidget},
-    }
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name == 'customization_config':
+            kwargs['widget'] = SafeJSONEditorWidget
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     def image_preview(self, obj):
         if obj.image:
