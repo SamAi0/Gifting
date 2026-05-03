@@ -24,3 +24,5 @@ dj-database-url==2.1.0
 python-dotenv==1.0.1
 django-cloudinary-storage==0.3.0
 cloudinary==1.41.0
+django-extensions
+Werkzeug
