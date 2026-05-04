@@ -9,7 +9,9 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [token, setToken] = useState(() => {
         // Initialize from localStorage only - no side effects
-        return localStorage.getItem('token');
+        const savedToken = localStorage.getItem('token');
+        if (savedToken === 'null' || savedToken === 'undefined' || !savedToken) return null;
+        return savedToken;
     });
 
     // Validate token and set user after initialization
