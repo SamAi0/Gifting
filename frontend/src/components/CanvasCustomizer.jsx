@@ -229,7 +229,7 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
         });
 
         fabricCanvas.current.add(img);
-        initTextZones();
+        initZones();
         fabricCanvas.current.requestRenderAll();
         devLog('Base image loaded successfully');
         
@@ -271,17 +271,17 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
       return style;
     };
 
-    const initTextZones = () => {
+    const initZones = () => {
       devLog('Initializing zones, total zones:', productConfig.zones.length);
       
-      productConfig.zones.forEach((zone, index) => {
-        devLog(`Creating zone ${index + 1} - ${zone.id}`);
+      productConfig.zones.forEach(async (zone, index) => {
+        devLog(`Creating zone ${index + 1} - ${zone.id} (${zone.type})`);
+        
+        const left = (zone.x / 1000) * 500;
+        const top = (zone.y / 1000) * 500;
         
         if (zone.type === 'text') {
-          const left = (zone.x / 1000) * 500;
-          const top = (zone.y / 1000) * 500;
           const style = getZoneStyle(zone);
-          
           devLog(`Zone ${index + 1} position: x=${left}, y=${top}`);
           
           if (zone.isCurved) {
@@ -319,24 +319,52 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
             fabricCanvas.current.add(textObj);
             devLog(`Zone ${index + 1} text created: "${customTextRef.current || zone.placeholder}"`);
           }
-          
-          // Always show mapping boxes for coordinate reference
-          const maxWidthPx = (zone.maxWidth / 1000) * 500;
-          const box = new fabric.Rect({
-            left, top,
-            width: maxWidthPx,
-            height: zone.fontSize || 40,
-            originX: 'center',
-            originY: 'center',
-            fill: 'transparent',
-            stroke: 'rgba(255, 0, 0, 0.3)',
-            strokeDashArray: [5, 5],
-            selectable: false,
-            evented: false,
-            data: { isBoundingBox: true, zoneId: zone.id }
-          });
-          fabricCanvas.current.add(box);
+        } else if (zone.type === 'image') {
+          const placeholder = zone.placeholderImage || '/static/placeholders/logo.png';
+          try {
+            const img = await fabric.Image.fromURL(placeholder, { crossOrigin: 'anonymous' });
+            
+            const width = (zone.width / 1000) * 500;
+            const height = (zone.height / 1000) * 500;
+            const scaleX = width / img.width;
+            const scaleY = height / img.height;
+
+            img.set({
+              left, top,
+              scaleX, scaleY,
+              originX: zone.originX || 'center',
+              originY: zone.originY || 'center',
+              angle: zone.angle || 0,
+              selectable: true,
+              evented: true,
+              hasControls: true,
+              hasBorders: true,
+              opacity: zone.opacity || 0.6,
+              data: { zoneId: zone.id, isPlaceholder: true, ...zone }
+            });
+            fabricCanvas.current.add(img);
+            devLog(`Zone ${index + 1} image placeholder created`);
+          } catch (err) {
+            devError(`Failed to load placeholder image for zone ${zone.id}:`, err);
+          }
         }
+        
+        // Always show mapping boxes for coordinate reference
+        const maxWidthPx = (zone.maxWidth / 1000) * 500 || (zone.width / 1000) * 500 || 100;
+        const box = new fabric.Rect({
+          left, top,
+          width: maxWidthPx,
+          height: zone.fontSize || (zone.height / 1000) * 500 || 40,
+          originX: 'center',
+          originY: 'center',
+          fill: 'transparent',
+          stroke: 'rgba(255, 0, 0, 0.3)',
+          strokeDashArray: [5, 5],
+          selectable: false,
+          evented: false,
+          data: { isBoundingBox: true, zoneId: zone.id }
+        });
+        fabricCanvas.current.add(box);
       });
       
       devLog('All zones initialized, canvas objects:', fabricCanvas.current.getObjects().length);
@@ -454,37 +482,51 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
           fabricCanvas.current.remove(existingLogo);
         }
 
+        // Find the logo zone
+        const logoZone = productConfig.zones.find(z => z.type === 'image' || z.id.includes('logo')) || productConfig.zones[0];
+        const placeholderImg = objects.find(o => o.data?.zoneId === logoZone.id && o.data?.isPlaceholder);
+
         if (logoImage) {
           try {
-            const img = await fabric.Image.fromURL(logoImage);
-            const zone = productConfig.zones[0];
-            const left = currentLeft !== undefined ? currentLeft : (zone.x / 1000) * 500;
-            const top = currentTop !== undefined ? currentTop : (zone.y / 1000) * 500;
-            const maxWidth = (zone.maxWidth / 1000) * 500;
-            const logoScale = currentScaleX !== undefined ? currentScaleX : (maxWidth * 0.8) / img.width;
+            const img = await fabric.Image.fromURL(logoImage, { crossOrigin: 'anonymous' });
+            
+            const left = currentLeft !== undefined ? currentLeft : (logoZone.x / 1000) * 500;
+            const top = currentTop !== undefined ? currentTop : (logoZone.y / 1000) * 500;
+            
+            const maxWidth = (logoZone.maxWidth / 1000) * 500 || (logoZone.width / 1000) * 500 || 100;
+            const logoScale = currentScaleX !== undefined ? currentScaleX : (maxWidth * 0.9) / img.width;
             
             img.set({
               scaleX: logoScale,
               scaleY: currentScaleY !== undefined ? currentScaleY : logoScale,
               left, top,
-              originX: 'center', originY: 'center',
+              originX: logoZone.originX || 'center', 
+              originY: logoZone.originY || 'center',
+              angle: logoZone.angle || 0,
               selectable: true,
               evented: true,
               hasControls: true,
               hasBorders: true,
-              data: { isLogo: true }
+              data: { isLogo: true, zoneId: logoZone.id }
             });
             fabricCanvas.current.add(img);
             
-            const textObj = objects.find(o => o.data?.zoneId === zone.id && !o.data?.isBoundingBox);
+            // Hide placeholder if it exists
+            if (placeholderImg) placeholderImg.set({ opacity: 0 });
+            
+            // If the logo zone was originally a text zone (backward compatibility)
+            const textObj = objects.find(o => o.data?.zoneId === logoZone.id && !o.data?.isBoundingBox && o.type === 'text');
             if (textObj) textObj.set({ opacity: 0 });
+            
           } catch (err) {
             devError("Error loading logo:", err);
           }
         } else {
-          const zone = productConfig.zones[0];
-          const textObj = objects.find(o => o.data?.zoneId === zone.id && !o.data?.isBoundingBox);
-          if (textObj) textObj.set({ opacity: zone.opacity || 1 });
+          // Show placeholder again if logo removed
+          if (placeholderImg) placeholderImg.set({ opacity: logoZone.opacity || 0.6 });
+          
+          const textObj = objects.find(o => o.data?.zoneId === logoZone.id && !o.data?.isBoundingBox && o.type === 'text');
+          if (textObj) textObj.set({ opacity: logoZone.opacity || 1 });
         }
         fabricCanvas.current.requestRenderAll();
         
