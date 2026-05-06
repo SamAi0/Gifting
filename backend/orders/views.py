@@ -37,11 +37,15 @@ class AddressViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+from django.db import transaction
+
 class CreateOrderView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
-        cart = request.user.cart
+        # Use get_or_create to avoid RelatedObjectDoesNotExist if cart hasn't been initialized
+        cart, _ = Cart.objects.get_or_create(user=request.user)
+        
         if not cart.items.exists():
             return Response({"error": "Cart is empty"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -70,39 +74,46 @@ class CreateOrderView(views.APIView):
                 print(f"Razorpay Error: {e}")
                 return Response({"error": "Failed to create Razorpay order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        # Create local Order
-        order = Order.objects.create(
-            user=request.user,
-            address=address,
-            total_amount=total_amount,
-            payment_method=payment_method,
-            razorpay_order_id=razorpay_order_id,
-            status='PLACED' if payment_method == 'COD' else 'PENDING'
-        )
+        # Ensure order creation and cart clearing are atomic
+        try:
+            with transaction.atomic():
+                # Create local Order
+                order = Order.objects.create(
+                    user=request.user,
+                    address=address,
+                    total_amount=total_amount,
+                    payment_method=payment_method,
+                    razorpay_order_id=razorpay_order_id,
+                    status='PLACED' if payment_method == 'COD' else 'PENDING'
+                )
 
-        # Move items from cart to order
-        for item in cart.items.all():
-            OrderItem.objects.create(
-                order=order,
-                product=item.product,
-                quantity=item.quantity,
-                price=item.product.price,
-                customization_text=item.customization_text,
-                customization_image=item.customization_image,
-                customization_data=item.customization_data,
-                logo_image=item.logo_image
-            )
-        
-        # Clear cart
-        cart.items.all().delete()
+                # Move items from cart to order
+                for item in cart.items.all():
+                    OrderItem.objects.create(
+                        order=order,
+                        product=item.product,
+                        quantity=item.quantity,
+                        price=item.product.price,
+                        customization_text=item.customization_text,
+                        customization_image=item.customization_image,
+                        customization_data=item.customization_data,
+                        logo_image=item.logo_image
+                    )
+                
+                # Clear cart
+                cart.items.all().delete()
 
-        return Response({
-            "order_id": order.id,
-            "razorpay_order_id": razorpay_order_id,
-            "amount": total_amount,
-            "payment_method": payment_method,
-            "key": settings.RAZORPAY_KEY_ID if payment_method == 'ONLINE' else None
-        })
+            return Response({
+                "order_id": order.id,
+                "razorpay_order_id": razorpay_order_id,
+                "amount": total_amount,
+                "payment_method": payment_method,
+                "key": settings.RAZORPAY_KEY_ID if payment_method == 'ONLINE' else None
+            })
+        except Exception as e:
+            print(f"Order Creation Error: {e}")
+            return Response({"error": "Failed to process order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 class VerifyPaymentView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]

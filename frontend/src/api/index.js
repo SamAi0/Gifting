@@ -27,13 +27,32 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-    if (token) {
+    // Ensure token is not null, undefined, or the string "null"/"undefined"
+    if (token && token !== 'null' && token !== 'undefined') {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
   (error) => Promise.reject(error)
 );
+
+// Add a response interceptor to handle token expiration/invalid tokens
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      console.warn('Unauthorized request detected. Clearing token...');
+      localStorage.removeItem('token');
+      // Only redirect if not already on login page
+      if (!window.location.pathname.includes('/login')) {
+         // Optionally refresh the page or redirect to login
+         // window.location.href = '/login'; 
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 
 // Auth endpoints
 export const loginUser = (credentials) => api.post('auth/login/', credentials);
