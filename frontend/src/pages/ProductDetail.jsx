@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Truck, ArrowLeft, MessageSquare, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package, Phone } from 'lucide-react';
 import { fetchProductById, getImageUrl } from '../api';
@@ -6,7 +6,29 @@ import api from '../api';
 import CanvasCustomizer from '../components/CanvasCustomizer';
 import CustomizerControls from '../components/CustomizerControls';
 import { useCart } from '../context/CartContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, animate } from 'framer-motion';
+
+// Animated Price Component for the "Rolling" effect
+const AnimatedPrice = ({ value, prefix = "₹" }) => {
+  const [displayValue, setDisplayValue] = useState(value);
+  const prevValue = useRef(value);
+
+  useEffect(() => {
+    const controls = animate(prevValue.current, value, {
+      duration: 0.8,
+      ease: "easeOut",
+      onUpdate: (latest) => setDisplayValue(latest)
+    });
+    prevValue.current = value;
+    return () => controls.stop();
+  }, [value]);
+
+  return (
+    <span>
+      {prefix}{Math.round(displayValue).toLocaleString()}
+    </span>
+  );
+};
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -333,7 +355,9 @@ const ProductDetail = () => {
                       {/* Pricing */}
                       <div className="flex flex-col gap-2 mb-8">
                         <div className="flex items-end gap-4">
-                          <span className="text-5xl font-bold text-slate-900 tracking-tighter">₹{bulkPricing.unitPrice.toLocaleString()}</span>
+                          <span className="text-5xl font-bold text-slate-900 tracking-tighter">
+                            <AnimatedPrice value={bulkPricing.unitPrice} />
+                          </span>
                           {bulkPricing.discount > 0 && (
                             <div className="mb-2">
                                <span className="text-slate-400 line-through font-medium mr-2">₹{product.price}</span>
@@ -343,9 +367,13 @@ const ProductDetail = () => {
                         </div>
                         {quantity > 1 && (
                           <div className="flex items-center gap-2">
-                            <span className="text-slate-500 text-sm font-medium">Subtotal: <span className="text-slate-900 font-bold">₹{bulkPricing.total.toLocaleString()}</span></span>
+                            <span className="text-slate-500 text-sm font-medium">
+                              Subtotal: <span className="text-slate-900 font-bold"><AnimatedPrice value={bulkPricing.total} /></span>
+                            </span>
                             {bulkPricing.savings > 0 && (
-                              <span className="text-[10px] font-black text-green-600 uppercase tracking-widest bg-green-50 px-2 py-0.5 rounded-md border border-green-100 animate-pulse">Saving ₹{bulkPricing.savings.toLocaleString()}</span>
+                              <span className="text-[10px] font-black text-green-600 uppercase tracking-widest bg-green-50 px-2 py-0.5 rounded-md border border-green-100 animate-pulse">
+                                Saving <AnimatedPrice value={bulkPricing.savings} />
+                              </span>
                             )}
                           </div>
                         )}
