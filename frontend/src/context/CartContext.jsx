@@ -88,7 +88,6 @@ export const CartProvider = ({ children }) => {
                 },
             });
             fetchCart();
-            alert("Added to cart!");
         } catch (err) {
             console.error("Error adding to cart", err);
         }
