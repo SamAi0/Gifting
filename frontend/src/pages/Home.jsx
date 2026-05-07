@@ -38,7 +38,7 @@ const Home = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-secondary overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center bg-secondary overflow-hidden">
         {/* Abstract Background Elements */}
         <div className="absolute top-0 right-0 w-1/2 h-full z-0 opacity-20 hidden lg:block">
            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-[120px] animate-pulse"></div>
@@ -54,8 +54,8 @@ const Home = () => {
           />
         </div>
         
-        <div className="container-custom relative z-20">
-          <div className="max-w-3xl">
+        <div className="relative z-20 w-full px-6 md:px-16 lg:px-24 py-10">
+          <div className="max-w-4xl text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ const Home = () => {
       </section>
 
       {/* Featured Stats */}
-      <section className="relative z-30 -mt-16 mb-24">
+      <section className="relative z-30 -mt-12 mb-6">
         <div className="container-custom">
            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
               {[
@@ -125,9 +125,9 @@ const Home = () => {
       </section>
 
       {/* Trending Products */}
-      <section className="section-padding bg-slate-50/50 bg-pattern">
+      <section className="py-6 md:py-10 bg-slate-50/50 bg-pattern">
         <div className="container-custom">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
             <div className="text-center md:text-left">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">Trending Collections</h2>
               <p className="text-slate-500 text-lg max-w-xl">Curated excellence for modern professionals. Explore our most popular corporate gifts.</p>
@@ -207,34 +207,34 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="section-padding bg-white overflow-hidden">
+      <section className="py-6 md:py-10 bg-white overflow-hidden">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-slate-900">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight text-slate-900">
                 Why Corporate Leaders <span className="text-primary italic">Trust</span> Soham Gift
               </h2>
-              <p className="text-lg text-slate-500 mb-12 leading-relaxed">
+              <p className="text-lg text-slate-500 mb-8 leading-relaxed">
                 We don't just deliver products; we deliver experiences that reinforce your brand values and appreciation.
               </p>
               
-              <div className="space-y-10">
+              <div className="space-y-6">
                 {[
-                  { title: "Custom Branding", desc: "Advanced printing and engraving technology for your brand identity.", icon: ShieldCheck },
-                  { title: "Pan-India Logistics", desc: "Reliable doorstep delivery to 19,000+ pin codes across the country.", icon: Truck },
-                  { title: "Personal Concierge", desc: "A dedicated manager to handle your bulk orders from design to delivery.", icon: Clock },
+                  { title: "Custom Branding", desc: "Advanced printing and engraving technology.", icon: ShieldCheck },
+                  { title: "Pan-India Logistics", desc: "Reliable delivery to 19,000+ pin codes.", icon: Truck },
+                  { title: "Personal Concierge", desc: "A dedicated manager to handle your bulk orders.", icon: Clock },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex gap-6 group">
-                    <div className="flex-shrink-0 w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm">
-                      <item.icon size={28} />
+                  <div key={idx} className="flex gap-4 group">
+                    <div className="flex-shrink-0 w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm">
+                      <item.icon size={22} />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h4>
-                      <p className="text-slate-500 leading-relaxed">{item.desc}</p>
+                      <h4 className="text-xl font-bold text-slate-900 mb-1">{item.title}</h4>
+                      <p className="text-slate-600 text-base leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -245,58 +245,58 @@ const Home = () => {
                initial={{ opacity: 0, scale: 0.9 }}
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
-               className="relative"
+               className="relative flex justify-center lg:justify-end"
             >
-               <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-3xl">
+               <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-xl max-w-md w-full">
                   <img 
                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200" 
                     alt="Team Collaboration" 
-                    className="w-full h-full object-cover aspect-[4/5]"
+                    className="w-full h-full object-cover aspect-square"
                   />
                </div>
                {/* Floating elements */}
-               <div className="absolute -bottom-10 -left-10 bg-white p-8 rounded-3xl shadow-premium z-20 hidden md:block">
-                  <p className="text-5xl font-bold text-primary mb-1">98%</p>
-                  <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">Retention Rate</p>
+               <div className="absolute -bottom-4 -left-4 bg-white p-5 rounded-2xl shadow-premium z-20 hidden md:block">
+                  <p className="text-3xl font-bold text-primary mb-1">98%</p>
+                  <p className="text-slate-500 font-bold text-[10px] uppercase tracking-widest">Retention Rate</p>
                </div>
-               <div className="absolute top-10 -right-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl z-0"></div>
+               <div className="absolute top-10 -right-5 w-40 h-40 bg-primary/10 rounded-full blur-3xl z-0"></div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding bg-slate-900 text-white relative">
+      <section className="py-6 md:py-10 bg-slate-900 text-white relative">
         <div className="container-custom">
-          <div className="text-center mb-20">
-            <span className="text-primary font-black uppercase tracking-[0.3em] text-sm mb-4 inline-block">Voices of Trust</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">What Corporate Visionaries Say</h2>
-            <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+          <div className="text-center mb-10">
+            <span className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-3 inline-block">Voices of Trust</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Corporate Visionaries Say</h2>
+            <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
           </div>
            
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.length > 0 ? (
               testimonials.map((testimonial) => (
                 <motion.div 
                   key={testimonial.id}
-                  whileHover={{ y: -10 }}
-                  className="bg-white/5 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 flex flex-col justify-between"
+                  whileHover={{ y: -5 }}
+                  className="bg-white/5 backdrop-blur-md p-6 rounded-[2rem] border border-white/10 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex gap-1 text-accent mb-8">
-                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={18} fill="currentColor" />)}
+                    <div className="flex gap-1 text-accent mb-6">
+                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill="currentColor" />)}
                     </div>
-                    <p className="text-slate-300 text-lg italic mb-10 leading-relaxed font-light">
+                    <p className="text-slate-300 text-base italic mb-8 leading-relaxed font-light">
                       "{testimonial.content}"
                     </p>
                   </div>
-                  <div className="flex items-center gap-5 pt-8 border-t border-white/5">
-                    <div className="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center text-primary font-black text-xl border border-primary/30">
+                  <div className="flex items-center gap-4 pt-6 border-t border-white/5">
+                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary font-black text-lg border border-primary/30">
                       {testimonial.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <h4 className="font-bold text-white text-lg">{testimonial.name}</h4>
-                      <p className="text-slate-500 text-sm font-medium">{testimonial.role || testimonial.company}</p>
+                      <h4 className="font-bold text-white text-base">{testimonial.name}</h4>
+                      <p className="text-slate-500 text-xs font-medium">{testimonial.role || testimonial.company}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -305,24 +305,24 @@ const Home = () => {
               [1, 2, 3].map((n) => (
                 <motion.div 
                   key={n}
-                  whileHover={{ y: -10 }}
-                  className="bg-white/5 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 flex flex-col justify-between"
+                  whileHover={{ y: -5 }}
+                  className="bg-white/5 backdrop-blur-md p-6 rounded-[2rem] border border-white/10 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex gap-1 text-accent mb-8">
-                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={18} fill="currentColor" />)}
+                    <div className="flex gap-1 text-accent mb-6">
+                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill="currentColor" />)}
                     </div>
-                    <p className="text-slate-300 text-lg italic mb-10 leading-relaxed font-light">
+                    <p className="text-slate-300 text-base italic mb-8 leading-relaxed font-light">
                       "The quality of gifts was exceptional, and the branding was perfectly executed. Our employees loved the Diwali hampers! Soham Gift is now our go-to partner."
                     </p>
                   </div>
-                  <div className="flex items-center gap-5 pt-8 border-t border-white/5">
-                    <div className="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center text-primary font-black text-xl border border-primary/30">
+                  <div className="flex items-center gap-4 pt-6 border-t border-white/5">
+                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary font-black text-lg border border-primary/30">
                       {n === 1 ? 'RK' : n === 2 ? 'SD' : 'AN'}
                     </div>
                     <div>
-                      <h4 className="font-bold text-white text-lg">{n === 1 ? 'Rajesh Kumar' : n === 2 ? 'Sneha Desai' : 'Arjun Nair'}</h4>
-                      <p className="text-slate-500 text-sm font-medium">{n === 1 ? 'HR Director, Tech Solutions' : 'Procurement Lead, Global Corp'}</p>
+                      <h4 className="font-bold text-white text-base">{n === 1 ? 'Rajesh Kumar' : n === 2 ? 'Sneha Desai' : 'Arjun Nair'}</h4>
+                      <p className="text-slate-500 text-xs font-medium">{n === 1 ? 'HR Director, Tech Solutions' : 'Procurement Lead, Global Corp'}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -333,30 +333,27 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-white">
+      <section className="py-6 md:py-10 bg-white">
         <div className="container-custom">
            <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative rounded-[4rem] bg-slate-900 p-12 md:p-24 text-center text-white overflow-hidden shadow-3xl"
+              className="relative rounded-[3rem] bg-slate-900 p-10 md:p-16 text-center text-white overflow-hidden shadow-2xl"
            >
               {/* Background Glow */}
               <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                 <div className="absolute -top-1/2 -left-1/4 w-[100%] h-[100%] bg-primary rounded-full blur-[200px]"></div>
-                 <div className="absolute -bottom-1/2 -right-1/4 w-[100%] h-[100%] bg-blue-600 rounded-full blur-[200px]"></div>
+                 <div className="absolute -top-1/2 -left-1/4 w-[100%] h-[100%] bg-primary rounded-full blur-[150px]"></div>
+                 <div className="absolute -bottom-1/2 -right-1/4 w-[100%] h-[100%] bg-blue-600 rounded-full blur-[150px]"></div>
               </div>
 
-              <div className="relative z-10 max-w-4xl mx-auto">
-                <Gift className="w-20 h-20 text-primary mx-auto mb-10 animate-bounce" />
-                <h2 className="text-5xl md:text-7xl font-bold mb-10 leading-tight">Ready to Elevate Your Gifting Experience?</h2>
-                <p className="text-xl mb-14 text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
+              <div className="relative z-10 max-w-3xl mx-auto">
+                <Gift className="w-12 h-12 text-primary mx-auto mb-6 animate-bounce" />
+                <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Ready to Elevate Your Gifting Experience?</h2>
+                <p className="text-base md:text-lg mb-10 text-slate-300 max-w-xl mx-auto font-light leading-relaxed">
                   Join 500+ companies that trust us for their premium corporate requirements. Get a personalized quote within 24 hours.
                 </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-6">
-                  <Link to="/contact" className="btn-primary py-6 px-16 text-xl shadow-2xl shadow-primary/40">
-                    Start Bulk Inquiry
-                  </Link>
+                <div className="flex justify-center">
                   <Link to="/products" className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-bold px-16 py-6 rounded-2xl text-xl transition-all border border-white/10">
                     Browse Catalog
                   </Link>
