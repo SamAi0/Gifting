@@ -182,27 +182,29 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
         const objects = fabricCanvas.current.getObjects();
         let hasWarning = false;
 
-        // Distribute logos first, then texts
-        let logoIdx = 0;
-        let textIdx = 0;
+        const totalZones = productConfig.zones.length;
 
-        for (const zone of productConfig.zones) {
+        for (let i = 0; i < totalZones; i++) {
+          const zone = productConfig.zones[i];
           let obj = objects.find(o => o.data?.zoneId === zone.id && !o.data?.isBoundingBox);
           const left = (zone.x / 1000) * 500;
           const top = (zone.y / 1000) * 500;
 
-          // Determine what should be in this zone
+          // TWO-WAY MAPPING LOGIC
           let targetType = null;
           let targetValue = null;
 
-          if (logoPreviews && logoIdx < logoPreviews.length) {
+          // 1. Text fills from the start (0, 1, 2...)
+          if (i < textEntries.length) {
+            targetType = 'text';
+            targetValue = textEntries[i].text;
+          } 
+          // 2. Logo fills from the end (Last, Last-1...)
+          else if (logoPreviews && i >= (totalZones - logoPreviews.length)) {
+            // Mapping: Last zone (N-1) gets First logo (0), etc.
+            const logoIdx = (totalZones - 1) - i;
             targetType = 'image';
             targetValue = logoPreviews[logoIdx];
-            logoIdx++;
-          } else if (textIdx < textEntries.length) {
-            targetType = 'text';
-            targetValue = textEntries[textIdx].text;
-            textIdx++;
           }
 
           // Clean up if type changed
