@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from .models import Cart, CartItem, Order, OrderItem, Address
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer, AddressSerializer
 
+import logging
+logger = logging.getLogger(__name__)
+
 def get_razorpay_client():
     import razorpay
     return razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
@@ -71,7 +74,7 @@ class CreateOrderView(views.APIView):
                 })
                 razorpay_order_id = razorpay_order['id']
             except Exception as e:
-                print(f"Razorpay Error: {e}")
+                logger.error(f"Razorpay Error: {str(e)}")
                 return Response({"error": "Failed to create Razorpay order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         # Ensure order creation and cart clearing are atomic
@@ -111,7 +114,7 @@ class CreateOrderView(views.APIView):
                 "key": settings.RAZORPAY_KEY_ID if payment_method == 'ONLINE' else None
             })
         except Exception as e:
-            print(f"Order Creation Error: {e}")
+            logger.error(f"Order Creation Error: {str(e)}")
             return Response({"error": "Failed to process order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
@@ -138,13 +141,14 @@ class VerifyPaymentView(views.APIView):
             order.save()
             return Response({"message": "Payment successful"})
         except Exception as e:
+            logger.error(f"Payment Verification Error: {str(e)}")
             return Response({"error": "Payment verification failed"}, status=status.HTTP_400_BAD_REQUEST)
 
 class UserOrderListView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        orders = Order.objects.filter(user=request.user).order_by('-created_at')
+        orders = Order.objects.filter(user=request.user).prefetch_related('items', 'items__product').order_by('-created_at')
         serializer = OrderSerializer(orders, many=True, context={'request': request})
         return Response(serializer.data)
 

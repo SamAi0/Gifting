@@ -5,32 +5,32 @@ import { useAuth } from './AuthContext';
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    const { token } = useAuth();
+    const { user } = useAuth();
     const [cart, setCart] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const fetchCart = useCallback(async () => {
-        if (!token) {
+        if (!user) {
             setCart(null);
             return;
         }
         setLoading(true);
         try {
-            const res = await api.get('/orders/cart/');
+            const res = await api.get('orders/cart/');
             setCart(res.data);
         } catch (err) {
             console.error("Error fetching cart", err);
         } finally {
             setLoading(false);
         }
-    }, [token]);
+    }, [user]);
 
-    // Fetch cart on mount and when token changes
+    // Fetch cart on mount and when user changes
     useEffect(() => {
         let isMounted = true;
         
         const syncCart = async () => {
-            if (!token) {
+            if (!user) {
                 if (isMounted) {
                     setCart(null);
                 }
@@ -39,7 +39,7 @@ export const CartProvider = ({ children }) => {
             
             setLoading(true);
             try {
-                const res = await api.get('/orders/cart/');
+                const res = await api.get('orders/cart/');
                 if (isMounted) {
                     setCart(res.data);
                 }
@@ -57,10 +57,10 @@ export const CartProvider = ({ children }) => {
         return () => {
             isMounted = false;
         };
-    }, [token]);
+    }, [user]);
 
     const addToCart = async (productId, quantity = 1, customizationText = '', customizationImage = null, customizationData = null, logoImage = null) => {
-        if (!token) {
+        if (!user) {
             alert("Please login to add items to cart");
             return;
         }
@@ -74,7 +74,7 @@ export const CartProvider = ({ children }) => {
         if (logoImage) formData.append('logo_image', logoImage);
 
         try {
-            await api.post('/orders/cart-items/', formData, {
+            await api.post('orders/cart-items/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -88,7 +88,7 @@ export const CartProvider = ({ children }) => {
 
     const removeFromCart = async (itemId) => {
         try {
-            await api.delete(`/orders/cart-items/${itemId}/`);
+            await api.delete(`orders/cart-items/${itemId}/`);
             fetchCart();
         } catch (err) {
             console.error("Error removing from cart", err);
@@ -97,7 +97,7 @@ export const CartProvider = ({ children }) => {
 
     const updateQuantity = async (itemId, quantity) => {
         try {
-            await api.patch(`/orders/cart-items/${itemId}/`, { quantity });
+            await api.patch(`orders/cart-items/${itemId}/`, { quantity });
             fetchCart();
         } catch (err) {
             console.error("Error updating quantity", err);

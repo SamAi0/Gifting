@@ -397,7 +397,7 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
         fabricCanvas.current = null;
       }
     };
-  }, [productConfig, isMappingMode]); 
+  }, [productConfig, isMappingMode, onImageExport]); 
 
   // Update text or logo dynamically (debounced)
   useEffect(() => {

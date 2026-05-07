@@ -46,7 +46,8 @@ const ProductDetail = () => {
         const relatedRes = await api.get('/products/', { 
           params: { category: productData.category } 
         });
-        setRelatedProducts(relatedRes.data.filter(p => p.id !== parseInt(id)).slice(0, 4));
+        const relatedData = relatedRes.data.results || relatedRes.data;
+        setRelatedProducts(relatedData.filter(p => p.id !== parseInt(id)).slice(0, 4));
         
       } catch (error) {
         console.error("Error loading product:", error);
