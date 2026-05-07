@@ -42,7 +42,7 @@ const ProductList = () => {
         if (sortBy) params.ordering = sortBy;
         
         const prodRes = await fetchProducts(params);
-        setProducts(prodRes.data);
+        setProducts(prodRes.data.results || prodRes.data);
       } catch (error) {
         console.error("Error loading products:", error);
       } finally {

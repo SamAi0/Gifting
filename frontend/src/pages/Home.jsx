@@ -19,8 +19,10 @@ const Home = () => {
           fetchTestimonials()
         ]);
         setCategories(catRes.data);
-        setTrendingProducts(prodRes.data.slice(0, 4));
-        setTestimonials(testimRes.data.slice(0, 3));
+        const products = prodRes.data.results || prodRes.data;
+        setTrendingProducts(products.slice(0, 4));
+        const testimonialsData = testimRes.data.results || testimRes.data;
+        setTestimonials(testimonialsData.slice(0, 3));
       } catch (error) {
         console.error("Error loading home data:", error);
       }
@@ -146,52 +148,53 @@ const Home = () => {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500">
-                    <div className="aspect-[4/5] overflow-hidden">
-                      <img 
-                        src={getImageUrl(product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        alt={product.name}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    
-                    {/* Badges */}
-                    <div className="absolute top-5 left-5 flex flex-col gap-2">
-                      {product.badge_text && (
-                        <span 
-                          className="text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg text-white"
-                          style={{ backgroundColor: product.badge_color || 'var(--color-primary)' }}
-                        >
-                          {product.badge_text}
-                        </span>
-                      )}
-                      {product.customization_config && (
-                        <span className="bg-white/90 backdrop-blur-md text-primary text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm border border-primary/10">
-                          Customizable
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="p-8">
-                      <p className="text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-3">{product.category_name}</p>
-                      <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors line-clamp-1">{product.name}</h3>
-                      <div className="flex justify-between items-center pt-4 border-t border-slate-100">
-                        <div className="flex items-center gap-2">
-                          <span className="text-2xl font-bold text-slate-900">₹{product.price}</span>
-                          {product.discount_price && (
-                            <span className="text-sm text-slate-400 line-through">₹{product.discount_price}</span>
-                          )}
+                  <Link to={`/products/${product.id}`} className="group block">
+                    <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500">
+                      <div className="aspect-[4/5] overflow-hidden">
+                        <img 
+                          src={getImageUrl(product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          alt={product.name}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <span className="bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest border border-white/20 scale-90 group-hover:scale-100 transition-all duration-500">View Details</span>
                         </div>
-                        <Link 
-                          to={`/products/${product.id}`} 
-                          className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center transition-all duration-300 hover:bg-primary group-hover:scale-110 shadow-lg shadow-slate-900/10"
-                        >
-                          <ArrowRight size={18} />
-                        </Link>
+                      </div>
+                      
+                      {/* Badges */}
+                      <div className="absolute top-5 left-5 flex flex-col gap-2">
+                        {product.badge_text && (
+                          <span 
+                            className="text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg text-white"
+                            style={{ backgroundColor: product.badge_color || 'var(--color-primary)' }}
+                          >
+                            {product.badge_text}
+                          </span>
+                        )}
+                        {product.customization_config && (
+                          <span className="bg-white/90 backdrop-blur-md text-primary text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm border border-primary/10">
+                            Customizable
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="p-8">
+                        <p className="text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-3">{product.category_name}</p>
+                        <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors line-clamp-1">{product.name}</h3>
+                        <div className="flex justify-between items-center pt-4 border-t border-slate-100">
+                          <div className="flex items-center gap-2">
+                            <span className="text-2xl font-bold text-slate-900">₹{product.price}</span>
+                            {product.discount_price && (
+                              <span className="text-sm text-slate-400 line-through">₹{product.discount_price}</span>
+                            )}
+                          </div>
+                          <div className="text-primary-light font-black text-[10px] uppercase tracking-widest">
+                             Explore
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))
             ) : (

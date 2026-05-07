@@ -35,10 +35,10 @@ const ProductManagement = () => {
   const fetchData = useCallback(async () => {
     try {
       const [prodRes, catRes] = await Promise.all([
-        api.get('/products/'),
+        api.get('products/'),
         fetchCategories()
       ]);
-      setProducts(prodRes.data);
+      setProducts(prodRes.data.results || prodRes.data);
       setCategories(catRes.data);
     } catch (err) {
       console.error("Failed to fetch data:", err);
