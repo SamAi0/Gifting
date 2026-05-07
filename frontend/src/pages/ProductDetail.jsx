@@ -16,7 +16,7 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   
   // Customization State
-  const [textEntries, setTextEntries] = useState([{ id: Date.now(), text: '' }]);
+  const [textEntries, setTextEntries] = useState(() => [{ id: Date.now(), text: '' }]);
   const [textColor, setTextColor] = useState('#000000');
   const [logoFiles, setLogoFiles] = useState([]);
   const [logoPreviews, setLogoPreviews] = useState([]); // Array of preview URLs

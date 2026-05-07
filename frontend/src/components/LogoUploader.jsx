@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { Upload, X, FileText, File as FileIcon, AlertCircle, CheckCircle2, Info } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Upload, X, FileText, File as FileIcon, AlertCircle, Info } from 'lucide-react';
 
 const LogoUploader = ({ files, onFilesChange, onPreviewChange }) => {
   const [dragActive, setDragActive] = useState(false);
