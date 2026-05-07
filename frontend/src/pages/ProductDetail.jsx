@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, Truck, ArrowLeft, MessageSquare, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package } from 'lucide-react';
+import { ShieldCheck, Truck, ArrowLeft, MessageSquare, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package, Phone } from 'lucide-react';
 import { fetchProductById, getImageUrl } from '../api';
 import api from '../api';
 import CanvasCustomizer from '../components/CanvasCustomizer';
@@ -24,6 +24,8 @@ const ProductDetail = () => {
   const [isCustomizing, setIsCustomizing] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [warningMessage, setWarningMessage] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [showBulkDetails, setShowBulkDetails] = useState(false);
   
   // UX Flow States
   const [activeStep, setActiveStep] = useState(1); // 1: Branding, 2: Design, 3: Review
@@ -78,6 +80,21 @@ const ProductDetail = () => {
     };
   }, [product]);
 
+  const bulkPricing = useMemo(() => {
+    if (!product) return { unitPrice: 0, total: 0, savings: 0, discount: 0 };
+    const basePrice = product.price;
+    let discount = 0;
+    if (quantity >= 500) discount = 0.15;
+    else if (quantity >= 250) discount = 0.10;
+    else if (quantity >= 100) discount = 0.05;
+    
+    const unitPrice = basePrice * (1 - discount);
+    const total = unitPrice * quantity;
+    const savings = (basePrice * quantity) - total;
+    
+    return { unitPrice, total, savings, discount: Math.round(discount * 100) };
+  }, [product, quantity]);
+
   const [showToast, setShowToast] = useState(false);
 
   const handleAddToCart = async () => {
@@ -101,7 +118,7 @@ const ProductDetail = () => {
       timestamp: new Date().toISOString()
     };
 
-    addToCart(product.id, 1, textEntries[0]?.text || '', imageFile, customizationData, logoFiles);
+    addToCart(product.id, quantity, textEntries[0]?.text || '', imageFile, customizationData, logoFiles);
     
     // Show Premium Toast
     setShowToast(true);
@@ -314,12 +331,22 @@ const ProductDetail = () => {
                       <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">{product.name}</h1>
                       
                       {/* Pricing */}
-                      <div className="flex items-end gap-4 mb-8">
-                        <span className="text-5xl font-bold text-slate-900 tracking-tighter">₹{product.price}</span>
-                        {product.discount_price && (
-                          <div className="mb-2">
-                             <span className="text-slate-400 line-through font-medium mr-2">₹{product.discount_price}</span>
-                             <span className="text-green-600 font-bold text-sm bg-green-50 px-2 py-1 rounded-lg">Save ₹{product.price - product.discount_price}</span>
+                      <div className="flex flex-col gap-2 mb-8">
+                        <div className="flex items-end gap-4">
+                          <span className="text-5xl font-bold text-slate-900 tracking-tighter">₹{bulkPricing.unitPrice.toLocaleString()}</span>
+                          {bulkPricing.discount > 0 && (
+                            <div className="mb-2">
+                               <span className="text-slate-400 line-through font-medium mr-2">₹{product.price}</span>
+                               <span className="text-green-600 font-bold text-sm bg-green-50 px-2 py-1 rounded-lg">-{bulkPricing.discount}% Bulk Discount</span>
+                            </div>
+                          )}
+                        </div>
+                        {quantity > 1 && (
+                          <div className="flex items-center gap-2">
+                            <span className="text-slate-500 text-sm font-medium">Subtotal: <span className="text-slate-900 font-bold">₹{bulkPricing.total.toLocaleString()}</span></span>
+                            {bulkPricing.savings > 0 && (
+                              <span className="text-[10px] font-black text-green-600 uppercase tracking-widest bg-green-50 px-2 py-0.5 rounded-md border border-green-100 animate-pulse">Saving ₹{bulkPricing.savings.toLocaleString()}</span>
+                            )}
                           </div>
                         )}
                       </div>
@@ -327,6 +354,96 @@ const ProductDetail = () => {
                       <p className="text-lg text-slate-500 leading-relaxed font-light">
                         {product.description}
                       </p>
+
+                      {/* Quantity Selector & Bulk Info */}
+                      <div className="pt-4 space-y-4">
+                        <div className="flex flex-col gap-3">
+                           <div className="flex items-center justify-between">
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                                Select Quantity
+                                <div className="relative">
+                                   <button 
+                                     onClick={() => setShowBulkDetails(!showBulkDetails)}
+                                     className={`w-4 h-4 rounded-full flex items-center justify-center transition-all ${
+                                       showBulkDetails ? 'bg-primary text-white shadow-lg' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                                     }`}
+                                   >
+                                      <span className="text-[10px] font-black italic">i</span>
+                                   </button>
+                                   
+                                   {/* Popover */}
+                                   <AnimatePresence>
+                                     {showBulkDetails && (
+                                       <motion.div 
+                                         initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                                         animate={{ opacity: 1, y: 0, scale: 1 }}
+                                         exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                                         className="absolute top-full left-0 mt-3 w-64 p-5 bg-slate-900 text-white rounded-[2rem] shadow-3xl z-50 origin-top-left"
+                                       >
+                                          <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+                                            <h4 className="text-[10px] font-black uppercase tracking-widest">Bulk Pricing Tiers</h4>
+                                            <button onClick={() => setShowBulkDetails(false)} className="text-white/40 hover:text-white">✕</button>
+                                          </div>
+                                          <div className="space-y-3">
+                                             {[
+                                               { range: '1-99 Units', disc: 'Base Price', active: quantity < 100 },
+                                               { range: '100+ Units', disc: '5% Discount', active: quantity >= 100 && quantity < 250 },
+                                               { range: '250+ Units', disc: '10% Discount', active: quantity >= 250 && quantity < 500 },
+                                               { range: '500+ Units', disc: '15% Discount', active: quantity >= 500 },
+                                             ].map((tier, i) => (
+                                               <div key={i} className={`flex justify-between items-center p-2 rounded-xl transition-colors ${tier.active ? 'bg-primary/20 border border-primary/30' : 'bg-white/5'}`}>
+                                                  <span className={`text-[10px] font-bold ${tier.active ? 'text-white' : 'text-slate-400'}`}>{tier.range}</span>
+                                                  <span className={`text-[10px] font-black ${tier.active ? 'text-primary' : 'text-white'}`}>{tier.disc}</span>
+                                               </div>
+                                             ))}
+                                          </div>
+                                          <div className="absolute bottom-full left-2 border-8 border-transparent border-b-slate-900"></div>
+                                       </motion.div>
+                                     )}
+                                   </AnimatePresence>
+                                </div>
+                              </label>
+                              <button 
+                                onClick={() => setShowBulkDetails(!showBulkDetails)}
+                                className="text-[10px] font-black text-primary uppercase tracking-widest hover:underline"
+                              >
+                                {showBulkDetails ? 'Hide Details' : 'View Bulk Tiers'}
+                              </button>
+                           </div>
+                           
+                           <div className="flex items-center gap-6">
+                              <div className="flex items-center p-1 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                                 <button 
+                                   onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                                   className="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-primary hover:bg-slate-50 rounded-xl transition-all"
+                                 >
+                                   <span className="text-2xl font-light">−</span>
+                                 </button>
+                                 <input 
+                                   type="number" 
+                                   value={quantity}
+                                   onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                                   className="w-20 text-center font-bold text-xl text-slate-900 bg-transparent outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                 />
+                                 <button 
+                                   onClick={() => setQuantity(prev => prev + 1)}
+                                   className="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-primary hover:bg-slate-50 rounded-xl transition-all"
+                                 >
+                                   <span className="text-2xl font-light">+</span>
+                                 </button>
+                              </div>
+                              <div className="flex flex-col">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Instant Ordering</span>
+                                  {quantity >= 100 && (
+                                    <span className="text-[8px] font-black bg-green-500 text-white px-1.5 py-0.5 rounded uppercase">Level {quantity >= 500 ? 3 : quantity >= 250 ? 2 : 1} Savings</span>
+                                  )}
+                                </div>
+                                <span className="text-xs text-slate-400">Up to 1,000 units</span>
+                              </div>
+                           </div>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Highlights Grid */}
@@ -372,20 +489,35 @@ const ProductDetail = () => {
 
                     {/* Actions */}
                     <div className="flex flex-col sm:flex-row gap-5 pt-6">
-                      <button 
-                        onClick={handleAddToCart}
-                        disabled={product.stock <= 0}
-                        className="btn-primary flex-grow py-6 text-xl shadow-2xl shadow-primary/30"
-                      >
-                        Add to Collection
-                      </button>
+                      {quantity < 1000 ? (
+                        <button 
+                          onClick={handleAddToCart}
+                          disabled={product.stock <= 0}
+                          className="btn-primary flex-grow py-6 text-xl shadow-2xl shadow-primary/30"
+                        >
+                          Add to Collection
+                        </button>
+                      ) : (
+                        <button 
+                          onClick={() => navigate('/bulk-inquiry', { 
+                            state: { 
+                              productName: product.name,
+                              quantity: quantity,
+                              productId: product.id
+                            } 
+                          })}
+                          className="bg-slate-900 text-white hover:bg-slate-800 flex-grow py-6 rounded-3xl font-bold text-xl shadow-2xl transition-all flex items-center justify-center gap-3"
+                        >
+                          <MessageSquare size={24} /> Request Bulk Quotation
+                        </button>
+                      )}
                       <a 
-                        href={`https://wa.me/918169975287?text=Hi, I am interested in ${product.name}`}
+                        href={`https://wa.me/918169975287?text=Hi, I am interested in ${product.name} (Quantity: ${quantity})`}
                         target="_blank"
                         rel="noreferrer"
                         className="btn-outline border-slate-200 text-slate-900 hover:bg-slate-900 hover:text-white flex items-center justify-center px-10 py-6"
                       >
-                        <MessageSquare size={24} />
+                        <Phone size={24} />
                       </a>
                     </div>
 

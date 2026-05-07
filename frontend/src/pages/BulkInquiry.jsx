@@ -32,16 +32,35 @@ const BulkInquiry = () => {
 
   // Initialize form with custom mockup data from navigation state
   useEffect(() => {
-    if (location.state?.customMockup && !initialized.current) {
+    if (location.state && !initialized.current) {
       initialized.current = true;
-      const file = dataURLtoFile(location.state.customMockup, `branding-${location.state.productName || 'product'}.png`);
-      setFormData(prev => ({ 
-        ...prev, 
-        logo_file: file,
-        message: location.state.productName ? `Inquiry for customized ${location.state.productName}. Text applied: "${location.state.customText}"` : prev.message
-      }));
-      setPreviewUrl(location.state.customMockup);
-      setIsCustomMockup(true);
+      
+      let initialMessage = '';
+      if (location.state.productName) {
+        initialMessage = `Inquiry for ${location.state.productName}.`;
+        if (location.state.quantity) {
+          initialMessage += ` Expected Quantity: ${location.state.quantity}.`;
+        }
+        if (location.state.customText) {
+          initialMessage += ` Custom Text: "${location.state.customText}".`;
+        }
+      }
+
+      if (location.state.customMockup) {
+        const file = dataURLtoFile(location.state.customMockup, `branding-${location.state.productName || 'product'}.png`);
+        setFormData(prev => ({ 
+          ...prev, 
+          logo_file: file,
+          message: initialMessage || prev.message
+        }));
+        setPreviewUrl(location.state.customMockup);
+        setIsCustomMockup(true);
+      } else {
+        setFormData(prev => ({ 
+          ...prev, 
+          message: initialMessage || prev.message
+        }));
+      }
     }
     window.scrollTo(0, 0);
   }, [location.state]);
