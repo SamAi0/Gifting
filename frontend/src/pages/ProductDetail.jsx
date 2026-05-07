@@ -16,10 +16,10 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   
   // Customization State
-  const [customText, setCustomText] = useState('');
-  const [textColor, setTextColor] = useState('#000000'); // Default to black
-  const [logoImage, setLogoImage] = useState(null);
-  const [logoFile, setLogoFile] = useState(null);
+  const [textEntries, setTextEntries] = useState([{ id: Date.now(), text: '' }]);
+  const [textColor, setTextColor] = useState('#000000');
+  const [logoFiles, setLogoFiles] = useState([]);
+  const [logoPreviews, setLogoPreviews] = useState([]); // Array of preview URLs
   const [mockupImage, setMockupImage] = useState(null);
   const [isCustomizing, setIsCustomizing] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -38,6 +38,11 @@ const ProductDetail = () => {
         if (productData.customization_zones && productData.customization_zones.length > 0) {
            setIsCustomizing(true);
            console.log('✅ Customization enabled for this product');
+           
+           // Initialize with one empty text entry
+           setTextEntries([{ id: Date.now(), text: '' }]);
+           setLogoFiles([]);
+           setLogoPreviews([]);
         } else {
            console.warn('⚠️ No customization zones found for this product');
            console.log('💡 Run: cd backend && python sync_customization.py to load zones from JSON');
@@ -79,13 +84,14 @@ const ProductDetail = () => {
         console.error('Failed to create custom image:', err);
       }
     }
+    
     const customizationData = {
-      text: customText,
+      texts: textEntries,
       color: textColor,
       timestamp: new Date().toISOString()
     };
 
-    addToCart(product.id, 1, customText, imageFile, customizationData, logoFile);
+    addToCart(product.id, 1, textEntries[0]?.text || '', imageFile, customizationData, logoFiles);
     navigate('/cart');
   };
 
@@ -132,9 +138,9 @@ const ProductDetail = () => {
                 {isCustomizing && customizationConfig ? (
                   <CanvasCustomizer 
                     productConfig={customizationConfig} 
-                    customText={customText} 
+                    textEntries={textEntries}
                     textColor={textColor}
-                    logoImage={logoImage}
+                    logoPreviews={logoPreviews}
                     onImageExport={setMockupImage} 
                     onWarning={setWarningMessage}
                   />
@@ -209,15 +215,21 @@ const ProductDetail = () => {
                   
                   <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200/50 shadow-premium">
                     <CustomizerControls 
-                      customText={customText}
-                      setCustomText={(val) => { setCustomText(val); setWarningMessage(''); }}
-                      zoneConfigs={customizationConfig.zones}
+                      textEntries={textEntries}
+                      setTextEntries={setTextEntries}
                       textColor={textColor}
                       setTextColor={setTextColor}
-                      logoImage={logoImage}
-                      setLogoImage={setLogoImage}
-                      onLogoUpload={setLogoFile}
-                      onReset={() => { setCustomText(''); setTextColor('#000000'); setLogoImage(null); setLogoFile(null); setWarningMessage(''); }}
+                      logoFiles={logoFiles}
+                      setLogoFiles={setLogoFiles}
+                      setLogoPreviews={setLogoPreviews}
+                      maxZones={customizationConfig.zones.length}
+                      onReset={() => {
+                        setTextEntries([{ id: Date.now(), text: '' }]);
+                        setTextColor('#000000');
+                        setLogoFiles([]);
+                        setLogoPreviews([]);
+                        setWarningMessage('');
+                      }}
                       warningMessage={warningMessage}
                     />
                   </div>
