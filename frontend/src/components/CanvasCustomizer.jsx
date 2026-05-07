@@ -2,12 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as fabric from 'fabric';
 
 // Development mode logger - only logs in development
-const isDev = import.meta.env.DEV;
-const devLog = (...args) => isDev && console.log('[CanvasCustomizer]', ...args);
-const devError = (...args) => console.error('[CanvasCustomizer]', ...args);
-
-// Mapping mode logger - ALWAYS logs when in mapping mode
-const mappingLog = (...args) => console.log('[MAPPING MODE]', ...args);
+// const isDev = import.meta.env.DEV;
 
 /**
  * CanvasCustomizer - The core Fabric.js rendering engine for product personalization.
@@ -24,7 +19,6 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
   const fabricCanvas = useRef(null);
   const containerRef = useRef(null);
   const [loading, setLoading] = useState(true);
-  const [isMappingMode] = useState(() => true);
   const prevProductSlug = useRef(null);
 
   // Helper for curved text
@@ -80,7 +74,12 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
       fabricCanvas.current = null;
     }
 
+    let initTimer;
+
     const initCanvas = async () => {
+      // Safety check: Don't initialize if already initialized or if ref is lost
+      if (!canvasRef.current || fabricCanvas.current) return;
+
       try {
         fabricCanvas.current = new fabric.Canvas(canvasRef.current, {
           width: 500,
@@ -90,6 +89,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
         });
 
         fabricCanvas.current.on('object:modified', () => {
+          if (!fabricCanvas.current) return;
           fabricCanvas.current.requestRenderAll();
           const dataUrl = fabricCanvas.current.toDataURL({ format: 'png', quality: 1, multiplier: 2 });
           onImageExport?.(dataUrl);
@@ -129,11 +129,11 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
     };
 
     const initZones = () => {
+      if (!fabricCanvas.current) return;
       productConfig.zones.forEach((zone) => {
         const left = (zone.x / 1000) * 500;
         const top = (zone.y / 1000) * 500;
         
-        // Add Bounding Box for reference
         const maxWidthPx = (zone.maxWidth / 1000) * 500 || (zone.width / 1000) * 500 || 100;
         const box = new fabric.Rect({
           left, top,
@@ -150,7 +150,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
       });
     };
 
-    setTimeout(initCanvas, 100);
+    initTimer = setTimeout(initCanvas, 100);
 
     const resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {
@@ -165,6 +165,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
     if (containerRef.current) resizeObserver.observe(containerRef.current);
 
     return () => {
+      if (initTimer) clearTimeout(initTimer);
       resizeObserver.disconnect();
       if (fabricCanvas.current) {
         fabricCanvas.current.dispose();
