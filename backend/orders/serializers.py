@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Cart, CartItem, Order, OrderItem, Address
+from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address
 from api.serializers import ProductSerializer
 
 class AddressSerializer(serializers.ModelSerializer):
@@ -8,15 +8,28 @@ class AddressSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('user',)
 
+class CartItemLogoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItemLogo
+        fields = ('id', 'file', 'uploaded_at')
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        request = self.context.get('request')
+        if instance.file and request:
+            ret['file'] = request.build_absolute_uri(instance.file.url)
+        return ret
+
 class CartItemSerializer(serializers.ModelSerializer):
     product_details = ProductSerializer(source='product', read_only=True)
     subtotal = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
     customization_image = serializers.ImageField(required=False, allow_null=True)
     logo_image = serializers.ImageField(required=False, allow_null=True)
+    logos = CartItemLogoSerializer(many=True, read_only=True)
 
     class Meta:
         model = CartItem
-        fields = ('id', 'product', 'product_details', 'quantity', 'customization_text', 'customization_image', 'customization_data', 'logo_image', 'subtotal')
+        fields = ('id', 'product', 'product_details', 'quantity', 'customization_text', 'customization_image', 'customization_data', 'logo_image', 'logos', 'subtotal')
 
     def to_representation(self, instance):
         ret = super().to_representation(instance)
@@ -35,14 +48,27 @@ class CartSerializer(serializers.ModelSerializer):
         model = Cart
         fields = ('id', 'items', 'total_price')
 
+class OrderItemLogoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItemLogo
+        fields = ('id', 'file')
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        request = self.context.get('request')
+        if instance.file and request:
+            ret['file'] = request.build_absolute_uri(instance.file.url)
+        return ret
+
 class OrderItemSerializer(serializers.ModelSerializer):
     product_details = ProductSerializer(source='product', read_only=True)
     customization_image = serializers.ImageField(required=False, allow_null=True)
     logo_image = serializers.ImageField(required=False, allow_null=True)
+    logos = OrderItemLogoSerializer(many=True, read_only=True)
 
     class Meta:
         model = OrderItem
-        fields = ('id', 'product', 'product_details', 'quantity', 'price', 'customization_text', 'customization_image', 'customization_data', 'logo_image')
+        fields = ('id', 'product', 'product_details', 'quantity', 'price', 'customization_text', 'customization_image', 'customization_data', 'logo_image', 'logos')
 
     def to_representation(self, instance):
         ret = super().to_representation(instance)

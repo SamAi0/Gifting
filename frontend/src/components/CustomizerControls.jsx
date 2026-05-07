@@ -1,12 +1,34 @@
-import { Type, AlertCircle, RefreshCcw, Image as ImageIcon, X, Palette } from 'lucide-react';
+import React from 'react';
+import { Type, Image as ImageIcon, Trash2, Palette, AlertCircle, RefreshCcw, Plus } from 'lucide-react';
+import LogoUploader from './LogoUploader';
 
-const CustomizerControls = ({ customText, setCustomText, zoneConfigs, logoImage, setLogoImage, onLogoUpload, textColor, setTextColor, onReset, warningMessage }) => {
-  // zoneConfigs is an array of zone objects from customization.json
-  const zoneCount = zoneConfigs?.length || 1;
+const CustomizerControls = ({ 
+  textEntries, setTextEntries, 
+  textColor, setTextColor, 
+  logoFiles, setLogoFiles, 
+  setLogoPreviews, 
+  maxZones, 
+  onReset, 
+  warningMessage 
+}) => {
   
-  // Use the minimum maxChars from all zones for validation
-  const maxChars = zoneConfigs ? Math.min(...zoneConfigs.map(z => z.maxChars || 20)) : 20;
-  const charsLeft = maxChars - customText.length;
+  const updateTextEntry = (id, text) => {
+    setTextEntries(prev => prev.map(entry => entry.id === id ? { ...entry, text } : entry));
+  };
+
+  const addTextEntry = () => {
+    if (textEntries.length + logoFiles.length < maxZones) {
+      setTextEntries(prev => [...prev, { id: Date.now(), text: '' }]);
+    }
+  };
+
+  const removeTextEntry = (id) => {
+    if (textEntries.length > 1) {
+      setTextEntries(prev => prev.filter(entry => entry.id !== id));
+    } else {
+      updateTextEntry(id, '');
+    }
+  };
 
   const colorOptions = [
     { name: 'Black', value: '#000000', class: 'bg-black' },
@@ -14,144 +36,109 @@ const CustomizerControls = ({ customText, setCustomText, zoneConfigs, logoImage,
     { name: 'Gold', value: '#ff9100ff', class: 'bg-yellow-500' },
   ];
 
-  const handleLogoUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // For preview
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setLogoImage(event.target.result);
-      };
-      reader.readAsDataURL(file);
-      
-      // For backend submission
-      if (typeof onLogoUpload === 'function') {
-        onLogoUpload(file);
-      }
-    }
-  };
-
-  const handleTextChange = (value) => {
-    if (value.length <= maxChars) {
-      setCustomText(value);
-    }
-  };
+  const totalUsed = textEntries.length + logoFiles.length;
+  const remaining = maxZones - totalUsed;
 
   return (
-    <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-xl space-y-6">
-      {/* Text Color Selection */}
-      <div>
-        <label className="text-sm font-bold text-gray-700 flex items-center gap-2 mb-3">
-          <Palette size={16} className="text-primary" /> Text Color
+    <div className="space-y-8">
+      {/* 1. Branding Color */}
+      <section className="space-y-4">
+        <label className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+          <Palette size={14} className="text-primary" /> Branding Color
         </label>
-        <div className="flex gap-3">
+        <div className="flex gap-4">
           {colorOptions.map((color) => (
             <button
               key={color.value}
               onClick={() => setTextColor(color.value)}
-              className={`flex-1 py-3 px-4 rounded-xl border-2 font-medium text-sm transition-all flex items-center justify-center gap-2 ${
+              className={`flex-1 py-3 px-4 rounded-2xl border-2 font-bold text-xs transition-all flex items-center justify-center gap-3 ${
                 textColor === color.value
-                  ? 'border-primary bg-primary/5 shadow-md'
-                  : 'border-gray-200 hover:border-gray-300 bg-white'
+                  ? 'border-primary bg-primary/5 shadow-sm'
+                  : 'border-slate-100 hover:border-slate-200 bg-slate-50/50'
               }`}
             >
-              <span className={`w-5 h-5 rounded-full ${color.class} shadow-sm`}></span>
-              <span className="text-gray-700">{color.name}</span>
+              <span className={`w-5 h-5 rounded-lg ${color.class} shadow-sm`}></span>
+              <span className="text-slate-600">{color.name}</span>
             </button>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Text Customization - Single Input for All Zones */}
-      <div>
-        <div className="flex items-center justify-between mb-2">
-          <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
-            <Type size={16} className="text-primary" /> Personalized Text
+      {/* 2. Personalized Texts */}
+      <section className="space-y-4">
+        <div className="flex items-center justify-between">
+          <label className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+            <Type size={14} className="text-primary" /> Personalized Text
           </label>
-          <span className={`text-xs font-medium ${charsLeft < 3 ? 'text-red-500' : 'text-gray-400'}`}>
-            {charsLeft} chars left
-          </span>
+          {remaining > 0 && (
+            <button 
+              onClick={addTextEntry}
+              className="text-[10px] font-black text-primary uppercase tracking-widest flex items-center gap-1 hover:opacity-80 transition-opacity"
+            >
+              <Plus size={12} /> Add Another Line
+            </button>
+          )}
         </div>
         
-        <div className="relative">
-          <input
-            type="text"
-            value={customText}
-            onChange={(e) => handleTextChange(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                e.preventDefault();
-              }
-            }}
-            placeholder="Type your message here..."
-            className={`w-full px-4 py-4 bg-gray-50 border-2 ${warningMessage ? 'border-red-500/50 focus:border-red-500 focus:bg-red-50/20' : 'border-transparent focus:border-primary/20 focus:bg-white'} rounded-2xl outline-none transition-all font-medium text-lg placeholder:text-gray-300`}
-            autoComplete="off"
-            spellCheck="false"
-          />
+        <div className="space-y-3">
+          {textEntries.map((entry, index) => (
+            <div key={entry.id} className="relative group">
+              <input
+                type="text"
+                value={entry.text}
+                onChange={(e) => updateTextEntry(entry.id, e.target.value)}
+                placeholder={index === 0 ? "Type your primary message..." : "Type additional message..."}
+                className="w-full px-5 py-4 bg-slate-50 border-2 border-transparent focus:border-primary/20 focus:bg-white rounded-[1.25rem] outline-none transition-all font-medium text-slate-700 placeholder:text-slate-300 shadow-sm"
+              />
+              {textEntries.length > 1 && (
+                <button 
+                  onClick={() => removeTextEntry(entry.id)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-slate-200 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
+                >
+                  <Trash2 size={16} />
+                </button>
+              )}
+            </div>
+          ))}
         </div>
-        
-        {zoneCount > 1 && (
-          <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
-            <AlertCircle size={12} /> 
-            Text will appear in all {zoneCount} zones on the product
-          </p>
-        )}
-        
-        {warningMessage && (
-          <p className="text-red-500 text-xs font-bold mt-2 flex items-center gap-1">
-            <AlertCircle size={12} /> {warningMessage}
-          </p>
-        )}
-      </div>
+      </section>
 
-      {/* Logo Upload Section */}
-      <div>
-        <label className="text-sm font-bold text-gray-700 flex items-center gap-2 mb-2">
-          <ImageIcon size={16} className="text-primary" /> Corporate Logo
+      {/* 3. Corporate Logos */}
+      <section className="space-y-4">
+        <label className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+          <ImageIcon size={14} className="text-primary" /> Corporate Logo
         </label>
         
-        {logoImage ? (
-          <div className="relative inline-block group">
-            <img 
-              src={logoImage} 
-              alt="Uploaded Logo" 
-              className="w-24 h-24 object-contain rounded-xl border border-gray-100 bg-gray-50 p-2"
-            />
-            <button 
-              onClick={() => setLogoImage(null)}
-              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
-            >
-              <X size={14} />
-            </button>
-          </div>
-        ) : (
-          <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-200 rounded-2xl cursor-pointer hover:bg-gray-50 hover:border-primary/30 transition-all">
-            <div className="flex flex-col items-center justify-center pt-5 pb-6 text-gray-400">
-              <ImageIcon size={32} className="mb-2" />
-              <p className="text-sm font-bold">Upload Company Logo</p>
-              <p className="text-xs">PNG, JPG or SVG (Max 2MB)</p>
-            </div>
-            <input type="file" className="hidden" accept="image/*" onChange={handleLogoUpload} />
-          </label>
-        )}
-      </div>
+        <LogoUploader 
+          files={logoFiles} 
+          onFilesChange={setLogoFiles} 
+          onPreviewChange={(mainPreview, allPreviews) => setLogoPreviews(allPreviews)} 
+        />
+      </section>
 
-      <div className="flex flex-col sm:flex-row gap-4">
+      {warningMessage && (
+        <div className="flex gap-3 p-4 bg-red-50 rounded-2xl border border-red-100 text-red-600 text-[11px] font-bold">
+          <AlertCircle size={14} className="shrink-0" />
+          <p>{warningMessage}</p>
+        </div>
+      )}
+
+      {/* Footer Controls */}
+      <div className="flex gap-4 pt-4">
         <button
           onClick={onReset}
-          className="flex-1 px-6 py-4 bg-gray-100 text-gray-500 rounded-2xl flex items-center justify-center hover:bg-gray-200 transition-colors active:scale-95"
-          title="Reset Customization"
+          className="flex-1 px-6 py-4 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center hover:bg-slate-200 hover:text-slate-500 transition-all active:scale-95 group"
         >
-          <RefreshCcw size={20} />
-          <span className="ml-2 sm:hidden font-bold">Reset</span>
+          <RefreshCcw size={18} className="group-hover:rotate-180 transition-transform duration-500" />
+          <span className="ml-2 font-black text-xs uppercase tracking-widest">Reset All</span>
         </button>
       </div>
 
-      <div className="flex gap-3 p-4 bg-blue-50/50 rounded-2xl border border-blue-100 text-blue-700 text-xs leading-relaxed">
-        <AlertCircle size={14} className="shrink-0 mt-0.5" />
-        <p>
-          <strong>Note:</strong> This is a real-time preview. Our designers will manually adjust the branding for bulk orders to ensure perfect alignment.
+      <div className="p-5 bg-slate-50/50 rounded-[1.5rem] border border-slate-100 text-slate-500 text-[10px] leading-relaxed italic">
+        <p className="flex items-center gap-2 mb-1 font-black uppercase tracking-widest not-italic text-slate-400">
+          <AlertCircle size={12} /> Designer's Note
         </p>
+        <p>This is a real-time visualization. Our expert design team will manually adjust the alignment and scaling to ensure a premium finish for your bulk order.</p>
       </div>
     </div>
   );

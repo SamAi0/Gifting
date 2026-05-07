@@ -71,7 +71,15 @@ export const CartProvider = ({ children }) => {
         if (customizationText) formData.append('customization_text', customizationText);
         if (customizationImage) formData.append('customization_image', customizationImage);
         if (customizationData) formData.append('customization_data', JSON.stringify(customizationData));
-        if (logoImage) formData.append('logo_image', logoImage);
+        if (logoImage) {
+            if (Array.isArray(logoImage)) {
+                logoImage.forEach((file) => {
+                    formData.append('logo_image', file);
+                });
+            } else {
+                formData.append('logo_image', logoImage);
+            }
+        }
 
         try {
             await api.post('orders/cart-items/', formData, {

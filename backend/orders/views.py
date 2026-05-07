@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework import viewsets, permissions, status, views
 from rest_framework.response import Response
-from .models import Cart, CartItem, Order, OrderItem, Address
+from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer, AddressSerializer
 
 import logging
@@ -28,7 +28,12 @@ class CartItemViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         cart, created = Cart.objects.get_or_create(user=self.request.user)
-        serializer.save(cart=cart)
+        instance = serializer.save(cart=cart)
+        
+        # Handle multiple logo images
+        logos = self.request.FILES.getlist('logo_image')
+        for logo in logos:
+            CartItemLogo.objects.create(cart_item=instance, file=logo)
 
 class AddressViewSet(viewsets.ModelViewSet):
     serializer_class = AddressSerializer
@@ -92,7 +97,7 @@ class CreateOrderView(views.APIView):
 
                 # Move items from cart to order
                 for item in cart.items.all():
-                    OrderItem.objects.create(
+                    order_item = OrderItem.objects.create(
                         order=order,
                         product=item.product,
                         quantity=item.quantity,
@@ -102,6 +107,10 @@ class CreateOrderView(views.APIView):
                         customization_data=item.customization_data,
                         logo_image=item.logo_image
                     )
+                    
+                    # Copy logos
+                    for logo in item.logos.all():
+                        OrderItemLogo.objects.create(order_item=order_item, file=logo.file)
                 
                 # Clear cart
                 cart.items.all().delete()
