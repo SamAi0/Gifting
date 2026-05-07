@@ -25,7 +25,7 @@ const Checkout = () => {
 
   async function fetchAddresses() {
     try {
-      const res = await api.get('/orders/addresses/');
+      const res = await api.get('orders/addresses/');
       setAddresses(res.data);
       if (res.data.length > 0) setSelectedAddress(res.data[0].id);
     } catch {
@@ -44,7 +44,7 @@ const Checkout = () => {
   const handleAddAddress = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post('/orders/addresses/', newAddress);
+      const res = await api.post('orders/addresses/', newAddress);
       setAddresses([...addresses, res.data]);
       setSelectedAddress(res.data.id);
       setNewAddress({ street_address: '', city: '', state: '', pincode: '' });
@@ -81,7 +81,7 @@ const Checkout = () => {
           return;
         }
 
-        const orderRes = await api.post('/orders/create-order/', {
+        const orderRes = await api.post('orders/create-order/', {
           address_id: selectedAddress,
           payment_method: 'ONLINE'
         });
@@ -98,7 +98,7 @@ const Checkout = () => {
           order_id: razorpay_order_id,
           handler: async function (response) {
             try {
-              await api.post('/orders/verify-payment/', {
+              await api.post('orders/verify-payment/', {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_signature: response.razorpay_signature,

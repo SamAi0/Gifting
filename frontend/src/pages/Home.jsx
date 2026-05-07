@@ -19,8 +19,10 @@ const Home = () => {
           fetchTestimonials()
         ]);
         setCategories(catRes.data);
-        setTrendingProducts(prodRes.data.slice(0, 4));
-        setTestimonials(testimRes.data.slice(0, 3));
+        const products = prodRes.data.results || prodRes.data;
+        setTrendingProducts(products.slice(0, 4));
+        const testimonialsData = testimRes.data.results || testimRes.data;
+        setTestimonials(testimonialsData.slice(0, 3));
       } catch (error) {
         console.error("Error loading home data:", error);
       }

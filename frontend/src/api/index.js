@@ -1,52 +1,35 @@
 import axios from 'axios';
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://gifting-82j5.onrender.com/api').replace(/\/+$/, '') + '/';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+if (!API_BASE_URL) {
+  console.warn('VITE_API_BASE_URL is not defined in environment variables.');
+}
 
 export const getImageUrl = (path) => {
   if (!path) return '';
 
-  // If it's already a full URL (like from Cloudinary or external source), return it
   if (path.startsWith('http://') || path.startsWith('https://')) {
     return path;
   }
 
-  // Extract base domain from API_BASE_URL (removing /api)
   const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
-
-  // Ensure path starts with /
   const formattedPath = path.startsWith('/') ? path : `/${path}`;
-
   return encodeURI(`${baseUrl}${formattedPath}`);
 };
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  withCredentials: true,
 });
 
-// Add a request interceptor to attach the JWT token
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    // Ensure token is not null, undefined, or the string "null"/"undefined"
-    if (token && token !== 'null' && token !== 'undefined') {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-// Add a response interceptor to handle token expiration/invalid tokens
+// Response interceptor to handle 401
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      console.warn('Unauthorized request detected. Clearing token...');
-      localStorage.removeItem('token');
-      // Only redirect if not already on login page
-      if (!window.location.pathname.includes('/login')) {
-         // Optionally refresh the page or redirect to login
-         // window.location.href = '/login'; 
+      // Don't warn for initial profile check as it's a normal part of auth flow
+      if (!error.config.url.includes('auth/profile/') && !error.config.url.includes('auth/logout/')) {
+        console.warn('Unauthorized request detected.');
       }
     }
     return Promise.reject(error);
@@ -56,7 +39,9 @@ api.interceptors.response.use(
 
 // Auth endpoints
 export const loginUser = (credentials) => api.post('auth/login/', credentials);
+export const logoutUser = () => api.post('auth/logout/');
 export const registerUser = (userData) => api.post('auth/register/', userData);
+export const fetchProfile = () => api.get('auth/profile/');
 
 // Product endpoints
 export const fetchProducts = (params) => api.get('products/', { params });

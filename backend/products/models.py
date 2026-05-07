@@ -1,6 +1,7 @@
 import json
 from django.db import models
 from django.utils.text import slugify
+from django.core.validators import MinValueValidator
 from simple_history.models import HistoricalRecords
 
 class Category(models.Model):
@@ -34,11 +35,11 @@ def default_customization_config():
     ])
 
 class Product(models.Model):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=250, unique=True, null=True, blank=True)
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=250, unique=True, null=True, blank=True, db_index=True)
     description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    discount_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
+    discount_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0)])
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     image = models.CharField(max_length=255, null=True, blank=True, help_text="Path to image relative to static (e.g. products/pen.png)")
     image_file = models.ImageField(upload_to='products/', null=True, blank=True, help_text="Upload a new product image (overrides static path)")
@@ -58,7 +59,13 @@ class Product(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+            while Product.objects.filter(slug=slug).exists():
+                slug = f'{base_slug}-{counter}'
+                counter += 1
+            self.slug = slug
         super().save(*args, **kwargs)
 
     def __str__(self):

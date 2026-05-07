@@ -1,13 +1,20 @@
 from rest_framework import viewsets, permissions
 from .models import Product, Category
 from api.serializers import ProductSerializer, CategorySerializer
+from rest_framework.pagination import PageNumberPagination
+
+class ProductPagination(PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class ProductViewSet(viewsets.ModelViewSet):
     """
     ViewSet for viewing and editing products.
     """
-    queryset = Product.objects.all().order_by('-created_at')
+    queryset = Product.objects.select_related('category').all().order_by('-created_at')
     serializer_class = ProductSerializer
+    pagination_class = ProductPagination
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
@@ -44,7 +51,8 @@ class CategoryListView(viewsets.ModelViewSet):
     """
     ViewSet for viewing and editing categories.
     """
-    queryset = Category.objects.all()
+    from django.db.models import Count
+    queryset = Category.objects.annotate(product_count=Count('products')).all()
     serializer_class = CategorySerializer
     
     def get_permissions(self):
