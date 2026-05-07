@@ -12,7 +12,7 @@ const OrderManagement = () => {
 
   const fetchOrders = useCallback(async () => {
     try {
-      const response = await api.get('/orders/all-orders/');
+      const response = await api.get('orders/all-orders/');
       setOrders(response.data);
     } catch (err) {
       console.error("Failed to fetch orders:", err);
@@ -26,7 +26,7 @@ const OrderManagement = () => {
 
   const updateStatus = async (id, status) => {
     try {
-      await api.patch(`/orders/all-orders/${id}/`, { status });
+      await api.patch(`orders/all-orders/${id}/`, { status });
       fetchOrders();
     } catch (err) {
       console.error("Status update failed:", err);

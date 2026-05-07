@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
 import api from '../api';
 
 export const AuthContext = createContext();
@@ -7,80 +6,47 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [token, setToken] = useState(() => {
-        // Initialize from localStorage only - no side effects
-        const savedToken = localStorage.getItem('token');
-        if (savedToken === 'null' || savedToken === 'undefined' || !savedToken) return null;
-        return savedToken;
-    });
 
-    // Validate token and set user after initialization
+    // Fetch user profile on mount to check if already logged in via cookie
     useEffect(() => {
-        let isMounted = true;
-        
-        const validateToken = async () => {
-            if (!token) {
-                if (isMounted) {
-                    setUser(null);
-                    setLoading(false);
-                }
-                return;
-            }
-            
+        const checkAuth = async () => {
             try {
-                const decoded = jwtDecode(token);
-                if (decoded.exp * 1000 < Date.now()) {
-                    // Token expired
-                    localStorage.removeItem('token');
-                    if (isMounted) {
-                        setToken(null);
-                        setUser(null);
-                    }
-                } else {
-                    if (isMounted) {
-                        setUser(decoded);
-                    }
-                }
+                const response = await api.get('auth/profile/');
+                setUser(response.data);
             } catch {
-                // Invalid token
-                localStorage.removeItem('token');
-                if (isMounted) {
-                    setToken(null);
-                    setUser(null);
-                }
-            }
-            if (isMounted) {
+                console.log('No active session');
+                setUser(null);
+            } finally {
                 setLoading(false);
             }
         };
         
-        validateToken();
-        
-        return () => {
-            isMounted = false;
-        };
-    }, [token]);
+        checkAuth();
+    }, []);
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        setToken(null);
-        setUser(null);
-        setLoading(false);
+    const logout = async () => {
+        try {
+            await api.post('auth/logout/');
+        } catch (error) {
+            console.error('Logout error', error);
+        } finally {
+            setUser(null);
+            setLoading(false);
+        }
     };
 
     const login = async (username, password) => {
-        const response = await api.post('/auth/login/', { username, password });
-        const { access } = response.data;
-        localStorage.setItem('token', access);
-        setToken(access);
-        const decoded = jwtDecode(access);
-        setUser(decoded);
+        const response = await api.post('auth/login/', { username, password });
+        // Token is now set in HttpOnly cookie by backend
+        // Fetch profile to get user info
+        const profileResponse = await api.get('auth/profile/');
+        setUser(profileResponse.data);
         setLoading(false);
         return response.data;
     };
 
     return (
-        <AuthContext.Provider value={{ user, token, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );

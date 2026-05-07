@@ -33,7 +33,7 @@ class CartItem(models.Model):
     customization_text = models.CharField(max_length=255, null=True, blank=True)
     customization_image = models.ImageField(upload_to='cart_customizations/', null=True, blank=True)
     customization_data = models.TextField(null=True, blank=True)
-    logo_image = models.ImageField(upload_to='cart_logos/', null=True, blank=True)
+    logo_image = models.ImageField(upload_to='cart_logos/', null=True, blank=True) # Keeping for backward compat
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
@@ -41,6 +41,11 @@ class CartItem(models.Model):
     @property
     def subtotal(self):
         return self.product.price * self.quantity
+
+class CartItemLogo(models.Model):
+    cart_item = models.ForeignKey(CartItem, on_delete=models.CASCADE, related_name='logos')
+    file = models.FileField(upload_to='cart_logos/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 class Order(models.Model):
     STATUS_CHOICES = (
@@ -81,3 +86,7 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name} (Order {self.order.id})"
+
+class OrderItemLogo(models.Model):
+    order_item = models.ForeignKey(OrderItem, on_delete=models.CASCADE, related_name='logos')
+    file = models.FileField(upload_to='order_logos/')

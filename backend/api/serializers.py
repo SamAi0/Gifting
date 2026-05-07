@@ -4,7 +4,7 @@ from inquiries.models import BulkInquiry, ContactMessage
 from company_info.models import Testimonial, Settings
 
 class CategorySerializer(serializers.ModelSerializer):
-    product_count = serializers.IntegerField(source='products.count', read_only=True)
+    product_count = serializers.IntegerField(read_only=True)
     class Meta:
         model = Category
         fields = ['id', 'name', 'product_count']
