@@ -51,19 +51,21 @@ const ProductDetail = () => {
   const [pincodeStatus, setPincodeStatus] = useState(null); // 'checking', 'success', 'error', null
   const [isServiceable, setIsServiceable] = useState(false);
   
-  const handlePincodeCheck = () => {
+  const handlePincodeCheck = async () => {
     if (pincode.length !== 6) {
       setPincodeStatus('error');
       return;
     }
     setPincodeStatus('checking');
-    setTimeout(() => {
-      // Mock logic: Most Indian pincodes are 6 digits
-      // For demo: Serviceable if starts with 1-8
-      const serviceable = /^[1-8]/.test(pincode);
+    try {
+      const res = await api.get(`orders/check-pincode/?pincode=${pincode}`);
+      const serviceable = res.data.is_serviceable;
       setIsServiceable(serviceable);
       setPincodeStatus(serviceable ? 'success' : 'not_serviceable');
-    }, 800);
+    } catch (err) {
+      console.error("Error checking pincode", err);
+      setPincodeStatus('error');
+    }
   };
   const [showBulkDetails, setShowBulkDetails] = useState(false);
   
@@ -547,7 +549,7 @@ const ProductDetail = () => {
                             animate={{ opacity: 1, y: 0 }}
                             className="flex items-center gap-2 mt-4 text-green-600 font-bold text-xs"
                           >
-                            <CheckCircle2 size={14} /> Serviceable Area: Pan-India Delivery Available!
+                            <CheckCircle2 size={14} /> Delivery available in your area
                           </motion.div>
                         )}
                         {pincodeStatus === 'not_serviceable' && (

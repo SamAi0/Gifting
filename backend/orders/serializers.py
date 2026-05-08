@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address
+from .utils import is_maharashtra_pincode
 from api.serializers import ProductSerializer
 
 class AddressSerializer(serializers.ModelSerializer):
@@ -7,6 +8,11 @@ class AddressSerializer(serializers.ModelSerializer):
         model = Address
         fields = '__all__'
         read_only_fields = ('user',)
+
+    def validate_pincode(self, value):
+        if not is_maharashtra_pincode(value):
+            raise serializers.ValidationError("Delivery available only in Maharashtra.")
+        return value
 
 class CartItemLogoSerializer(serializers.ModelSerializer):
     class Meta:
