@@ -1,4 +1,5 @@
 import json
+from decimal import Decimal
 from django.db import models
 from django.utils.text import slugify
 from django.core.validators import MinValueValidator
@@ -67,6 +68,20 @@ class Product(models.Model):
                 counter += 1
             self.slug = slug
         super().save(*args, **kwargs)
+
+    def get_price_for_quantity(self, quantity):
+        """Calculate unit price based on bulk quantity tiers."""
+        base_price = self.price
+        discount = 0
+        if quantity >= 500:
+            discount = 0.15
+        elif quantity >= 250:
+            discount = 0.10
+        elif quantity >= 100:
+            discount = 0.05
+        
+        multiplier = Decimal(str(1 - int(discount * 100) / 100))
+        return self.price * multiplier
 
     def __str__(self):
         return self.name

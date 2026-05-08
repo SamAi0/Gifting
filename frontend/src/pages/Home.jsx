@@ -1,26 +1,25 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Gift, ShieldCheck, Truck, Clock, ArrowRight, Star, ChevronRight, CheckCircle2, User } from 'lucide-react';
-import { fetchProducts, fetchCategories, fetchTestimonials, getImageUrl } from '../api';
+import { fetchProducts, fetchTestimonials, getImageUrl } from '../api';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
-  const [, setCategories] = useState([]); // categories fetched but not currently displayed
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [catRes, prodRes, testimRes] = await Promise.all([
-          fetchCategories(),
-          fetchProducts({ is_trending: true }),
+        const [prodRes, testimRes] = await Promise.all([
+          fetchProducts({ page_size: 24 }), // Fetch enough products for variety
           fetchTestimonials()
         ]);
-        setCategories(catRes.data);
         const products = prodRes.data.results || prodRes.data;
-        setTrendingProducts(products.slice(0, 4));
+        // Randomly shuffle products to show a diverse selection
+        const shuffled = [...products].sort(() => 0.5 - Math.random());
+        setTrendingProducts(shuffled.slice(0, 12));
         const testimonialsData = testimRes.data.results || testimRes.data;
         setTestimonials(testimonialsData.slice(0, 3));
       } catch (error) {

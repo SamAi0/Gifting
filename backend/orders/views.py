@@ -101,7 +101,7 @@ class CreateOrderView(views.APIView):
                         order=order,
                         product=item.product,
                         quantity=item.quantity,
-                        price=item.product.price,
+                        price=item.product.get_price_for_quantity(item.quantity),
                         customization_text=item.customization_text,
                         customization_image=item.customization_image,
                         customization_data=item.customization_data,

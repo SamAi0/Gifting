@@ -208,8 +208,15 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
             targetValue = logoPreviews[logoIdx];
           }
 
-          // Clean up if type changed
-          if (obj && ((targetType === 'text' && obj.type === 'image') || (targetType === 'image' && obj.type === 'text') || !targetType)) {
+          // Clean up if type changed or no targetType
+          const isTextType = obj?.type === 'text' || obj?.type === 'group';
+          const isImageType = obj?.type === 'image';
+          
+          if (obj && (
+            (targetType === 'text' && !isTextType) || 
+            (targetType === 'image' && !isImageType) || 
+            !targetType
+          )) {
             fabricCanvas.current.remove(obj);
             obj = null;
           }

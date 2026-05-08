@@ -16,7 +16,6 @@ const Register = lazy(() => import('./pages/Register'));
 const Cart = lazy(() => import('./pages/Cart'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 const MyOrders = lazy(() => import('./pages/MyOrders'));
-const BulkInquiry = lazy(() => import('./pages/BulkInquiry'));
 
 // Admin Pages
 const AdminLayout = lazy(() => import('./components/admin/AdminLayout'));
@@ -44,7 +43,6 @@ function App() {
             <Route index element={<AdminDashboard />} />
             <Route path="products" element={<ProductManagement />} />
             <Route path="orders" element={<OrderManagement />} />
-            <Route path="inquiries" element={<BulkInquiry />} />
           </Route>
 
           {/* Public & Protected User Routes */}
@@ -65,7 +63,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/bulk-inquiry" element={<BulkInquiry />} />
             
             {/* Protected Routes */}
             <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />

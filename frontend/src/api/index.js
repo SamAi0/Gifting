@@ -68,10 +68,5 @@ export const createOrder = (data) => api.post('orders/create-order/', data);
 export const fetchTestimonials = () => api.get('testimonials/');
 export const fetchSettings = () => api.get('settings/');
 export const submitContact = (data) => api.post('contact/', data);
-export const submitBulkInquiry = (formData) => api.post('bulk-inquiry/', formData, {
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-});
 
 export default api;

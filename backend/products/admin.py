@@ -3,7 +3,6 @@ from django.utils.html import format_html
 from django.templatetags.static import static
 from .models import Category, Product
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
-from django.db import models
 from rangefilter.filters import DateRangeFilter
 from simple_history.admin import SimpleHistoryAdmin
 from core.widgets import SafeJSONEditorWidget
@@ -20,7 +19,7 @@ class CategoryAdmin(ImportExportModelAdmin):
 class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == 'customization_config':
-            kwargs['widget'] = SafeJSONEditorWidget(mode='view')
+            kwargs['widget'] = SafeJSONEditorWidget(mode='code')
         return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     def image_preview(self, obj):
@@ -37,7 +36,6 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
             return format_html('<img src="{}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" />', url)
         except Exception:
             return "Error loading image"
-        return "No Image"
     
     image_preview.short_description = 'Preview'
 

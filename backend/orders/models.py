@@ -24,7 +24,8 @@ class Cart(models.Model):
 
     @property
     def total_price(self):
-        return sum(item.subtotal for item in self.items.all())
+        from decimal import Decimal
+        return sum((item.subtotal for item in self.items.all()), Decimal('0'))
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
@@ -40,7 +41,7 @@ class CartItem(models.Model):
 
     @property
     def subtotal(self):
-        return self.product.price * self.quantity
+        return self.product.get_price_for_quantity(self.quantity) * self.quantity
 
 class CartItemLogo(models.Model):
     cart_item = models.ForeignKey(CartItem, on_delete=models.CASCADE, related_name='logos')
