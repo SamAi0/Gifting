@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from products.models import Product, Category
+from products.models import Product, Category, ProductVariant
 from inquiries.models import BulkInquiry, ContactMessage
 from company_info.models import Testimonial, Settings
 
@@ -9,17 +9,23 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'name', 'product_count']
 
+class ProductVariantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductVariant
+        fields = ['id', 'color_name', 'image', 'stock', 'is_active']
+
 class ProductSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
     customization_zones = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
+    variants = ProductVariantSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product
         fields = [
-            'id', 'name', 'slug', 'description', 'price', 'discount_price', 
-            'category', 'category_name', 'image', 'customization_zones', 
-            'customization_config', 'is_trending', 'is_bulk_only', 
+            'id', 'name', 'sku', 'slug', 'description', 'price', 'discount_price', 
+            'category', 'category_name', 'image', 'variants', 'customization_zones', 
+            'is_trending', 'is_bulk_only', 
             'stock', 'weight', 'badge_text', 'badge_color', 'created_at'
         ]
     

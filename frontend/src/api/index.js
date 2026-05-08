@@ -5,17 +5,28 @@ if (!API_BASE_URL) {
   console.warn('VITE_API_BASE_URL is not defined in environment variables.');
 }
 
-export const getImageUrl = (path) => {
+export const getImageUrl = (path, useCors = false) => {
   if (!path) return '';
 
   if (path.startsWith('http://') || path.startsWith('https://')) {
     return path;
   }
 
+  let formattedPath = path.startsWith('/') ? path : `/${path}`;
+  
+  // If useCors is true, we route through our custom CORS-enabled endpoints
+  if (useCors) {
+    if (formattedPath.startsWith('/static/')) {
+      formattedPath = formattedPath.replace('/static/', '/cors-static/');
+    } else if (formattedPath.startsWith('/media/')) {
+      formattedPath = formattedPath.replace('/media/', '/cors-media/');
+    }
+  }
+
   const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
-  const formattedPath = path.startsWith('/') ? path : `/${path}`;
   return encodeURI(`${baseUrl}${formattedPath}`);
 };
+
 
 const api = axios.create({
   baseURL: API_BASE_URL,

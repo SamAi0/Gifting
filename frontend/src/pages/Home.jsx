@@ -33,7 +33,7 @@ const Home = () => {
     <div className="overflow-hidden bg-white">
       <Helmet>
         <title>Soham Gift | Premium Corporate Gifting Solutions India</title>
-        <meta name="description" content="Discover premium corporate gifts for employees, clients, and partners. Customizable bulk gifting solutions with pan-India delivery." />
+        <meta name="description" content="Discover premium corporate gifts for employees, clients, and partners. Customizable bulk gifting solutions with exclusive delivery in Maharashtra." />
       </Helmet>
 
       {/* Hero Section */}
@@ -209,7 +209,7 @@ const Home = () => {
               <div className="space-y-6">
                 {[
                   { title: "Custom Branding", desc: "Advanced printing and engraving technology.", icon: ShieldCheck },
-                  { title: "Pan-India Logistics", desc: "Reliable delivery to 19,000+ pin codes.", icon: Truck },
+                  { title: "Maharashtra Logistics", desc: "Reliable delivery to all major cities in Maharashtra.", icon: Truck },
                   { title: "Personal Concierge", desc: "A dedicated manager to handle your bulk orders.", icon: Clock },
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-4 group">

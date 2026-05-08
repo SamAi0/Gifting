@@ -12,6 +12,7 @@ __pycache__/
 backend/media/
 # Django static/media
 backend/staticfiles/
+backend/db.sqlite3
 
 # Env files
 .env

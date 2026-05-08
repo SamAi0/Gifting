@@ -1,14 +1,16 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.templatetags.static import static
-from .models import Category, Product
+from .models import Category, Product, ProductVariant
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from rangefilter.filters import DateRangeFilter
 from simple_history.admin import SimpleHistoryAdmin
 from core.widgets import SafeJSONEditorWidget
 
-# Removed local SafeJSONEditorWidget definition
-
+class ProductVariantInline(admin.TabularInline):
+    model = ProductVariant
+    extra = 1
+    fields = ('color_name', 'image', 'image_file', 'stock', 'is_active')
 
 @admin.register(Category)
 class CategoryAdmin(ImportExportModelAdmin):
@@ -17,6 +19,7 @@ class CategoryAdmin(ImportExportModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
+    inlines = [ProductVariantInline]
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == 'customization_config':
             kwargs['widget'] = SafeJSONEditorWidget(mode='code')
@@ -39,15 +42,15 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     
     image_preview.short_description = 'Preview'
 
-    list_display = ('image_preview', 'name', 'category', 'price', 'stock', 'badge_text', 'is_trending', 'is_bulk_only')
+    list_display = ('image_preview', 'name', 'sku', 'category', 'price', 'stock', 'badge_text', 'is_trending')
     list_filter = (
         'category', 
         'is_trending', 
         'is_bulk_only', 
         ('created_at', DateRangeFilter),
     )
-    search_fields = ('name', 'description')
-    list_editable = ('price', 'stock', 'badge_text', 'is_trending', 'is_bulk_only')
+    search_fields = ('name', 'sku', 'description')
+    list_editable = ('price', 'stock', 'badge_text', 'is_trending')
     readonly_fields = ('created_at', 'image_preview_large')
     list_per_page = 20
     
@@ -68,7 +71,7 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
 
     fieldsets = (
         ('General Info', {
-            'fields': (('name', 'category'), 'description', ('image', 'image_file', 'image_preview_large'))
+            'fields': (('name', 'sku', 'category'), 'description', ('image', 'image_file', 'image_preview_large'))
         }),
         ('Pricing & Inventory', {
             'fields': (('price', 'discount_price'), ('stock', 'weight'), ('is_trending', 'is_bulk_only')),
@@ -83,3 +86,9 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
             'classes': ('collapse',)
         }),
     )
+
+@admin.register(ProductVariant)
+class ProductVariantAdmin(admin.ModelAdmin):
+    list_display = ('product', 'color_name', 'stock', 'is_active')
+    list_filter = ('is_active', 'color_name')
+    search_fields = ('product__name', 'color_name')
