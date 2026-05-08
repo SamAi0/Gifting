@@ -46,11 +46,10 @@ const Footer = () => {
               {[
                 { name: 'Home', path: '/' },
                 { name: 'Our Catalog', path: '/products' },
-                { name: 'Bulk Inquiry', path: '/bulk-inquiry' },
+                { name: 'Contact Us', path: '/contact' },
                 { name: 'Our Story', path: '/about' },
-                { name: 'Contact Support', path: '/contact' },
               ].map((link) => (
-                <li key={link.path}>
+                <li key={link.name}>
                   <Link to={link.path} className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group text-sm font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors"></span>
                     {link.name}

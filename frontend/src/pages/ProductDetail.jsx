@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, Truck, ArrowLeft, MessageSquare, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package, Phone } from 'lucide-react';
+import { ShieldCheck, Truck, ArrowLeft, MessageSquare, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package, Phone, MapPin, AlertCircle } from 'lucide-react';
 import { fetchProductById, getImageUrl } from '../api';
 import api from '../api';
 import CanvasCustomizer from '../components/CanvasCustomizer';
@@ -47,6 +47,24 @@ const ProductDetail = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [warningMessage, setWarningMessage] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [pincode, setPincode] = useState("");
+  const [pincodeStatus, setPincodeStatus] = useState(null); // 'checking', 'success', 'error', null
+  const [isServiceable, setIsServiceable] = useState(false);
+  
+  const handlePincodeCheck = () => {
+    if (pincode.length !== 6) {
+      setPincodeStatus('error');
+      return;
+    }
+    setPincodeStatus('checking');
+    setTimeout(() => {
+      // Mock logic: Most Indian pincodes are 6 digits
+      // For demo: Serviceable if starts with 1-8
+      const serviceable = /^[1-8]/.test(pincode);
+      setIsServiceable(serviceable);
+      setPincodeStatus(serviceable ? 'success' : 'not_serviceable');
+    }, 800);
+  };
   const [showBulkDetails, setShowBulkDetails] = useState(false);
   
   // UX Flow States
@@ -496,6 +514,63 @@ const ProductDetail = () => {
                        </div>
                     </div>
 
+                    {/* Pincode Checker */}
+                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                      <div className="flex items-center gap-2 mb-4">
+                        <MapPin size={16} className="text-primary" />
+                        <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Check Delivery Availability</span>
+                      </div>
+                      <div className="flex gap-3">
+                        <div className="flex-grow relative">
+                          <input 
+                            type="text" 
+                            maxLength={6}
+                            placeholder="Enter 6-digit Pincode"
+                            className="w-full px-5 py-3 rounded-xl bg-white border border-slate-200 focus:outline-none focus:border-primary text-sm font-bold placeholder:font-normal"
+                            value={pincode}
+                            onChange={(e) => setPincode(e.target.value.replace(/\D/g, ''))}
+                          />
+                        </div>
+                        <button 
+                          onClick={handlePincodeCheck}
+                          disabled={pincodeStatus === 'checking'}
+                          className="bg-slate-900 text-white px-6 py-3 rounded-xl text-xs font-bold hover:bg-primary transition-all disabled:bg-slate-400"
+                        >
+                          {pincodeStatus === 'checking' ? 'Checking...' : 'Check'}
+                        </button>
+                      </div>
+                      
+                      <AnimatePresence mode="wait">
+                        {pincodeStatus === 'success' && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="flex items-center gap-2 mt-4 text-green-600 font-bold text-xs"
+                          >
+                            <CheckCircle2 size={14} /> Serviceable Area: Pan-India Delivery Available!
+                          </motion.div>
+                        )}
+                        {pincodeStatus === 'not_serviceable' && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="flex items-center gap-2 mt-4 text-red-500 font-bold text-xs"
+                          >
+                            <AlertCircle size={14} /> Sorry, we do not deliver to this area currently.
+                          </motion.div>
+                        )}
+                        {pincodeStatus === 'error' && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="flex items-center gap-2 mt-4 text-orange-500 font-bold text-xs"
+                          >
+                            <AlertCircle size={14} /> Please enter a valid 6-digit pincode.
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+
                     {/* Stock & Urgency */}
                     <div className="p-6 rounded-[2rem] bg-slate-900 text-white relative overflow-hidden">
                        <div className="relative z-10 flex items-center justify-between">
@@ -517,28 +592,13 @@ const ProductDetail = () => {
 
                     {/* Actions */}
                     <div className="flex flex-col sm:flex-row gap-5 pt-6">
-                      {quantity < 1000 ? (
-                        <button 
-                          onClick={handleAddToCart}
-                          disabled={product.stock <= 0}
-                          className="btn-primary flex-grow py-6 text-xl shadow-2xl shadow-primary/30"
-                        >
-                          Add to Collection
-                        </button>
-                      ) : (
-                        <button 
-                          onClick={() => navigate('/bulk-inquiry', { 
-                            state: { 
-                              productName: product.name,
-                              quantity: quantity,
-                              productId: product.id
-                            } 
-                          })}
-                          className="bg-slate-900 text-white hover:bg-slate-800 flex-grow py-6 rounded-3xl font-bold text-xl shadow-2xl transition-all flex items-center justify-center gap-3"
-                        >
-                          <MessageSquare size={24} /> Request Bulk Quotation
-                        </button>
-                      )}
+                      <button 
+                        onClick={handleAddToCart}
+                        disabled={product.stock <= 0}
+                        className="btn-primary flex-grow py-6 text-xl shadow-2xl shadow-primary/30"
+                      >
+                        Add to Collection
+                      </button>
                       <a 
                         href={`https://wa.me/918169975287?text=Hi, I am interested in ${product.name} (Quantity: ${quantity})`}
                         target="_blank"
