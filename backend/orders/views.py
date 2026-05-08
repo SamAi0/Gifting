@@ -3,6 +3,7 @@ from rest_framework import viewsets, permissions, status, views
 from rest_framework.response import Response
 from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer, AddressSerializer
+from .utils import is_maharashtra_pincode
 
 import logging
 logger = logging.getLogger(__name__)
@@ -18,6 +19,21 @@ class CartView(views.APIView):
         cart, created = Cart.objects.get_or_create(user=request.user)
         serializer = CartSerializer(cart, context={'request': request})
         return Response(serializer.data)
+
+class PincodeCheckView(views.APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        pincode = request.query_params.get('pincode')
+        if not pincode:
+            return Response({"error": "Pincode is required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        is_valid = is_maharashtra_pincode(pincode)
+        return Response({
+            "pincode": pincode,
+            "is_serviceable": is_valid,
+            "message": "Delivery available!" if is_valid else "Delivery available only in Maharashtra."
+        })
 
 class CartItemViewSet(viewsets.ModelViewSet):
     serializer_class = CartItemSerializer
@@ -59,9 +75,10 @@ class CreateOrderView(views.APIView):
 
         address_id = request.data.get('address_id')
         payment_method = request.data.get('payment_method', 'ONLINE') # Default to ONLINE
-        
         try:
             address = Address.objects.get(id=address_id, user=request.user)
+            if not is_maharashtra_pincode(address.pincode):
+                return Response({"error": "Selected address is outside Maharashtra. Delivery not available."}, status=status.HTTP_400_BAD_REQUEST)
         except Address.DoesNotExist:
             return Response({"error": "Invalid address"}, status=status.HTTP_400_BAD_REQUEST)
 

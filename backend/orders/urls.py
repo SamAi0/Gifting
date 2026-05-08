@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     CartView, CartItemViewSet, AddressViewSet, 
     CreateOrderView, VerifyPaymentView, OrderViewSet,
-    UserOrderListView
+    UserOrderListView, PincodeCheckView
 )
 
 router = DefaultRouter()
@@ -17,4 +17,5 @@ urlpatterns = [
     path('create-order/', CreateOrderView.as_view(), name='create-order'),
     path('verify-payment/', VerifyPaymentView.as_view(), name='verify-payment'),
     path('mine/', UserOrderListView.as_view(), name='user-orders'),
+    path('check-pincode/', PincodeCheckView.as_view(), name='check-pincode'),
 ]

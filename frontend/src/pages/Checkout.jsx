@@ -22,6 +22,8 @@ const Checkout = () => {
     state: '',
     pincode: ''
   });
+  const [pincodeError, setPincodeError] = useState("");
+  const [isValidatingPincode, setIsValidatingPincode] = useState(false);
 
   async function fetchAddresses() {
     try {
@@ -41,15 +43,43 @@ const Checkout = () => {
     }
   }, []);
 
+  const validatePincode = async (code) => {
+    if (code.length === 6) {
+      setIsValidatingPincode(true);
+      try {
+        const res = await api.get(`orders/check-pincode/?pincode=${code}`);
+        if (!res.data.is_serviceable) {
+          setPincodeError("Delivery available only in Maharashtra.");
+        } else {
+          setPincodeError("");
+        }
+      } catch {
+        setPincodeError("Error validating pincode.");
+      } finally {
+        setIsValidatingPincode(false);
+      }
+    } else if (code.length > 0 && code.length < 6) {
+      setPincodeError("Pincode must be 6 digits.");
+    } else {
+      setPincodeError("");
+    }
+  };
+
   const handleAddAddress = async (e) => {
     e.preventDefault();
+    if (pincodeError) return;
+    
     try {
       const res = await api.post('orders/addresses/', newAddress);
       setAddresses([...addresses, res.data]);
       setSelectedAddress(res.data.id);
       setNewAddress({ street_address: '', city: '', state: '', pincode: '' });
+      setPincodeError("");
     } catch (err) {
       console.error("Error adding address", err);
+      if (err.response?.data?.pincode) {
+        setPincodeError(err.response.data.pincode[0]);
+      }
     }
   };
 
@@ -260,17 +290,40 @@ const Checkout = () => {
                           onChange={(e) => setNewAddress({...newAddress, state: e.target.value})}
                           required
                       />
-                      <input 
-                          type="text" 
-                          placeholder="Pincode" 
-                          className="px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium"
-                          value={newAddress.pincode}
-                          onChange={(e) => setNewAddress({...newAddress, pincode: e.target.value})}
-                          required
-                      />
+                      <div className="relative">
+                        <input 
+                            type="text" 
+                            placeholder="Pincode" 
+                            maxLength={6}
+                            className={`w-full px-6 py-5 bg-slate-50 border rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium ${
+                              pincodeError ? 'border-red-500' : 'border-slate-100'
+                            }`}
+                            value={newAddress.pincode}
+                            onChange={(e) => {
+                              const val = e.target.value.replace(/\D/g, '');
+                              setNewAddress({...newAddress, pincode: val});
+                              validatePincode(val);
+                            }}
+                            required
+                        />
+                        {isValidatingPincode && (
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                            <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                          </div>
+                        )}
+                        {pincodeError && (
+                          <p className="text-red-500 text-[10px] font-bold mt-2 ml-2 uppercase tracking-tight">{pincodeError}</p>
+                        )}
+                      </div>
                   </div>
                 </div>
-                <button type="submit" className="btn-secondary px-8 py-4 text-sm">Save & Select Address</button>
+                <button 
+                  type="submit" 
+                  disabled={!!pincodeError || isValidatingPincode}
+                  className="btn-secondary px-8 py-4 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isValidatingPincode ? 'Validating...' : 'Save & Select Address'}
+                </button>
               </form>
             </motion.section>
 
