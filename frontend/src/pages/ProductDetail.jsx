@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, Truck, ArrowLeft, MessageSquare, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package, Phone, MapPin, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Truck, ArrowLeft, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package, Phone, MapPin, AlertCircle } from 'lucide-react';
 import { fetchProductById, getImageUrl } from '../api';
 import api from '../api';
 import CanvasCustomizer from '../components/CanvasCustomizer';
@@ -49,7 +49,7 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [pincode, setPincode] = useState("");
   const [pincodeStatus, setPincodeStatus] = useState(null); // 'checking', 'success', 'error', null
-  const [isServiceable, setIsServiceable] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState(null);
   
   const handlePincodeCheck = async () => {
     if (pincode.length !== 6) {
@@ -60,7 +60,6 @@ const ProductDetail = () => {
     try {
       const res = await api.get(`orders/check-pincode/?pincode=${pincode}`);
       const serviceable = res.data.is_serviceable;
-      setIsServiceable(serviceable);
       setPincodeStatus(serviceable ? 'success' : 'not_serviceable');
     } catch (err) {
       console.error("Error checking pincode", err);
@@ -86,6 +85,10 @@ const ProductDetail = () => {
         console.log('🎨 Customization zones:', productData.customization_zones.length, 'zones found');
         setProduct(productData);
         
+        if (productData.variants && productData.variants.length > 0) {
+          setSelectedVariant(productData.variants[0]);
+        }
+
         if (productData.customization_zones && productData.customization_zones.length > 0) {
            console.log('✅ Customization available for this product');
            
@@ -117,10 +120,11 @@ const ProductDetail = () => {
   const customizationConfig = useMemo(() => {
     if (!product?.customization_zones?.length) return null;
     return {
-      baseImage: product.image,
+      baseImage: getImageUrl(selectedVariant ? selectedVariant.image : product.image, true),
       zones: product.customization_zones
     };
-  }, [product]);
+  }, [product, selectedVariant]);
+
 
   const bulkPricing = useMemo(() => {
     if (!product) return { unitPrice: 0, total: 0, savings: 0, discount: 0 };
@@ -222,7 +226,7 @@ const ProductDetail = () => {
                       key="static-image"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      src={getImageUrl(product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
+                      src={getImageUrl(selectedVariant ? selectedVariant.image : product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
                       className="w-full h-full max-h-[600px] object-contain p-8 transition-transform duration-700 hover:scale-105"
                       alt={product.name}
                     />
@@ -398,6 +402,45 @@ const ProductDetail = () => {
                           </div>
                         )}
                       </div>
+
+                      {/* Color Variant Selection */}
+                      {product.variants && product.variants.length > 0 && (
+                        <div className="mb-8">
+                          <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] block mb-4">
+                            Available Colors
+                          </label>
+                          <div className="flex flex-wrap gap-4">
+                            {product.variants.map((variant) => (
+                              <button
+                                key={variant.id}
+                                onClick={() => setSelectedVariant(variant)}
+                                className={`group relative flex flex-col items-center gap-2 transition-all ${
+                                  selectedVariant?.id === variant.id ? 'scale-110' : 'opacity-60 hover:opacity-100'
+                                }`}
+                              >
+                                <div 
+                                  className={`w-10 h-10 rounded-full border-2 p-0.5 transition-all ${
+                                    selectedVariant?.id === variant.id ? 'border-primary shadow-lg shadow-primary/20' : 'border-transparent'
+                                  }`}
+                                >
+                                  <div 
+                                    className="w-full h-full rounded-full border border-slate-200"
+                                    style={{ 
+                                      backgroundColor: variant.color_name.toLowerCase(),
+                                      backgroundImage: variant.color_name.toLowerCase() === 'wooden' ? 'url(https://www.transparenttextures.com/patterns/wood-pattern.png)' : 'none'
+                                    }}
+                                  ></div>
+                                </div>
+                                <span className={`text-[9px] font-bold uppercase tracking-widest ${
+                                  selectedVariant?.id === variant.id ? 'text-primary' : 'text-slate-400'
+                                }`}>
+                                  {variant.color_name}
+                                </span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       <p className="text-lg text-slate-500 leading-relaxed font-light">
                         {product.description}
@@ -620,7 +663,7 @@ const ProductDetail = () => {
                             'Eco-friendly Packaging',
                             'Corporate Branding Ready',
                             'Individually Quality Checked',
-                            'Doorstep Delivery Pan-India',
+                            'Doorstep Delivery in Maharashtra',
                             'Dedicated Account Support'
                           ].map((feat, idx) => (
                             <div key={idx} className="flex items-center gap-3 text-sm text-slate-600 font-medium">

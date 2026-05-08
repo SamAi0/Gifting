@@ -101,6 +101,23 @@ const Checkout = () => {
       return;
     }
 
+    const addr = addresses.find(a => a.id === selectedAddress);
+    if (addr && addr.pincode) {
+      setIsProcessing(true);
+      try {
+        const checkRes = await api.get(`orders/check-pincode/?pincode=${addr.pincode}`);
+        if (!checkRes.data.is_serviceable) {
+          alert("The selected address is outside Maharashtra. Please choose a different address.");
+          setIsProcessing(false);
+          return;
+        }
+      } catch (err) {
+        console.error("Pincode check failed", err);
+      } finally {
+        setIsProcessing(false);
+      }
+    }
+
     setIsProcessing(true);
     try {
       if (paymentMethod === 'ONLINE') {
@@ -161,7 +178,8 @@ const Checkout = () => {
       }
     } catch (err) {
       console.error("Checkout initiation failed", err);
-      alert("Error starting checkout process");
+      const errorMessage = err.response?.data?.error || "Error starting checkout process";
+      alert(errorMessage);
     } finally {
       setIsProcessing(false);
     }

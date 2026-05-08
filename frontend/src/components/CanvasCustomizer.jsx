@@ -262,7 +262,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
             }
           } else if (targetType === 'image' && targetValue) {
             // Check if image object already exists but has a different source
-            if (obj && obj.type === 'image' && obj.getSrc() !== targetValue) {
+            if (obj && obj.type === 'image' && obj.data?.src !== targetValue) {
               fabricCanvas.current.remove(obj);
               obj = null;
             }
@@ -281,7 +281,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
                   originY: zone.originY || 'center',
                   angle: zone.angle || 0,
                   selectable: true, evented: true,
-                  data: { zoneId: zone.id, isLogo: true }
+                  data: { zoneId: zone.id, isLogo: true, src: targetValue }
                 });
                 fabricCanvas.current.add(img);
                 obj = img;

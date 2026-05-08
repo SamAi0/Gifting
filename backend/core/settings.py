@@ -164,7 +164,7 @@ CSRF_TRUSTED_ORIGINS = os.getenv(
 CSRF_TRUSTED_ORIGINS = [origin.strip().rstrip('/') for origin in CSRF_TRUSTED_ORIGINS if origin.strip()]
 
 # For development only - set to False in production
-CORS_ALLOW_ALL_ORIGINS = os.environ.get('CORS_ALLOW_ALL_ORIGINS', 'False').lower() == 'true'
+CORS_ALLOW_ALL_ORIGINS = DEBUG  # Allow all in development
 CORS_ALLOW_CREDENTIALS = True
 
 if not DEBUG:

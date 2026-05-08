@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { Search, Filter, ChevronDown, Package, Gift, LayoutGrid, List, ChevronRight } from 'lucide-react';
+import { Search, Filter, Package, LayoutGrid, List, ChevronRight } from 'lucide-react';
 import { fetchProducts, fetchCategories, getImageUrl } from '../api';
 import { ProductCardSkeleton } from '../components/Skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -16,6 +16,8 @@ const ProductList = () => {
   const [maxPrice, setMaxPrice] = useState(searchParams.get('max_price') || "");
   const [viewMode, setViewMode] = useState('grid');
   const [sortBy, setSortBy] = useState(searchParams.get('ordering') || '-created_at');
+  const [currentPage, setCurrentPage] = useState(parseInt(searchParams.get('page')) || 1);
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     const updateURL = () => {
@@ -25,6 +27,7 @@ const ProductList = () => {
       if (minPrice) params.min_price = minPrice;
       if (maxPrice) params.max_price = maxPrice;
       if (sortBy) params.ordering = sortBy;
+      if (currentPage > 1) params.page = currentPage;
       setSearchParams(params);
     };
 
@@ -40,9 +43,11 @@ const ProductList = () => {
         if (minPrice) params.min_price = minPrice;
         if (maxPrice) params.max_price = maxPrice;
         if (sortBy) params.ordering = sortBy;
+        params.page = currentPage;
         
         const prodRes = await fetchProducts(params);
         setProducts(prodRes.data.results || prodRes.data);
+        setTotalCount(prodRes.data.count || (prodRes.data.results ? prodRes.data.results.length : prodRes.data.length));
       } catch (error) {
         console.error("Error loading products:", error);
       } finally {
@@ -56,7 +61,7 @@ const ProductList = () => {
     }, 400); // Debounce
 
     return () => clearTimeout(timer);
-  }, [selectedCategory, searchQuery, sortBy, minPrice, maxPrice, setSearchParams]);
+  }, [selectedCategory, searchQuery, sortBy, minPrice, maxPrice, currentPage, setSearchParams]);
 
   return (
     <div className="pt-32 pb-32 bg-slate-50 min-h-screen">
@@ -90,7 +95,10 @@ const ProductList = () => {
               placeholder="Search gifts..."
               className="w-full pl-12 pr-6 py-4 rounded-2xl bg-white border border-slate-200 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary shadow-sm transition-all text-sm"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setCurrentPage(1);
+              }}
             />
           </motion.div>
         </div>
@@ -107,7 +115,10 @@ const ProductList = () => {
                 </div>
                 <div className="space-y-1 max-h-[400px] overflow-y-auto pr-2 scrollbar-hide">
                   <button 
-                    onClick={() => setSelectedCategory("")}
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setCurrentPage(1);
+                    }}
                     className={`w-full text-left px-4 py-2.5 rounded-xl transition-all duration-200 font-bold text-xs flex items-center justify-between group ${
                       selectedCategory === "" 
                       ? 'bg-primary text-white shadow-md shadow-primary/20' 
@@ -119,7 +130,10 @@ const ProductList = () => {
                   {categories.map((cat) => (
                     <button 
                       key={cat.id}
-                      onClick={() => setSelectedCategory(cat.id.toString())}
+                      onClick={() => {
+                        setSelectedCategory(cat.id.toString());
+                        setCurrentPage(1);
+                      }}
                       className={`w-full text-left px-4 py-2.5 rounded-xl transition-all duration-200 font-bold text-xs flex justify-between items-center group ${
                         selectedCategory === cat.id.toString() 
                         ? 'bg-primary text-white shadow-md shadow-primary/20' 
@@ -152,7 +166,10 @@ const ProductList = () => {
                         placeholder="Min"
                         className="w-full pl-6 pr-3 py-2.5 rounded-xl bg-slate-50 border border-slate-100 focus:outline-none focus:border-primary text-xs font-bold"
                         value={minPrice}
-                        onChange={(e) => setMinPrice(e.target.value)}
+                        onChange={(e) => {
+                          setMinPrice(e.target.value);
+                          setCurrentPage(1);
+                        }}
                       />
                     </div>
                     <div className="w-2 h-px bg-slate-300"></div>
@@ -163,13 +180,20 @@ const ProductList = () => {
                         placeholder="Max"
                         className="w-full pl-6 pr-3 py-2.5 rounded-xl bg-slate-50 border border-slate-100 focus:outline-none focus:border-primary text-xs font-bold"
                         value={maxPrice}
-                        onChange={(e) => setMaxPrice(e.target.value)}
+                        onChange={(e) => {
+                          setMaxPrice(e.target.value);
+                          setCurrentPage(1);
+                        }}
                       />
                     </div>
                   </div>
                   {(minPrice || maxPrice) && (
                     <button 
-                      onClick={() => {setMinPrice(""); setMaxPrice("");}}
+                      onClick={() => {
+                        setMinPrice(""); 
+                        setMaxPrice("");
+                        setCurrentPage(1);
+                      }}
                       className="w-full py-2 text-[10px] font-black text-primary hover:bg-primary/5 rounded-lg transition-all uppercase tracking-widest"
                     >
                       Reset Price
@@ -185,7 +209,7 @@ const ProductList = () => {
             <div className="flex flex-wrap justify-between items-center mb-8 gap-4">
                <div className="flex items-center gap-3">
                  <span className="text-slate-900 font-black text-xs uppercase tracking-widest">
-                    {products.length} Products
+                    {totalCount} Products
                  </span>
                  <div className="h-4 w-px bg-slate-300"></div>
                  <div className="flex gap-2">
@@ -208,7 +232,10 @@ const ProductList = () => {
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Sort:</span>
                   <select 
                     value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
+                    onChange={(e) => {
+                      setSortBy(e.target.value);
+                      setCurrentPage(1);
+                    }}
                     className="bg-white border border-slate-200 rounded-xl px-4 py-2 text-xs font-bold text-slate-700 outline-none focus:border-primary transition-all cursor-pointer shadow-sm"
                   >
                     <option value="-created_at">Newest First</option>
@@ -327,6 +354,41 @@ const ProductList = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Pagination Controls */}
+            {totalCount > 20 && (
+              <div className="mt-12 flex justify-center items-center gap-2">
+                <button 
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-primary disabled:opacity-50 transition-all"
+                >
+                  <ChevronRight size={20} className="rotate-180" />
+                </button>
+                
+                {Array.from({ length: Math.ceil(totalCount / 20) }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentPage(i + 1)}
+                    className={`w-10 h-10 rounded-xl font-bold text-xs transition-all ${
+                      currentPage === i + 1 
+                        ? 'bg-primary text-white shadow-lg shadow-primary/20' 
+                        : 'bg-white border border-slate-200 text-slate-600 hover:border-primary/40'
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+
+                <button 
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / 20), p + 1))}
+                  disabled={currentPage === Math.ceil(totalCount / 20)}
+                  className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-primary disabled:opacity-50 transition-all"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            )}
           </main>
         </div>
       </div>

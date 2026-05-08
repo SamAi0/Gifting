@@ -1,37 +1,7 @@
-import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, ArrowRight, ShieldCheck, ArrowUpRight } from 'lucide-react';
-import { submitContact } from '../api';
-import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      await submitContact(formData);
-      setIsSuccess(true);
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    } catch (error) {
-      console.error("Error submitting contact form:", error);
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className="pt-32 bg-slate-50 min-h-screen">
