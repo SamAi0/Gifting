@@ -41,20 +41,20 @@ const Home = () => {
       <section className="relative min-h-[60vh] flex items-center bg-secondary overflow-hidden">
         {/* Abstract Background Elements */}
         <div className="absolute top-0 right-0 w-1/2 h-full z-0 opacity-20 hidden lg:block">
-           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-[120px] animate-pulse"></div>
-           <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[100px]"></div>
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-[120px] animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[100px]"></div>
         </div>
 
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/95 to-secondary/40 z-10"></div>
-          <img 
-            src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=2000" 
+          <img
+            src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=2000"
             className="w-full h-full object-cover"
             alt="Premium Corporate Gifting"
           />
         </div>
-        
-        <div className="relative z-20 w-full px-6 md:px-16 lg:px-24 py-10">
+
+        <div className="relative z-20 w-full px-6 md:px-16 lg:px-24 py-20">
           <div className="max-w-4xl text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -68,7 +68,7 @@ const Home = () => {
                 Crafting <span className="text-primary italic font-serif">Unforgettable</span> Corporate Moments
               </h1>
               <p className="text-xl text-slate-300 mb-10 max-w-xl leading-relaxed font-light">
-                Premium, customizable gifting solutions that transform professional relationships into lasting partnerships. 
+                Premium, customizable gifting solutions that transform professional relationships into lasting partnerships.
               </p>
               <div className="flex flex-col sm:flex-row gap-5">
                 <Link to="/products" className="btn-primary py-5 px-10 text-lg group">
@@ -79,21 +79,6 @@ const Home = () => {
                 </Link>
               </div>
             </motion.div>
-
-            <motion.div 
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               transition={{ delay: 0.8, duration: 1 }}
-               className="mt-16 pt-8 border-t border-white/10 flex flex-wrap gap-8 items-center"
-            >
-               <p className="text-slate-500 text-sm font-medium uppercase tracking-widest">Trusted By</p>
-               <div className="flex flex-wrap gap-8 opacity-40 grayscale contrast-125">
-                  <span className="text-white font-black text-xl tracking-tighter">TECHCORP</span>
-                  <span className="text-white font-black text-xl tracking-tighter">GLOBALSERVE</span>
-                  <span className="text-white font-black text-xl tracking-tighter">INNOHUB</span>
-                  <span className="text-white font-black text-xl tracking-tighter">NEXUS</span>
-               </div>
-            </motion.div>
           </div>
         </div>
       </section>
@@ -101,26 +86,26 @@ const Home = () => {
       {/* Featured Stats */}
       <section className="relative z-30 -mt-12 mb-6">
         <div className="container-custom">
-           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-              {[
-                { label: 'Happy Clients', value: '500+', icon: User },
-                { label: 'Gifts Delivered', value: '25k+', icon: Gift },
-                { label: 'Success Rate', value: '99.9%', icon: CheckCircle2 },
-                { label: 'Custom Designs', value: '1000+', icon: ShieldCheck },
-              ].map((stat, idx) => (
-                <motion.div 
-                  key={idx}
-                  whileHover={{ y: -5 }}
-                  className="glass-card p-8 text-center flex flex-col items-center justify-center border-t-4 border-t-primary"
-                >
-                   <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary mb-4">
-                      <stat.icon size={24} />
-                   </div>
-                   <h4 className="text-3xl font-bold text-slate-900 mb-1">{stat.value}</h4>
-                   <p className="text-slate-500 text-sm font-medium">{stat.label}</p>
-                </motion.div>
-              ))}
-           </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            {[
+              { label: 'Happy Clients', value: '500+', icon: User },
+              { label: 'Gifts Delivered', value: '25k+', icon: Gift },
+              { label: 'Success Rate', value: '99.9%', icon: CheckCircle2 },
+              { label: 'Custom Designs', value: '1000+', icon: ShieldCheck },
+            ].map((stat, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -5 }}
+                className="glass-card p-8 text-center flex flex-col items-center justify-center border-t-4 border-t-primary"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary mb-4">
+                  <stat.icon size={24} />
+                </div>
+                <h4 className="text-3xl font-bold text-slate-900 mb-1">{stat.value}</h4>
+                <p className="text-slate-500 text-sm font-medium">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -140,7 +125,7 @@ const Home = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {trendingProducts.length > 0 ? (
               trendingProducts.map((product, idx) => (
-                <motion.div 
+                <motion.div
                   key={product.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -151,8 +136,8 @@ const Home = () => {
                   <Link to={`/products/${product.id}`} className="group block">
                     <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500">
                       <div className="aspect-[4/5] overflow-hidden">
-                        <img 
-                          src={getImageUrl(product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
+                        <img
+                          src={getImageUrl(product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"}
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                           alt={product.name}
                         />
@@ -160,11 +145,11 @@ const Home = () => {
                           <span className="bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest border border-white/20 scale-90 group-hover:scale-100 transition-all duration-500">View Details</span>
                         </div>
                       </div>
-                      
+
                       {/* Badges */}
                       <div className="absolute top-5 left-5 flex flex-col gap-2">
                         {product.badge_text && (
-                          <span 
+                          <span
                             className="text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg text-white"
                             style={{ backgroundColor: product.badge_color || 'var(--color-primary)' }}
                           >
@@ -189,7 +174,7 @@ const Home = () => {
                             )}
                           </div>
                           <div className="text-primary-light font-black text-[10px] uppercase tracking-widest">
-                             Explore
+                            Explore
                           </div>
                         </div>
                       </div>
@@ -221,7 +206,7 @@ const Home = () => {
               <p className="text-lg text-slate-500 mb-8 leading-relaxed">
                 We don't just deliver products; we deliver experiences that reinforce your brand values and appreciation.
               </p>
-              
+
               <div className="space-y-6">
                 {[
                   { title: "Custom Branding", desc: "Advanced printing and engraving technology.", icon: ShieldCheck },
@@ -241,25 +226,25 @@ const Home = () => {
               </div>
             </motion.div>
 
-            <motion.div 
-               initial={{ opacity: 0, scale: 0.9 }}
-               whileInView={{ opacity: 1, scale: 1 }}
-               viewport={{ once: true }}
-               className="relative flex justify-center lg:justify-end"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative flex justify-center lg:justify-end"
             >
-               <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-xl max-w-md w-full">
-                  <img 
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200" 
-                    alt="Team Collaboration" 
-                    className="w-full h-full object-cover aspect-square"
-                  />
-               </div>
-               {/* Floating elements */}
-               <div className="absolute -bottom-4 -left-4 bg-white p-5 rounded-2xl shadow-premium z-20 hidden md:block">
-                  <p className="text-3xl font-bold text-primary mb-1">98%</p>
-                  <p className="text-slate-500 font-bold text-[10px] uppercase tracking-widest">Retention Rate</p>
-               </div>
-               <div className="absolute top-10 -right-5 w-40 h-40 bg-primary/10 rounded-full blur-3xl z-0"></div>
+              <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-xl max-w-md w-full">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200"
+                  alt="Team Collaboration"
+                  className="w-full h-full object-cover aspect-square"
+                />
+              </div>
+              {/* Floating elements */}
+              <div className="absolute -bottom-4 -left-4 bg-white p-5 rounded-2xl shadow-premium z-20 hidden md:block">
+                <p className="text-3xl font-bold text-primary mb-1">98%</p>
+                <p className="text-slate-500 font-bold text-[10px] uppercase tracking-widest">Retention Rate</p>
+              </div>
+              <div className="absolute top-10 -right-5 w-40 h-40 bg-primary/10 rounded-full blur-3xl z-0"></div>
             </motion.div>
           </div>
         </div>
@@ -273,11 +258,11 @@ const Home = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What Corporate Visionaries Say</h2>
             <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
           </div>
-           
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.length > 0 ? (
               testimonials.map((testimonial) => (
-                <motion.div 
+                <motion.div
                   key={testimonial.id}
                   whileHover={{ y: -5 }}
                   className="bg-white/5 backdrop-blur-md p-6 rounded-[2rem] border border-white/10 flex flex-col justify-between"
@@ -303,7 +288,7 @@ const Home = () => {
               ))
             ) : (
               [1, 2, 3].map((n) => (
-                <motion.div 
+                <motion.div
                   key={n}
                   whileHover={{ y: -5 }}
                   className="bg-white/5 backdrop-blur-md p-6 rounded-[2rem] border border-white/10 flex flex-col justify-between"
@@ -335,31 +320,31 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-6 md:py-10 bg-white">
         <div className="container-custom">
-           <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative rounded-[3rem] bg-slate-900 p-10 md:p-16 text-center text-white overflow-hidden shadow-2xl"
-           >
-              {/* Background Glow */}
-              <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                 <div className="absolute -top-1/2 -left-1/4 w-[100%] h-[100%] bg-primary rounded-full blur-[150px]"></div>
-                 <div className="absolute -bottom-1/2 -right-1/4 w-[100%] h-[100%] bg-blue-600 rounded-full blur-[150px]"></div>
-              </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative rounded-[3rem] bg-slate-900 p-10 md:p-16 text-center text-white overflow-hidden shadow-2xl"
+          >
+            {/* Background Glow */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+              <div className="absolute -top-1/2 -left-1/4 w-[100%] h-[100%] bg-primary rounded-full blur-[150px]"></div>
+              <div className="absolute -bottom-1/2 -right-1/4 w-[100%] h-[100%] bg-blue-600 rounded-full blur-[150px]"></div>
+            </div>
 
-              <div className="relative z-10 max-w-3xl mx-auto">
-                <Gift className="w-12 h-12 text-primary mx-auto mb-6 animate-bounce" />
-                <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Ready to Elevate Your Gifting Experience?</h2>
-                <p className="text-base md:text-lg mb-10 text-slate-300 max-w-xl mx-auto font-light leading-relaxed">
-                  Join 500+ companies that trust us for their premium corporate requirements. Get a personalized quote within 24 hours.
-                </p>
-                <div className="flex justify-center">
-                  <Link to="/products" className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-bold px-16 py-6 rounded-2xl text-xl transition-all border border-white/10">
-                    Browse Catalog
-                  </Link>
-                </div>
+            <div className="relative z-10 max-w-3xl mx-auto">
+              <Gift className="w-12 h-12 text-primary mx-auto mb-6 animate-bounce" />
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Ready to Elevate Your Gifting Experience?</h2>
+              <p className="text-base md:text-lg mb-10 text-slate-300 max-w-xl mx-auto font-light leading-relaxed">
+                Join 500+ companies that trust us for their premium corporate requirements. Get a personalized quote within 24 hours.
+              </p>
+              <div className="flex justify-center">
+                <Link to="/products" className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-bold px-16 py-6 rounded-2xl text-xl transition-all border border-white/10">
+                  Browse Catalog
+                </Link>
               </div>
-           </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -41,7 +41,7 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     
     image_preview.short_description = 'Preview'
 
-    list_display = ('image_preview', 'name', 'category', 'price', 'stock', 'is_trending', 'is_bulk_only')
+    list_display = ('image_preview', 'name', 'category', 'price', 'stock', 'badge_text', 'is_trending', 'is_bulk_only')
     list_filter = (
         'category', 
         'is_trending', 
@@ -49,7 +49,7 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
         ('created_at', DateRangeFilter),
     )
     search_fields = ('name', 'description')
-    list_editable = ('price', 'stock', 'is_trending', 'is_bulk_only')
+    list_editable = ('price', 'stock', 'badge_text', 'is_trending', 'is_bulk_only')
     readonly_fields = ('created_at', 'image_preview_large')
     list_per_page = 20
     
