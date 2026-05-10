@@ -2,8 +2,11 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.db.models import Q, Count
+from django.utils import timezone
+from datetime import timedelta
 from .models import Product, Category, Review, Wishlist
 from api.serializers import ProductSerializer, CategorySerializer, ReviewSerializer, WishlistSerializer
+from api.permissions import IsOwnerOrReadOnly
 from rest_framework.pagination import PageNumberPagination
 
 class ProductPagination(PageNumberPagination):
@@ -85,14 +88,35 @@ class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
+    def get_queryset(self):
+        queryset = Review.objects.all()
+        product_id = self.request.query_params.get('product')
+        if product_id:
+            queryset = queryset.filter(product_id=product_id)
+        return queryset
+
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
             return [permissions.AllowAny()]
-        return [permissions.IsAuthenticated()]
+        if self.action in ['create']:
+            return [permissions.IsAuthenticated()]
+        return [IsOwnerOrReadOnly()]
 
     def perform_create(self, serializer):
-        # Ensure user can only review if they purchased (logic to be added)
-        serializer.save(user=self.request.user)
+        product = serializer.validated_data.get('product')
+        user = self.request.user
+        
+        if Review.objects.filter(product=product, user=user).exists():
+            raise serializers.ValidationError({"detail": "You have already reviewed this product."})
+            
+        serializer.save(user=user)
+
+    def perform_update(self, serializer):
+        instance = self.get_object()
+        # Check if the review is older than 4 minutes
+        if timezone.now() > instance.created_at + timedelta(minutes=4):
+            raise serializers.ValidationError({"detail": "Editing window (4 minutes) has expired. You can no longer edit this review."})
+        serializer.save()
 
 class WishlistViewSet(viewsets.ModelViewSet):
     serializer_class = WishlistSerializer

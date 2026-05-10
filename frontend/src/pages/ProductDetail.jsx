@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Truck, ArrowLeft, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package, Phone, MapPin, AlertCircle } from 'lucide-react';
-import { fetchProductById, getImageUrl, fetchReviews, submitReview, addToWishlist, removeFromWishlist, fetchWishlist } from '../api';
+import { fetchProductById, getImageUrl, fetchReviews, submitReview, updateReview, addToWishlist, removeFromWishlist, fetchWishlist } from '../api';
 import api from '../api';
 import CanvasCustomizer from '../components/CanvasCustomizer';
 import CustomizerControls from '../components/CustomizerControls';
@@ -46,6 +46,8 @@ const ProductDetail = () => {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [newReview, setNewReview] = useState({ rating: 5, comment: '', image: null });
   const [submittingReview, setSubmittingReview] = useState(false);
+  const [userReview, setUserReview] = useState(null);
+  const [isEditingReview, setIsEditingReview] = useState(false);
   
   // Wishlist States
   const [isInWishlist, setIsInWishlist] = useState(false);
@@ -89,70 +91,93 @@ const ProductDetail = () => {
   const [placement, setPlacement] = useState('Front');
   const [designInstructions, setDesignInstructions] = useState('');
 
+  const loadReviews = useCallback(async () => {
+    setReviewsLoading(true);
+    setUserReview(null);
+    setIsEditingReview(false);
+    setNewReview({ rating: 5, comment: '', image: null });
+    try {
+      const res = await fetchReviews({ product: id });
+      const reviewsData = res.data.results || res.data;
+      setReviews(reviewsData);
+      
+      if (user) {
+        const existingReview = reviewsData.find(r => r.user_name === user.username);
+        if (existingReview) {
+          // Check if within 4 minute editing window
+          const createdAt = new Date(existingReview.created_at);
+          const now = new Date();
+          const diffInMinutes = (now - createdAt) / (1000 * 60);
+          
+          if (diffInMinutes <= 4) {
+            setUserReview(existingReview);
+            setNewReview({ rating: existingReview.rating, comment: existingReview.comment, image: null });
+          } else {
+            // Review exists but window expired
+            setUserReview(null); 
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Error fetching reviews", err);
+    } finally {
+      setReviewsLoading(false);
+    }
+  }, [id, user]);
+
+  const checkWishlist = useCallback(async () => {
+    try {
+      const res = await fetchWishlist();
+      const item = res.data.find(w => w.product === parseInt(id));
+      if (item) {
+        setIsInWishlist(true);
+        setWishlistItemId(item.id);
+      } else {
+        setIsInWishlist(false);
+      }
+    } catch (err) {
+      console.error("Wishlist check error", err);
+    }
+  }, [id]);
+
+  const loadProduct = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetchProductById(id);
+      const productData = res.data;
+      setProduct(productData);
+      
+      if (productData.variants && productData.variants.length > 0) {
+        setSelectedVariant(productData.variants[0]);
+      }
+
+      // Fetch Related Products
+      const relatedRes = await api.get('/products/', { 
+        params: { category: productData.category } 
+      });
+      const relatedData = relatedRes.data.results || relatedRes.data;
+      setRelatedProducts(relatedData.filter(p => p.id !== parseInt(id)).slice(0, 4));
+      
+      // Fetch Reviews
+      loadReviews();
+      
+      // Check Wishlist
+      if (user) {
+        checkWishlist();
+      }
+      
+    } catch (error) {
+      console.error("Error loading product:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [id, user, loadReviews, checkWishlist]);
+
   useEffect(() => {
-    const loadProduct = async () => {
-      setLoading(true);
-      try {
-        const res = await fetchProductById(id);
-        const productData = res.data;
-        setProduct(productData);
-        
-        if (productData.variants && productData.variants.length > 0) {
-          setSelectedVariant(productData.variants[0]);
-        }
-
-        // Fetch Related Products
-        const relatedRes = await api.get('/products/', { 
-          params: { category: productData.category } 
-        });
-        const relatedData = relatedRes.data.results || relatedRes.data;
-        setRelatedProducts(relatedData.filter(p => p.id !== parseInt(id)).slice(0, 4));
-        
-        // Fetch Reviews
-        loadReviews();
-        
-        // Check Wishlist
-        if (user) {
-          checkWishlist();
-        }
-        
-      } catch (error) {
-        console.error("Error loading product:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const loadReviews = async () => {
-      setReviewsLoading(true);
-      try {
-        const res = await fetchReviews({ product: id });
-        setReviews(res.data.results || res.data);
-      } catch (err) {
-        console.error("Error fetching reviews", err);
-      } finally {
-        setReviewsLoading(false);
-      }
-    };
-
-    const checkWishlist = async () => {
-      try {
-        const res = await fetchWishlist();
-        const item = res.data.find(w => w.product === parseInt(id));
-        if (item) {
-          setIsInWishlist(true);
-          setWishlistItemId(item.id);
-        } else {
-          setIsInWishlist(false);
-        }
-      } catch (err) {
-        console.error("Wishlist check error", err);
-      }
-    };
-
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadProduct();
     window.scrollTo(0, 0);
-  }, [id, user]);
+  }, [loadProduct]);
 
   const handleToggleWishlist = async () => {
     if (!user) {
@@ -190,17 +215,27 @@ const ProductDetail = () => {
     if (newReview.image) formData.append('image', newReview.image);
     
     try {
-      await submitReview(formData);
+      if (isEditingReview && userReview) {
+        await updateReview(userReview.id, formData);
+        setToastMessage("Review updated successfully!");
+      } else {
+        await submitReview(formData);
+        setToastMessage("Review posted successfully!");
+      }
+      
       setNewReview({ rating: 5, comment: '', image: null });
       setShowReviewForm(false);
-      // Reload reviews and product (to update average rating)
-      const res = await fetchReviews({ product: id });
-      setReviews(res.data.results || res.data);
+      setIsEditingReview(false);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+      
+      // Reload reviews and product
+      loadReviews();
       const prodRes = await fetchProductById(id);
       setProduct(prodRes.data);
     } catch (err) {
       console.error("Review submit error", err);
-      alert(err.response?.data?.detail || "Failed to submit review. You may have already reviewed this product.");
+      alert(err.response?.data?.detail || "Failed to submit review.");
     } finally {
       setSubmittingReview(false);
     }
@@ -256,8 +291,32 @@ const ProductDetail = () => {
     addToCart(product.id, quantity, textEntries[0]?.text || '', imageFile, customizationData, logoFiles);
     
     // Show Premium Toast
+    setToastMessage(`Added ${product.name} to collection`);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
+  };
+
+  const [toastMessage, setToastMessage] = useState("");
+
+  const handleShare = async () => {
+    const shareData = {
+      title: product.name,
+      text: `Check out this amazing gift: ${product.name}`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        setToastMessage("Link copied to clipboard!");
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000);
+      }
+    } catch (err) {
+      console.error("Share failed", err);
+    }
   };
 
   if (loading) {
@@ -343,7 +402,10 @@ const ProductDetail = () => {
                       >
                         <Heart size={20} fill={isInWishlist ? "currentColor" : "none"} />
                      </button>
-                     <button className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/20 transition-all shadow-sm">
+                     <button 
+                       onClick={handleShare}
+                       className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/20 transition-all shadow-sm"
+                     >
                         <Share2 size={20} />
                      </button>
                   </div>
@@ -799,10 +861,19 @@ const ProductDetail = () => {
                    </div>
                 </div>
                 <button 
-                  onClick={() => setShowReviewForm(!showReviewForm)}
+                  onClick={() => {
+                    if (!showReviewForm && userReview) {
+                      setIsEditingReview(true);
+                      setNewReview({ rating: userReview.rating, comment: userReview.comment, image: null });
+                    } else if (!showReviewForm) {
+                      setIsEditingReview(false);
+                      setNewReview({ rating: 5, comment: '', image: null });
+                    }
+                    setShowReviewForm(!showReviewForm);
+                  }}
                   className="btn-primary py-4 px-10 text-sm shadow-xl"
                 >
-                  {showReviewForm ? 'Cancel Review' : 'Write a Review'}
+                  {showReviewForm ? 'Cancel' : (userReview ? 'Edit Your Review' : 'Write a Review')}
                 </button>
              </div>
 
@@ -815,7 +886,9 @@ const ProductDetail = () => {
                     className="overflow-hidden mb-20"
                   >
                      <form onSubmit={handleReviewSubmit} className="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-premium max-w-2xl mx-auto">
-                        <h3 className="text-xl font-bold text-slate-900 mb-8">How was your experience?</h3>
+                        <h3 className="text-xl font-bold text-slate-900 mb-8">
+                          {isEditingReview ? 'Update your experience' : 'How was your experience?'}
+                        </h3>
                         
                         <div className="space-y-8">
                            <div>
@@ -856,7 +929,7 @@ const ProductDetail = () => {
                                 disabled={submittingReview}
                                 className="btn-primary py-4 px-12 text-sm shadow-2xl"
                               >
-                                {submittingReview ? 'Submitting...' : 'Post Review'}
+                                {submittingReview ? 'Submitting...' : (isEditingReview ? 'Update Review' : 'Post Review')}
                               </button>
                            </div>
                         </div>
@@ -941,7 +1014,7 @@ const ProductDetail = () => {
           )}
         </div>
       </div>
-      {/* Premium Success Toast */}
+      {/* Premium Toast Notification */}
       <AnimatePresence>
         {showToast && (
           <motion.div
@@ -950,19 +1023,23 @@ const ProductDetail = () => {
             exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
             className="fixed top-24 right-8 z-[100] flex items-center gap-4 bg-white/90 backdrop-blur-xl border border-primary/20 p-5 rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(217,22,86,0.2)]"
           >
-            <div className="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
-              <CheckCircle2 size={24} />
+            <div className={`w-12 h-12 ${toastMessage.includes('Link') ? 'bg-blue-500' : toastMessage.includes('Review') ? 'bg-emerald-500' : 'bg-primary'} text-white rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20`}>
+              {toastMessage.includes('Link') ? <Share2 size={24} /> : <CheckCircle2 size={24} />}
             </div>
             <div className="pr-4">
-              <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">Added to Cart</h3>
-              <p className="text-[10px] text-slate-500 font-medium">Your customized {product.name} is ready.</p>
+              <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">
+                {toastMessage.includes('Link') ? 'Shared' : toastMessage.includes('Review') ? 'Success' : 'Added to Cart'}
+              </h3>
+              <p className="text-[10px] text-slate-500 font-medium">{toastMessage}</p>
             </div>
-            <button 
-              onClick={() => navigate('/cart')}
-              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all"
-            >
-              View Cart
-            </button>
+            {!toastMessage.includes('Link') && !toastMessage.includes('Review') && (
+              <button 
+                onClick={() => navigate('/cart')}
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all"
+              >
+                View Cart
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

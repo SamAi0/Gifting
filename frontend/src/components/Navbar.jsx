@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Gift, ShoppingCart, User, LogOut } from 'lucide-react';
+import { Menu, X, Gift, ShoppingCart, User, LogOut, Heart } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,6 +12,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const { cart } = useCart();
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
   const cartCount = cart?.items?.length || 0;
 
@@ -100,36 +101,90 @@ const Navbar = () => {
               </Link>
 
               {user ? (
-                <div className="flex items-center gap-4">
-                  <div className={`flex items-center gap-2.5 font-bold text-sm ${
-                    isScrolled ? 'text-slate-700' : location.pathname === '/' ? 'text-white' : 'text-slate-700'
-                  }`}>
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
-                      <User size={16} />
-                    </div>
-                    <span className="hidden lg:inline">{user.username}</span>
-                    <Link 
-                      to="/orders" 
-                      className={`ml-2 text-xs hover:text-primary transition-colors ${isScrolled ? 'text-slate-500' : 'text-slate-300'}`}
-                    >
-                      My Orders
-                    </Link>
-                    {user.is_staff && (
-                      <Link 
-                        to="/admin-panel" 
-                        className="ml-2 text-xs bg-primary text-white px-2 py-1 rounded-md hover:bg-primary/80 transition-colors"
-                      >
-                        Dashboard
-                      </Link>
-                    )}
-                  </div>
+                <div className="relative">
                   <button 
-                    onClick={() => { logout(); navigate('/login'); }}
-                    className="p-2 text-slate-400 hover:text-red-500 transition-colors"
-                    title="Logout"
+                    onMouseEnter={() => setIsUserDropdownOpen(true)}
+                    onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                    className={`flex items-center gap-3 p-1.5 rounded-2xl transition-all duration-300 ${
+                      isScrolled ? 'hover:bg-slate-100' : 'hover:bg-white/10'
+                    } ${isUserDropdownOpen ? (isScrolled ? 'bg-slate-100' : 'bg-white/10') : ''}`}
                   >
-                    <LogOut size={20} />
+                    <div className="w-9 h-9 rounded-xl bg-primary shadow-lg shadow-primary/20 flex items-center justify-center text-white">
+                      <User size={18} />
+                    </div>
+                    <div className={`hidden lg:flex flex-col items-start pr-2 ${
+                      isScrolled ? 'text-slate-900' : location.pathname === '/' ? 'text-white' : 'text-slate-900'
+                    }`}>
+                      <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Account</span>
+                      <span className="text-sm font-bold truncate max-w-[100px]">{user.username}</span>
+                    </div>
                   </button>
+
+                  <AnimatePresence>
+                    {isUserDropdownOpen && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        onMouseLeave={() => setIsUserDropdownOpen(false)}
+                        className="absolute right-0 mt-3 w-64 bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden z-[100]"
+                      >
+                        <div className="p-5 bg-slate-50 border-b border-slate-100">
+                          <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Signed in as</p>
+                          <p className="font-bold text-slate-900">{user.email || user.username}</p>
+                        </div>
+                        
+                        <div className="p-2">
+                          <Link 
+                            to="/orders" 
+                            onClick={() => setIsUserDropdownOpen(false)}
+                            className="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-slate-600 hover:bg-primary/5 hover:text-primary transition-all group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                              <Gift size={16} />
+                            </div>
+                            My Orders
+                          </Link>
+                          
+                          <Link 
+                            to="/wishlist" 
+                            onClick={() => setIsUserDropdownOpen(false)}
+                            className="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-slate-600 hover:bg-primary/5 hover:text-primary transition-all group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                              <Heart size={16} className="text-red-400" />
+                            </div>
+                            Wishlist
+                          </Link>
+
+                          {user.is_staff && (
+                            <Link 
+                              to="/admin-panel" 
+                              onClick={() => setIsUserDropdownOpen(false)}
+                              className="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-primary hover:bg-primary/5 transition-all group"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center transition-colors">
+                                <User size={16} />
+                              </div>
+                              Admin Dashboard
+                            </Link>
+                          )}
+                        </div>
+
+                        <div className="p-2 border-t border-slate-50">
+                          <button 
+                            onClick={() => { logout(); navigate('/login'); setIsUserDropdownOpen(false); }}
+                            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-red-500 hover:bg-red-50 transition-all group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                              <LogOut size={16} />
+                            </div>
+                            Logout Account
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ) : (
                 <Link 
@@ -191,11 +246,21 @@ const Navbar = () => {
               <Link
                 to="/orders"
                 onClick={handleNavLinkClick}
-                className={`text-lg font-bold transition-colors ${
+                className={`flex items-center gap-3 text-lg font-bold transition-colors ${
                   location.pathname === '/orders' ? 'text-primary' : 'text-slate-600'
                 }`}
               >
-                My Orders
+                <Gift size={20} /> My Orders
+              </Link>
+              
+              <Link
+                to="/wishlist"
+                onClick={handleNavLinkClick}
+                className={`flex items-center gap-3 text-lg font-bold transition-colors ${
+                  location.pathname === '/wishlist' ? 'text-primary' : 'text-slate-600'
+                }`}
+              >
+                <Heart size={20} className="text-red-400" /> Wishlist
               </Link>
               
               {user?.is_staff && (

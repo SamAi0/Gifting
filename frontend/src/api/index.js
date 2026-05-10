@@ -86,6 +86,10 @@ export const fetchReviews = (params) => api.get('reviews/', { params });
 export const submitReview = (data) => api.post('reviews/', data, {
   headers: { 'Content-Type': 'multipart/form-data' }
 });
+export const updateReview = (id, data) => api.patch(`reviews/${id}/`, data, {
+  headers: { 'Content-Type': 'multipart/form-data' }
+});
+export const deleteReview = (id) => api.delete(`reviews/${id}/`);
 export const fetchWishlist = () => api.get('wishlist/');
 export const addToWishlist = (productId) => api.post('wishlist/', { product: productId });
 export const removeFromWishlist = (id) => api.delete(`wishlist/${id}/`);

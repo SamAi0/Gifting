@@ -128,14 +128,14 @@ class Review(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        # Update product average rating and count
-        reviews = self.product.reviews.all()
-        self.product.review_count = reviews.count()
-        if self.product.review_count > 0:
-            total_rating = sum(r.rating for r in reviews)
-            self.product.average_rating = Decimal(total_rating) / Decimal(self.product.review_count)
-        else:
-            self.product.average_rating = 0
+        # Update product average rating and count using aggregation
+        from django.db.models import Avg, Count
+        stats = self.product.reviews.aggregate(
+            avg_rating=Avg('rating'),
+            total_count=Count('id')
+        )
+        self.product.average_rating = stats['avg_rating'] or 0
+        self.product.review_count = stats['total_count'] or 0
         self.product.save()
 
 class Wishlist(models.Model):
