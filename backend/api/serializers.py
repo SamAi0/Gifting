@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from products.models import Product, Category, ProductVariant, Review, Wishlist
+from products.models import Product, Category, ProductVariant, Review, Wishlist, AttributeValue, Attribute
 from inquiries.models import BulkInquiry, ContactMessage
 from company_info.models import Testimonial, Settings
 
@@ -7,12 +7,20 @@ class CategorySerializer(serializers.ModelSerializer):
     product_count = serializers.IntegerField(read_only=True)
     class Meta:
         model = Category
-        fields = ['id', 'name', 'product_count']
+        fields = ['id', 'name', 'slug', 'product_count']
+
+
+class AttributeValueSerializer(serializers.ModelSerializer):
+    attribute_name = serializers.CharField(source='attribute.name', read_only=True)
+    class Meta:
+        model = AttributeValue
+        fields = ['id', 'attribute', 'attribute_name', 'value']
 
 class ProductVariantSerializer(serializers.ModelSerializer):
+    attribute_values_details = AttributeValueSerializer(source='attribute_values', many=True, read_only=True)
     class Meta:
         model = ProductVariant
-        fields = ['id', 'color_name', 'image', 'stock', 'is_active']
+        fields = ['id', 'attribute_values', 'attribute_values_details', 'color_name', 'image', 'stock', 'is_active']
 
 class ReviewSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(source='user.username', read_only=True)
@@ -50,9 +58,11 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = [
             'id', 'name', 'sku', 'slug', 'description', 'price', 'discount_price', 
-            'category', 'category_name', 'image', 'variants', 'customization_zones', 
-            'is_trending', 'is_bulk_only', 'stock', 'weight', 'badge_text', 'badge_color', 
-            'tags', 'popularity_score', 'average_rating', 'review_count', 'created_at'
+            'category', 'category_name', 
+            'image', 'variants', 'customization_zones', 
+            'is_trending', 'is_bulk_only', 'is_active', 'stock', 'weight', 
+            'badge_text', 'badge_color', 'tags', 'meta_title', 'meta_description',
+            'popularity_score', 'average_rating', 'review_count', 'created_at', 'updated_at'
         ]
     
     def validate_customization_config(self, value):

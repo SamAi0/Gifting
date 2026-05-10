@@ -1,0 +1,16 @@
+{
+  "name": "Soham Gift - Premium Corporate Gifting",
+  "short_name": "Soham Gift",
+  "description": "Enterprise-grade corporate gifting platform.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#D91656",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,13 +1,25 @@
-from rest_framework import viewsets, permissions, status
+from rest_framework import viewsets, permissions, status, serializers
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.db.models import Q, Count
 from django.utils import timezone
 from datetime import timedelta
-from .models import Product, Category, Review, Wishlist
-from api.serializers import ProductSerializer, CategorySerializer, ReviewSerializer, WishlistSerializer
+from .models import Product, Category, Review, Wishlist, Attribute
+from api.serializers import (
+    ProductSerializer, CategorySerializer, ReviewSerializer, 
+    WishlistSerializer, AttributeValueSerializer
+)
 from api.permissions import IsOwnerOrReadOnly
 from rest_framework.pagination import PageNumberPagination
+
+
+class AttributeViewSet(viewsets.ModelViewSet):
+    queryset = Attribute.objects.all()
+    serializer_class = AttributeValueSerializer # We use this to show attributes and their values if needed
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
+        return [permissions.AllowAny()]
 
 class ProductPagination(PageNumberPagination):
     page_size = 20
@@ -45,7 +57,7 @@ class ProductViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(is_trending=is_trending.lower() == 'true')
         if is_available is not None:
             if is_available.lower() == 'true':
-                queryset = queryset.filter(stock__gt=0)
+                queryset = queryset.filter(stock__gt=0, is_active=True)
         if on_sale is not None:
             if on_sale.lower() == 'true':
                 queryset = queryset.filter(discount_price__isnull=False)
@@ -71,6 +83,56 @@ class ProductViewSet(viewsets.ModelViewSet):
             queryset = queryset.order_by(ordering)
             
         return queryset
+
+    @action(detail=False, methods=['get'])
+    def suggestions(self, request):
+        query = request.query_params.get('q', '')
+        if len(query) < 2:
+            return Response([])
+        
+        products = Product.objects.filter(name__icontains=query)[:5]
+        categories = Category.objects.filter(name__icontains=query)[:3]
+        
+        results = []
+        for p in products:
+            results.append({"type": "product", "id": p.id, "text": p.name, "slug": p.slug})
+        for c in categories:
+            results.append({"type": "category", "id": c.id, "text": c.name})
+            
+        return Response(results)
+
+    @action(detail=True, methods=['get'])
+    def related(self, request, pk=None):
+        product = self.get_object()
+        related = Product.objects.filter(category=product.category).exclude(id=product.id).order_by('-popularity_score')[:4]
+        serializer = self.get_serializer(related, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['get'])
+    def frequently_bought_together(self, request, pk=None):
+        from orders.models import OrderItem
+        product = self.get_object()
+        # Find orders that contains this product
+        order_ids = OrderItem.objects.filter(product=product).values_list('order_id', flat=True)
+        # Find other products in those orders
+        other_products = OrderItem.objects.filter(order_id__in=order_ids).exclude(product=product).values('product').annotate(count=Count('product')).order_by('-count')[:4]
+        
+        product_ids = [item['product'] for item in other_products]
+        recommended = Product.objects.filter(id__in=product_ids)
+        serializer = self.get_serializer(recommended, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['post'])
+    def recently_viewed(self, request):
+        ids = request.data.get('ids', [])
+        if not ids:
+            return Response([])
+        # Maintain order of IDs provided
+        from django.db.models import Case, When
+        preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(ids)])
+        products = Product.objects.filter(id__in=ids).order_by(preserved)
+        serializer = self.get_serializer(products, many=True)
+        return Response(serializer.data)
 
 class CategoryListView(viewsets.ModelViewSet):
     """

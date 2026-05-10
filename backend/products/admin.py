@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.templatetags.static import static
-from .models import Category, Product, ProductVariant
+from .models import Category, Product, ProductVariant, Attribute, AttributeValue
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from rangefilter.filters import DateRangeFilter
 from simple_history.admin import SimpleHistoryAdmin
@@ -17,6 +17,16 @@ class CategoryAdmin(ImportExportModelAdmin):
     list_display = ('name', 'id')
     search_fields = ('name',)
 
+
+@admin.register(Attribute)
+class AttributeAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+@admin.register(AttributeValue)
+class AttributeValueAdmin(admin.ModelAdmin):
+    list_display = ('attribute', 'value')
+    list_filter = ('attribute',)
+
 @admin.register(Product)
 class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     inlines = [ProductVariantInline]
@@ -30,7 +40,6 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
             if obj.image_file:
                 url = obj.image_file.url
             elif obj.image:
-                # Use the path directly if it starts with /static/ or /media/
                 url = obj.image
                 if not (url.startswith('/static/') or url.startswith('/media/') or url.startswith('http')):
                      url = static(url)
@@ -42,16 +51,17 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     
     image_preview.short_description = 'Preview'
 
-    list_display = ('image_preview', 'name', 'sku', 'category', 'price', 'stock', 'badge_text', 'is_trending')
+    list_display = ('image_preview', 'name', 'sku', 'category', 'price', 'stock', 'is_active', 'is_trending')
     list_filter = (
         'category', 
         'is_trending', 
+        'is_active',
         'is_bulk_only', 
         ('created_at', DateRangeFilter),
     )
-    search_fields = ('name', 'sku', 'description')
-    list_editable = ('price', 'stock', 'badge_text', 'is_trending')
-    readonly_fields = ('created_at', 'image_preview_large')
+    search_fields = ('name', 'sku', 'description', 'tags')
+    list_editable = ('price', 'stock', 'is_active', 'is_trending')
+    readonly_fields = ('created_at', 'updated_at', 'image_preview_large')
     list_per_page = 20
     
     def image_preview_large(self, obj):
@@ -71,24 +81,28 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
 
     fieldsets = (
         ('General Info', {
-            'fields': (('name', 'sku', 'category'), 'description', ('image', 'image_file', 'image_preview_large'))
+            'fields': (('name', 'sku'), 'category', 'description', 'tags', ('image', 'image_file', 'image_preview_large'))
         }),
         ('Pricing & Inventory', {
-            'fields': (('price', 'discount_price'), ('stock', 'weight'), ('is_trending', 'is_bulk_only')),
-            'classes': ('extrapretty',),
+            'fields': (('price', 'discount_price'), ('stock', 'weight'), ('is_trending', 'is_bulk_only', 'is_active', 'is_deleted')),
+        }),
+        ('SEO Info', {
+            'fields': ('meta_title', 'meta_description'),
+            'classes': ('collapse',),
         }),
         ('Branding & Customization', {
             'fields': ('customization_config', ('badge_text', 'badge_color')),
             'description': 'Configure the live branding engine zones here using the interactive JSON editor.'
         }),
         ('System Info', {
-            'fields': ('created_at',),
+            'fields': ('created_at', 'updated_at'),
             'classes': ('collapse',)
         }),
     )
 
 @admin.register(ProductVariant)
 class ProductVariantAdmin(admin.ModelAdmin):
-    list_display = ('product', 'color_name', 'stock', 'is_active')
-    list_filter = ('is_active', 'color_name')
-    search_fields = ('product__name', 'color_name')
+    list_display = ('product', 'id', 'stock', 'is_active')
+    list_filter = ('is_active',)
+    search_fields = ('product__name',)
+    filter_horizontal = ('attribute_values',)

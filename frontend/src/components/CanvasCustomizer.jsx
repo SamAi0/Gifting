@@ -25,7 +25,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
   const updateCurvedText = (group, text, zone, currentTextColor) => {
     if (!group || !fabricCanvas.current) return;
     
-    group.removeAll();
+    group.clear();
     if (!text) return;
     
     const radius = zone.curveRadius || 150;
@@ -66,8 +66,9 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
     if (!canvasRef.current || !productConfig || !productConfig.baseImage) return;
 
     const productSlug = productConfig.baseImage;
-    if (prevProductSlug.current === productSlug && fabricCanvas.current) return;
-    prevProductSlug.current = productSlug;
+    const zonesKey = JSON.stringify(productConfig.zones);
+    if (prevProductSlug.current === `${productSlug}-${zonesKey}` && fabricCanvas.current) return;
+    prevProductSlug.current = `${productSlug}-${zonesKey}`;
 
     if (fabricCanvas.current) {
       fabricCanvas.current.dispose();
@@ -88,12 +89,33 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
           selection: true,
         });
 
-        fabricCanvas.current.on('object:modified', () => {
+        fabricCanvas.current.on('object:modified', (e) => {
+          logCoordinates(e.target);
           if (!fabricCanvas.current) return;
           fabricCanvas.current.requestRenderAll();
           const dataUrl = fabricCanvas.current.toDataURL({ format: 'png', quality: 1, multiplier: 2 });
           onImageExport?.(dataUrl);
         });
+        // fabricCanvas.current.on('object:moving', (e) => logCoordinates(e.target));
+        // fabricCanvas.current.on('object:rotating', (e) => logCoordinates(e.target));
+
+        console.log("%c Customizer Engine Ready ", "background: #2ecc71; color: white; font-weight: bold;");
+
+        const logCoordinates = (obj) => {
+          if (!fabricCanvas.current || !obj || !obj.data?.zoneId) return;
+          
+          const canvasWidth = fabricCanvas.current.width;
+          const canvasHeight = fabricCanvas.current.height;
+          
+          const x = Math.round((obj.left / canvasWidth) * 1000);
+          const y = Math.round((obj.top / canvasHeight) * 1000);
+          const angle = Math.round(obj.angle || 0);
+          
+          // console.clear(); // Removed to keep other debug logs visible
+          console.log(`%c Zone Update [${obj.data.zoneId}] `, 'background: #D91656; color: white; font-weight: bold;');
+          console.log(`"x": ${x}, "y": ${y}, "angle": ${angle}`);
+          console.log(`--------------------------`);
+        };
 
         await loadBaseImage();
       } catch (error) {
@@ -141,7 +163,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
           height: zone.fontSize || (zone.height / 1000) * 500 || 40,
           originX: 'center', originY: 'center',
           fill: 'transparent',
-          stroke: 'rgba(255, 0, 0, 0.1)',
+          stroke: 'rgba(217, 22, 86, 0.5)',
           strokeDashArray: [5, 5],
           selectable: false, evented: false,
           data: { isBoundingBox: true, zoneId: zone.id }
@@ -192,20 +214,26 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
           const top = (zone.y / 1000) * 500;
 
           // TWO-WAY MAPPING LOGIC
-          let targetType = null;
+          let targetType = zone.type || 'text';
           let targetValue = null;
 
-          // 1. Text fills from the start (0, 1, 2...)
-          if (i < textEntries.length) {
-            targetType = 'text';
-            targetValue = textEntries[i].text;
-          } 
-          // 2. Logo fills from the end (Last, Last-1...)
-          else if (logoPreviews && i >= (totalZones - logoPreviews.length)) {
-            // Mapping: Last zone (N-1) gets First logo (0), etc.
-            const logoIdx = (totalZones - 1) - i;
-            targetType = 'image';
-            targetValue = logoPreviews[logoIdx];
+          if (targetType === 'text') {
+            // If we have a text entry for this index, use it. 
+            // Otherwise, targetValue remains null which triggers placeholder.
+            if (i < textEntries.length) {
+              targetValue = textEntries[i].text;
+            }
+          } else if (targetType === 'image') {
+            // Logo fills from the end of the image-type zones if possible
+            // Simplified: if it's an image zone, try to find a logo
+            if (logoPreviews && logoPreviews.length > 0) {
+                // Find which image zone this is (0th image zone gets 0th logo)
+                const imageZones = productConfig.zones.filter(z => z.type === 'image');
+                const imgZoneIdx = imageZones.findIndex(z => z.id === zone.id);
+                if (imgZoneIdx !== -1 && imgZoneIdx < logoPreviews.length) {
+                    targetValue = logoPreviews[imgZoneIdx];
+                }
+            }
           }
 
           // Clean up if type changed or no targetType
@@ -230,6 +258,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
                   originX: zone.originX || 'center',
                   originY: zone.originY || 'center',
                   angle: zone.angle || 0,
+                  selectable: true,
                   data: { zoneId: zone.id, isCurved: true }
                 });
               } else {
@@ -242,6 +271,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
                   fontSize: zone.fontSize || 40,
                   textAlign: 'center',
                   fill: textColor,
+                  selectable: true,
                   data: { zoneId: zone.id }
                 });
               }
@@ -254,7 +284,8 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
               obj.set({ text: textToRender, fill: textColor });
               const maxWidthPx = (zone.maxWidth / 1000) * 500;
               let currentFontSize = zone.fontSize || 40;
-              while (obj.width * obj.scaleX > maxWidthPx && currentFontSize > 10) {
+              const minSize = zone.minFontSize || 10;
+              while (obj.width * obj.scaleX > maxWidthPx && currentFontSize > minSize) {
                 currentFontSize -= 2;
                 obj.set({ fontSize: currentFontSize });
               }
