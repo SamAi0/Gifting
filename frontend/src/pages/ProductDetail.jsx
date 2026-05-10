@@ -177,6 +177,14 @@ const ProductDetail = () => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     loadProduct();
     window.scrollTo(0, 0);
+
+    // Check for setup mode in URL
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('setup') === 'true') {
+      setIsCustomizing(true);
+      // Populate textEntries to match max possible zones (usually 7) to show all placeholders
+      setTextEntries(Array.from({ length: 7 }, (_, i) => ({ id: Date.now() + i, text: '' })));
+    }
   }, [loadProduct]);
 
   const handleToggleWishlist = async () => {

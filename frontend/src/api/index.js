@@ -101,13 +101,24 @@ export const fetchCart = () => api.get('orders/cart/');
 export const addToCart = (data) => api.post('orders/cart-items/', data);
 export const updateCartItem = (id, data) => api.patch(`orders/cart-items/${id}/`, data);
 export const removeCartItem = (id) => api.delete(`orders/cart-items/${id}/`);
+export const fetchAttributes = () => api.get('attributes/');
+
+// Search and Recommendation endpoints
+export const fetchSuggestions = (query) => api.get('products/suggestions/', { params: { q: query } });
+export const fetchRelatedProducts = (id) => api.get(`products/${id}/related/`);
+export const fetchFrequentlyBoughtTogether = (id) => api.get(`products/${id}/frequently_bought_together/`);
+export const fetchRecentlyViewed = (ids) => api.post('products/recently_viewed/', { ids });
+
 export const fetchAddresses = () => api.get('orders/addresses/');
 export const addAddress = (data) => api.post('orders/addresses/', data);
 export const createOrder = (data) => api.post('orders/create-order/', data);
+export const verifyPayment = (data) => api.post('orders/verify-payment/', data);
+export const downloadInvoice = (orderId) => api.get(`orders/orders/${orderId}/invoice/`, { responseType: 'blob' });
 
 // Inquiry & Other endpoints
 export const fetchTestimonials = () => api.get('testimonials/');
 export const fetchSettings = () => api.get('settings/');
 export const submitContact = (data) => api.post('contact/', data);
+export const fetchAdminStats = () => api.get('admin/stats/');
 
 export default api;

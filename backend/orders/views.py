@@ -1,8 +1,10 @@
 from django.conf import settings
 from rest_framework import viewsets, permissions, status, views
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address, Coupon
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer, AddressSerializer
+from products.models import Product
 from .utils import is_maharashtra_pincode
 from decimal import Decimal
 
@@ -102,6 +104,7 @@ class AddressViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 from django.db import transaction
+from django.db.models import F
 
 class CreateOrderView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -113,8 +116,15 @@ class CreateOrderView(views.APIView):
         if not cart.items.exists():
             return Response({"error": "Cart is empty"}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Pre-check stock for all items
+        for item in cart.items.all():
+            if item.product.stock < item.quantity:
+                return Response({
+                    "error": f"Insufficient stock for {item.product.name}. Available: {item.product.stock}"
+                }, status=status.HTTP_400_BAD_REQUEST)
+
         address_id = request.data.get('address_id')
-        payment_method = request.data.get('payment_method', 'ONLINE') # Default to ONLINE
+        payment_method = request.data.get('payment_method', 'ONLINE')
         try:
             address = Address.objects.get(id=address_id, user=request.user)
             if not is_maharashtra_pincode(address.pincode):
@@ -122,20 +132,13 @@ class CreateOrderView(views.APIView):
         except Address.DoesNotExist:
             return Response({"error": "Invalid address"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Get new fields from request
         business_name = request.data.get('business_name')
         gst_number = request.data.get('gst_number')
         coupon_code = request.data.get('coupon_code')
         
-        # Recalculate charges on backend (Security: Do not trust frontend calculations)
         subtotal = cart.total_price
-        
-        # Shipping: Complimentary above 5000, else 250
         shipping_charges = Decimal('0.00') if subtotal > Decimal('5000.00') else Decimal('250.00')
-        
-        # Tax: Standard 18% GST
         tax_amount = (subtotal * Decimal('0.18')).quantize(Decimal('0.01'))
-        
         total_amount = subtotal + shipping_charges + tax_amount
         
         coupon = None
@@ -155,11 +158,10 @@ class CreateOrderView(views.APIView):
         razorpay_order_id = None
         
         if payment_method == 'ONLINE':
-            # Create Razorpay Order
             try:
                 client = get_razorpay_client()
                 razorpay_order = client.order.create({
-                    "amount": int(total_amount * 100), # amount in paise
+                    "amount": int(total_amount * 100),
                     "currency": "INR",
                     "payment_capture": "1"
                 })
@@ -168,7 +170,6 @@ class CreateOrderView(views.APIView):
                 logger.error(f"Razorpay Error: {str(e)}")
                 return Response({"error": "Failed to create Razorpay order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        # Ensure order creation and cart clearing are atomic
         try:
             with transaction.atomic():
                 # Create local Order
@@ -186,8 +187,12 @@ class CreateOrderView(views.APIView):
                     status='CONFIRMED' if payment_method == 'COD' else 'PENDING'
                 )
 
-                # Move items from cart to order
                 for item in cart.items.all():
+                    # Atomic stock decrement
+                    updated = Product.objects.filter(id=item.product.id, stock__gte=item.quantity).update(stock=F('stock') - item.quantity)
+                    if not updated:
+                        raise Exception(f"Insufficient stock for {item.product.name} during final processing.")
+
                     order_item = OrderItem.objects.create(
                         order=order,
                         product=item.product,
@@ -199,11 +204,9 @@ class CreateOrderView(views.APIView):
                         logo_image=item.logo_image
                     )
                     
-                    # Copy logos
                     for logo in item.logos.all():
                         OrderItemLogo.objects.create(order_item=order_item, file=logo.file)
                 
-                # Clear cart
                 cart.items.all().delete()
 
             return Response({
@@ -215,7 +218,7 @@ class CreateOrderView(views.APIView):
             })
         except Exception as e:
             logger.error(f"Order Creation Error: {str(e)}")
-            return Response({"error": "Failed to process order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class VerifyPaymentView(views.APIView):
@@ -236,13 +239,14 @@ class VerifyPaymentView(views.APIView):
             client = get_razorpay_client()
             client.utility.verify_payment_signature(params_dict)
             order = Order.objects.get(razorpay_order_id=razorpay_order_id)
-            order.status = 'PAID'
+            order.status = 'CONFIRMED' # Fixed: 'PAID' was not in STATUS_CHOICES
             order.razorpay_payment_id = razorpay_payment_id
             order.save()
             return Response({"message": "Payment successful"})
         except Exception as e:
             logger.error(f"Payment Verification Error: {str(e)}")
             return Response({"error": "Payment verification failed"}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserOrderListView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -252,10 +256,27 @@ class UserOrderListView(views.APIView):
         serializer = OrderSerializer(orders, many=True, context={'request': request})
         return Response(serializer.data)
 
+from django.http import FileResponse
+from .utils import generate_invoice_pdf
+
 class OrderViewSet(viewsets.ModelViewSet):
     """
-    ViewSet for admins to manage orders.
+    ViewSet for admins to manage orders, and users to view/download invoices.
     """
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAdminUser]
     queryset = Order.objects.all().order_by('-created_at')
+
+    def get_permissions(self):
+        if self.action == 'invoice':
+            return [permissions.IsAuthenticated()]
+        return [permissions.IsAdminUser()]
+
+    @action(detail=True, methods=['get'])
+    def invoice(self, request, pk=None):
+        order = self.get_object()
+        # Security: Only admin or the order owner can download the invoice
+        if not request.user.is_staff and order.user != request.user:
+            return Response({"error": "Permission denied"}, status=status.HTTP_403_FORBIDDEN)
+        
+        pdf_buffer = generate_invoice_pdf(order)
+        return FileResponse(pdf_buffer, as_attachment=True, filename=f"Invoice_Order_{order.id}.pdf")
