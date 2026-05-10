@@ -33,15 +33,30 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Response interceptor to handle 401
+// Response interceptor to handle global errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
-      // Don't warn for initial profile check as it's a normal part of auth flow
-      if (!error.config.url.includes('auth/profile/') && !error.config.url.includes('auth/logout/')) {
-        console.warn('Unauthorized request detected.');
+    if (error.response) {
+      const status = error.response.status;
+      const url = error.config.url;
+      
+      if (status === 401) {
+        // Don't warn for initial profile check as it's a normal part of auth flow
+        if (!url.includes('auth/profile/') && !url.includes('auth/logout/')) {
+          console.warn('Unauthorized request detected. Redirecting to login or clearing session.');
+        }
+      } else if (status === 403) {
+        console.error('Forbidden: You do not have permission to perform this action.');
+      } else if (status === 429) {
+        console.error('Too many requests: Please slow down.');
+      } else if (status >= 500) {
+        console.error('Server error: Our team has been notified. Please try again later.');
       }
+    } else if (error.request) {
+      console.error('Network error: Please check your internet connection.');
+    } else {
+      console.error('Request error:', error.message);
     }
     return Promise.reject(error);
   }
@@ -65,6 +80,17 @@ export const updateProduct = (id, formData) => api.patch(`products/${id}/`, form
   headers: { 'Content-Type': 'multipart/form-data' }
 });
 export const deleteProduct = (id) => api.delete(`products/${id}/`);
+
+// Review & Wishlist endpoints
+export const fetchReviews = (params) => api.get('reviews/', { params });
+export const submitReview = (data) => api.post('reviews/', data, {
+  headers: { 'Content-Type': 'multipart/form-data' }
+});
+export const fetchWishlist = () => api.get('wishlist/');
+export const addToWishlist = (productId) => api.post('wishlist/', { product: productId });
+export const removeFromWishlist = (id) => api.delete(`wishlist/${id}/`);
+export const mergeCart = (items) => api.post('orders/merge-cart/', { items });
+
 
 // Order & Cart endpoints
 export const fetchCart = () => api.get('orders/cart/');

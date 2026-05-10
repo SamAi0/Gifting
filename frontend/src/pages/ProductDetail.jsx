@@ -1,11 +1,13 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Truck, ArrowLeft, Wand2, Star, ChevronRight, CheckCircle2, Share2, Heart, Package, Phone, MapPin, AlertCircle } from 'lucide-react';
-import { fetchProductById, getImageUrl } from '../api';
+import { fetchProductById, getImageUrl, fetchReviews, submitReview, addToWishlist, removeFromWishlist, fetchWishlist } from '../api';
 import api from '../api';
 import CanvasCustomizer from '../components/CanvasCustomizer';
 import CustomizerControls from '../components/CustomizerControls';
+import StarRating from '../components/StarRating';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence, animate } from 'framer-motion';
 
 // Animated Price Component for the "Rolling" effect
@@ -34,8 +36,20 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { user } = useAuth();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  // Review States
+  const [reviews, setReviews] = useState([]);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [newReview, setNewReview] = useState({ rating: 5, comment: '', image: null });
+  const [submittingReview, setSubmittingReview] = useState(false);
+  
+  // Wishlist States
+  const [isInWishlist, setIsInWishlist] = useState(false);
+  const [wishlistItemId, setWishlistItemId] = useState(null);
   
   // Customization State
   const [textEntries, setTextEntries] = useState(() => [{ id: Date.now(), text: '' }]);
@@ -81,31 +95,26 @@ const ProductDetail = () => {
       try {
         const res = await fetchProductById(id);
         const productData = res.data;
-        console.log('📦 Product loaded:', productData.name, '(ID:', productData.id, ')');
-        console.log('🎨 Customization zones:', productData.customization_zones.length, 'zones found');
         setProduct(productData);
         
         if (productData.variants && productData.variants.length > 0) {
           setSelectedVariant(productData.variants[0]);
         }
 
-        if (productData.customization_zones && productData.customization_zones.length > 0) {
-           console.log('✅ Customization available for this product');
-           
-           // Initialize with one empty text entry
-           setTextEntries([{ id: Date.now(), text: '' }]);
-           setLogoFiles([]);
-           setLogoPreviews([]);
-        } else {
-           console.warn('⚠️ No customization zones found for this product');
-           console.log('💡 Run: cd backend && python sync_customization.py to load zones from JSON');
-        }
-
+        // Fetch Related Products
         const relatedRes = await api.get('/products/', { 
           params: { category: productData.category } 
         });
         const relatedData = relatedRes.data.results || relatedRes.data;
         setRelatedProducts(relatedData.filter(p => p.id !== parseInt(id)).slice(0, 4));
+        
+        // Fetch Reviews
+        loadReviews();
+        
+        // Check Wishlist
+        if (user) {
+          checkWishlist();
+        }
         
       } catch (error) {
         console.error("Error loading product:", error);
@@ -113,9 +122,89 @@ const ProductDetail = () => {
         setLoading(false);
       }
     };
+
+    const loadReviews = async () => {
+      setReviewsLoading(true);
+      try {
+        const res = await fetchReviews({ product: id });
+        setReviews(res.data.results || res.data);
+      } catch (err) {
+        console.error("Error fetching reviews", err);
+      } finally {
+        setReviewsLoading(false);
+      }
+    };
+
+    const checkWishlist = async () => {
+      try {
+        const res = await fetchWishlist();
+        const item = res.data.find(w => w.product === parseInt(id));
+        if (item) {
+          setIsInWishlist(true);
+          setWishlistItemId(item.id);
+        } else {
+          setIsInWishlist(false);
+        }
+      } catch (err) {
+        console.error("Wishlist check error", err);
+      }
+    };
+
     loadProduct();
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [id, user]);
+
+  const handleToggleWishlist = async () => {
+    if (!user) {
+      navigate('/login?redirect=' + window.location.pathname);
+      return;
+    }
+    
+    try {
+      if (isInWishlist) {
+        await removeFromWishlist(wishlistItemId);
+        setIsInWishlist(false);
+        setWishlistItemId(null);
+      } else {
+        const res = await addToWishlist(product.id);
+        setIsInWishlist(true);
+        setWishlistItemId(res.data.id);
+      }
+    } catch (err) {
+      console.error("Wishlist toggle error", err);
+    }
+  };
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    if (!user) {
+      navigate('/login?redirect=' + window.location.pathname);
+      return;
+    }
+    
+    setSubmittingReview(true);
+    const formData = new FormData();
+    formData.append('product', id);
+    formData.append('rating', newReview.rating);
+    formData.append('comment', newReview.comment);
+    if (newReview.image) formData.append('image', newReview.image);
+    
+    try {
+      await submitReview(formData);
+      setNewReview({ rating: 5, comment: '', image: null });
+      setShowReviewForm(false);
+      // Reload reviews and product (to update average rating)
+      const res = await fetchReviews({ product: id });
+      setReviews(res.data.results || res.data);
+      const prodRes = await fetchProductById(id);
+      setProduct(prodRes.data);
+    } catch (err) {
+      console.error("Review submit error", err);
+      alert(err.response?.data?.detail || "Failed to submit review. You may have already reviewed this product.");
+    } finally {
+      setSubmittingReview(false);
+    }
+  };
 
   const customizationConfig = useMemo(() => {
     if (!product?.customization_zones?.length) return null;
@@ -244,8 +333,15 @@ const ProductDetail = () => {
 
                   {/* Floating Actions */}
                   <div className="absolute top-8 right-8 flex flex-col gap-3">
-                     <button className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/20 transition-all shadow-sm">
-                        <Heart size={20} />
+                     <button 
+                        onClick={handleToggleWishlist}
+                        className={`w-12 h-12 rounded-2xl border flex items-center justify-center transition-all shadow-sm ${
+                          isInWishlist 
+                            ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' 
+                            : 'bg-white border-slate-100 text-slate-400 hover:text-primary hover:border-primary/20'
+                        }`}
+                      >
+                        <Heart size={20} fill={isInWishlist ? "currentColor" : "none"} />
                      </button>
                      <button className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/20 transition-all shadow-sm">
                         <Share2 size={20} />
@@ -369,10 +465,8 @@ const ProductDetail = () => {
                     <div>
                       <div className="flex items-center gap-3 mb-6">
                         <span className="text-primary font-black uppercase tracking-[0.3em] text-xs">{product.category_name}</span>
-                        <div className="flex gap-1 text-accent">
-                          {[1,2,3,4,5].map(n => <Star key={n} size={14} fill="currentColor" />)}
-                        </div>
-                        <span className="text-slate-400 text-xs font-bold">(48 Reviews)</span>
+                        <StarRating rating={parseFloat(product.average_rating)} />
+                        <span className="text-slate-400 text-xs font-bold">({product.review_count} Reviews)</span>
                       </div>
                       <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">{product.name}</h1>
                       
@@ -426,8 +520,17 @@ const ProductDetail = () => {
                                   <div 
                                     className="w-full h-full rounded-full border border-slate-200"
                                     style={{ 
-                                      backgroundColor: variant.color_name.toLowerCase(),
-                                      backgroundImage: variant.color_name.toLowerCase() === 'wooden' ? 'url(https://www.transparenttextures.com/patterns/wood-pattern.png)' : 'none'
+                                      backgroundColor: {
+                                        'golden': '#FFD700',
+                                        'metallic golden': '#FFD700',
+                                        'silver': '#C0C0C0',
+                                        'tan': '#D2B48C',
+                                        'crock': '#C2B280',
+                                        'wooden': '#8B4513'
+                                      }[variant.color_name.toLowerCase()] || variant.color_name.toLowerCase(),
+                                      backgroundImage: (variant.color_name.toLowerCase() === 'wooden' || variant.color_name.toLowerCase() === 'crock') 
+                                        ? 'url(https://www.transparenttextures.com/patterns/wood-pattern.png)' 
+                                        : 'none'
                                     }}
                                   ></div>
                                 </div>
@@ -681,6 +784,127 @@ const ProductDetail = () => {
             </div>
           </div>
 
+          {/* Reviews Section */}
+          <div className="mt-40">
+             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <div>
+                   <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">Customer Voice</span>
+                   <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Product <span className="text-primary italic">Reviews</span></h2>
+                   <div className="flex items-center gap-4 mt-6">
+                      <div className="text-5xl font-black text-slate-900">{parseFloat(product.average_rating).toFixed(1)}</div>
+                      <div>
+                         <StarRating rating={parseFloat(product.average_rating)} size={20} />
+                         <p className="text-xs text-slate-400 font-bold mt-1">Based on {product.review_count} verified reviews</p>
+                      </div>
+                   </div>
+                </div>
+                <button 
+                  onClick={() => setShowReviewForm(!showReviewForm)}
+                  className="btn-primary py-4 px-10 text-sm shadow-xl"
+                >
+                  {showReviewForm ? 'Cancel Review' : 'Write a Review'}
+                </button>
+             </div>
+
+             <AnimatePresence>
+                {showReviewForm && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden mb-20"
+                  >
+                     <form onSubmit={handleReviewSubmit} className="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-premium max-w-2xl mx-auto">
+                        <h3 className="text-xl font-bold text-slate-900 mb-8">How was your experience?</h3>
+                        
+                        <div className="space-y-8">
+                           <div>
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-4">Your Rating</label>
+                              <div className="flex gap-4">
+                                 {[1, 2, 3, 4, 5].map((star) => (
+                                   <button
+                                     key={star}
+                                     type="button"
+                                     onClick={() => setNewReview({...newReview, rating: star})}
+                                     className={`w-12 h-12 rounded-2xl border flex items-center justify-center transition-all ${
+                                       newReview.rating >= star 
+                                         ? 'bg-accent/10 border-accent text-accent shadow-sm' 
+                                         : 'bg-slate-50 border-slate-100 text-slate-300 hover:border-slate-200'
+                                     }`}
+                                   >
+                                      <Star size={24} fill={newReview.rating >= star ? "currentColor" : "none"} />
+                                   </button>
+                                 ))}
+                              </div>
+                           </div>
+
+                           <div>
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-4">Your Feedback</label>
+                              <textarea 
+                                required
+                                rows={4}
+                                placeholder="Tell us what you liked or didn't like..."
+                                className="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 focus:outline-none focus:border-primary text-sm font-medium"
+                                value={newReview.comment}
+                                onChange={(e) => setNewReview({...newReview, comment: e.target.value})}
+                              />
+                           </div>
+
+                           <div className="flex justify-end">
+                              <button 
+                                type="submit" 
+                                disabled={submittingReview}
+                                className="btn-primary py-4 px-12 text-sm shadow-2xl"
+                              >
+                                {submittingReview ? 'Submitting...' : 'Post Review'}
+                              </button>
+                           </div>
+                        </div>
+                     </form>
+                  </motion.div>
+                )}
+             </AnimatePresence>
+
+             <div className="grid md:grid-cols-2 gap-8">
+                {reviewsLoading ? (
+                  [1, 2].map(n => <div key={n} className="h-48 bg-slate-200 animate-pulse rounded-[2rem]"></div>)
+                ) : reviews.length > 0 ? (
+                  reviews.map((review) => (
+                    <motion.div 
+                      key={review.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-md transition-all"
+                    >
+                       <div className="flex justify-between items-start mb-6">
+                          <div className="flex items-center gap-4">
+                             <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary font-black text-lg">
+                                {review.user_name[0].toUpperCase()}
+                             </div>
+                             <div>
+                                <h4 className="font-bold text-slate-900">{review.user_name}</h4>
+                                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Verified Purchase</p>
+                             </div>
+                          </div>
+                          <StarRating rating={review.rating} size={14} />
+                       </div>
+                       <p className="text-slate-600 text-sm leading-relaxed mb-6">"{review.comment}"</p>
+                       <div className="flex justify-between items-center pt-6 border-t border-slate-50">
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{new Date(review.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                          <button className="text-[10px] font-black text-slate-400 hover:text-primary transition-colors flex items-center gap-2">
+                             Helpful? ({review.helpful_votes})
+                          </button>
+                       </div>
+                    </motion.div>
+                  ))
+                ) : (
+                  <div className="md:col-span-2 text-center py-20 bg-white rounded-[3rem] border border-dashed border-slate-200">
+                     <p className="text-slate-400 font-medium">No reviews yet. Be the first to share your experience!</p>
+                  </div>
+                )}
+             </div>
+          </div>
+
           {/* Related Products */}
           {relatedProducts.length > 0 && (
             <div className="mt-40">
@@ -704,7 +928,10 @@ const ProductDetail = () => {
                          </div>
                          <div className="p-8">
                             <h4 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors truncate">{rel.name}</h4>
-                            <p className="text-xl font-bold text-slate-900">₹{rel.price}</p>
+                            <div className="flex items-center justify-between">
+                               <p className="text-xl font-bold text-slate-900">₹{rel.price}</p>
+                               <StarRating rating={parseFloat(rel.average_rating)} size={10} />
+                            </div>
                          </div>
                       </div>
                     </Link>

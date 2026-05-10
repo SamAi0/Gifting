@@ -5,15 +5,22 @@ import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
+import ErrorBoundary from './components/ErrorBoundary'
+
+import { BrowserRouter as Router } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
-      <AuthProvider>
-        <CartProvider>
-          <App />
-        </CartProvider>
-      </AuthProvider>
+      <Router>
+        <AuthProvider>
+          <CartProvider>
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
+          </CartProvider>
+        </AuthProvider>
+      </Router>
     </HelmetProvider>
   </StrictMode>,
 )

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 import { useCart } from '../context/CartContext';
@@ -13,6 +13,11 @@ const Checkout = () => {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [businessName, setBusinessName] = useState("");
+  const [gstNumber, setGstNumber] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [couponError, setCouponError] = useState("");
   const navigate = useNavigate();
   const initialized = useRef(false);
 
@@ -27,9 +32,9 @@ const Checkout = () => {
 
   async function fetchAddresses() {
     try {
-      const res = await api.get('orders/addresses/');
-      setAddresses(res.data);
-      if (res.data.length > 0) setSelectedAddress(res.data[0].id);
+      const { data } = await api.get('orders/addresses/');
+      setAddresses(data);
+      if (data.length > 0) setSelectedAddress(data[0].id);
     } catch {
       console.error("Error fetching addresses");
     }
@@ -42,6 +47,35 @@ const Checkout = () => {
       window.scrollTo(0, 0);
     }
   }, []);
+
+  const summary = useMemo(() => {
+    if (!cart) return { subtotal: 0, tax: 0, shipping: 0, discount: 0, total: 0 };
+    
+    const subtotal = Number(cart.total_price) || 0;
+    const tax = subtotal * 0.18;
+    const shipping = subtotal > 5000 ? 0 : 250;
+    const discount = appliedCoupon ? (appliedCoupon.discount_type === 'PERCENTAGE' ? (subtotal * appliedCoupon.discount_value / 100) : appliedCoupon.discount_value) : 0;
+    
+    return {
+      subtotal,
+      tax,
+      shipping,
+      discount,
+      total: subtotal + tax + shipping - discount
+    };
+  }, [cart, appliedCoupon]);
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode) return;
+    try {
+      const res = await api.get(`orders/coupons/validate/?code=${couponCode}`);
+      setAppliedCoupon(res.data);
+      setCouponError("");
+    } catch {
+      setCouponError("Invalid or expired coupon.");
+      setAppliedCoupon(null);
+    }
+  };
 
   const validatePincode = async (code) => {
     if (code.length === 6) {
@@ -130,7 +164,10 @@ const Checkout = () => {
 
         const orderRes = await api.post('orders/create-order/', {
           address_id: selectedAddress,
-          payment_method: 'ONLINE'
+          payment_method: 'ONLINE',
+          coupon_code: couponCode,
+          business_name: businessName,
+          gst_number: gstNumber
         });
 
         const { razorpay_order_id, amount, key, order_id } = orderRes.data;
@@ -171,7 +208,10 @@ const Checkout = () => {
         // Cash on Delivery
         await api.post('/orders/create-order/', {
           address_id: selectedAddress,
-          payment_method: 'COD'
+          payment_method: 'COD',
+          coupon_code: couponCode,
+          business_name: businessName,
+          gst_number: gstNumber
         });
         setOrderComplete(true);
         fetchCart();
@@ -406,6 +446,48 @@ const Checkout = () => {
                  </div>
                )}
             </motion.section>
+
+            {/* Business Information (Optional) */}
+            <motion.section 
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ delay: 0.2 }}
+               className="bg-white rounded-[3rem] p-8 md:p-12 shadow-premium border border-slate-100"
+            >
+               <div className="flex items-center gap-4 mb-10">
+                 <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                    <ShieldCheck size={24} />
+                 </div>
+                 <div>
+                    <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Business Details <span className="text-slate-300 font-medium text-lg ml-2">(Optional)</span></h2>
+                    <p className="text-xs text-slate-400 font-medium">Add GST details for corporate tax invoicing.</p>
+                 </div>
+               </div>
+
+               <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Business Name</label>
+                     <input 
+                       type="text" 
+                       placeholder="e.g. Acme Corp Pvt Ltd"
+                       className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium"
+                       value={businessName}
+                       onChange={(e) => setBusinessName(e.target.value)}
+                     />
+                  </div>
+                  <div className="space-y-2">
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">GST Number</label>
+                     <input 
+                       type="text" 
+                       placeholder="27AAAAA0000A1Z5"
+                       maxLength={15}
+                       className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium uppercase"
+                       value={gstNumber}
+                       onChange={(e) => setGstNumber(e.target.value.toUpperCase())}
+                     />
+                  </div>
+               </div>
+            </motion.section>
           </div>
 
           {/* Right Sidebar: Summary */}
@@ -421,24 +503,52 @@ const Checkout = () => {
               
               <div className="space-y-6 mb-10">
                 <div className="flex justify-between items-center text-slate-400">
-                  <span className="text-sm font-medium">Products Value</span>
-                  <span className="text-white font-bold">₹{cart?.total_price}</span>
+                  <span className="text-sm font-medium">Items Subtotal</span>
+                  <span className="text-white font-bold">₹{summary.subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between items-center text-slate-400">
-                  <span className="text-sm font-medium">Priority Dispatch</span>
-                  <span className="text-green-400 font-bold tracking-widest text-[10px] uppercase">Complimentary</span>
+                  <span className="text-sm font-medium">Shipping Charges</span>
+                  <span className={summary.shipping === 0 ? "text-green-400 font-bold tracking-widest text-[10px] uppercase" : "text-white font-bold"}>
+                    {summary.shipping === 0 ? "Complimentary" : `₹${summary.shipping.toFixed(2)}`}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center text-slate-400">
-                  <span className="text-sm font-medium">Taxation (GST)</span>
-                  <span className="text-white font-bold text-xs uppercase tracking-widest italic">Inclusive</span>
+                  <span className="text-sm font-medium">GST (18%)</span>
+                  <span className="text-white font-bold">₹{summary.tax.toFixed(2)}</span>
+                </div>
+                {appliedCoupon && (
+                   <div className="flex justify-between items-center text-green-400">
+                      <span className="text-sm font-medium">Coupon Discount ({appliedCoupon.code})</span>
+                      <span className="font-bold">− ₹{summary.discount.toFixed(2)}</span>
+                   </div>
+                )}
+                
+                {/* Coupon Input */}
+                <div className="pt-6 border-t border-white/10">
+                   <div className="flex gap-2">
+                      <input 
+                        type="text" 
+                        placeholder="Coupon Code"
+                        className="flex-grow bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-primary uppercase font-black tracking-widest"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                      />
+                      <button 
+                        onClick={handleApplyCoupon}
+                        className="bg-primary text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary/80 transition-all"
+                      >
+                        Apply
+                      </button>
+                   </div>
+                   {couponError && <p className="text-red-400 text-[9px] font-bold mt-2 ml-1">{couponError}</p>}
                 </div>
                 
                 <div className="pt-6 border-t border-white/10 flex justify-between items-end">
-                  <div>
-                     <p className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-1">Final Amount</p>
-                     <span className="text-lg font-bold">Total Payable</span>
-                  </div>
-                  <span className="text-5xl font-black text-white tracking-tighter">₹{cart?.total_price}</span>
+                   <div>
+                      <p className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-1">Final Amount</p>
+                      <span className="text-lg font-bold">Total Payable</span>
+                   </div>
+                   <span className="text-5xl font-black text-white tracking-tighter">₹{summary.total.toFixed(2)}</span>
                 </div>
               </div>
 
