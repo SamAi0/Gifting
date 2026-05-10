@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from products.models import Product, Category, ProductVariant
+from products.models import Product, Category, ProductVariant, Review, Wishlist
 from inquiries.models import BulkInquiry, ContactMessage
 from company_info.models import Testimonial, Settings
 
@@ -14,6 +14,32 @@ class ProductVariantSerializer(serializers.ModelSerializer):
         model = ProductVariant
         fields = ['id', 'color_name', 'image', 'stock', 'is_active']
 
+class ReviewSerializer(serializers.ModelSerializer):
+    user_name = serializers.CharField(source='user.username', read_only=True)
+    class Meta:
+        model = Review
+        fields = [
+            'id', 'product', 'user', 'user_name', 'rating', 'comment', 
+            'image', 'is_verified_purchase', 'helpful_votes', 'created_at'
+        ]
+        read_only_fields = ['user', 'is_verified_purchase', 'helpful_votes']
+
+class WishlistSerializer(serializers.ModelSerializer):
+    product_details = serializers.SerializerMethodField()
+    class Meta:
+        model = Wishlist
+        fields = ['id', 'user', 'product', 'product_details', 'added_at']
+        read_only_fields = ['user']
+
+    def get_product_details(self, obj):
+        return {
+            "id": obj.product.id,
+            "name": obj.product.name,
+            "price": obj.product.price,
+            "image": obj.product.image,
+            "slug": obj.product.slug
+        }
+
 class ProductSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
     customization_zones = serializers.SerializerMethodField()
@@ -25,8 +51,8 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'sku', 'slug', 'description', 'price', 'discount_price', 
             'category', 'category_name', 'image', 'variants', 'customization_zones', 
-            'is_trending', 'is_bulk_only', 
-            'stock', 'weight', 'badge_text', 'badge_color', 'created_at'
+            'is_trending', 'is_bulk_only', 'stock', 'weight', 'badge_text', 'badge_color', 
+            'tags', 'popularity_score', 'average_rating', 'review_count', 'created_at'
         ]
     
     def validate_customization_config(self, value):

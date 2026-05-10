@@ -1,9 +1,10 @@
 from django.conf import settings
 from rest_framework import viewsets, permissions, status, views
 from rest_framework.response import Response
-from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address
+from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address, Coupon
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer, AddressSerializer
 from .utils import is_maharashtra_pincode
+from decimal import Decimal
 
 import logging
 logger = logging.getLogger(__name__)
@@ -19,6 +20,45 @@ class CartView(views.APIView):
         cart, created = Cart.objects.get_or_create(user=request.user)
         serializer = CartSerializer(cart, context={'request': request})
         return Response(serializer.data)
+
+class MergeCartView(views.APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        guest_items = request.data.get('items', [])
+        cart, _ = Cart.objects.get_or_create(user=request.user)
+        
+        for item_data in guest_items:
+            try:
+                product_id = item_data.get('product_id')
+                product = Product.objects.get(id=product_id)
+                quantity = int(item_data.get('quantity', 1))
+                customization_text = item_data.get('customization_text', '')
+                customization_data = item_data.get('customization_data', '')
+
+                # Check if item with same product and customization already exists in user cart
+                existing_item = CartItem.objects.filter(
+                    cart=cart, 
+                    product=product,
+                    customization_text=customization_text,
+                    customization_data=customization_data
+                ).first()
+
+                if existing_item:
+                    existing_item.quantity += quantity
+                    existing_item.save()
+                else:
+                    CartItem.objects.create(
+                        cart=cart,
+                        product=product,
+                        quantity=quantity,
+                        customization_text=customization_text,
+                        customization_data=customization_data
+                    )
+            except (Product.DoesNotExist, ValueError, TypeError):
+                continue
+                
+        return Response({"message": "Cart merged successfully"})
 
 class PincodeCheckView(views.APIView):
     permission_classes = [permissions.AllowAny]
@@ -82,7 +122,36 @@ class CreateOrderView(views.APIView):
         except Address.DoesNotExist:
             return Response({"error": "Invalid address"}, status=status.HTTP_400_BAD_REQUEST)
 
-        total_amount = cart.total_price
+        # Get new fields from request
+        business_name = request.data.get('business_name')
+        gst_number = request.data.get('gst_number')
+        coupon_code = request.data.get('coupon_code')
+        
+        # Recalculate charges on backend (Security: Do not trust frontend calculations)
+        subtotal = cart.total_price
+        
+        # Shipping: Complimentary above 5000, else 250
+        shipping_charges = Decimal('0.00') if subtotal > Decimal('5000.00') else Decimal('250.00')
+        
+        # Tax: Standard 18% GST
+        tax_amount = (subtotal * Decimal('0.18')).quantize(Decimal('0.01'))
+        
+        total_amount = subtotal + shipping_charges + tax_amount
+        
+        coupon = None
+        if coupon_code:
+            from django.utils import timezone
+            coupon = Coupon.objects.filter(
+                code=coupon_code, 
+                active=True, 
+                valid_from__lte=timezone.now(), 
+                valid_to__gte=timezone.now()
+            ).first()
+
+        if coupon:
+            discount = (total_amount * Decimal(coupon.discount_percent) / Decimal('100.00')).quantize(Decimal('0.01'))
+            total_amount -= discount
+
         razorpay_order_id = None
         
         if payment_method == 'ONLINE':
@@ -109,7 +178,12 @@ class CreateOrderView(views.APIView):
                     total_amount=total_amount,
                     payment_method=payment_method,
                     razorpay_order_id=razorpay_order_id,
-                    status='PLACED' if payment_method == 'COD' else 'PENDING'
+                    business_name=business_name,
+                    gst_number=gst_number,
+                    shipping_charges=shipping_charges,
+                    tax_amount=tax_amount,
+                    coupon=coupon,
+                    status='CONFIRMED' if payment_method == 'COD' else 'PENDING'
                 )
 
                 # Move items from cart to order
