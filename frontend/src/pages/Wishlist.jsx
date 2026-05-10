@@ -20,6 +20,7 @@ const Wishlist = () => {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadWishlist();
   }, [loadWishlist]);
 
