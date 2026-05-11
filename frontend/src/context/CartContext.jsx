@@ -7,7 +7,18 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const { user } = useAuth();
     const [cart, setCart] = useState(null);
+    const [guestCart, setGuestCart] = useState(() => {
+        const saved = localStorage.getItem('guest_cart');
+        return saved ? JSON.parse(saved) : [];
+    });
     const [loading, setLoading] = useState(false);
+
+    // Save guest cart to local storage whenever it changes
+    useEffect(() => {
+        if (!user) {
+            localStorage.setItem('guest_cart', JSON.stringify(guestCart));
+        }
+    }, [guestCart, user]);
 
     const fetchCart = useCallback(async () => {
         if (!user) {
@@ -25,6 +36,8 @@ export const CartProvider = ({ children }) => {
         }
     }, [user]);
 
+
+
     // Fetch cart on mount and when user changes
     useEffect(() => {
         let isMounted = true;
@@ -39,6 +52,17 @@ export const CartProvider = ({ children }) => {
             
             setLoading(true);
             try {
+                // Check if there's a guest cart to merge
+                const savedGuestCart = localStorage.getItem('guest_cart');
+                if (savedGuestCart) {
+                    const items = JSON.parse(savedGuestCart);
+                    if (items.length > 0) {
+                        await api.post('orders/merge-cart/', { items });
+                        localStorage.removeItem('guest_cart');
+                        setGuestCart([]);
+                    }
+                }
+                
                 const res = await api.get('orders/cart/');
                 if (isMounted) {
                     setCart(res.data);
@@ -61,7 +85,17 @@ export const CartProvider = ({ children }) => {
 
     const addToCart = async (productId, quantity = 1, customizationText = '', customizationImage = null, customizationData = null, logoImage = null) => {
         if (!user) {
-            alert("Please login to add items to cart");
+            // Add to Guest Cart
+            const newItem = {
+                id: Date.now(), // Temporary ID
+                product_id: productId,
+                quantity,
+                customization_text: customizationText,
+                customization_data: customizationData,
+                // Files can't be easily stored in localStorage, so we might skip them for guest cart
+                // or just alert the user.
+            };
+            setGuestCart(prev => [...prev, newItem]);
             return;
         }
         
@@ -94,6 +128,10 @@ export const CartProvider = ({ children }) => {
     };
 
     const removeFromCart = async (itemId) => {
+        if (!user) {
+            setGuestCart(prev => prev.filter(item => item.id !== itemId));
+            return;
+        }
         try {
             await api.delete(`orders/cart-items/${itemId}/`);
             fetchCart();
@@ -103,6 +141,10 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateQuantity = async (itemId, quantity) => {
+        if (!user) {
+            setGuestCart(prev => prev.map(item => item.id === itemId ? { ...item, quantity } : item));
+            return;
+        }
         try {
             await api.patch(`orders/cart-items/${itemId}/`, { quantity });
             fetchCart();
@@ -111,8 +153,22 @@ export const CartProvider = ({ children }) => {
         }
     };
 
+    const cartToDisplay = user ? cart : { items: guestCart.map(item => ({
+        ...item,
+        subtotal: 0, // In guest mode we can't easily calculate subtotal without product data
+        product: { id: item.product_id, name: 'Loading...' } // Placeholder
+    })), total_price: 0 };
+
     return (
-        <CartContext.Provider value={{ cart, loading, addToCart, removeFromCart, updateQuantity, fetchCart }}>
+        <CartContext.Provider value={{ 
+            cart: user ? cart : cartToDisplay, 
+            guestCart,
+            loading, 
+            addToCart, 
+            removeFromCart, 
+            updateQuantity, 
+            fetchCart 
+        }}>
             {children}
         </CartContext.Provider>
     );

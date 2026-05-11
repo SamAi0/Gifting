@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+# pyrefly: ignore [missing-import]
 import dj_database_url
 from dotenv import load_dotenv
 
@@ -33,7 +34,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 DEBUG = ENVIRONMENT == 'development'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,gifting-82j5.onrender.com').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,gifting-82j5.onrender.com,.netlify.app').split(',')
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 
 
@@ -158,12 +159,12 @@ CORS_ALLOWED_ORIGINS = [origin.strip().rstrip('/') for origin in CORS_ALLOWED_OR
 # Also add CSRF trusted origins for Django 4.x
 CSRF_TRUSTED_ORIGINS = os.getenv(
     'CSRF_TRUSTED_ORIGINS',
-    'https://giftingsam.netlify.app'
+    'https://giftingsam.netlify.app,https://gifting-82j5.onrender.com,https://*.netlify.app'
 ).split(',')
 CSRF_TRUSTED_ORIGINS = [origin.strip().rstrip('/') for origin in CSRF_TRUSTED_ORIGINS if origin.strip()]
 
 # For development only - set to False in production
-CORS_ALLOW_ALL_ORIGINS = os.environ.get('CORS_ALLOW_ALL_ORIGINS', 'False').lower() == 'true'
+CORS_ALLOW_ALL_ORIGINS = DEBUG  # Allow all in development
 CORS_ALLOW_CREDENTIALS = True
 
 if not DEBUG:
@@ -209,8 +210,10 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.AnonRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'user': '1000/day',
-        'anon': '100/day',
+        'user': '10000/day',
+        'anon': '1000/day',
+        'login': '10/minute',  # Slightly more relaxed for dev
+        'signup': '10/hour',
     }
 }
 
@@ -227,7 +230,7 @@ SIMPLE_JWT = {
     'AUTH_COOKIE_SECURE': False if DEBUG else True,
     'AUTH_COOKIE_HTTP_ONLY': True,
     'AUTH_COOKIE_PATH': '/',
-    'AUTH_COOKIE_SAMESITE': 'Lax',
+    'AUTH_COOKIE_SAMESITE': 'Lax' if DEBUG else 'None',
 }
 
 # Razorpay Configuration
