@@ -6,6 +6,7 @@ from .serializers import RegisterSerializer, UserSerializer, MyTokenObtainPairSe
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+    throttle_scope = 'login'
 
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
@@ -36,9 +37,9 @@ class MyTokenObtainPairView(TokenObtainPairView):
                 path=settings.SIMPLE_JWT['AUTH_COOKIE_PATH'],
             )
             
-            # Optionally remove tokens from response body for extra security
-            # response.data.pop('access', None)
-            # response.data.pop('refresh', None)
+            # Remove tokens from response body for extra security (stored in HttpOnly cookies)
+            response.data.pop('access', None)
+            response.data.pop('refresh', None)
             
         return response
 
@@ -56,6 +57,7 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (permissions.AllowAny,)
     serializer_class = RegisterSerializer
+    throttle_scope = 'signup'
 
 class ProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer

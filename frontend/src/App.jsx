@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -16,7 +16,7 @@ const Register = lazy(() => import('./pages/Register'));
 const Cart = lazy(() => import('./pages/Cart'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 const MyOrders = lazy(() => import('./pages/MyOrders'));
-const BulkInquiry = lazy(() => import('./pages/BulkInquiry'));
+const Wishlist = lazy(() => import('./pages/Wishlist'));
 
 // Admin Pages
 const AdminLayout = lazy(() => import('./components/admin/AdminLayout'));
@@ -32,8 +32,7 @@ const LoadingFallback = () => (
 
 function App() {
   return (
-    <Router>
-      <Suspense fallback={<LoadingFallback />}>
+    <Suspense fallback={<LoadingFallback />}>
         <Routes>
           {/* Admin Routes */}
           <Route path="/admin-panel" element={
@@ -44,7 +43,6 @@ function App() {
             <Route index element={<AdminDashboard />} />
             <Route path="products" element={<ProductManagement />} />
             <Route path="orders" element={<OrderManagement />} />
-            <Route path="inquiries" element={<BulkInquiry />} />
           </Route>
 
           {/* Public & Protected User Routes */}
@@ -65,16 +63,15 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/bulk-inquiry" element={<BulkInquiry />} />
             
             {/* Protected Routes */}
             <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
             <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
             <Route path="/orders" element={<ProtectedRoute><MyOrders /></ProtectedRoute>} />
+            <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
           </Route>
         </Routes>
       </Suspense>
-    </Router>
   );
 }
 

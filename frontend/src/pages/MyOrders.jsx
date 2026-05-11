@@ -27,11 +27,13 @@ const MyOrders = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'PAID': return 'bg-green-100 text-green-600 border-green-200';
+      case 'PAID': return 'bg-emerald-100 text-emerald-600 border-emerald-200';
       case 'PLACED': return 'bg-blue-100 text-blue-600 border-blue-200';
-      case 'PENDING': return 'bg-yellow-100 text-yellow-600 border-yellow-200';
-      case 'SHIPPED': return 'bg-purple-100 text-purple-600 border-purple-200';
-      case 'DELIVERED': return 'bg-emerald-100 text-emerald-600 border-emerald-200';
+      case 'PROCESSING': return 'bg-purple-100 text-purple-600 border-purple-200';
+      case 'PENDING': return 'bg-amber-100 text-amber-600 border-amber-200';
+      case 'SHIPPED': return 'bg-indigo-100 text-indigo-600 border-indigo-200';
+      case 'DELIVERED': return 'bg-green-100 text-green-600 border-green-200';
+      case 'CANCELLED': return 'bg-rose-100 text-rose-600 border-rose-200';
       default: return 'bg-slate-100 text-slate-600 border-slate-200';
     }
   };
@@ -154,28 +156,48 @@ const MyOrders = () => {
                              <p className="font-bold text-slate-900 text-sm leading-tight">{order.address_details?.street_address}</p>
                              <p className="text-xs text-slate-500 font-medium">{order.address_details?.city}, {order.address_details?.state} - {order.address_details?.pincode}</p>
                           </div>
+                          {order.business_name && (
+                             <div className="pt-4 mt-4 border-t border-slate-200/50 space-y-2">
+                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Business Detail</p>
+                                <p className="font-bold text-slate-700 text-xs">{order.business_name}</p>
+                                {order.gst_number && <p className="text-[10px] font-medium text-slate-500">GST: {order.gst_number}</p>}
+                             </div>
+                          )}
                        </div>
 
                        <div className="bg-slate-50 rounded-[2rem] p-8 space-y-6">
                           <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-3 pb-4 border-b border-slate-200/50">
-                             <Clock size={16} className="text-primary" /> Shipment Status
+                             <Clock size={16} className="text-primary" /> Tracking Timeline
                           </h4>
-                          <div className="relative pl-8 space-y-6">
+                          <div className="relative pl-8 space-y-8">
                              <div className="absolute left-0 top-1 bottom-1 w-0.5 bg-slate-200"></div>
+                             
+                             {/* Placed */}
                              <div className="relative">
-                                <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-4 border-white ${order.status !== 'CANCELLED' ? 'bg-primary' : 'bg-slate-300'}`}></div>
-                                <p className="text-xs font-bold text-slate-900">Order Placed</p>
-                                <p className="text-[10px] text-slate-400 font-medium">Successfully received and verified</p>
+                                <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-4 border-white ${['PLACED', 'PAID', 'PROCESSING', 'SHIPPED', 'DELIVERED'].includes(order.status) ? 'bg-primary shadow-[0_0_10px_rgba(217,22,86,0.5)]' : 'bg-slate-300'}`}></div>
+                                <p className={`text-xs font-bold ${['PLACED', 'PAID', 'PROCESSING', 'SHIPPED', 'DELIVERED'].includes(order.status) ? 'text-slate-900' : 'text-slate-400'}`}>Order Received</p>
+                                <p className="text-[10px] text-slate-400 font-medium">Successfully verified and in queue</p>
                              </div>
+
+                             {/* Processing */}
                              <div className="relative">
-                                <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-4 border-white ${['SHIPPED', 'DELIVERED'].includes(order.status) ? 'bg-primary' : 'bg-slate-300'}`}></div>
-                                <p className="text-xs font-bold text-slate-900">In Production / Shipped</p>
-                                <p className="text-[10px] text-slate-400 font-medium">Our artisans are preparing your gift</p>
+                                <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-4 border-white ${['PROCESSING', 'SHIPPED', 'DELIVERED'].includes(order.status) ? 'bg-primary shadow-[0_0_10px_rgba(217,22,86,0.5)]' : 'bg-slate-300'}`}></div>
+                                <p className={`text-xs font-bold ${['PROCESSING', 'SHIPPED', 'DELIVERED'].includes(order.status) ? 'text-slate-900' : 'text-slate-400'}`}>In Production</p>
+                                <p className="text-[10px] text-slate-400 font-medium">Customization in progress by artisans</p>
                              </div>
+
+                             {/* Shipped */}
                              <div className="relative">
-                                <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-4 border-white ${order.status === 'DELIVERED' ? 'bg-primary' : 'bg-slate-300'}`}></div>
-                                <p className="text-xs font-bold text-slate-900">Delivered</p>
-                                <p className="text-[10px] text-slate-400 font-medium">Final destination reached</p>
+                                <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-4 border-white ${['SHIPPED', 'DELIVERED'].includes(order.status) ? 'bg-primary shadow-[0_0_10px_rgba(217,22,86,0.5)]' : 'bg-slate-300'}`}></div>
+                                <p className={`text-xs font-bold ${['SHIPPED', 'DELIVERED'].includes(order.status) ? 'text-slate-900' : 'text-slate-400'}`}>Dispatched</p>
+                                <p className="text-[10px] text-slate-400 font-medium">Handed over to premium logistics partner</p>
+                             </div>
+
+                             {/* Delivered */}
+                             <div className="relative">
+                                <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-4 border-white ${order.status === 'DELIVERED' ? 'bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]' : 'bg-slate-300'}`}></div>
+                                <p className={`text-xs font-bold ${order.status === 'DELIVERED' ? 'text-slate-900' : 'text-slate-400'}`}>Delivered</p>
+                                <p className="text-[10px] text-slate-400 font-medium">Parcel reached its final destination</p>
                              </div>
                           </div>
                        </div>
