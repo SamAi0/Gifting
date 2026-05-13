@@ -108,11 +108,17 @@ const MyOrders = () => {
                        {order.items.map((item) => (
                          <div key={item.id} className="flex flex-col sm:flex-row gap-8 p-6 rounded-[2rem] bg-slate-50 border border-slate-100/50 hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 group">
                             <div className="w-full sm:w-32 h-32 bg-white rounded-2xl overflow-hidden shadow-sm flex-shrink-0 p-2">
-                               <img 
-                                 src={getImageUrl(item.product_details.image)} 
-                                 alt={item.product_details.name} 
-                                 className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700" 
-                               />
+                               {item.product_details.image ? (
+                                 <img 
+                                   src={getImageUrl(item.product_details.image)} 
+                                   alt={item.product_details.name} 
+                                   className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700" 
+                                 />
+                               ) : (
+                                 <div className="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400">
+                                   <Package size={24} />
+                                 </div>
+                               )}
                             </div>
                             <div className="flex-grow space-y-4">
                                <div className="flex justify-between items-start">
