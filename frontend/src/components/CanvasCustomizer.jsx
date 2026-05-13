@@ -339,12 +339,16 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
   return (
     <div className="w-full h-full relative group flex flex-col">
       <div ref={containerRef} className="w-full aspect-square bg-gray-50 rounded-2xl overflow-hidden relative shadow-inner">
+        {/* Stable wrapper for Fabric.js to prevent React DOM reconciliation errors */}
+        <div className="canvas-container-wrapper">
+          <canvas ref={canvasRef} />
+        </div>
+        
         {loading && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/80">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
         )}
-        <canvas ref={canvasRef} />
       </div>
     </div>
   );

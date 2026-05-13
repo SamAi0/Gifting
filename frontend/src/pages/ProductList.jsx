@@ -240,7 +240,7 @@ const ProductList = () => {
   );
 
   return (
-    <div className="pt-32 pb-32 bg-slate-50 min-h-screen">
+    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
       <div className="container-wide">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
@@ -374,7 +374,7 @@ const ProductList = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters (Desktop) */}
           <aside className="hidden lg:block w-72 space-y-6">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden sticky top-32">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden lg:sticky lg:top-32">
                {filterContentJsx}
             </div>
           </aside>
@@ -504,9 +504,9 @@ const ProductList = () => {
                                 <span className="text-[9px] font-black text-slate-400">({product.review_count})</span>
                               </div>
                               <div className="flex items-center gap-2">
-                                <p className="text-xl font-bold text-slate-900 tracking-tight">₹{product.price}</p>
+                                <p className="text-xl font-bold text-slate-900 tracking-tight">₹{product.discount_price || product.price}</p>
                                 {product.discount_price && (
-                                  <p className="text-xs text-slate-400 line-through">₹{product.discount_price}</p>
+                                  <p className="text-xs text-slate-400 line-through">₹{product.price}</p>
                                 )}
                               </div>
                             </div>

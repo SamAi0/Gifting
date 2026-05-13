@@ -48,6 +48,7 @@ const ProductDetail = () => {
   const [submittingReview, setSubmittingReview] = useState(false);
   const [userReview, setUserReview] = useState(null);
   const [isEditingReview, setIsEditingReview] = useState(false);
+  const [hasAlreadyReviewed, setHasAlreadyReviewed] = useState(false);
   
   // Wishlist States
   const [isInWishlist, setIsInWishlist] = useState(false);
@@ -95,7 +96,6 @@ const ProductDetail = () => {
     setReviewsLoading(true);
     setUserReview(null);
     setIsEditingReview(false);
-    setNewReview({ rating: 5, comment: '', image: null });
     try {
       const res = await fetchReviews({ product: id });
       const reviewsData = res.data.results || res.data;
@@ -104,6 +104,7 @@ const ProductDetail = () => {
       if (user) {
         const existingReview = reviewsData.find(r => r.user_name === user.username);
         if (existingReview) {
+          setHasAlreadyReviewed(true);
           // Check if within 4 minute editing window
           const createdAt = new Date(existingReview.created_at);
           const now = new Date();
@@ -116,6 +117,8 @@ const ProductDetail = () => {
             // Review exists but window expired
             setUserReview(null); 
           }
+        } else {
+          setHasAlreadyReviewed(false);
         }
       }
     } catch (err) {
@@ -151,11 +154,18 @@ const ProductDetail = () => {
         setSelectedVariant(productData.variants[0]);
       }
 
-      // Fetch Related Products
-      const relatedRes = await api.get('/products/', { 
+      // Fetch Related Products (with fallback to trending if category is empty)
+      let relatedRes = await api.get('/products/', { 
         params: { category: productData.category } 
       });
-      const relatedData = relatedRes.data.results || relatedRes.data;
+      let relatedData = relatedRes.data.results || relatedRes.data;
+      
+      // If no related products in same category, fetch trending products
+      if (relatedData.length <= 1) {
+        relatedRes = await api.get('/products/', { params: { is_trending: 'true' } });
+        relatedData = relatedRes.data.results || relatedRes.data;
+      }
+      
       setRelatedProducts(relatedData.filter(p => p.id !== parseInt(id)).slice(0, 4));
       
       // Fetch Reviews
@@ -215,7 +225,12 @@ const ProductDetail = () => {
       return;
     }
     
-    setSubmittingReview(true);
+    if (!newReview.comment.trim()) {
+      alert("Please enter a comment for your review.");
+      setSubmittingReview(false);
+      return;
+    }
+
     const formData = new FormData();
     formData.append('product', id);
     formData.append('rating', newReview.rating);
@@ -243,7 +258,22 @@ const ProductDetail = () => {
       setProduct(prodRes.data);
     } catch (err) {
       console.error("Review submit error", err);
-      alert(err.response?.data?.detail || "Failed to submit review.");
+      // Handle Django Rest Framework validation errors (400)
+      const errorData = err.response?.data;
+      let errorMessage = "Failed to submit review.";
+      
+      if (errorData) {
+        if (typeof errorData === 'string') errorMessage = errorData;
+        else if (errorData.detail) errorMessage = errorData.detail;
+        else if (errorData.non_field_errors) errorMessage = errorData.non_field_errors[0];
+        else {
+          // Join all field errors
+          errorMessage = Object.entries(errorData)
+            .map(([field, msgs]) => `${field}: ${Array.isArray(msgs) ? msgs.join(', ') : msgs}`)
+            .join('\n');
+        }
+      }
+      alert(errorMessage);
     } finally {
       setSubmittingReview(false);
     }
@@ -260,7 +290,7 @@ const ProductDetail = () => {
 
   const bulkPricing = useMemo(() => {
     if (!product) return { unitPrice: 0, total: 0, savings: 0, discount: 0 };
-    const basePrice = product.price;
+    const basePrice = product.discount_price || product.price;
     let discount = 0;
     if (quantity >= 500) discount = 0.15;
     else if (quantity >= 250) discount = 0.10;
@@ -348,8 +378,8 @@ const ProductDetail = () => {
 
   return (
     <>
-      <div className="pt-32 pb-32 bg-slate-50 min-h-screen">
-        <div className="container-custom">
+      <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
+        <div className="container-wide px-4 sm:px-8 lg:px-12">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-slate-400 mb-10 overflow-x-auto whitespace-nowrap scrollbar-hide">
             <Link to="/" className="hover:text-primary transition-colors">Home</Link>
@@ -361,9 +391,9 @@ const ProductDetail = () => {
             <span className="text-slate-900 truncate">{product.name}</span>
           </nav>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
             {/* Visual Area */}
-            <div className="sticky top-32">
+            <div className="lg:sticky lg:top-32">
                <motion.div 
                  layout
                  className="glass-card overflow-hidden relative border-slate-200/50 bg-white min-h-[450px] md:min-h-[600px] flex items-center justify-center"
@@ -542,16 +572,16 @@ const ProductDetail = () => {
                       
                       {/* Pricing */}
                       <div className="flex flex-col gap-2 mb-8">
-                        <div className="flex items-end gap-4">
-                          <span className="text-5xl font-bold text-slate-900 tracking-tighter">
-                            <AnimatedPrice value={bulkPricing.unitPrice} />
-                          </span>
-                          {bulkPricing.discount > 0 && (
-                            <div className="mb-2">
-                               <span className="text-slate-400 line-through font-medium mr-2">₹{product.price}</span>
-                               <span className="text-green-600 font-bold text-sm bg-green-50 px-2 py-1 rounded-lg">-{bulkPricing.discount}% Bulk Discount</span>
-                            </div>
-                          )}
+                        <div className="flex items-center gap-4 mb-8">
+                           {product.discount_price && (
+                             <span className="text-slate-400 line-through font-medium mr-2">₹{product.price}</span>
+                           )}
+                           <span className="text-5xl font-bold text-slate-900 tracking-tighter">
+                             <AnimatedPrice value={bulkPricing.unitPrice} />
+                           </span>
+                           {bulkPricing.discount > 0 && (
+                             <span className="text-green-600 font-bold text-sm bg-green-50 px-2 py-1 rounded-lg">-{bulkPricing.discount}% Bulk Discount</span>
+                           )}
                         </div>
                         {quantity > 1 && (
                           <div className="flex items-center gap-2">
@@ -857,33 +887,42 @@ const ProductDetail = () => {
           {/* Reviews Section */}
           <div className="mt-40">
              <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-                <div>
-                   <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">Customer Voice</span>
-                   <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Product <span className="text-primary italic">Reviews</span></h2>
-                   <div className="flex items-center gap-4 mt-6">
-                      <div className="text-5xl font-black text-slate-900">{parseFloat(product.average_rating).toFixed(1)}</div>
-                      <div>
-                         <StarRating rating={parseFloat(product.average_rating)} size={20} />
-                         <p className="text-xs text-slate-400 font-bold mt-1">Based on {product.review_count} verified reviews</p>
-                      </div>
-                   </div>
-                </div>
-                <button 
-                  onClick={() => {
-                    if (!showReviewForm && userReview) {
-                      setIsEditingReview(true);
-                      setNewReview({ rating: userReview.rating, comment: userReview.comment, image: null });
-                    } else if (!showReviewForm) {
-                      setIsEditingReview(false);
-                      setNewReview({ rating: 5, comment: '', image: null });
-                    }
-                    setShowReviewForm(!showReviewForm);
-                  }}
-                  className="btn-primary py-4 px-10 text-sm shadow-xl"
-                >
-                  {showReviewForm ? 'Cancel' : (userReview ? 'Edit Your Review' : 'Write a Review')}
-                </button>
-             </div>
+                 <div>
+                    <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">Customer Voice</span>
+                    <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Product <span className="text-primary italic">Reviews</span></h2>
+                    <div className="flex items-center gap-4 mt-6">
+                       <div className="text-5xl font-black text-slate-900">{parseFloat(product.average_rating).toFixed(1)}</div>
+                       <div>
+                          <StarRating rating={parseFloat(product.average_rating)} size={20} />
+                          <p className="text-xs text-slate-400 font-bold mt-1">Based on {product.review_count} verified reviews</p>
+                       </div>
+                    </div>
+                 </div>
+                 <div className="flex flex-col items-end gap-3">
+                   {hasAlreadyReviewed && !userReview && !showReviewForm && (
+                     <div className="flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 rounded-xl text-xs font-bold border border-green-100">
+                       <CheckCircle2 size={14} /> You have already reviewed this product
+                     </div>
+                   )}
+                   {( !hasAlreadyReviewed || userReview ) && (
+                    <button 
+                      onClick={() => {
+                        if (!showReviewForm && userReview) {
+                          setIsEditingReview(true);
+                          setNewReview({ rating: userReview.rating, comment: userReview.comment, image: null });
+                        } else if (!showReviewForm) {
+                          setIsEditingReview(false);
+                          setNewReview({ rating: 5, comment: '', image: null });
+                        }
+                        setShowReviewForm(!showReviewForm);
+                      }}
+                      className="btn-primary py-4 px-10 text-sm shadow-xl"
+                    >
+                      {showReviewForm ? 'Cancel' : (userReview ? 'Edit Your Review' : 'Write a Review')}
+                    </button>
+                   )}
+                 </div>
+              </div>
 
              <AnimatePresence>
                 {showReviewForm && (
