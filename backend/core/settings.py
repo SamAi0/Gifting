@@ -34,6 +34,11 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 DEBUG = ENVIRONMENT == 'development'
 
+# Auto-detect Render environment
+if 'RENDER' in os.environ:
+    DEBUG = False
+    ENVIRONMENT = 'production'
+
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,gifting-82j5.onrender.com,.netlify.app').split(',')
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 

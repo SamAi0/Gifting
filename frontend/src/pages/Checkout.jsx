@@ -206,7 +206,7 @@ const Checkout = () => {
         rzp1.open();
       } else {
         // Cash on Delivery
-        await api.post('/orders/create-order/', {
+        await api.post('orders/create-order/', {
           address_id: selectedAddress,
           payment_method: 'COD',
           coupon_code: couponCode,
@@ -258,8 +258,8 @@ const Checkout = () => {
   }
 
   return (
-    <div className="pt-32 pb-32 bg-slate-50 min-h-screen">
-      <div className="container-custom">
+    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
+      <div className="container-wide px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">Secure <span className="text-primary">Checkout</span></h1>
           <Link to="/cart" className="text-slate-400 hover:text-primary font-bold text-sm flex items-center gap-2 transition-colors">

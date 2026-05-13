@@ -140,10 +140,16 @@ class Product(models.Model):
             self.slug = slug
         
         if not self.sku:
-            # Simple auto-SKU generation:
+            # Robust auto-SKU generation with collision check
             cat_code = self.category.name[:3].upper() if self.category else "UNC"
-            rand_code = random.randint(100, 999)
-            self.sku = f"SG-{cat_code}-{self.slug[:5].upper()}-{rand_code}"
+            base_sku = f"SG-{cat_code}-{self.slug[:5].upper()}"
+            
+            while True:
+                rand_code = random.randint(1000, 9999)
+                new_sku = f"{base_sku}-{rand_code}"
+                if not Product.all_objects.filter(sku=new_sku).exists():
+                    self.sku = new_sku
+                    break
 
         # Compress image before saving
         if self.image_file and not self.id: # Only compress on first upload
@@ -213,14 +219,6 @@ class Review(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        from django.db.models import Avg, Count
-        stats = self.product.reviews.aggregate(
-            avg_rating=Avg('rating'),
-            total_count=Count('id')
-        )
-        self.product.average_rating = stats['avg_rating'] or 0
-        self.product.review_count = stats['total_count'] or 0
-        self.product.save()
 
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wishlist')
@@ -231,3 +229,17 @@ class Wishlist(models.Model):
         unique_together = ('user', 'product')
 
 
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+
+@receiver([post_save, post_delete], sender=Review)
+def update_product_stats(sender, instance, **kwargs):
+    from django.db.models import Avg, Count
+    product = instance.product
+    stats = product.reviews.aggregate(
+        avg_rating=Avg('rating'),
+        total_count=Count('id')
+    )
+    product.average_rating = stats['avg_rating'] or 0
+    product.review_count = stats['total_count'] or 0
+    product.save()
