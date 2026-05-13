@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from '../api';
+import { useAuth } from '../context/AuthContext';
 import { UserPlus, User, Mail, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -13,14 +13,17 @@ const Register = () => {
     last_name: '',
   });
   const [error, setError] = useState('');
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(''); // Clear previous errors
     try {
-      await api.post('/auth/register/', formData);
+      await register(formData);
       navigate('/login');
-    } catch {
+    } catch (err) {
+      console.error('Registration error:', err);
       setError('Registration failed. The username or email might already be registered in our system.');
     }
   };

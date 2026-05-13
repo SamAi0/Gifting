@@ -154,12 +154,10 @@ export const CartProvider = ({ children }) => {
         }
     };
 
+
     // Fetch product details for guest cart items
     useEffect(() => {
-        if (user) {
-            setGuestCartDetails([]);
-            return;
-        }
+        if (user) return;
 
         const fetchGuestDetails = async () => {
             if (guestCart.length === 0) {
@@ -201,7 +199,7 @@ export const CartProvider = ({ children }) => {
 
     return (
         <CartContext.Provider value={{ 
-            cart: user ? cart : cartToDisplay, 
+            cart: cartToDisplay, 
             guestCart,
             loading, 
             addToCart, 

@@ -378,7 +378,7 @@ const ProductDetail = () => {
 
   return (
     <>
-      <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
+      <div className="pt-32 md:pt-40 pb-20 bg-slate-50 min-h-screen">
         <div className="container-wide px-4 sm:px-8 lg:px-12">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-slate-400 mb-10 overflow-x-auto whitespace-nowrap scrollbar-hide">
@@ -396,7 +396,7 @@ const ProductDetail = () => {
             <div className="lg:sticky lg:top-32">
                <motion.div 
                  layout
-                 className="glass-card overflow-hidden relative border-slate-200/50 bg-white min-h-[450px] md:min-h-[600px] flex items-center justify-center"
+                 className="glass-card overflow-hidden relative border-slate-200/50 bg-white min-h-[300px] md:min-h-[500px] lg:min-h-[600px] flex items-center justify-center"
                >
                   {isCustomizing && customizationConfig ? (
                     <CanvasCustomizer 
@@ -645,9 +645,12 @@ const ProductDetail = () => {
                         </div>
                       )}
 
-                      <p className="text-lg text-slate-500 leading-relaxed font-light">
-                        {product.description}
-                      </p>
+                      {/* Description Moved Below for better Mobile Hierarchy */}
+                      <div className="hidden lg:block">
+                        <p className="text-lg text-slate-500 leading-relaxed font-light">
+                          {product.description}
+                        </p>
+                      </div>
 
                       {/* Quantity Selector & Bulk Info */}
                       <div className="pt-4 space-y-4">
@@ -740,8 +743,14 @@ const ProductDetail = () => {
                       </div>
                     </div>
 
+                    <div className="lg:hidden">
+                      <p className="text-lg text-slate-500 leading-relaxed font-light">
+                        {product.description}
+                      </p>
+                    </div>
+
                     {/* Highlights Grid */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                        <div className="bg-white p-6 rounded-3xl border border-slate-100 flex items-center gap-4">
                           <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-primary shadow-sm">
                              <Truck size={24} />
@@ -1090,6 +1099,43 @@ const ProductDetail = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Floating Bottom Bar for Mobile */}
+      {!isCustomizing && (
+        <motion.div 
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-slate-200/50 p-4 z-[60] flex items-center justify-between shadow-[0_-10px_30px_rgba(0,0,0,0.08)]"
+        >
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Price for {quantity} units</span>
+            <span className="text-xl font-bold text-slate-900 tracking-tight">
+              <AnimatedPrice value={bulkPricing.total} />
+            </span>
+          </div>
+          <button 
+            onClick={() => {
+              if (customizationConfig) {
+                const el = document.getElementById('add-to-cart-btn');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  setIsCustomizing(true);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              } else {
+                handleAddToCart();
+              }
+            }}
+            className="btn-primary py-3.5 px-8 text-sm shadow-xl shadow-primary/20"
+          >
+            {customizationConfig && !isCustomizing ? 'Personalize' : 'Add to Cart'}
+          </button>
+        </motion.div>
+      )}
+
+      {/* Spacing for Floating Bar */}
+      <div className="h-24 lg:hidden"></div>
     </>
   );
 };

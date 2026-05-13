@@ -36,12 +36,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const login = async (username, password) => {
-        try {
-            await api.post('auth/login/', { username, password });
-        } catch (error) {
-            // Rethrow the error to be handled by the UI (Login.jsx)
-            throw error;
-        }
+        await api.post('auth/login/', { username, password });
 
         try {
             // After successful login, fetch the profile to get user data
@@ -53,12 +48,16 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             console.error('Session establishment failed after login. This is likely a cookie/CORS issue.', error);
             // If profile fails after login, it's usually a SameSite/Secure cookie issue
-            throw new Error('Session could not be established. Please check your browser cookie settings or CORS configuration.');
+            throw new Error('Session could not be established. Please check your browser cookie settings or CORS configuration.', { cause: error });
         }
     };
 
+    const register = async (userData) => {
+        await api.post('auth/register/', userData);
+    };
+
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, register, loading }}>
             {children}
         </AuthContext.Provider>
     );

@@ -10,7 +10,7 @@ const WhatsAppButton = () => {
     <motion.div
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      className="fixed bottom-8 right-8 z-50 group"
+      className="fixed bottom-24 lg:bottom-8 right-6 lg:right-8 z-50 group"
     >
       <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-25 group-hover:opacity-0 transition-opacity"></div>
       <a
