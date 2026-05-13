@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
+// Smart IP Resolution for Mobile/Network testing
+if (typeof window !== 'undefined' && API_BASE_URL.includes('localhost') && window.location.hostname !== 'localhost') {
+  console.log(`[Smart IP] Switching localhost to ${window.location.hostname}`);
+  API_BASE_URL = API_BASE_URL.replace('localhost', window.location.hostname);
+}
+
 if (!API_BASE_URL) {
   console.warn('VITE_API_BASE_URL is not defined in environment variables.');
 }

@@ -240,7 +240,7 @@ const ProductList = () => {
   );
 
   return (
-    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
+    <div className="pt-32 md:pt-40 pb-20 bg-slate-50 min-h-screen">
       <div className="container-wide">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
@@ -349,13 +349,13 @@ const ProductList = () => {
                  onClick={() => setIsMobileFilterOpen(false)}
                  className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[150] lg:hidden"
                />
-               <motion.div 
-                 initial={{ x: '100%' }}
-                 animate={{ x: 0 }}
-                 exit={{ x: '100%' }}
-                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                 className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white z-[160] lg:hidden shadow-2xl flex flex-col"
-               >
+                <motion.div 
+                  initial={{ x: '100%' }}
+                  animate={{ x: 0 }}
+                  exit={{ x: '100%' }}
+                  transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                  className="fixed top-0 right-0 bottom-0 w-full sm:max-w-xs md:max-w-sm bg-white z-[160] lg:hidden shadow-2xl flex flex-col"
+                >
                   <div className="p-6 border-b border-slate-100 flex items-center justify-between">
                      <h3 className="text-xl font-bold text-slate-900">Filters</h3>
                      <button onClick={() => setIsMobileFilterOpen(false)} className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400"><X size={20} /></button>

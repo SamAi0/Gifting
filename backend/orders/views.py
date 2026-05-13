@@ -37,6 +37,13 @@ class MergeCartView(views.APIView):
                 quantity = int(item_data.get('quantity', 1))
                 customization_text = item_data.get('customization_text', '')
                 customization_data = item_data.get('customization_data', '')
+                
+                # Ensure customization_data is stringified if it's a dict/list
+                import json
+                if isinstance(customization_data, (dict, list)):
+                    customization_data = json.dumps(customization_data)
+                elif customization_data is None:
+                    customization_data = ''
 
                 # Check if item with same product and customization already exists in user cart
                 existing_item = CartItem.objects.filter(

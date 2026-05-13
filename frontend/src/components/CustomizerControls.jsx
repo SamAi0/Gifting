@@ -93,7 +93,7 @@ const CustomizerControls = ({
                         setShowPicker(false);
                       }}
                       title={color.name}
-                      className={`w-7 h-7 rounded-full transition-all flex items-center justify-center relative border border-black/5 ${
+                      className={`w-10 h-10 md:w-7 md:h-7 rounded-full transition-all flex items-center justify-center relative border border-black/5 ${
                         textColor === color.value ? 'ring-2 ring-primary ring-offset-2 scale-90' : 'hover:scale-110'
                       }`}
                       style={{ backgroundColor: color.value }}
@@ -187,7 +187,7 @@ const CustomizerControls = ({
                       value={entry.text}
                       onChange={(e) => updateTextEntry(entry.id, e.target.value)}
                       placeholder={index === 0 ? "Primary message..." : "Secondary message..."}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-100 focus:border-primary/20 focus:bg-white rounded-xl outline-none transition-all text-sm font-medium text-slate-700 placeholder:text-slate-300 shadow-sm"
+                      className="w-full px-5 py-4 bg-slate-50 border border-slate-100 focus:border-primary/20 focus:bg-white rounded-2xl outline-none transition-all text-base font-medium text-slate-700 placeholder:text-slate-300 shadow-sm"
                     />
                     {textEntries.length > 1 && (
                       <button onClick={() => removeTextEntry(entry.id)} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-slate-200 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all">
