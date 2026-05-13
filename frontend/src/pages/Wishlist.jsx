@@ -43,8 +43,8 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="pt-32 pb-32 bg-slate-50 min-h-screen">
-      <div className="container-custom">
+    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
+      <div className="container-wide px-4 sm:px-8 lg:px-12">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
            <div>
               <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">My Collection</span>
