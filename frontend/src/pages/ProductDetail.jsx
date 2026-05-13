@@ -393,7 +393,7 @@ const ProductDetail = () => {
 
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             {/* Visual Area */}
-            <div className="sticky top-32">
+            <div className="lg:sticky lg:top-32">
                <motion.div 
                  layout
                  className="glass-card overflow-hidden relative border-slate-200/50 bg-white min-h-[450px] md:min-h-[600px] flex items-center justify-center"

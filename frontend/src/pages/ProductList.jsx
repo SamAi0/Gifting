@@ -374,7 +374,7 @@ const ProductList = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters (Desktop) */}
           <aside className="hidden lg:block w-72 space-y-6">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden sticky top-32">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden lg:sticky lg:top-32">
                {filterContentJsx}
             </div>
           </aside>
