@@ -895,7 +895,7 @@ const ProductDetail = () => {
 
           {/* Reviews Section */}
           <div className="mt-40">
-             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
                  <div>
                     <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">Customer Voice</span>
                     <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Product <span className="text-primary italic">Reviews</span></h2>
@@ -907,7 +907,7 @@ const ProductDetail = () => {
                        </div>
                     </div>
                  </div>
-                 <div className="flex flex-col items-end gap-3">
+                 <div className="flex flex-col items-start md:items-end gap-3">
                    {hasAlreadyReviewed && !userReview && !showReviewForm && (
                      <div className="flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 rounded-xl text-xs font-bold border border-green-100">
                        <CheckCircle2 size={14} /> You have already reviewed this product
