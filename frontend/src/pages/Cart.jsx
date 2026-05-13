@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, ChevronLeft, ShieldCheck, Truck, Package } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getImageUrl } from '../api';
 
 const Cart = () => {
   const { cart, loading, removeFromCart, updateQuantity } = useCart();
@@ -31,8 +32,8 @@ const Cart = () => {
   }
 
   return (
-    <div className="pt-32 pb-32 bg-slate-50 min-h-screen">
-      <div className="container-custom">
+    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
+      <div className="container-wide px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">Your <span className="text-primary">Selection</span></h1>
           <Link to="/products" className="text-slate-400 hover:text-primary font-bold text-sm flex items-center gap-2 transition-colors">
@@ -53,20 +54,23 @@ const Cart = () => {
                   exit={{ opacity: 0, x: -20 }}
                   className="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-premium border border-slate-100 flex flex-col md:flex-row gap-8 relative group overflow-hidden"
                 >
-                  <div className="w-full md:w-40 h-40 bg-slate-50 rounded-3xl overflow-hidden flex-shrink-0 border border-slate-100 p-2">
-                    <img 
-                      src={item.customization_image || item.product_details.image} 
-                      alt={item.product_details.name}
-                      className="w-full h-full object-contain mix-blend-multiply"
-                    />
-                  </div>
-                  <div className="flex-grow flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                           <span className="text-primary font-black uppercase tracking-[0.2em] text-[10px] mb-2 block">{item.product_details.category_name}</span>
-                           <h3 className="text-2xl font-bold text-slate-900 leading-tight">{item.product_details.name}</h3>
-                        </div>
+                    <div className="w-full md:w-40 h-40 bg-white rounded-3xl overflow-hidden flex-shrink-0 border border-slate-100 p-4 flex items-center justify-center">
+                      <img 
+                        src={getImageUrl(item.customization_image || item.product_details?.image) || 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=400'} 
+                        alt={item.product_details?.name || 'Product'}
+                        className="max-w-full max-h-full object-contain"
+                        onError={(e) => {
+                          e.target.src = 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=400';
+                        }}
+                      />
+                    </div>
+                    <div className="flex-grow flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-start mb-2">
+                          <div>
+                             <span className="text-primary font-black uppercase tracking-[0.2em] text-[10px] mb-2 block">{item.product_details?.category_name}</span>
+                             <h3 className="text-2xl font-bold text-slate-900 leading-tight">{item.product_details?.name || 'Loading product...'}</h3>
+                          </div>
                         <button 
                           onClick={() => removeFromCart(item.id)}
                           className="w-10 h-10 rounded-xl bg-slate-50 text-slate-300 hover:bg-red-50 hover:text-red-500 transition-all flex items-center justify-center"
@@ -100,8 +104,8 @@ const Cart = () => {
                         </button>
                       </div>
                       <div className="text-right">
-                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Unit Price: ₹{item.product_details.price}</p>
-                         <p className="text-3xl font-black text-slate-900 tracking-tighter">₹{item.subtotal}</p>
+                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Unit Price: ₹{item.product_details?.price || '0'}</p>
+                         <p className="text-3xl font-black text-slate-900 tracking-tighter">₹{item.subtotal || '0'}</p>
                       </div>
                     </div>
                   </div>

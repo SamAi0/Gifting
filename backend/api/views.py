@@ -41,10 +41,10 @@ class AdminStatsView(APIView):
         from orders.serializers import OrderSerializer
         from .serializers import ProductSerializer
 
-        revenue = Order.objects.filter(status='PAID').aggregate(total=Sum('total_amount'))['total'] or 0
+        revenue = Order.objects.filter(status__in=['CONFIRMED', 'PROCESSING', 'SHIPPED', 'DELIVERED']).aggregate(total=Sum('total_amount'))['total'] or 0
         
-        # Get 5 most recent orders
-        recent_orders_queryset = Order.objects.all().order_by('-created_at')[:5]
+        # Get 5 most recent orders with related data
+        recent_orders_queryset = Order.objects.select_related('user', 'address').prefetch_related('items', 'items__product').all().order_by('-created_at')[:5]
         recent_orders = OrderSerializer(recent_orders_queryset, many=True, context={'request': request}).data
 
         # Get top 5 products by order count (Popular Products)

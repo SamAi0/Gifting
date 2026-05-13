@@ -16,39 +16,24 @@ const TwitterIcon = ({ className }) => (
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white pt-24 pb-12 overflow-hidden relative">
-      {/* Background Decorative Element */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -mr-20 -mt-20"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px] -ml-20 -mb-20"></div>
-
+    <footer className="bg-slate-900 text-white pt-10 pb-6 overflow-hidden relative border-t border-white/5">
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-8">
           {/* Company Info */}
-          <div className="space-y-8">
+          <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className="bg-primary p-2.5 rounded-xl shadow-lg shadow-primary/20 transition-transform group-hover:rotate-12">
-                <Gift className="text-white w-6 h-6" />
+              <div className="bg-primary p-1.5 rounded-lg shadow-lg shadow-primary/20 transition-transform group-hover:rotate-12">
+                <Gift className="text-white w-5 h-5" />
               </div>
-              <span className="text-2xl font-bold font-display tracking-tight">
-                Soham <span className="text-primary">Gift</span>
-              </span>
+              <span className="text-xl font-bold tracking-tight">Soham <span className="text-primary">Gift</span></span>
             </Link>
-            <p className="text-slate-400 leading-relaxed font-light">
-              Elevating corporate gifting with personalized, premium solutions that leave a lasting impression. We turn your appreciation into unforgettable experiences.
+            <p className="text-slate-400 leading-relaxed font-light text-sm max-w-xs">
+              Elevating corporate gifting with personalized, premium solutions that leave a lasting impression.
             </p>
-            <div className="flex gap-4">
-              {[
-                { icon: InstagramIcon, href: '#' },
-                { icon: LinkedinIcon, href: '#' },
-                { icon: FacebookIcon, href: '#' },
-                { icon: TwitterIcon, href: '#' },
-              ].map((social, idx) => (
-                <a 
-                  key={idx}
-                  href={social.href} 
-                  className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
-                >
-                  <social.icon className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
+            <div className="flex gap-3">
+              {[InstagramIcon, LinkedinIcon, FacebookIcon, TwitterIcon].map((Icon, idx) => (
+                <a key={idx} href="#" className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary transition-all duration-300 group">
+                  <Icon className="w-4 h-4 text-slate-400 group-hover:text-white" />
                 </a>
               ))}
             </div>
@@ -56,20 +41,16 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white text-lg font-bold mb-8 uppercase tracking-widest text-[11px]">Explore</h4>
-            <ul className="space-y-4">
+            <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">Explore</h4>
+            <ul className="space-y-2">
               {[
                 { name: 'Home', path: '/' },
                 { name: 'Our Catalog', path: '/products' },
-                { name: 'Bulk Inquiry', path: '/bulk-inquiry' },
-                { name: 'About Our Story', path: '/about' },
-                { name: 'Contact Support', path: '/contact' },
+                { name: 'Contact Us', path: '/contact' },
+                { name: 'Our Story', path: '/about' },
               ].map((link) => (
-                <li key={link.path}>
-                  <Link 
-                    to={link.path} 
-                    className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group text-sm font-medium"
-                  >
+                <li key={link.name}>
+                  <Link to={link.path} className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group text-sm font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors"></span>
                     {link.name}
                   </Link>
@@ -78,23 +59,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Categories */}
+          {/* Collections */}
           <div>
-            <h4 className="text-white text-lg font-bold mb-8 uppercase tracking-widest text-[11px]">Top Collections</h4>
-            <ul className="space-y-4">
+            <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">Collections</h4>
+            <ul className="space-y-2">
               {[
                 { name: 'Gourmet Hampers', id: '1' },
-                { name: 'Premium Office Gifts', id: '2' },
+                { name: 'Office Gifts', id: '2' },
                 { name: 'Next-Gen Tech', id: '4' },
-                { name: 'Signature Gift Sets', id: '7' },
+                { name: 'Signature Sets', id: '7' },
               ].map((cat) => (
                 <li key={cat.id}>
-                  <Link 
-                    to={`/products?category=${cat.id}`} 
-                    className="text-slate-400 hover:text-white transition-colors flex items-center justify-between group text-sm font-medium"
-                  >
+                  <Link to={`/products?category=${cat.id}`} className="text-slate-400 hover:text-white transition-colors flex items-center justify-between group text-sm font-medium">
                     {cat.name}
-                    <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                    <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
                   </Link>
                 </li>
               ))}
@@ -103,25 +81,23 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-white text-lg font-bold mb-8 uppercase tracking-widest text-[11px]">Get In Touch</h4>
-            <ul className="space-y-6">
-              <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-primary flex-shrink-0 border border-white/5">
-                  <MapPin size={18} />
+            <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">Get In Touch</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-primary flex-shrink-0 border border-white/5">
+                  <MapPin size={16} />
                 </div>
-                <span className="text-slate-400 text-sm leading-relaxed">
-                  Shop C, Jai Ganesh Society, Airoli, Navi Mumbai, India
-                </span>
+                <span className="text-slate-400 text-sm leading-relaxed">Airoli, Navi Mumbai, India</span>
               </li>
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-primary flex-shrink-0 border border-white/5">
-                  <Phone size={18} />
+              <li className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-primary flex-shrink-0 border border-white/5">
+                  <Phone size={16} />
                 </div>
                 <span className="text-slate-400 text-sm font-bold">+91 81699 75287</span>
               </li>
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-primary flex-shrink-0 border border-white/5">
-                  <Mail size={18} />
+              <li className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-primary flex-shrink-0 border border-white/5">
+                  <Mail size={16} />
                 </div>
                 <span className="text-slate-400 text-sm font-medium">corporate@sohamgift.com</span>
               </li>
@@ -130,9 +106,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} <span className="text-white font-bold">Soham Gift</span>. Crafted with Excellence in India.
+            © {new Date().getFullYear()} <span className="text-white font-bold">Soham Gift</span>. India.
           </p>
           <div className="flex gap-10">
             <Link to="/privacy" className="text-slate-500 hover:text-white text-xs font-bold transition-colors">Privacy Policy</Link>
@@ -145,4 +121,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

@@ -2,12 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as fabric from 'fabric';
 
 // Development mode logger - only logs in development
-const isDev = import.meta.env.DEV;
-const devLog = (...args) => isDev && console.log('[CanvasCustomizer]', ...args);
-const devError = (...args) => console.error('[CanvasCustomizer]', ...args);
-
-// Mapping mode logger - ALWAYS logs when in mapping mode
-const mappingLog = (...args) => console.log('[MAPPING MODE]', ...args);
+// const isDev = import.meta.env.DEV;
 
 /**
  * CanvasCustomizer - The core Fabric.js rendering engine for product personalization.
@@ -19,32 +14,18 @@ const mappingLog = (...args) => console.log('[MAPPING MODE]', ...args);
  * @param {Function} onImageExport - Callback when a high-res image is generated
  * @param {Function} onWarning - Callback when text exceeds fit boundaries
  */
-const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onImageExport, onWarning }) => {
+const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews, onImageExport, onWarning }) => {
   const canvasRef = useRef(null);
   const fabricCanvas = useRef(null);
   const containerRef = useRef(null);
   const [loading, setLoading] = useState(true);
-  const [isMappingMode] = useState(() => {
-    // Always enable mapping mode for coordinate picking
-    return true;
-  });
   const prevProductSlug = useRef(null);
-  const customTextRef = useRef(customText);
-  const textColorRef = useRef(textColor);
 
-  // Keep refs updated
-  useEffect(() => {
-    customTextRef.current = customText;
-    textColorRef.current = textColor;
-  }, [customText, textColor]);
-
-  // Removed useEffect for isMappingMode - using lazy initialization instead
-
-  // Helper for curved text - defined at component level to be accessible by both useEffects
+  // Helper for curved text
   const updateCurvedText = (group, text, zone, currentTextColor) => {
     if (!group || !fabricCanvas.current) return;
     
-    group.removeAll();
+    group.clear();
     if (!text) return;
     
     const radius = zone.curveRadius || 150;
@@ -60,12 +41,6 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
         opacity: zone.opacity || 1,
         globalCompositeOperation: zone.blendMode || 'source-over',
     };
-    if (zone.effect === 'engrave') {
-        style.fill = '#1a1a1a';
-        style.opacity = 0.65;
-        style.globalCompositeOperation = 'multiply';
-        style.shadow = new fabric.Shadow({ color: 'rgba(255,255,255,0.4)', blur: 1, offsetX: 0.5, offsetY: 0.5 });
-    }
 
     chars.forEach((char, i) => {
       const charAngle = startAngle + (i * spacing);
@@ -88,432 +63,292 @@ const CanvasCustomizer = ({ productConfig, customText, textColor, logoImage, onI
 
   // Initialize Canvas
   useEffect(() => {
-    if (!canvasRef.current || !productConfig || !productConfig.baseImage) {
-      devLog('Missing canvas ref or productConfig');
-      return;
-    }
+    if (!canvasRef.current || !productConfig || !productConfig.baseImage) return;
 
-    // Prevent re-initialization if same product
     const productSlug = productConfig.baseImage;
-    if (prevProductSlug.current === productSlug && fabricCanvas.current) {
-      devLog('Skipping re-initialization for same product');
-      return;
-    }
-    prevProductSlug.current = productSlug;
+    const zonesKey = JSON.stringify(productConfig.zones);
+    if (prevProductSlug.current === `${productSlug}-${zonesKey}` && fabricCanvas.current) return;
+    prevProductSlug.current = `${productSlug}-${zonesKey}`;
 
-    // Cleanup previous instance if re-initializing
     if (fabricCanvas.current) {
-      devLog('Disposing previous canvas instance');
       fabricCanvas.current.dispose();
       fabricCanvas.current = null;
     }
 
-    // Wait for DOM to be ready
-    const initCanvas = () => {
-      if (!canvasRef.current) {
-        devError('canvasRef.current is null');
-        return;
-      }
+    let initTimer;
+
+    const initCanvas = async () => {
+      // Safety check: Don't initialize if already initialized or if ref is lost
+      if (!canvasRef.current || fabricCanvas.current) return;
 
       try {
         fabricCanvas.current = new fabric.Canvas(canvasRef.current, {
           width: 500,
           height: 500,
           backgroundColor: '#f3f4f6',
-          selection: isMappingMode,
+          selection: true,
         });
 
-        console.log('✅ Canvas initialized:', fabricCanvas.current);
-        console.log('🔍 Has getScenePoint:', typeof fabricCanvas.current.getScenePoint);
-        console.log('🔍 Has getPointer:', typeof fabricCanvas.current.getPointer);
-        
-        devLog('Canvas initialized successfully');
-        loadBaseImage();
+        fabricCanvas.current.on('object:modified', (e) => {
+          logCoordinates(e.target);
+          if (!fabricCanvas.current) return;
+          fabricCanvas.current.requestRenderAll();
+          const dataUrl = fabricCanvas.current.toDataURL({ format: 'png', quality: 1, multiplier: 2 });
+          onImageExport?.(dataUrl);
+        });
+        // fabricCanvas.current.on('object:moving', (e) => logCoordinates(e.target));
+        // fabricCanvas.current.on('object:rotating', (e) => logCoordinates(e.target));
+
+        console.log("%c Customizer Engine Ready ", "background: #2ecc71; color: white; font-weight: bold;");
+
+        const logCoordinates = (obj) => {
+          if (!fabricCanvas.current || !obj || !obj.data?.zoneId) return;
+          
+          const canvasWidth = fabricCanvas.current.width;
+          const canvasHeight = fabricCanvas.current.height;
+          
+          const x = Math.round((obj.left / canvasWidth) * 1000);
+          const y = Math.round((obj.top / canvasHeight) * 1000);
+          const angle = Math.round(obj.angle || 0);
+          
+          // console.clear(); // Removed to keep other debug logs visible
+          console.log(`%c Zone Update [${obj.data.zoneId}] `, 'background: #D91656; color: white; font-weight: bold;');
+          console.log(`"x": ${x}, "y": ${y}, "angle": ${angle}`);
+          console.log(`--------------------------`);
+        };
+
+        await loadBaseImage();
       } catch (error) {
-        devError('Failed to initialize canvas:', error);
+        console.error('Failed to initialize canvas:', error);
       }
-    };
-
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(initCanvas, 100);
-
-    // Function to setup mapping mode handlers - ALWAYS enabled
-    const setupMappingModeHandlers = () => {
-      if (!fabricCanvas.current) {
-        console.warn('⚠️ Cannot setup mapping handlers - canvas not ready');
-        return;
-      }
-      
-      mappingLog('🔧 Setting up coordinate mapping handlers...');
-      mappingLog('📍 Click anywhere on the product image to get coordinates');
-      
-      // Add click event to capture coordinates - ALWAYS ACTIVE
-      fabricCanvas.current.on('mouse:down', (e) => {
-        try {
-          // Get pointer position - Fabric v7 compatible
-          let pointer;
-          
-          // Fabric v7+ uses different methods
-          if (typeof fabricCanvas.current.getScenePoint === 'function') {
-            pointer = fabricCanvas.current.getScenePoint(e.e);
-          } else if (typeof fabricCanvas.current.getPointer === 'function') {
-            pointer = fabricCanvas.current.getPointer(e.e);
-          } else {
-            // Fallback: calculate from event coordinates
-            const canvasElement = fabricCanvas.current.getElement();
-            const rect = canvasElement.getBoundingClientRect();
-            pointer = {
-              x: (e.e.clientX - rect.left) / (rect.width / 500),
-              y: (e.e.clientY - rect.top) / (rect.height / 500)
-            };
-          }
-          
-          const jsonX = Math.round((pointer.x / 500) * 1000); // Convert to 0-1000 scale
-          const jsonY = Math.round((pointer.y / 500) * 1000); // Convert to 0-1000 scale
-          
-          mappingLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-          mappingLog('🎯 CLICK COORDINATES (for customization.json):');
-          mappingLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-          mappingLog(`X: ${jsonX} | Y: ${jsonY}`);
-          mappingLog('📋 COPY THIS JSON SNIPPET:');
-          mappingLog(JSON.stringify({ x: jsonX, y: jsonY }, null, 2));
-          mappingLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        } catch (error) {
-          console.error('❌ Error getting pointer:', error);
-        }
-      });
-      
-      mappingLog('✅ Coordinate mapping is now active!');
     };
 
     const loadBaseImage = async () => {
-      if (!fabricCanvas.current) {
-        devError('fabricCanvas is null in loadBaseImage');
-        return;
-      }
-
       try {
         setLoading(true);
         const img = await fabric.Image.fromURL(productConfig.baseImage, { crossOrigin: 'anonymous' });
-        
-        // Check if canvas was disposed during async operation
-        if (!fabricCanvas.current) {
-          devLog('Canvas disposed during image load, skipping');
-          return;
-        }
+        if (!fabricCanvas.current) return;
         
         const canvasWidth = 500;
-        const canvasHeight = 500;
-        
-        const scaleW = canvasWidth / img.width;
-        const scaleH = canvasHeight / img.height;
-        const scale = Math.min(scaleW, scaleH) * 0.98; 
+        const scale = Math.min(canvasWidth / img.width, canvasWidth / img.height) * 0.98; 
         
         img.set({
-          scaleX: scale,
-          scaleY: scale,
-          left: canvasWidth / 2,
-          top: canvasHeight / 2,
-          originX: 'center',
-          originY: 'center',
-          selectable: false,
-          evented: true, // Always enable events for coordinate mapping
+          scaleX: scale, scaleY: scale,
+          left: 250, top: 250,
+          originX: 'center', originY: 'center',
+          selectable: false, evented: true,
           data: { isBaseImage: true }
         });
 
         fabricCanvas.current.add(img);
-        initTextZones();
+        initZones();
         fabricCanvas.current.requestRenderAll();
-        devLog('Base image loaded successfully');
-        
-        // Setup click handler after canvas is fully loaded
-        if (isMappingMode) {
-          setupMappingModeHandlers();
-        }
       } catch (err) {
-        devError("Failed to load base image:", err);
+        console.error("Failed to load base image:", err);
       } finally {
-        if (fabricCanvas.current) {
-          setLoading(false);
-        }
+        if (fabricCanvas.current) setLoading(false);
       }
     };
 
-    const getZoneStyle = (zone) => {
-      let style = {
-        fill: textColorRef.current || zone.fill || '#000',
-        opacity: zone.opacity || 1,
-        globalCompositeOperation: zone.blendMode || 'source-over',
-      };
-      
-      if (zone.shadow) {
-        style.shadow = new fabric.Shadow(zone.shadow);
-      }
-      
-      if (zone.effect === 'engrave') {
-        style.fill = '#1a1a1a';
-        style.opacity = 0.65;
-        style.globalCompositeOperation = 'multiply';
-        style.shadow = new fabric.Shadow({
-          color: 'rgba(255,255,255,0.4)',
-          blur: 1,
-          offsetX: 0.5,
-          offsetY: 0.5
-        });
-      }
-      return style;
-    };
-
-    const initTextZones = () => {
-      devLog('Initializing zones, total zones:', productConfig.zones.length);
-      
-      productConfig.zones.forEach((zone, index) => {
-        devLog(`Creating zone ${index + 1} - ${zone.id}`);
+    const initZones = () => {
+      if (!fabricCanvas.current) return;
+      productConfig.zones.forEach((zone) => {
+        const left = (zone.x / 1000) * 500;
+        const top = (zone.y / 1000) * 500;
         
-        if (zone.type === 'text') {
-          const left = (zone.x / 1000) * 500;
-          const top = (zone.y / 1000) * 500;
-          const style = getZoneStyle(zone);
-          
-          devLog(`Zone ${index + 1} position: x=${left}, y=${top}`);
-          
-          if (zone.isCurved) {
-             const group = new fabric.Group([], {
-               left, top,
-               originX: zone.originX || 'center',
-               originY: zone.originY || 'center',
-               angle: zone.angle || 0,
-               selectable: false, // Disable selection
-               evented: false, // Disable all events
-               hasControls: false, // Hide resizing handles
-               hasBorders: false, // Hide bounding box outline
-               lockMovementX: true, // Lock horizontal movement
-               lockMovementY: true, // Lock vertical movement
-               lockScalingX: true, // Lock horizontal scaling
-               lockScalingY: true, // Lock vertical scaling
-               lockRotation: true, // Lock rotation
-               data: { zoneId: zone.id, isCurved: true, ...zone }
-             });
-             fabricCanvas.current.add(group);
-             updateCurvedText(group, customTextRef.current || zone.placeholder, zone, textColorRef.current);
-             devLog(`Zone ${index + 1} curved text created`);
-          } else {
-            const textObj = new fabric.Text(customTextRef.current || zone.placeholder, {
-              left, top,
-              originX: zone.originX || 'center',
-              originY: zone.originY || 'center',
-              angle: zone.angle || 0,
-              fontFamily: zone.fontFamily || 'serif',
-              fontSize: zone.fontSize || 40,
-              textAlign: 'center',
-              selectable: false, // Disable selection
-              evented: false, // Disable all events
-              hasControls: false, // Hide resizing handles
-              hasBorders: false, // Hide bounding box outline
-              lockMovementX: true, // Lock horizontal movement
-              lockMovementY: true, // Lock vertical movement
-              lockScalingX: true, // Lock horizontal scaling
-              lockScalingY: true, // Lock vertical scaling
-              lockRotation: true, // Lock rotation
-              fill: textColorRef.current || zone.fill || '#000',
-              ...style,
-              data: { zoneId: zone.id, ...zone }
-            });
-            fabricCanvas.current.add(textObj);
-            devLog(`Zone ${index + 1} text created: "${customTextRef.current || zone.placeholder}"`);
-          }
-          
-          // Always show mapping boxes for coordinate reference
-          const maxWidthPx = (zone.maxWidth / 1000) * 500;
-          const box = new fabric.Rect({
-            left, top,
-            width: maxWidthPx,
-            height: zone.fontSize || 40,
-            originX: 'center',
-            originY: 'center',
-            fill: 'transparent',
-            stroke: 'rgba(255, 0, 0, 0.3)',
-            strokeDashArray: [5, 5],
-            selectable: false,
-            evented: false,
-            data: { isBoundingBox: true, zoneId: zone.id }
-          });
-          fabricCanvas.current.add(box);
-        }
+        const maxWidthPx = (zone.maxWidth / 1000) * 500 || (zone.width / 1000) * 500 || 100;
+        const box = new fabric.Rect({
+          left, top,
+          width: maxWidthPx,
+          height: zone.fontSize || (zone.height / 1000) * 500 || 40,
+          originX: 'center', originY: 'center',
+          fill: 'transparent',
+          stroke: 'rgba(217, 22, 86, 0.5)',
+          strokeDashArray: [5, 5],
+          selectable: false, evented: false,
+          data: { isBoundingBox: true, zoneId: zone.id }
+        });
+        fabricCanvas.current.add(box);
       });
-      
-      devLog('All zones initialized, canvas objects:', fabricCanvas.current.getObjects().length);
     };
 
-    loadBaseImage();
+    initTimer = setTimeout(initCanvas, 100);
 
-    // Responsive scaling with ResizeObserver
     const resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {
         if (!fabricCanvas.current) return;
         const { width } = entry.contentRect;
-        const height = width; 
-        fabricCanvas.current.setDimensions({ width, height });
+        fabricCanvas.current.setDimensions({ width, height: width });
         fabricCanvas.current.setZoom(width / 500);
         fabricCanvas.current.requestRenderAll();
       }
     });
 
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
-    }
+    if (containerRef.current) resizeObserver.observe(containerRef.current);
 
     return () => {
-      clearTimeout(timer);
+      if (initTimer) clearTimeout(initTimer);
       resizeObserver.disconnect();
       if (fabricCanvas.current) {
-        devLog('Cleanup - disposing canvas');
         fabricCanvas.current.dispose();
         fabricCanvas.current = null;
       }
     };
-  }, [productConfig, isMappingMode]); 
+  }, [productConfig, onImageExport]); 
 
-  // Update text or logo dynamically (debounced)
+  // Dynamic Updates (Grouped Mapping Mode)
   useEffect(() => {
-    if (!fabricCanvas.current || !productConfig || !productConfig.zones) {
-      devLog('Skipping text update - canvas or config not ready');
-      return;
-    }
+    if (!fabricCanvas.current || !productConfig || !textEntries) return;
 
-    const timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(async () => {
       try {
-        if (!fabricCanvas.current) {
-          devError('Canvas disposed during timeout');
-          return;
-        }
-
         const objects = fabricCanvas.current.getObjects();
         let hasWarning = false;
-      
-      productConfig.zones.forEach(zone => {
-        const obj = objects.find(o => o.data?.zoneId === zone.id && !o.data?.isBoundingBox);
-        if (obj) {
-          const textToRender = customText || zone.placeholder;
-          let currentFontSize = zone.fontSize || 40;
-          let currentCharSpacing = 0; 
 
-          if (zone.isCurved) {
-             zone.fontSize = currentFontSize;
-             zone.fill = textColor || zone.fill || '#000';
-             updateCurvedText(obj, textToRender, zone, textColor);
-             
-             // Simple auto-fit for curved text group width
-             const maxWidthPx = (zone.maxWidth / 1000) * 500;
-             if (obj.width * obj.scaleX > maxWidthPx) {
-                hasWarning = true;
-             }
-          } else {
-            obj.set({ 
-              text: textToRender, 
-              fontSize: currentFontSize, 
-              charSpacing: currentCharSpacing,
-              fill: textColor || zone.fill || '#000'
-            });
-            
-            // Auto-fit Logic
-            const maxWidthPx = (zone.maxWidth / 1000) * 500;
-            const minFontSize = zone.minFontSize || 12;
-            
-            while (obj.width * obj.scaleX > maxWidthPx && currentFontSize > minFontSize) {
-              currentFontSize -= 2;
-              obj.set({ fontSize: currentFontSize });
+        const totalZones = productConfig.zones.length;
+
+        for (let i = 0; i < totalZones; i++) {
+          const zone = productConfig.zones[i];
+          let obj = objects.find(o => o.data?.zoneId === zone.id && !o.data?.isBoundingBox);
+          const left = (zone.x / 1000) * 500;
+          const top = (zone.y / 1000) * 500;
+
+          // TWO-WAY MAPPING LOGIC
+          let targetType = zone.type || 'text';
+          let targetValue = null;
+
+          if (targetType === 'text') {
+            // If we have a text entry for this index, use it. 
+            // Otherwise, targetValue remains null which triggers placeholder.
+            if (i < textEntries.length) {
+              targetValue = textEntries[i].text;
             }
-            
-            // If still too wide, try negative char spacing
-            while (obj.width * obj.scaleX > maxWidthPx && currentCharSpacing > -100) {
-              currentCharSpacing -= 10;
-              obj.set({ charSpacing: currentCharSpacing });
+          } else if (targetType === 'image') {
+            // Logo fills from the end of the image-type zones if possible
+            // Simplified: if it's an image zone, try to find a logo
+            if (logoPreviews && logoPreviews.length > 0) {
+                // Find which image zone this is (0th image zone gets 0th logo)
+                const imageZones = productConfig.zones.filter(z => z.type === 'image');
+                const imgZoneIdx = imageZones.findIndex(z => z.id === zone.id);
+                if (imgZoneIdx !== -1 && imgZoneIdx < logoPreviews.length) {
+                    targetValue = logoPreviews[imgZoneIdx];
+                }
+            }
+          }
+
+          // Clean up if type changed or no targetType
+          const isTextType = obj?.type === 'text' || obj?.type === 'group';
+          const isImageType = obj?.type === 'image';
+          
+          if (obj && (
+            (targetType === 'text' && !isTextType) || 
+            (targetType === 'image' && !isImageType) || 
+            !targetType
+          )) {
+            fabricCanvas.current.remove(obj);
+            obj = null;
+          }
+
+          if (targetType === 'text') {
+            const textToRender = targetValue || zone.placeholder || 'Type...';
+            if (!obj) {
+              if (zone.isCurved) {
+                obj = new fabric.Group([], {
+                  left, top,
+                  originX: zone.originX || 'center',
+                  originY: zone.originY || 'center',
+                  angle: zone.angle || 0,
+                  selectable: true,
+                  data: { zoneId: zone.id, isCurved: true }
+                });
+              } else {
+                obj = new fabric.Text(textToRender, {
+                  left, top,
+                  originX: zone.originX || 'center',
+                  originY: zone.originY || 'center',
+                  angle: zone.angle || 0,
+                  fontFamily: zone.fontFamily || 'serif',
+                  fontSize: zone.fontSize || 40,
+                  textAlign: 'center',
+                  fill: textColor,
+                  selectable: true,
+                  data: { zoneId: zone.id }
+                });
+              }
+              fabricCanvas.current.add(obj);
             }
 
-            if (obj.width * obj.scaleX > maxWidthPx) {
-              hasWarning = true;
+            if (zone.isCurved) {
+              updateCurvedText(obj, textToRender, zone, textColor);
+            } else {
+              obj.set({ text: textToRender, fill: textColor });
+              const maxWidthPx = (zone.maxWidth / 1000) * 500;
+              let currentFontSize = zone.fontSize || 40;
+              const minSize = zone.minFontSize || 10;
+              while (obj.width * obj.scaleX > maxWidthPx && currentFontSize > minSize) {
+                currentFontSize -= 2;
+                obj.set({ fontSize: currentFontSize });
+              }
+              if (obj.width * obj.scaleX > maxWidthPx) hasWarning = true;
+            }
+          } else if (targetType === 'image' && targetValue) {
+            // Check if image object already exists but has a different source
+            if (obj && obj.type === 'image' && obj.data?.src !== targetValue) {
+              fabricCanvas.current.remove(obj);
+              obj = null;
+            }
+
+            if (!obj) {
+              try {
+                const img = await fabric.Image.fromURL(targetValue, { crossOrigin: 'anonymous' });
+                const maxWidth = (zone.maxWidth / 1000) * 500 || (zone.width / 1000) * 500 || 100;
+                const maxHeight = (zone.height / 1000) * 500 || 100;
+                const scale = Math.min(maxWidth / img.width, maxHeight / img.height) * 0.9;
+                
+                img.set({
+                  left, top,
+                  scaleX: scale, scaleY: scale,
+                  originX: zone.originX || 'center',
+                  originY: zone.originY || 'center',
+                  angle: zone.angle || 0,
+                  selectable: true, evented: true,
+                  data: { zoneId: zone.id, isLogo: true, src: targetValue }
+                });
+                fabricCanvas.current.add(img);
+                obj = img;
+              } catch (err) {
+                console.error("Error loading image in zone:", err);
+              }
             }
           }
         }
-      });
 
-      if (hasWarning && onWarning) {
-        onWarning(`Name too long (Max fit reached)`);
-      } else if (!hasWarning && onWarning) {
-        onWarning(''); 
-      }
-
-      // Handle Logo
-      const updateLogo = async () => {
-        const existingLogo = objects.find(o => o.data?.isLogo);
-        if (existingLogo) fabricCanvas.current.remove(existingLogo);
-
-        if (logoImage) {
-          try {
-            const img = await fabric.Image.fromURL(logoImage);
-            const zone = productConfig.zones[0];
-            const left = (zone.x / 1000) * 500;
-            const top = (zone.y / 1000) * 500;
-            const maxWidth = (zone.maxWidth / 1000) * 500;
-            const logoScale = (maxWidth * 0.8) / img.width;
-            
-            img.set({
-              scaleX: logoScale,
-              scaleY: logoScale,
-              left, top,
-              originX: 'center', originY: 'center',
-              selectable: false, // Disable selection
-              evented: false, // Disable all events
-              hasControls: false, // Hide resizing handles
-              hasBorders: false, // Hide bounding box outline
-              lockMovementX: true, // Lock horizontal movement
-              lockMovementY: true, // Lock vertical movement
-              lockScalingX: true, // Lock horizontal scaling
-              lockScalingY: true, // Lock vertical scaling
-              lockRotation: true, // Lock rotation
-              data: { isLogo: true }
-            });
-            fabricCanvas.current.add(img);
-            
-            const textObj = objects.find(o => o.data?.zoneId === zone.id && !o.data?.isBoundingBox);
-            if (textObj) textObj.set({ opacity: 0 });
-          } catch (err) {
-            devError("Error loading logo:", err);
-          }
-        } else {
-          const zone = productConfig.zones[0];
-          const textObj = objects.find(o => o.data?.zoneId === zone.id && !o.data?.isBoundingBox);
-          if (textObj) textObj.set({ opacity: zone.opacity || 1 });
-        }
+        onWarning?.(hasWarning ? "Text too long" : "");
         fabricCanvas.current.requestRenderAll();
         
         const dataUrl = fabricCanvas.current.toDataURL({ format: 'png', quality: 1, multiplier: 2 });
         onImageExport?.(dataUrl);
-      };
-
-      updateLogo();
       } catch (err) {
-        devError("Error updating canvas:", err);
+        console.error("Error updating canvas:", err);
       }
-    }, 100); // Increased debounce to 100ms for stability 
+    }, 100);
 
     return () => clearTimeout(timeoutId);
-  }, [customText, textColor, logoImage, productConfig, isMappingMode, onImageExport, onWarning]);
+  }, [textEntries, logoPreviews, textColor, productConfig, onImageExport, onWarning]);
 
   return (
     <div className="w-full h-full relative group flex flex-col">
       <div ref={containerRef} className="w-full aspect-square bg-gray-50 rounded-2xl overflow-hidden relative shadow-inner">
+        {/* Stable wrapper for Fabric.js to prevent React DOM reconciliation errors */}
+        <div className="canvas-container-wrapper">
+          <canvas ref={canvasRef} />
+        </div>
+        
         {loading && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/80">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
         )}
-        <canvas ref={canvasRef} />
-        
-      <div className="absolute bottom-2 left-2 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded">
-        📍 Coordinate Mapping Active
-      </div>
       </div>
     </div>
   );

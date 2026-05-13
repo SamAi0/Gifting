@@ -1,45 +1,73 @@
 import axios from 'axios';
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://gifting-82j5.onrender.com/api').replace(/\/+$/, '') + '/';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+if (!API_BASE_URL) {
+  console.warn('VITE_API_BASE_URL is not defined in environment variables.');
+}
 
-export const getImageUrl = (path) => {
+export const getImageUrl = (path, useCors = false) => {
   if (!path) return '';
 
-  // If it's already a full URL (like from Cloudinary or external source), return it
-  if (path.startsWith('http://') || path.startsWith('https://')) {
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:') || path.startsWith('blob:')) {
     return path;
   }
 
-  // Extract base domain from API_BASE_URL (removing /api)
+  let formattedPath = path.startsWith('/') ? path : `/${path}`;
+  
+  // If useCors is true, we route through our custom CORS-enabled endpoints
+  if (useCors) {
+    if (formattedPath.startsWith('/static/')) {
+      formattedPath = formattedPath.replace('/static/', '/cors-static/');
+    } else if (formattedPath.startsWith('/media/')) {
+      formattedPath = formattedPath.replace('/media/', '/cors-media/');
+    }
+  }
+
   const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
-
-  // Ensure path starts with /
-  const formattedPath = path.startsWith('/') ? path : `/${path}`;
-
-  return `${baseUrl}${formattedPath}`;
+  return encodeURI(`${baseUrl}${formattedPath}`);
 };
-
 
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  withCredentials: true,
 });
 
-// Add a request interceptor to attach the JWT token
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+// Response interceptor to handle global errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      const status = error.response.status;
+      const url = error.config.url;
+      
+      if (status === 401) {
+        // Don't warn for initial profile check or login attempts
+        if (!url.includes('auth/profile/') && !url.includes('auth/logout/') && !url.includes('auth/login/')) {
+          console.warn('Unauthorized request detected. Redirecting to login or clearing session.');
+        }
+      } else if (status === 403) {
+        console.error('Forbidden: You do not have permission to perform this action.');
+      } else if (status === 429) {
+        console.error('Too many requests: Please slow down.');
+      } else if (status >= 500) {
+        console.error('Server error: Our team has been notified. Please try again later.');
+      }
+    } else if (error.request) {
+      console.error('Network error: Please check your internet connection.');
+    } else {
+      console.error('Request error:', error.message);
     }
-    return config;
-  },
-  (error) => Promise.reject(error)
+    return Promise.reject(error);
+  }
 );
+
 
 // Auth endpoints
 export const loginUser = (credentials) => api.post('auth/login/', credentials);
+export const logoutUser = () => api.post('auth/logout/');
 export const registerUser = (userData) => api.post('auth/register/', userData);
+export const fetchProfile = () => api.get('auth/profile/');
 
 // Product endpoints
 export const fetchProducts = (params) => api.get('products/', { params });
@@ -53,23 +81,44 @@ export const updateProduct = (id, formData) => api.patch(`products/${id}/`, form
 });
 export const deleteProduct = (id) => api.delete(`products/${id}/`);
 
+// Review & Wishlist endpoints
+export const fetchReviews = (params) => api.get('reviews/', { params });
+export const submitReview = (data) => api.post('reviews/', data, {
+  headers: { 'Content-Type': 'multipart/form-data' }
+});
+export const updateReview = (id, data) => api.patch(`reviews/${id}/`, data, {
+  headers: { 'Content-Type': 'multipart/form-data' }
+});
+export const deleteReview = (id) => api.delete(`reviews/${id}/`);
+export const fetchWishlist = () => api.get('wishlist/');
+export const addToWishlist = (productId) => api.post('wishlist/', { product: productId });
+export const removeFromWishlist = (id) => api.delete(`wishlist/${id}/`);
+export const mergeCart = (items) => api.post('orders/merge-cart/', { items });
+
+
 // Order & Cart endpoints
 export const fetchCart = () => api.get('orders/cart/');
 export const addToCart = (data) => api.post('orders/cart-items/', data);
 export const updateCartItem = (id, data) => api.patch(`orders/cart-items/${id}/`, data);
 export const removeCartItem = (id) => api.delete(`orders/cart-items/${id}/`);
+export const fetchAttributes = () => api.get('attributes/');
+
+// Search and Recommendation endpoints
+export const fetchSuggestions = (query) => api.get('products/suggestions/', { params: { q: query } });
+export const fetchRelatedProducts = (id) => api.get(`products/${id}/related/`);
+export const fetchFrequentlyBoughtTogether = (id) => api.get(`products/${id}/frequently_bought_together/`);
+export const fetchRecentlyViewed = (ids) => api.post('products/recently_viewed/', { ids });
+
 export const fetchAddresses = () => api.get('orders/addresses/');
 export const addAddress = (data) => api.post('orders/addresses/', data);
 export const createOrder = (data) => api.post('orders/create-order/', data);
+export const verifyPayment = (data) => api.post('orders/verify-payment/', data);
+export const downloadInvoice = (orderId) => api.get(`orders/orders/${orderId}/invoice/`, { responseType: 'blob' });
 
 // Inquiry & Other endpoints
 export const fetchTestimonials = () => api.get('testimonials/');
 export const fetchSettings = () => api.get('settings/');
 export const submitContact = (data) => api.post('contact/', data);
-export const submitBulkInquiry = (formData) => api.post('bulk-inquiry/', formData, {
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-});
+export const fetchAdminStats = () => api.get('admin/stats/');
 
 export default api;

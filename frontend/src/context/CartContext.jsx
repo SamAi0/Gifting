@@ -5,32 +5,46 @@ import { useAuth } from './AuthContext';
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    const { token } = useAuth();
+    const { user } = useAuth();
     const [cart, setCart] = useState(null);
+    const [guestCart, setGuestCart] = useState(() => {
+        const saved = localStorage.getItem('guest_cart');
+        return saved ? JSON.parse(saved) : [];
+    });
     const [loading, setLoading] = useState(false);
+    const [guestCartDetails, setGuestCartDetails] = useState([]);
+
+    // Save guest cart to local storage whenever it changes
+    useEffect(() => {
+        if (!user) {
+            localStorage.setItem('guest_cart', JSON.stringify(guestCart));
+        }
+    }, [guestCart, user]);
 
     const fetchCart = useCallback(async () => {
-        if (!token) {
+        if (!user) {
             setCart(null);
             return;
         }
         setLoading(true);
         try {
-            const res = await api.get('/orders/cart/');
+            const res = await api.get('orders/cart/');
             setCart(res.data);
         } catch (err) {
             console.error("Error fetching cart", err);
         } finally {
             setLoading(false);
         }
-    }, [token]);
+    }, [user]);
 
-    // Fetch cart on mount and when token changes
+
+
+    // Fetch cart on mount and when user changes
     useEffect(() => {
         let isMounted = true;
         
         const syncCart = async () => {
-            if (!token) {
+            if (!user) {
                 if (isMounted) {
                     setCart(null);
                 }
@@ -39,7 +53,18 @@ export const CartProvider = ({ children }) => {
             
             setLoading(true);
             try {
-                const res = await api.get('/orders/cart/');
+                // Check if there's a guest cart to merge
+                const savedGuestCart = localStorage.getItem('guest_cart');
+                if (savedGuestCart) {
+                    const items = JSON.parse(savedGuestCart);
+                    if (items.length > 0) {
+                        await api.post('orders/merge-cart/', { items });
+                        localStorage.removeItem('guest_cart');
+                        setGuestCart([]);
+                    }
+                }
+                
+                const res = await api.get('orders/cart/');
                 if (isMounted) {
                     setCart(res.data);
                 }
@@ -57,11 +82,21 @@ export const CartProvider = ({ children }) => {
         return () => {
             isMounted = false;
         };
-    }, [token]);
+    }, [user]);
 
     const addToCart = async (productId, quantity = 1, customizationText = '', customizationImage = null, customizationData = null, logoImage = null) => {
-        if (!token) {
-            alert("Please login to add items to cart");
+        if (!user) {
+            // Add to Guest Cart
+            const newItem = {
+                id: Date.now(), // Temporary ID
+                product_id: productId,
+                quantity,
+                customization_text: customizationText,
+                customization_data: customizationData,
+                // Files can't be easily stored in localStorage, so we might skip them for guest cart
+                // or just alert the user.
+            };
+            setGuestCart(prev => [...prev, newItem]);
             return;
         }
         
@@ -71,24 +106,35 @@ export const CartProvider = ({ children }) => {
         if (customizationText) formData.append('customization_text', customizationText);
         if (customizationImage) formData.append('customization_image', customizationImage);
         if (customizationData) formData.append('customization_data', JSON.stringify(customizationData));
-        if (logoImage) formData.append('logo_image', logoImage);
+        if (logoImage) {
+            if (Array.isArray(logoImage)) {
+                logoImage.forEach((file) => {
+                    formData.append('logo_image', file);
+                });
+            } else {
+                formData.append('logo_image', logoImage);
+            }
+        }
 
         try {
-            await api.post('/orders/cart-items/', formData, {
+            await api.post('orders/cart-items/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
             fetchCart();
-            alert("Added to cart!");
         } catch (err) {
             console.error("Error adding to cart", err);
         }
     };
 
     const removeFromCart = async (itemId) => {
+        if (!user) {
+            setGuestCart(prev => prev.filter(item => item.id !== itemId));
+            return;
+        }
         try {
-            await api.delete(`/orders/cart-items/${itemId}/`);
+            await api.delete(`orders/cart-items/${itemId}/`);
             fetchCart();
         } catch (err) {
             console.error("Error removing from cart", err);
@@ -96,16 +142,73 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateQuantity = async (itemId, quantity) => {
+        if (!user) {
+            setGuestCart(prev => prev.map(item => item.id === itemId ? { ...item, quantity } : item));
+            return;
+        }
         try {
-            await api.patch(`/orders/cart-items/${itemId}/`, { quantity });
+            await api.patch(`orders/cart-items/${itemId}/`, { quantity });
             fetchCart();
         } catch (err) {
             console.error("Error updating quantity", err);
         }
     };
 
+    // Fetch product details for guest cart items
+    useEffect(() => {
+        if (user) {
+            setGuestCartDetails([]);
+            return;
+        }
+
+        const fetchGuestDetails = async () => {
+            if (guestCart.length === 0) {
+                setGuestCartDetails([]);
+                return;
+            }
+
+            try {
+                // Fetch details for all unique product IDs in guest cart
+                const productIds = [...new Set(guestCart.map(item => item.product_id))];
+                const detailPromises = productIds.map(id => api.get(`products/${id}/`));
+                const results = await Promise.all(detailPromises);
+                const productMap = {};
+                results.forEach(res => {
+                    productMap[res.data.id] = res.data;
+                });
+
+                const detailedItems = guestCart.map(item => {
+                    const product = productMap[item.product_id];
+                    return {
+                        ...item,
+                        product_details: product,
+                        subtotal: product ? product.price * item.quantity : 0
+                    };
+                });
+                setGuestCartDetails(detailedItems);
+            } catch (err) {
+                console.error("Error fetching guest cart details", err);
+            }
+        };
+
+        fetchGuestDetails();
+    }, [guestCart, user]);
+
+    const cartToDisplay = user ? cart : { 
+        items: guestCartDetails, 
+        total_price: guestCartDetails.reduce((sum, item) => sum + item.subtotal, 0) 
+    };
+
     return (
-        <CartContext.Provider value={{ cart, loading, addToCart, removeFromCart, updateQuantity, fetchCart }}>
+        <CartContext.Provider value={{ 
+            cart: user ? cart : cartToDisplay, 
+            guestCart,
+            loading, 
+            addToCart, 
+            removeFromCart, 
+            updateQuantity, 
+            fetchCart 
+        }}>
             {children}
         </CartContext.Provider>
     );

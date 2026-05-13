@@ -1,16 +1,23 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { MapPin, CreditCard, ShieldCheck, ArrowRight, CheckCircle2, ChevronLeft, Plus, Globe, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Checkout = () => {
   const { cart, fetchCart } = useCart();
+  const { user } = useAuth();
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [businessName, setBusinessName] = useState("");
+  const [gstNumber, setGstNumber] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [couponError, setCouponError] = useState("");
   const navigate = useNavigate();
   const initialized = useRef(false);
 
@@ -20,12 +27,14 @@ const Checkout = () => {
     state: '',
     pincode: ''
   });
+  const [pincodeError, setPincodeError] = useState("");
+  const [isValidatingPincode, setIsValidatingPincode] = useState(false);
 
   async function fetchAddresses() {
     try {
-      const res = await api.get('/orders/addresses/');
-      setAddresses(res.data);
-      if (res.data.length > 0) setSelectedAddress(res.data[0].id);
+      const { data } = await api.get('orders/addresses/');
+      setAddresses(data);
+      if (data.length > 0) setSelectedAddress(data[0].id);
     } catch {
       console.error("Error fetching addresses");
     }
@@ -39,15 +48,72 @@ const Checkout = () => {
     }
   }, []);
 
+  const summary = useMemo(() => {
+    if (!cart) return { subtotal: 0, tax: 0, shipping: 0, discount: 0, total: 0 };
+    
+    const subtotal = Number(cart.total_price) || 0;
+    const tax = subtotal * 0.18;
+    const shipping = subtotal > 5000 ? 0 : 250;
+    const discount = appliedCoupon ? (appliedCoupon.discount_type === 'PERCENTAGE' ? (subtotal * appliedCoupon.discount_value / 100) : appliedCoupon.discount_value) : 0;
+    
+    return {
+      subtotal,
+      tax,
+      shipping,
+      discount,
+      total: subtotal + tax + shipping - discount
+    };
+  }, [cart, appliedCoupon]);
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode) return;
+    try {
+      const res = await api.get(`orders/coupons/validate/?code=${couponCode}`);
+      setAppliedCoupon(res.data);
+      setCouponError("");
+    } catch {
+      setCouponError("Invalid or expired coupon.");
+      setAppliedCoupon(null);
+    }
+  };
+
+  const validatePincode = async (code) => {
+    if (code.length === 6) {
+      setIsValidatingPincode(true);
+      try {
+        const res = await api.get(`orders/check-pincode/?pincode=${code}`);
+        if (!res.data.is_serviceable) {
+          setPincodeError("Delivery available only in Maharashtra.");
+        } else {
+          setPincodeError("");
+        }
+      } catch {
+        setPincodeError("Error validating pincode.");
+      } finally {
+        setIsValidatingPincode(false);
+      }
+    } else if (code.length > 0 && code.length < 6) {
+      setPincodeError("Pincode must be 6 digits.");
+    } else {
+      setPincodeError("");
+    }
+  };
+
   const handleAddAddress = async (e) => {
     e.preventDefault();
+    if (pincodeError) return;
+    
     try {
-      const res = await api.post('/orders/addresses/', newAddress);
+      const res = await api.post('orders/addresses/', newAddress);
       setAddresses([...addresses, res.data]);
       setSelectedAddress(res.data.id);
       setNewAddress({ street_address: '', city: '', state: '', pincode: '' });
+      setPincodeError("");
     } catch (err) {
       console.error("Error adding address", err);
+      if (err.response?.data?.pincode) {
+        setPincodeError(err.response.data.pincode[0]);
+      }
     }
   };
 
@@ -69,6 +135,23 @@ const Checkout = () => {
       return;
     }
 
+    const addr = addresses.find(a => a.id === selectedAddress);
+    if (addr && addr.pincode) {
+      setIsProcessing(true);
+      try {
+        const checkRes = await api.get(`orders/check-pincode/?pincode=${addr.pincode}`);
+        if (!checkRes.data.is_serviceable) {
+          alert("The selected address is outside Maharashtra. Please choose a different address.");
+          setIsProcessing(false);
+          return;
+        }
+      } catch (err) {
+        console.error("Pincode check failed", err);
+      } finally {
+        setIsProcessing(false);
+      }
+    }
+
     setIsProcessing(true);
     try {
       if (paymentMethod === 'ONLINE') {
@@ -79,9 +162,12 @@ const Checkout = () => {
           return;
         }
 
-        const orderRes = await api.post('/orders/create-order/', {
+        const orderRes = await api.post('orders/create-order/', {
           address_id: selectedAddress,
-          payment_method: 'ONLINE'
+          payment_method: 'ONLINE',
+          coupon_code: couponCode,
+          business_name: businessName,
+          gst_number: gstNumber
         });
 
         const { razorpay_order_id, amount, key, order_id } = orderRes.data;
@@ -92,11 +178,11 @@ const Checkout = () => {
           currency: "INR",
           name: "Soham Gift",
           description: `Order #${order_id}`,
-          image: "https://sohamgift.com/logo.png", 
+          image: "https://res.cloudinary.com/dzt6vks8k/image/upload/v1/media/logo.png", 
           order_id: razorpay_order_id,
           handler: async function (response) {
             try {
-              await api.post('/orders/verify-payment/', {
+              await api.post('orders/verify-payment/', {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_signature: response.razorpay_signature,
@@ -108,8 +194,8 @@ const Checkout = () => {
             }
           },
           prefill: {
-            name: "Corporate Client", 
-            email: "corporate@example.com",
+            name: user?.username || "Valued Customer", 
+            email: user?.email || "",
           },
           theme: {
             color: "#D91656",
@@ -120,16 +206,20 @@ const Checkout = () => {
         rzp1.open();
       } else {
         // Cash on Delivery
-        await api.post('/orders/create-order/', {
+        await api.post('orders/create-order/', {
           address_id: selectedAddress,
-          payment_method: 'COD'
+          payment_method: 'COD',
+          coupon_code: couponCode,
+          business_name: businessName,
+          gst_number: gstNumber
         });
         setOrderComplete(true);
         fetchCart();
       }
     } catch (err) {
       console.error("Checkout initiation failed", err);
-      alert("Error starting checkout process");
+      const errorMessage = err.response?.data?.error || "Error starting checkout process";
+      alert(errorMessage);
     } finally {
       setIsProcessing(false);
     }
@@ -168,8 +258,8 @@ const Checkout = () => {
   }
 
   return (
-    <div className="pt-32 pb-32 bg-slate-50 min-h-screen">
-      <div className="container-custom">
+    <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
+      <div className="container-wide px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">Secure <span className="text-primary">Checkout</span></h1>
           <Link to="/cart" className="text-slate-400 hover:text-primary font-bold text-sm flex items-center gap-2 transition-colors">
@@ -258,17 +348,40 @@ const Checkout = () => {
                           onChange={(e) => setNewAddress({...newAddress, state: e.target.value})}
                           required
                       />
-                      <input 
-                          type="text" 
-                          placeholder="Pincode" 
-                          className="px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium"
-                          value={newAddress.pincode}
-                          onChange={(e) => setNewAddress({...newAddress, pincode: e.target.value})}
-                          required
-                      />
+                      <div className="relative">
+                        <input 
+                            type="text" 
+                            placeholder="Pincode" 
+                            maxLength={6}
+                            className={`w-full px-6 py-5 bg-slate-50 border rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium ${
+                              pincodeError ? 'border-red-500' : 'border-slate-100'
+                            }`}
+                            value={newAddress.pincode}
+                            onChange={(e) => {
+                              const val = e.target.value.replace(/\D/g, '');
+                              setNewAddress({...newAddress, pincode: val});
+                              validatePincode(val);
+                            }}
+                            required
+                        />
+                        {isValidatingPincode && (
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                            <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                          </div>
+                        )}
+                        {pincodeError && (
+                          <p className="text-red-500 text-[10px] font-bold mt-2 ml-2 uppercase tracking-tight">{pincodeError}</p>
+                        )}
+                      </div>
                   </div>
                 </div>
-                <button type="submit" className="btn-secondary px-8 py-4 text-sm">Save & Select Address</button>
+                <button 
+                  type="submit" 
+                  disabled={!!pincodeError || isValidatingPincode}
+                  className="btn-secondary px-8 py-4 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isValidatingPincode ? 'Validating...' : 'Save & Select Address'}
+                </button>
               </form>
             </motion.section>
 
@@ -333,6 +446,48 @@ const Checkout = () => {
                  </div>
                )}
             </motion.section>
+
+            {/* Business Information (Optional) */}
+            <motion.section 
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ delay: 0.2 }}
+               className="bg-white rounded-[3rem] p-8 md:p-12 shadow-premium border border-slate-100"
+            >
+               <div className="flex items-center gap-4 mb-10">
+                 <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                    <ShieldCheck size={24} />
+                 </div>
+                 <div>
+                    <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Business Details <span className="text-slate-300 font-medium text-lg ml-2">(Optional)</span></h2>
+                    <p className="text-xs text-slate-400 font-medium">Add GST details for corporate tax invoicing.</p>
+                 </div>
+               </div>
+
+               <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Business Name</label>
+                     <input 
+                       type="text" 
+                       placeholder="e.g. Acme Corp Pvt Ltd"
+                       className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium"
+                       value={businessName}
+                       onChange={(e) => setBusinessName(e.target.value)}
+                     />
+                  </div>
+                  <div className="space-y-2">
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">GST Number</label>
+                     <input 
+                       type="text" 
+                       placeholder="27AAAAA0000A1Z5"
+                       maxLength={15}
+                       className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium uppercase"
+                       value={gstNumber}
+                       onChange={(e) => setGstNumber(e.target.value.toUpperCase())}
+                     />
+                  </div>
+               </div>
+            </motion.section>
           </div>
 
           {/* Right Sidebar: Summary */}
@@ -348,24 +503,52 @@ const Checkout = () => {
               
               <div className="space-y-6 mb-10">
                 <div className="flex justify-between items-center text-slate-400">
-                  <span className="text-sm font-medium">Products Value</span>
-                  <span className="text-white font-bold">₹{cart?.total_price}</span>
+                  <span className="text-sm font-medium">Items Subtotal</span>
+                  <span className="text-white font-bold">₹{summary.subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between items-center text-slate-400">
-                  <span className="text-sm font-medium">Priority Dispatch</span>
-                  <span className="text-green-400 font-bold tracking-widest text-[10px] uppercase">Complimentary</span>
+                  <span className="text-sm font-medium">Shipping Charges</span>
+                  <span className={summary.shipping === 0 ? "text-green-400 font-bold tracking-widest text-[10px] uppercase" : "text-white font-bold"}>
+                    {summary.shipping === 0 ? "Complimentary" : `₹${summary.shipping.toFixed(2)}`}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center text-slate-400">
-                  <span className="text-sm font-medium">Taxation (GST)</span>
-                  <span className="text-white font-bold text-xs uppercase tracking-widest italic">Inclusive</span>
+                  <span className="text-sm font-medium">GST (18%)</span>
+                  <span className="text-white font-bold">₹{summary.tax.toFixed(2)}</span>
+                </div>
+                {appliedCoupon && (
+                   <div className="flex justify-between items-center text-green-400">
+                      <span className="text-sm font-medium">Coupon Discount ({appliedCoupon.code})</span>
+                      <span className="font-bold">− ₹{summary.discount.toFixed(2)}</span>
+                   </div>
+                )}
+                
+                {/* Coupon Input */}
+                <div className="pt-6 border-t border-white/10">
+                   <div className="flex gap-2">
+                      <input 
+                        type="text" 
+                        placeholder="Coupon Code"
+                        className="flex-grow bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-primary uppercase font-black tracking-widest"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                      />
+                      <button 
+                        onClick={handleApplyCoupon}
+                        className="bg-primary text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary/80 transition-all"
+                      >
+                        Apply
+                      </button>
+                   </div>
+                   {couponError && <p className="text-red-400 text-[9px] font-bold mt-2 ml-1">{couponError}</p>}
                 </div>
                 
                 <div className="pt-6 border-t border-white/10 flex justify-between items-end">
-                  <div>
-                     <p className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-1">Final Amount</p>
-                     <span className="text-lg font-bold">Total Payable</span>
-                  </div>
-                  <span className="text-5xl font-black text-white tracking-tighter">₹{cart?.total_price}</span>
+                   <div>
+                      <p className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-1">Final Amount</p>
+                      <span className="text-lg font-bold">Total Payable</span>
+                   </div>
+                   <span className="text-5xl font-black text-white tracking-tighter">₹{summary.total.toFixed(2)}</span>
                 </div>
               </div>
 
