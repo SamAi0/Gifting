@@ -491,7 +491,7 @@ const Checkout = () => {
           </div>
 
           {/* Right Sidebar: Summary */}
-          <div className="lg:col-span-4 sticky top-32">
+          <div className="lg:col-span-4 lg:sticky lg:top-32">
             <motion.div 
                initial={{ opacity: 0, x: 20 }}
                animate={{ opacity: 1, x: 0 }}
