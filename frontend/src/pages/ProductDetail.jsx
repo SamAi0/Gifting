@@ -977,8 +977,8 @@ const ProductDetail = () => {
           )}
 
           {/* Reviews Section */}
-          <div className="mt-20">
-             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+          <div className="mt-12">
+             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-6">
                  <div>
                     <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">Customer Voice</span>
                     <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Product <span className="text-primary italic">Reviews</span></h2>
@@ -1112,7 +1112,7 @@ const ProductDetail = () => {
                 )}
              </AnimatePresence>
 
-             <div className="grid md:grid-cols-2 gap-8">
+             <div className="grid md:grid-cols-2 gap-5">
                 {reviewsLoading ? (
                   [1, 2].map(n => <div key={n} className="h-48 bg-slate-200 animate-pulse rounded-[2rem]"></div>)
                 ) : reviews.length > 0 ? (
@@ -1121,11 +1121,11 @@ const ProductDetail = () => {
                       key={review.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-md transition-all"
+                      className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all"
                     >
-                       <div className="flex justify-between items-start mb-6">
+                       <div className="flex justify-between items-start mb-3">
                           <div className="flex items-center gap-4">
-                             <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary font-black text-lg">
+                             <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary font-black text-base">
                                 {review.user_name[0].toUpperCase()}
                              </div>
                              <div>
@@ -1135,10 +1135,10 @@ const ProductDetail = () => {
                           </div>
                           <StarRating rating={review.rating} size={14} />
                        </div>
-                       <p className="text-slate-600 text-sm leading-relaxed mb-6">"{review.comment}"</p>
+                       <p className="text-slate-600 text-sm leading-relaxed mb-3">"{review.comment}"</p>
                        
                        {review.image && (
-                          <div className="mb-6 rounded-2xl overflow-hidden border border-slate-100 shadow-sm inline-block">
+                          <div className="mb-4 rounded-2xl overflow-hidden border border-slate-100 shadow-sm inline-block">
                             <img 
                               src={getImageUrl(review.image)} 
                               alt="Review" 
@@ -1148,7 +1148,7 @@ const ProductDetail = () => {
                           </div>
                         )}
 
-                       <div className="flex justify-between items-center pt-6 border-t border-slate-50">
+                       <div className="flex justify-between items-center pt-4 border-t border-slate-50">
                           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{new Date(review.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                           <button className="text-[10px] font-black text-slate-400 hover:text-primary transition-colors flex items-center gap-2">
                              Helpful? ({review.helpful_votes})
