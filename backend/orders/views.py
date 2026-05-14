@@ -2,8 +2,8 @@ from django.conf import settings
 from rest_framework import viewsets, permissions, status, views
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address, Coupon
-from .serializers import CartSerializer, CartItemSerializer, OrderSerializer, AddressSerializer
+from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address, Coupon, SaveForLater
+from .serializers import CartSerializer, CartItemSerializer, OrderSerializer, AddressSerializer, SaveForLaterSerializer
 from products.models import Product
 from .utils import is_maharashtra_pincode
 from decimal import Decimal
@@ -16,10 +16,17 @@ def get_razorpay_client():
     return razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
 class CartView(views.APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get(self, request):
-        cart, created = Cart.objects.get_or_create(user=request.user)
+        session_id = request.query_params.get('session_id')
+        if request.user.is_authenticated:
+            cart, _ = Cart.objects.get_or_create(user=request.user)
+        elif session_id:
+            cart, _ = Cart.objects.get_or_create(session_id=session_id)
+        else:
+            return Response({"error": "Session ID or Authentication required"}, status=status.HTTP_400_BAD_REQUEST)
+        
         serializer = CartSerializer(cart, context={'request': request})
         return Response(serializer.data)
 
@@ -27,47 +34,45 @@ class MergeCartView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
-        guest_items = request.data.get('items', [])
-        cart, _ = Cart.objects.get_or_create(user=request.user)
+        session_id = request.data.get('session_id')
+        if not session_id:
+            return Response({"error": "Session ID required"}, status=status.HTTP_400_BAD_REQUEST)
         
-        for item_data in guest_items:
-            try:
-                product_id = item_data.get('product_id')
-                product = Product.objects.get(id=product_id)
-                quantity = int(item_data.get('quantity', 1))
-                customization_text = item_data.get('customization_text', '')
-                customization_data = item_data.get('customization_data', '')
-                
-                # Ensure customization_data is stringified if it's a dict/list
-                import json
-                if isinstance(customization_data, (dict, list)):
-                    customization_data = json.dumps(customization_data)
-                elif customization_data is None:
-                    customization_data = ''
-
+        user_cart, _ = Cart.objects.get_or_create(user=request.user)
+        try:
+            guest_cart = Cart.objects.get(session_id=session_id)
+            
+            # Move items from guest cart to user cart
+            for item in guest_cart.items.all():
                 # Check if item with same product and customization already exists in user cart
                 existing_item = CartItem.objects.filter(
-                    cart=cart, 
-                    product=product,
-                    customization_text=customization_text,
-                    customization_data=customization_data
+                    cart=user_cart, 
+                    product=item.product,
+                    customization_text=item.customization_text,
+                    customization_data=item.customization_data
                 ).first()
 
                 if existing_item:
-                    existing_item.quantity += quantity
+                    existing_item.quantity += item.quantity
                     existing_item.save()
+                    # Also move logos if any
+                    for logo in item.logos.all():
+                        logo.cart_item = existing_item
+                        logo.save()
+                    item.delete()
                 else:
-                    CartItem.objects.create(
-                        cart=cart,
-                        product=product,
-                        quantity=quantity,
-                        customization_text=customization_text,
-                        customization_data=customization_data
-                    )
-            except (Product.DoesNotExist, ValueError, TypeError):
-                continue
-                
-        return Response({"message": "Cart merged successfully"})
+                    item.cart = user_cart
+                    item.save()
+            
+            # Move saved items too
+            SaveForLater.objects.filter(session_id=session_id).update(user=request.user, session_id=None)
+            
+            # Delete guest cart after merge
+            guest_cart.delete()
+            
+            return Response({"message": "Cart merged successfully"})
+        except Cart.DoesNotExist:
+            return Response({"message": "No guest cart found for this session"}, status=status.HTTP_200_OK)
 
 class PincodeCheckView(views.APIView):
     permission_classes = [permissions.AllowAny]
@@ -86,19 +91,98 @@ class PincodeCheckView(views.APIView):
 
 class CartItemViewSet(viewsets.ModelViewSet):
     serializer_class = CartItemSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        return CartItem.objects.filter(cart__user=self.request.user)
+        session_id = self.request.query_params.get('session_id')
+        if self.request.user.is_authenticated:
+            return CartItem.objects.filter(cart__user=self.request.user)
+        elif session_id:
+            return CartItem.objects.filter(cart__session_id=session_id)
+        return CartItem.objects.none()
 
     def perform_create(self, serializer):
-        cart, created = Cart.objects.get_or_create(user=self.request.user)
-        instance = serializer.save(cart=cart)
+        session_id = self.request.query_params.get('session_id')
+        if self.request.user.is_authenticated:
+            cart, _ = Cart.objects.get_or_create(user=self.request.user)
+        elif session_id:
+            cart, _ = Cart.objects.get_or_create(session_id=session_id)
+        else:
+            raise serializers.ValidationError("Session ID or Authentication required")
+        
+        # Check if item with same product and customization already exists
+        product = serializer.validated_data.get('product')
+        customization_text = serializer.validated_data.get('customization_text', '')
+        customization_data = serializer.validated_data.get('customization_data', '')
+        
+        existing_item = CartItem.objects.filter(
+            cart=cart, 
+            product=product,
+            customization_text=customization_text,
+            customization_data=customization_data
+        ).first()
+
+        if existing_item:
+            existing_item.quantity += serializer.validated_data.get('quantity', 1)
+            existing_item.save()
+            instance = existing_item
+        else:
+            instance = serializer.save(cart=cart)
         
         # Handle multiple logo images
         logos = self.request.FILES.getlist('logo_image')
         for logo in logos:
             CartItemLogo.objects.create(cart_item=instance, file=logo)
+
+    @action(detail=True, methods=['post'])
+    def save_for_later(self, request, pk=None):
+        item = self.get_object()
+        session_id = request.query_params.get('session_id')
+        
+        SaveForLater.objects.create(
+            user=request.user if request.user.is_authenticated else None,
+            session_id=session_id if not request.user.is_authenticated else None,
+            product=item.product,
+            quantity=item.quantity
+        )
+        item.delete()
+        return Response({"message": "Moved to Save for Later"})
+
+class SaveForLaterViewSet(viewsets.ModelViewSet):
+    serializer_class = SaveForLaterSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        session_id = self.request.query_params.get('session_id')
+        if self.request.user.is_authenticated:
+            return SaveForLater.objects.filter(user=self.request.user)
+        elif session_id:
+            return SaveForLater.objects.filter(session_id=session_id)
+        return SaveForLater.objects.none()
+
+    def perform_create(self, serializer):
+        session_id = self.request.query_params.get('session_id')
+        if self.request.user.is_authenticated:
+            serializer.save(user=self.request.user)
+        else:
+            serializer.save(session_id=session_id)
+
+    @action(detail=True, methods=['post'])
+    def move_to_cart(self, request, pk=None):
+        item = self.get_object()
+        session_id = request.query_params.get('session_id')
+        if request.user.is_authenticated:
+            cart, _ = Cart.objects.get_or_create(user=request.user)
+        else:
+            cart, _ = Cart.objects.get_or_create(session_id=session_id)
+        
+        CartItem.objects.create(
+            cart=cart,
+            product=item.product,
+            quantity=item.quantity
+        )
+        item.delete()
+        return Response({"message": "Moved to Cart"})
 
 class AddressViewSet(viewsets.ModelViewSet):
     serializer_class = AddressSerializer
@@ -142,13 +226,14 @@ class CreateOrderView(views.APIView):
         business_name = request.data.get('business_name')
         gst_number = request.data.get('gst_number')
         coupon_code = request.data.get('coupon_code')
+        preferred_delivery_date = request.data.get('preferred_delivery_date')
         
         subtotal = cart.total_price
         shipping_charges = Decimal('0.00') if subtotal > Decimal('5000.00') else Decimal('250.00')
         tax_amount = (subtotal * Decimal('0.18')).quantize(Decimal('0.01'))
-        total_amount = subtotal + shipping_charges + tax_amount
         
         coupon = None
+        discount = Decimal('0.00')
         if coupon_code:
             from django.utils import timezone
             coupon = Coupon.objects.filter(
@@ -158,9 +243,10 @@ class CreateOrderView(views.APIView):
                 valid_to__gte=timezone.now()
             ).first()
 
-        if coupon:
-            discount = (total_amount * Decimal(coupon.discount_percent) / Decimal('100.00')).quantize(Decimal('0.01'))
-            total_amount -= discount
+            if coupon:
+                discount = (subtotal * Decimal(coupon.discount_percent) / Decimal('100.00')).quantize(Decimal('0.01'))
+
+        total_amount = subtotal + shipping_charges + tax_amount - discount
 
         razorpay_order_id = None
         
@@ -191,6 +277,7 @@ class CreateOrderView(views.APIView):
                     shipping_charges=shipping_charges,
                     tax_amount=tax_amount,
                     coupon=coupon,
+                    preferred_delivery_date=preferred_delivery_date,
                     status='CONFIRMED' if payment_method == 'COD' else 'PENDING'
                 )
 

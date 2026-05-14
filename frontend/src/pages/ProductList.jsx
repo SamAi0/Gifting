@@ -4,6 +4,7 @@ import { Search, Filter, Package, LayoutGrid, List, ChevronRight, X, Star } from
 import { fetchProducts, fetchCategories, getImageUrl } from '../api';
 import { ProductCardSkeleton } from '../components/Skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
+import VoiceSearch from '../components/VoiceSearch';
 
 const ProductList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -279,6 +280,13 @@ const ProductList = () => {
                 }}
                 onFocus={() => setShowSuggestions(true)}
               />
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                <VoiceSearch onSearch={(val) => {
+                  setSearchQuery(val);
+                  setCurrentPage(1);
+                  setShowSuggestions(true);
+                }} />
+              </div>
               
               {/* Search Suggestions Dropdown */}
               <AnimatePresence>
@@ -309,7 +317,7 @@ const ProductList = () => {
                              </div>
                              <div className="flex-grow">
                                 <p className="text-xs font-bold text-slate-900 group-hover:text-primary transition-colors">{item.name}</p>
-                                <p className="text-[10px] text-slate-400">₹{item.price} • {item.category_name}</p>
+                                <p className="text-[10px] text-slate-400">₹{item.price} • {item.category_name || item.type}</p>
                              </div>
                           </Link>
                         ))}

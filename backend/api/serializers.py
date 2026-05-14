@@ -1,13 +1,28 @@
 from rest_framework import serializers
-from products.models import Product, Category, ProductVariant, Review, Wishlist, AttributeValue, Attribute
+from products.models import Product, Category, ProductVariant, Review, Wishlist, AttributeValue, Attribute, Brand, ProductImage
 from inquiries.models import BulkInquiry, ContactMessage
 from company_info.models import Testimonial, Settings
 
 class CategorySerializer(serializers.ModelSerializer):
     product_count = serializers.IntegerField(read_only=True)
+    subcategories = serializers.SerializerMethodField()
     class Meta:
         model = Category
-        fields = ['id', 'name', 'slug', 'product_count']
+        fields = ['id', 'name', 'slug', 'product_count', 'parent', 'subcategories']
+
+    def get_subcategories(self, obj):
+        # We limit depth to avoid recursion issues if any
+        return CategorySerializer(obj.subcategories.all(), many=True).data
+
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = ['id', 'name', 'slug', 'logo', 'description']
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['id', 'image', 'alt_text', 'order']
 
 
 class AttributeValueSerializer(serializers.ModelSerializer):
@@ -50,16 +65,18 @@ class WishlistSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
+    brand_details = BrandSerializer(source='brand', read_only=True)
     customization_zones = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
+    images = ProductImageSerializer(many=True, read_only=True)
     variants = ProductVariantSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product
         fields = [
             'id', 'name', 'sku', 'slug', 'description', 'price', 'discount_price', 
-            'category', 'category_name', 
-            'image', 'variants', 'customization_zones', 'customization_config',
+            'category', 'category_name', 'brand', 'brand_details',
+            'image', 'images', 'variants', 'customization_zones', 'customization_config',
             'is_trending', 'is_bulk_only', 'is_active', 'stock', 'weight', 
             'badge_text', 'badge_color', 'tags', 'meta_title', 'meta_description',
             'popularity_score', 'average_rating', 'review_count', 'created_at', 'updated_at'
