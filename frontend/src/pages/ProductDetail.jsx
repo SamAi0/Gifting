@@ -62,6 +62,8 @@ const ProductDetail = () => {
   const [mockupImage, setMockupImage] = useState(null);
   const [isCustomizing, setIsCustomizing] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [trendingProducts, setTrendingProducts] = useState([]);
+  const [dynamicHeader, setDynamicHeader] = useState({ title: 'Popular Picks', subtitle: 'Other Trending Gifts' });
   const [warningMessage, setWarningMessage] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [pincode, setPincode] = useState("");
@@ -167,6 +169,19 @@ const ProductDetail = () => {
       }
       
       setRelatedProducts(relatedData.filter(p => p.id !== parseInt(id)).slice(0, 4));
+
+      // Fetch Trending Products for the bottom section
+      const trendingRes = await api.get('/products/', { params: { is_trending: 'true' } });
+      const trendingData = trendingRes.data.results || trendingRes.data;
+      setTrendingProducts(trendingData.filter(p => p.id !== parseInt(id)).slice(0, 4));
+
+      // Set random header for variety
+      const titles = ['Popular Picks', 'Top Rated Gifts', 'Customers Loved', 'Trending Now'];
+      const subtitles = ['Other Trending Gifts', 'Handpicked For You', 'Most Wanted Items', 'Gift Ideas For You'];
+      setDynamicHeader({
+        title: titles[Math.floor(Math.random() * titles.length)],
+        subtitle: subtitles[Math.floor(Math.random() * subtitles.length)]
+      });
       
       // Fetch Reviews
       loadReviews();
@@ -378,10 +393,10 @@ const ProductDetail = () => {
 
   return (
     <>
-      <div className="pt-32 md:pt-40 pb-20 bg-slate-50 min-h-screen">
-        <div className="container-wide px-4 sm:px-8 lg:px-12">
+      <div className="pt-24 md:pt-28 pb-12 bg-slate-50 min-h-screen">
+        <div className="container-wide px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-slate-400 mb-10 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          <nav className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6 overflow-x-auto whitespace-nowrap scrollbar-hide">
             <Link to="/" className="hover:text-primary transition-colors">Home</Link>
             <ChevronRight size={12} />
             <Link to="/products" className="hover:text-primary transition-colors">Catalog</Link>
@@ -391,7 +406,7 @@ const ProductDetail = () => {
             <span className="text-slate-900 truncate">{product.name}</span>
           </nav>
 
-          <div className="grid lg:grid-cols-2 gap-10 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
             {/* Visual Area */}
             <div className="lg:sticky lg:top-32">
                <motion.div 
@@ -458,8 +473,41 @@ const ProductDetail = () => {
                       <Wand2 size={18} /> Visualize Your Logo
                     </motion.button>
                   )}
-               </motion.div>
-            </div>
+                </motion.div>
+
+                {/* Desktop-only Suggestions Teaser below image */}
+                {relatedProducts.length > 0 && (
+                  <div className="hidden lg:block mt-10">
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">Curated Suggestions</span>
+                      <button 
+                        onClick={() => document.getElementById('related-products-section')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="text-xs font-bold text-primary hover:underline uppercase tracking-widest"
+                      >
+                        View All
+                      </button>
+                    </div>
+                    <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                      {relatedProducts.slice(0, 4).map((rel) => (
+                        <Link 
+                          key={rel.id} 
+                          to={`/products/${rel.id}`}
+                          className="group relative flex-shrink-0 w-44 h-44 rounded-[2rem] overflow-hidden border border-slate-200 bg-white hover:border-primary/30 transition-all shadow-sm"
+                        >
+                          <img 
+                            src={getImageUrl(rel.image)} 
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                            alt={rel.name} 
+                          />
+                          <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/40 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                             <span className="text-[8px] font-black text-white uppercase tracking-tighter">View</span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+             </div>
 
             {/* Details Section */}
             <div className="flex flex-col">
@@ -559,7 +607,7 @@ const ProductDetail = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
-                    className="space-y-10"
+                    className="space-y-6"
                   >
                     {/* Basic Info */}
                     <div>
@@ -568,11 +616,11 @@ const ProductDetail = () => {
                         <StarRating rating={parseFloat(product.average_rating)} />
                         <span className="text-slate-400 text-xs font-bold">({product.review_count} Reviews)</span>
                       </div>
-                      <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">{product.name}</h1>
+                      <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight tracking-tight">{product.name}</h1>
                       
                       {/* Pricing */}
-                      <div className="flex flex-col gap-2 mb-8">
-                        <div className="flex items-center gap-4 mb-8">
+                      <div className="flex flex-col gap-1 mb-6">
+                        <div className="flex items-center gap-4 mb-4">
                            {product.discount_price && (
                              <span className="text-slate-400 line-through font-medium mr-2">₹{product.price}</span>
                            )}
@@ -867,8 +915,8 @@ const ProductDetail = () => {
                     </div>
 
                     {/* Features List */}
-                    <div className="pt-10 border-t border-slate-200">
-                       <h4 className="text-lg font-bold text-slate-900 mb-6">Why Choose This Gift?</h4>
+                    <div className="pt-6 border-t border-slate-200">
+                       <h4 className="text-base font-bold text-slate-900 mb-4">Why Choose This Gift?</h4>
                        <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
                           {[
                             'Premium Quality Materials',
@@ -893,9 +941,44 @@ const ProductDetail = () => {
             </div>
           </div>
 
+          {/* Trending Products (Bottom Section) */}
+          {trendingProducts.length > 0 && (
+            <div id="related-products-section" className="mt-20">
+               <div className="flex justify-between items-end mb-8">
+                  <div>
+                     <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">{dynamicHeader.title}</span>
+                     <h2 className="text-4xl font-bold text-slate-900 tracking-tight">{dynamicHeader.subtitle.split(' ').slice(0, -1).join(' ')} <span className="text-primary italic">{dynamicHeader.subtitle.split(' ').slice(-1)}</span></h2>
+                  </div>
+                  <Link to="/products" className="btn-secondary py-3 px-6 text-sm">View Full Catalog</Link>
+               </div>
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                  {trendingProducts.map((rel) => (
+                    <Link 
+                      key={rel.id} 
+                      to={`/products/${rel.id}`}
+                      className="group"
+                    >
+                      <div className="bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500 border border-slate-100">
+                         <div className="aspect-square bg-slate-50 overflow-hidden">
+                            <img src={getImageUrl(rel.image)} alt={rel.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                         </div>
+                         <div className="p-8">
+                            <h4 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors truncate">{rel.name}</h4>
+                            <div className="flex items-center justify-between">
+                               <p className="text-xl font-bold text-slate-900">₹{rel.price}</p>
+                               <StarRating rating={parseFloat(rel.average_rating)} size={10} />
+                            </div>
+                         </div>
+                      </div>
+                    </Link>
+                  ))}
+               </div>
+            </div>
+          )}
+
           {/* Reviews Section */}
-          <div className="mt-40">
-             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+          <div className="mt-20">
+             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
                  <div>
                     <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">Customer Voice</span>
                     <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Product <span className="text-primary italic">Reviews</span></h2>
@@ -979,6 +1062,41 @@ const ProductDetail = () => {
                               />
                            </div>
 
+                           <div>
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-4">Upload Images (Optional)</label>
+                              <div className="flex items-center gap-4">
+                                <label className="cursor-pointer flex flex-col items-center justify-center w-32 h-32 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-primary/30 transition-all overflow-hidden group">
+                                  {newReview.image ? (
+                                    <img 
+                                      src={URL.createObjectURL(newReview.image)} 
+                                      className="w-full h-full object-cover" 
+                                      alt="Preview" 
+                                    />
+                                  ) : (
+                                    <>
+                                      <Package size={24} className="text-slate-400 group-hover:text-primary transition-colors mb-2" />
+                                      <span className="text-[10px] font-bold text-slate-400 group-hover:text-primary uppercase tracking-wider">Add Image</span>
+                                    </>
+                                  )}
+                                  <input 
+                                    type="file" 
+                                    accept="image/*" 
+                                    className="hidden" 
+                                    onChange={(e) => setNewReview({...newReview, image: e.target.files[0]})}
+                                  />
+                                </label>
+                                {newReview.image && (
+                                  <button 
+                                    type="button"
+                                    onClick={() => setNewReview({...newReview, image: null})}
+                                    className="text-[10px] font-black text-red-500 uppercase tracking-widest hover:underline"
+                                  >
+                                    Remove
+                                  </button>
+                                )}
+                              </div>
+                           </div>
+
                            <div className="flex justify-end">
                               <button 
                                 type="submit" 
@@ -1018,6 +1136,18 @@ const ProductDetail = () => {
                           <StarRating rating={review.rating} size={14} />
                        </div>
                        <p className="text-slate-600 text-sm leading-relaxed mb-6">"{review.comment}"</p>
+                       
+                       {review.image && (
+                          <div className="mb-6 rounded-2xl overflow-hidden border border-slate-100 shadow-sm inline-block">
+                            <img 
+                              src={getImageUrl(review.image)} 
+                              alt="Review" 
+                              className="max-h-64 object-contain cursor-zoom-in"
+                              onClick={() => window.open(getImageUrl(review.image), '_blank')}
+                            />
+                          </div>
+                        )}
+
                        <div className="flex justify-between items-center pt-6 border-t border-slate-50">
                           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{new Date(review.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                           <button className="text-[10px] font-black text-slate-400 hover:text-primary transition-colors flex items-center gap-2">
@@ -1033,41 +1163,6 @@ const ProductDetail = () => {
                 )}
              </div>
           </div>
-
-          {/* Related Products */}
-          {relatedProducts.length > 0 && (
-            <div className="mt-40">
-               <div className="flex justify-between items-end mb-16">
-                  <div>
-                     <span className="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 inline-block">Curated Suggestions</span>
-                     <h2 className="text-4xl font-bold text-slate-900 tracking-tight">You May Also <span className="text-primary italic">Like</span></h2>
-                  </div>
-                  <Link to="/products" className="btn-secondary py-3 px-6 text-sm">View Full Catalog</Link>
-               </div>
-               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                  {relatedProducts.map((rel) => (
-                    <Link 
-                      key={rel.id} 
-                      to={`/products/${rel.id}`}
-                      className="group"
-                    >
-                      <div className="bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500 border border-slate-100">
-                         <div className="aspect-square bg-slate-50 overflow-hidden">
-                            <img src={getImageUrl(rel.image)} alt={rel.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                         </div>
-                         <div className="p-8">
-                            <h4 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors truncate">{rel.name}</h4>
-                            <div className="flex items-center justify-between">
-                               <p className="text-xl font-bold text-slate-900">₹{rel.price}</p>
-                               <StarRating rating={parseFloat(rel.average_rating)} size={10} />
-                            </div>
-                         </div>
-                      </div>
-                    </Link>
-                  ))}
-               </div>
-            </div>
-          )}
         </div>
       </div>
       {/* Premium Toast Notification */}
