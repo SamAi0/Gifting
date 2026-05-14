@@ -9,6 +9,8 @@ import {
   MessageSquare
 } from 'lucide-react';
 
+import AdminGlobalSearch from '../../components/admin/AdminGlobalSearch';
+
 const StatCard = ({ title, value, icon, trend, trendValue, color }) => (
   <div className="bg-[#161b2a] border border-white/5 rounded-2xl p-6 hover:border-[#D91656]/50 transition-all duration-300">
     <div className="flex items-center justify-between mb-4">
@@ -50,6 +52,12 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-8">
+      {/* Search Bar */}
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Dashboard</h2>
+        <AdminGlobalSearch />
+      </div>
+
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 

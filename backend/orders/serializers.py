@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address
+from .models import Cart, CartItem, CartItemLogo, Order, OrderItem, OrderItemLogo, Address, SaveForLater
 from .utils import is_maharashtra_pincode
 from api.serializers import ProductSerializer
 
@@ -52,7 +52,13 @@ class CartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        fields = ('id', 'items', 'total_price')
+        fields = ('id', 'user', 'session_id', 'items', 'total_price')
+
+class SaveForLaterSerializer(serializers.ModelSerializer):
+    product_details = ProductSerializer(source='product', read_only=True)
+    class Meta:
+        model = SaveForLater
+        fields = ('id', 'product', 'product_details', 'quantity', 'added_at')
 
 class OrderItemLogoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -96,6 +102,6 @@ class OrderSerializer(serializers.ModelSerializer):
             'id', 'user', 'user_name', 'address', 'address_details', 'total_amount', 
             'status', 'razorpay_order_id', 'created_at', 'items',
             'business_name', 'gst_number', 'shipping_charges', 'tax_amount', 
-            'coupon', 'tracking_number', 'estimated_delivery'
+            'coupon', 'tracking_number', 'estimated_delivery', 'preferred_delivery_date'
         )
         read_only_fields = ('total_amount', 'razorpay_order_id', 'created_at')

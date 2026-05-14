@@ -7,120 +7,103 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const { user } = useAuth();
     const [cart, setCart] = useState(null);
-    const [guestCart, setGuestCart] = useState(() => {
-        const saved = localStorage.getItem('guest_cart');
-        return saved ? JSON.parse(saved) : [];
-    });
     const [loading, setLoading] = useState(false);
-    const [guestCartDetails, setGuestCartDetails] = useState([]);
-
-    // Save guest cart to local storage whenever it changes
-    useEffect(() => {
-        if (!user) {
-            localStorage.setItem('guest_cart', JSON.stringify(guestCart));
+    const [savedItems, setSavedItems] = useState([]);
+    
+    // Guest Session Management
+    const [sessionId] = useState(() => {
+        let sid = localStorage.getItem('cart_session_id');
+        if (!sid) {
+            sid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            localStorage.setItem('cart_session_id', sid);
         }
-    }, [guestCart, user]);
+        return sid;
+    });
 
-    const fetchCart = useCallback(async () => {
-        if (!user) {
-            setCart(null);
-            return;
-        }
+    const fetchCart = useCallback(async (isMounted = { current: true }) => {
         setLoading(true);
         try {
-            const res = await api.get('orders/cart/');
-            setCart(res.data);
+            const url = user ? 'orders/cart/' : `orders/cart/?session_id=${sessionId}`;
+            const res = await api.get(url);
+            if (isMounted.current) {
+                setCart(res.data);
+            }
+            
+            // Also fetch saved items
+            const savedUrl = user ? 'orders/save-for-later/' : `orders/save-for-later/?session_id=${sessionId}`;
+            const savedRes = await api.get(savedUrl);
+            if (isMounted.current) {
+                setSavedItems(savedRes.data.results || savedRes.data);
+            }
         } catch (err) {
             console.error("Error fetching cart", err);
         } finally {
-            setLoading(false);
+            if (isMounted.current) {
+                setLoading(false);
+            }
         }
-    }, [user]);
+    }, [user, sessionId]);
 
+    const mergeGuestCart = useCallback(async () => {
+        if (!user || !sessionId) return;
+        try {
+            // Using the session_id approach on backend is cleaner
+            await api.post('orders/merge-cart/', { session_id: sessionId });
+            // After merge, clear local session if desired, or just re-fetch
+            // For now, we'll just re-fetch to get the combined cart
+            fetchCart();
+        } catch (err) {
+            console.error("Error merging guest cart", err);
+        }
+    }, [user, sessionId, fetchCart]);
 
+    // Automatically merge cart when user logs in
+    useEffect(() => {
+        if (user && sessionId) {
+            const hasGuestItems = localStorage.getItem('cart_session_id'); // Just a check
+            if (hasGuestItems) {
+                const runMerge = async () => {
+                    await mergeGuestCart();
+                };
+                runMerge();
+            }
+        }
+    }, [user, sessionId, mergeGuestCart]);
 
     // Fetch cart on mount and when user changes
     useEffect(() => {
-        let isMounted = true;
+        const isMounted = { current: true };
         
-        const syncCart = async () => {
-            if (!user) {
-                if (isMounted) {
-                    setCart(null);
-                }
-                return;
-            }
-            
-            setLoading(true);
-            try {
-                // Check if there's a guest cart to merge
-                const savedGuestCart = localStorage.getItem('guest_cart');
-                if (savedGuestCart) {
-                    const items = JSON.parse(savedGuestCart);
-                    if (items.length > 0) {
-                        await api.post('orders/merge-cart/', { items });
-                        localStorage.removeItem('guest_cart');
-                        setGuestCart([]);
-                    }
-                }
-                
-                const res = await api.get('orders/cart/');
-                if (isMounted) {
-                    setCart(res.data);
-                }
-            } catch (err) {
-                console.error("Error fetching cart", err);
-            } finally {
-                if (isMounted) {
-                    setLoading(false);
-                }
-            }
+        const runFetch = async () => {
+            await fetchCart(isMounted);
         };
-        
-        syncCart();
+        runFetch();
         
         return () => {
-            isMounted = false;
+            isMounted.current = false;
         };
-    }, [user]);
+    }, [fetchCart]);
 
     const addToCart = async (productId, quantity = 1, customizationText = '', customizationImage = null, customizationData = null, logoImage = null) => {
-        if (!user) {
-            // Add to Guest Cart
-            const newItem = {
-                id: Date.now(), // Temporary ID
-                product_id: productId,
-                quantity,
-                customization_text: customizationText,
-                customization_data: customizationData,
-                // Files can't be easily stored in localStorage, so we might skip them for guest cart
-                // or just alert the user.
-            };
-            setGuestCart(prev => [...prev, newItem]);
-            return;
-        }
-        
         const formData = new FormData();
         formData.append('product', productId);
         formData.append('quantity', quantity);
         if (customizationText) formData.append('customization_text', customizationText);
         if (customizationImage) formData.append('customization_image', customizationImage);
         if (customizationData) formData.append('customization_data', JSON.stringify(customizationData));
+        
         if (logoImage) {
             if (Array.isArray(logoImage)) {
-                logoImage.forEach((file) => {
-                    formData.append('logo_image', file);
-                });
+                logoImage.forEach((file) => formData.append('logo_image', file));
             } else {
                 formData.append('logo_image', logoImage);
             }
         }
 
         try {
-            await api.post('orders/cart-items/', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+            const url = `orders/cart-items/${user ? '' : `?session_id=${sessionId}`}`;
+            await api.post(url, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
             fetchCart();
         } catch (err) {
@@ -129,12 +112,9 @@ export const CartProvider = ({ children }) => {
     };
 
     const removeFromCart = async (itemId) => {
-        if (!user) {
-            setGuestCart(prev => prev.filter(item => item.id !== itemId));
-            return;
-        }
         try {
-            await api.delete(`orders/cart-items/${itemId}/`);
+            const url = `orders/cart-items/${itemId}/${user ? '' : `?session_id=${sessionId}`}`;
+            await api.delete(url);
             fetchCart();
         } catch (err) {
             console.error("Error removing from cart", err);
@@ -142,70 +122,47 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateQuantity = async (itemId, quantity) => {
-        if (!user) {
-            setGuestCart(prev => prev.map(item => item.id === itemId ? { ...item, quantity } : item));
-            return;
-        }
         try {
-            await api.patch(`orders/cart-items/${itemId}/`, { quantity });
+            const url = `orders/cart-items/${itemId}/${user ? '' : `?session_id=${sessionId}`}`;
+            await api.patch(url, { quantity });
             fetchCart();
         } catch (err) {
             console.error("Error updating quantity", err);
         }
     };
 
+    const saveForLater = async (itemId) => {
+        try {
+            const url = `orders/cart-items/${itemId}/save_for_later/${user ? '' : `?session_id=${sessionId}`}`;
+            await api.post(url);
+            fetchCart();
+        } catch (err) {
+            console.error("Error saving for later", err);
+        }
+    };
 
-    // Fetch product details for guest cart items
-    useEffect(() => {
-        if (user) return;
-
-        const fetchGuestDetails = async () => {
-            if (guestCart.length === 0) {
-                setGuestCartDetails([]);
-                return;
-            }
-
-            try {
-                // Fetch details for all unique product IDs in guest cart
-                const productIds = [...new Set(guestCart.map(item => item.product_id))];
-                const detailPromises = productIds.map(id => api.get(`products/${id}/`));
-                const results = await Promise.all(detailPromises);
-                const productMap = {};
-                results.forEach(res => {
-                    productMap[res.data.id] = res.data;
-                });
-
-                const detailedItems = guestCart.map(item => {
-                    const product = productMap[item.product_id];
-                    return {
-                        ...item,
-                        product_details: product,
-                        subtotal: product ? product.price * item.quantity : 0
-                    };
-                });
-                setGuestCartDetails(detailedItems);
-            } catch (err) {
-                console.error("Error fetching guest cart details", err);
-            }
-        };
-
-        fetchGuestDetails();
-    }, [guestCart, user]);
-
-    const cartToDisplay = user ? cart : { 
-        items: guestCartDetails, 
-        total_price: guestCartDetails.reduce((sum, item) => sum + item.subtotal, 0) 
+    const moveToCart = async (savedItemId) => {
+        try {
+            const url = `orders/save-for-later/${savedItemId}/move_to_cart/${user ? '' : `?session_id=${sessionId}`}`;
+            await api.post(url);
+            fetchCart();
+        } catch (err) {
+            console.error("Error moving to cart", err);
+        }
     };
 
     return (
         <CartContext.Provider value={{ 
-            cart: cartToDisplay, 
-            guestCart,
+            cart, 
+            savedItems,
             loading, 
             addToCart, 
             removeFromCart, 
             updateQuantity, 
-            fetchCart 
+            saveForLater,
+            moveToCart,
+            fetchCart,
+            mergeGuestCart
         }}>
             {children}
         </CartContext.Provider>

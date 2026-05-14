@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.templatetags.static import static
-from .models import Category, Product, ProductVariant, Attribute, AttributeValue
+from .models import Category, Product, ProductVariant, Attribute, AttributeValue, Brand, ProductImage
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from rangefilter.filters import DateRangeFilter
 from simple_history.admin import SimpleHistoryAdmin
@@ -12,9 +12,19 @@ class ProductVariantInline(admin.TabularInline):
     extra = 1
     fields = ('color_name', 'image', 'image_file', 'stock', 'is_active')
 
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    extra = 1
+
 @admin.register(Category)
 class CategoryAdmin(ImportExportModelAdmin):
-    list_display = ('name', 'id')
+    list_display = ('name', 'parent', 'id')
+    list_filter = ('parent',)
+    search_fields = ('name',)
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
     search_fields = ('name',)
 
 
@@ -29,7 +39,7 @@ class AttributeValueAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
-    inlines = [ProductVariantInline]
+    inlines = [ProductVariantInline, ProductImageInline]
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == 'customization_config':
             kwargs['widget'] = SafeJSONEditorWidget(mode='code')
@@ -51,9 +61,10 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     
     image_preview.short_description = 'Preview'
 
-    list_display = ('image_preview', 'name', 'sku', 'category', 'price', 'stock', 'is_active', 'is_trending')
+    list_display = ('image_preview', 'name', 'sku', 'category', 'brand', 'price', 'stock', 'is_active', 'is_trending')
     list_filter = (
         'category', 
+        'brand',
         'is_trending', 
         'is_active',
         'is_bulk_only', 
@@ -81,7 +92,7 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
 
     fieldsets = (
         ('General Info', {
-            'fields': (('name', 'sku'), 'category', 'description', 'tags', ('image', 'image_file', 'image_preview_large'))
+            'fields': (('name', 'sku'), ('category', 'brand'), 'description', 'tags', ('image', 'image_file', 'image_preview_large'))
         }),
         ('Pricing & Inventory', {
             'fields': (('price', 'discount_price'), ('stock', 'weight'), ('is_trending', 'is_bulk_only', 'is_active', 'is_deleted')),

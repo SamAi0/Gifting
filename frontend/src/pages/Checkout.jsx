@@ -18,6 +18,7 @@ const Checkout = () => {
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [couponError, setCouponError] = useState("");
+  const [preferredDeliveryDate, setPreferredDeliveryDate] = useState("");
   const navigate = useNavigate();
   const initialized = useRef(false);
 
@@ -52,9 +53,9 @@ const Checkout = () => {
     if (!cart) return { subtotal: 0, tax: 0, shipping: 0, discount: 0, total: 0 };
     
     const subtotal = Number(cart.total_price) || 0;
-    const tax = subtotal * 0.18;
     const shipping = subtotal > 5000 ? 0 : 250;
-    const discount = appliedCoupon ? (appliedCoupon.discount_type === 'PERCENTAGE' ? (subtotal * appliedCoupon.discount_value / 100) : appliedCoupon.discount_value) : 0;
+    const tax = Number((subtotal * 0.18).toFixed(2));
+    const discount = appliedCoupon ? Number((subtotal * (appliedCoupon.discount_percent / 100)).toFixed(2)) : 0;
     
     return {
       subtotal,
@@ -167,7 +168,8 @@ const Checkout = () => {
           payment_method: 'ONLINE',
           coupon_code: couponCode,
           business_name: businessName,
-          gst_number: gstNumber
+          gst_number: gstNumber,
+          preferred_delivery_date: preferredDeliveryDate
         });
 
         const { razorpay_order_id, amount, key, order_id } = orderRes.data;
@@ -211,7 +213,8 @@ const Checkout = () => {
           payment_method: 'COD',
           coupon_code: couponCode,
           business_name: businessName,
-          gst_number: gstNumber
+          gst_number: gstNumber,
+          preferred_delivery_date: preferredDeliveryDate
         });
         setOrderComplete(true);
         fetchCart();
@@ -383,6 +386,43 @@ const Checkout = () => {
                   {isValidatingPincode ? 'Validating...' : 'Save & Select Address'}
                 </button>
               </form>
+            </motion.section>
+
+            {/* Delivery Scheduling */}
+            <motion.section 
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ delay: 0.05 }}
+               className="bg-white rounded-[3rem] p-8 md:p-12 shadow-premium border border-slate-100"
+            >
+               <div className="flex items-center gap-4 mb-10">
+                 <div className="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center">
+                    <Globe size={24} />
+                 </div>
+                 <div>
+                    <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Delivery Scheduling</h2>
+                    <p className="text-xs text-slate-400 font-medium">When would you like your gifts to arrive?</p>
+                 </div>
+               </div>
+
+               <div className="space-y-6">
+                  <div className="space-y-2">
+                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Preferred Delivery Date</label>
+                     <div className="relative">
+                        <input 
+                           type="date" 
+                           min={new Date().toISOString().split('T')[0]}
+                           className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium"
+                           value={preferredDeliveryDate}
+                           onChange={(e) => setPreferredDeliveryDate(e.target.value)}
+                        />
+                        <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                           {/* Icon handled by browser default date picker mostly, but we can add text if needed */}
+                        </div>
+                     </div>
+                     <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest ml-2">Note: We try our best to meet your requested date, subject to logistics availability.</p>
+                  </div>
+               </div>
             </motion.section>
 
             {/* Payment Method Selection */}

@@ -26,12 +26,13 @@ class Address(models.Model):
         return f"{self.user.username} - {self.city}"
 
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart', null=True, blank=True)
+    session_id = models.CharField(max_length=100, null=True, blank=True, unique=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Cart for {self.user.username}"
+        return f"Cart {self.id} ({self.user.username if self.user else 'Guest'})"
 
     @property
     def total_price(self):
@@ -58,6 +59,16 @@ class CartItemLogo(models.Model):
     cart_item = models.ForeignKey(CartItem, on_delete=models.CASCADE, related_name='logos')
     file = models.FileField(upload_to='cart_logos/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+class SaveForLater(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='saved_items', null=True, blank=True)
+    session_id = models.CharField(max_length=100, null=True, blank=True, db_index=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Saved: {self.product.name} ({self.user.username if self.user else 'Guest'})"
 
 class Order(models.Model):
     STATUS_CHOICES = (
@@ -91,6 +102,7 @@ class Order(models.Model):
     coupon = models.ForeignKey(Coupon, on_delete=models.SET_NULL, null=True, blank=True)
     tracking_number = models.CharField(max_length=100, null=True, blank=True)
     estimated_delivery = models.DateField(null=True, blank=True)
+    preferred_delivery_date = models.DateField(null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
