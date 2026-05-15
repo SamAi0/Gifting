@@ -8,7 +8,7 @@ if (!API_BASE_URL) {
 export const getImageUrl = (path, useCors = false) => {
   if (!path) return '';
 
-  if (path.startsWith('http://') || path.startsWith('https://')) {
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:') || path.startsWith('blob:')) {
     return path;
   }
 
@@ -42,8 +42,8 @@ api.interceptors.response.use(
       const url = error.config.url;
       
       if (status === 401) {
-        // Don't warn for initial profile check as it's a normal part of auth flow
-        if (!url.includes('auth/profile/') && !url.includes('auth/logout/')) {
+        // Don't warn for initial profile check or login attempts
+        if (!url.includes('auth/profile/') && !url.includes('auth/logout/') && !url.includes('auth/login/')) {
           console.warn('Unauthorized request detected. Redirecting to login or clearing session.');
         }
       } else if (status === 403) {

@@ -12,6 +12,7 @@ export const CartProvider = ({ children }) => {
         return saved ? JSON.parse(saved) : [];
     });
     const [loading, setLoading] = useState(false);
+    const [guestCartDetails, setGuestCartDetails] = useState([]);
 
     // Save guest cart to local storage whenever it changes
     useEffect(() => {
@@ -153,11 +154,50 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    const cartToDisplay = user ? cart : { items: guestCart.map(item => ({
-        ...item,
-        subtotal: 0, // In guest mode we can't easily calculate subtotal without product data
-        product: { id: item.product_id, name: 'Loading...' } // Placeholder
-    })), total_price: 0 };
+    // Fetch product details for guest cart items
+    useEffect(() => {
+        if (user) {
+            setGuestCartDetails([]);
+            return;
+        }
+
+        const fetchGuestDetails = async () => {
+            if (guestCart.length === 0) {
+                setGuestCartDetails([]);
+                return;
+            }
+
+            try {
+                // Fetch details for all unique product IDs in guest cart
+                const productIds = [...new Set(guestCart.map(item => item.product_id))];
+                const detailPromises = productIds.map(id => api.get(`products/${id}/`));
+                const results = await Promise.all(detailPromises);
+                const productMap = {};
+                results.forEach(res => {
+                    productMap[res.data.id] = res.data;
+                });
+
+                const detailedItems = guestCart.map(item => {
+                    const product = productMap[item.product_id];
+                    return {
+                        ...item,
+                        product_details: product,
+                        subtotal: product ? product.price * item.quantity : 0
+                    };
+                });
+                setGuestCartDetails(detailedItems);
+            } catch (err) {
+                console.error("Error fetching guest cart details", err);
+            }
+        };
+
+        fetchGuestDetails();
+    }, [guestCart, user]);
+
+    const cartToDisplay = user ? cart : { 
+        items: guestCartDetails, 
+        total_price: guestCartDetails.reduce((sum, item) => sum + item.subtotal, 0) 
+    };
 
     return (
         <CartContext.Provider value={{ 

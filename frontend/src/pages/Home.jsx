@@ -53,7 +53,7 @@ const Home = () => {
           />
         </div>
 
-        <div className="relative z-20 w-full px-6 md:px-16 lg:px-24 py-20">
+        <div className="relative z-20 w-full px-6 md:px-16 lg:px-24 py-12">
           <div className="max-w-4xl text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -109,7 +109,7 @@ const Home = () => {
       </section>
 
       {/* Trending Products */}
-      <section className="py-6 md:py-10 bg-slate-50/50 bg-pattern">
+      <section className="py-6 md:py-8 bg-slate-50/50 bg-pattern">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
             <div className="text-center md:text-left">
@@ -191,7 +191,7 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-6 md:py-10 bg-white overflow-hidden">
+      <section className="py-6 md:py-8 bg-white overflow-hidden">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <motion.div
@@ -250,7 +250,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-6 md:py-10 bg-slate-900 text-white relative">
+      <section className="py-6 md:py-8 bg-slate-900 text-white relative">
         <div className="container-custom">
           <div className="text-center mb-10">
             <span className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-3 inline-block">Voices of Trust</span>
@@ -317,7 +317,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-6 md:py-10 bg-white">
+      <section className="py-6 md:py-8 bg-white">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
