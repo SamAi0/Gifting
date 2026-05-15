@@ -77,6 +77,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'id', 'name', 'sku', 'slug', 'description', 'price', 'discount_price', 
             'category', 'category_name', 'brand', 'brand_details',
             'image', 'images', 'variants', 'customization_zones', 'customization_config',
+            'key_features', 'specifications',
             'is_trending', 'is_bulk_only', 'is_active', 'stock', 'weight', 
             'badge_text', 'badge_color', 'tags', 'meta_title', 'meta_description',
             'popularity_score', 'average_rating', 'review_count', 'created_at', 'updated_at'
@@ -100,6 +101,23 @@ class ProductSerializer(serializers.ModelSerializer):
             except:
                 return []
         return []
+
+    def to_representation(self, instance):
+        import json
+        data = super().to_representation(instance)
+        # Parse key_features and specifications from JSON strings if they are strings
+        if isinstance(data.get('key_features'), str):
+            try:
+                data['key_features'] = json.loads(data['key_features'])
+            except:
+                data['key_features'] = []
+        
+        if isinstance(data.get('specifications'), str):
+            try:
+                data['specifications'] = json.loads(data['specifications'])
+            except:
+                data['specifications'] = {}
+        return data
     
     def get_image(self, obj):
         if obj.image_file:

@@ -212,6 +212,17 @@ const ProductDetail = () => {
     }
   }, [loadProduct]);
 
+  // Update SEO Metadata
+  useEffect(() => {
+    if (product) {
+      document.title = product.meta_title || `${product.name} | Soham Gift`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', product.meta_description || product.description.substring(0, 160));
+      }
+    }
+  }, [product]);
+
   const handleToggleWishlist = async () => {
     if (!user) {
       navigate('/login?redirect=' + window.location.pathname);
@@ -914,27 +925,68 @@ const ProductDetail = () => {
                       </a>
                     </div>
 
-                    {/* Features List */}
-                    <div className="pt-6 border-t border-slate-200">
-                       <h4 className="text-base font-bold text-slate-900 mb-4">Why Choose This Gift?</h4>
-                       <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-                          {[
-                            'Premium Quality Materials',
-                            'Eco-friendly Packaging',
-                            'Corporate Branding Ready',
-                            'Individually Quality Checked',
-                            'Doorstep Delivery in Maharashtra',
-                            'Dedicated Account Support'
-                          ].map((feat, idx) => (
-                            <div key={idx} className="flex items-center gap-3 text-sm text-slate-600 font-medium">
-                               <div className="w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center text-green-500">
-                                  <CheckCircle2 size={12} />
-                               </div>
-                               {feat}
-                            </div>
-                          ))}
-                       </div>
-                    </div>
+                    {/* Key Features List */}
+                    {(product.key_features && product.key_features.length > 0) ? (
+                      <div className="pt-8 border-t border-slate-200">
+                         <h4 className="text-base font-black text-slate-900 mb-6 uppercase tracking-widest">Key Features</h4>
+                         <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+                            {product.key_features.map((feat, idx) => (
+                              <motion.div 
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                key={idx} 
+                                className="flex items-start gap-3 text-sm text-slate-600 font-medium"
+                              >
+                                 <div className="mt-1 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                                    <CheckCircle2 size={12} />
+                                 </div>
+                                 <span>{feat}</span>
+                              </motion.div>
+                            ))}
+                         </div>
+                      </div>
+                    ) : (
+                      <div className="pt-6 border-t border-slate-200">
+                         <h4 className="text-base font-bold text-slate-900 mb-4">Why Choose This Gift?</h4>
+                         <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+                            {[
+                              'Premium Quality Materials',
+                              'Eco-friendly Packaging',
+                              'Corporate Branding Ready',
+                              'Individually Quality Checked',
+                              'Doorstep Delivery in Maharashtra',
+                              'Dedicated Account Support'
+                            ].map((feat, idx) => (
+                              <div key={idx} className="flex items-center gap-3 text-sm text-slate-600 font-medium">
+                                 <div className="w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center text-green-500">
+                                    <CheckCircle2 size={12} />
+                                 </div>
+                                 {feat}
+                              </div>
+                            ))}
+                         </div>
+                      </div>
+                    )}
+
+                    {/* Specifications Table */}
+                    {product.specifications && Object.keys(product.specifications).length > 0 && (
+                      <div className="pt-8 mt-4">
+                         <h4 className="text-base font-black text-slate-900 mb-6 uppercase tracking-widest">Technical Specifications</h4>
+                         <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
+                            <table className="w-full text-sm">
+                               <tbody>
+                                  {Object.entries(product.specifications).map(([key, value], idx) => (
+                                    <tr key={key} className={idx % 2 === 0 ? 'bg-slate-50/50' : 'bg-white'}>
+                                      <td className="px-6 py-4 font-bold text-slate-400 uppercase text-[10px] tracking-wider w-1/3">{key}</td>
+                                      <td className="px-6 py-4 text-slate-900 font-medium">{value}</td>
+                                    </tr>
+                                  ))}
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
