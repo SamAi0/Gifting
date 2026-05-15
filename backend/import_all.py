@@ -32,6 +32,21 @@ def import_all():
     # Ensure default category exists
     default_category, _ = Category.objects.get_or_create(name="Gift Sets")
     
+    # Category mapping helper
+    def get_category_name(name):
+        name = name.lower()
+        if any(k in name for k in ['cup', 'mug', 'bottle', 'flask', 'thermos']):
+            return "Drinkware"
+        if any(k in name for k in ['pen', 'diary', 'notebook', 'stationary']):
+            return "Stationery"
+        if 'set' in name:
+            return "Gift Sets"
+        if any(k in name for k in ['keychain', 'cardholder', 'purse', 'belt', 'wallet', 'passport']):
+            return "Accessories"
+        if any(k in name for k in ['stand', 'clock', 'light', 'ashokstambh', 'hub']):
+            return "Office Gifts"
+        return "Gift Sets"
+
     created_count = 0
     updated_count = 0
     
@@ -44,13 +59,16 @@ def import_all():
         if not slug or not name:
             continue
             
+        category_name = get_category_name(name)
+        category, _ = Category.objects.get_or_create(name=category_name)
+            
         product, created = Product.all_objects.get_or_create(
             slug=slug,
             defaults={
                 'name': name,
                 'description': f"Premium {name} for corporate gifting.",
                 'price': 999.00,
-                'category': default_category,
+                'category': category,
                 'image': image,
                 'customization_config': json.dumps(zones),
                 'is_active': True
