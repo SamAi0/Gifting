@@ -124,6 +124,10 @@ class Product(models.Model):
     meta_title = models.CharField(max_length=255, null=True, blank=True)
     meta_description = models.TextField(null=True, blank=True)
     
+    # New structured fields
+    key_features = models.TextField(default='[]', blank=True, help_text="JSON list of bullet points")
+    specifications = models.TextField(default='{}', blank=True, help_text="JSON structured technical details")
+    
     # Metrics
     popularity_score = models.IntegerField(default=0, db_index=True)
     average_rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00, db_index=True)
