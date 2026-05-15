@@ -16,8 +16,8 @@ const Login = () => {
     try {
       await login(username, password);
       navigate('/');
-    } catch {
-      setError('The credentials you entered do not match our records.');
+    } catch (err) {
+      setError(err.message || 'The credentials you entered do not match our records.');
     }
   };
 

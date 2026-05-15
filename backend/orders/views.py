@@ -280,3 +280,28 @@ class OrderViewSet(viewsets.ModelViewSet):
         
         pdf_buffer = generate_invoice_pdf(order)
         return FileResponse(pdf_buffer, as_attachment=True, filename=f"Invoice_Order_{order.id}.pdf")
+
+class ValidateCouponView(views.APIView):
+    permission_classes = [permissions.AllowAny] # Allow guests to check coupons too
+
+    def get(self, request):
+        code = request.query_params.get('code')
+        if not code:
+            return Response({"error": "Coupon code is required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        from django.utils import timezone
+        coupon = Coupon.objects.filter(
+            code=code, 
+            active=True, 
+            valid_from__lte=timezone.now(), 
+            valid_to__gte=timezone.now()
+        ).first()
+        
+        if not coupon:
+            return Response({"error": "Invalid or expired coupon"}, status=status.HTTP_404_NOT_FOUND)
+            
+        return Response({
+            "id": coupon.id,
+            "code": coupon.code,
+            "discount_percent": coupon.discount_percent,
+        })
