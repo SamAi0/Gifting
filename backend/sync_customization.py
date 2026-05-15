@@ -64,7 +64,11 @@ def sync_customization_zones():
     
     print(f"\n{'='*50}")
     print(f"[SUCCESS] Successfully updated: {updated_count} products")
-    print(f"[WARNING] Not found in database: {not_found_count} products")
+    if not_found_count > 0:
+        print(f"[WARNING] Not found in database: {not_found_count} products")
+        print(f"[TIP] Run 'python import_all.py' to create missing products from the JSON file.")
+    else:
+        print(f"[SUCCESS] All products are perfectly in sync!")
     print(f"{'='*50}")
 
 if __name__ == '__main__':
