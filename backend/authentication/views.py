@@ -41,6 +41,10 @@ class MyTokenObtainPairView(TokenObtainPairView):
             response.data.pop('access', None)
             response.data.pop('refresh', None)
             
+            # Add a clear success indicator
+            response.data['status'] = 'success'
+            response.data['message'] = 'Authentication successful'
+            
         return response
 
 class LogoutView(generics.GenericAPIView):

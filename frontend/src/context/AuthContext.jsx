@@ -36,9 +36,9 @@ export const AuthProvider = ({ children }) => {
     };
 
     const login = async (username, password) => {
-        await api.post('auth/login/', { username, password });
-
         try {
+            await api.post('auth/login/', { username, password });
+
             // After successful login, fetch the profile to get user data
             // This also verifies if the session cookie was correctly set and sent
             const profileResponse = await api.get('auth/profile/');
@@ -46,9 +46,24 @@ export const AuthProvider = ({ children }) => {
             setLoading(false);
             return profileResponse.data;
         } catch (error) {
-            console.error('Session establishment failed after login. This is likely a cookie/CORS issue.', error);
-            // If profile fails after login, it's usually a SameSite/Secure cookie issue
-            throw new Error('Session could not be established. Please check your browser cookie settings or CORS configuration.', { cause: error });
+            console.error('Login or session establishment failed:', error);
+            
+            // Extract the specific error message from the backend if possible
+            let errorMessage = 'The credentials you entered do not match our records.';
+            
+            if (error.response && error.response.data) {
+                if (error.response.data.detail) {
+                    errorMessage = error.response.data.detail;
+                } else if (error.response.data.message) {
+                    errorMessage = error.response.data.message;
+                }
+            } else if (error.message === 'Network Error') {
+                errorMessage = 'Connection lost. Please check if the backend server is running.';
+            }
+
+            setUser(null);
+            setLoading(false);
+            throw new Error(errorMessage, { cause: error });
         }
     };
 
