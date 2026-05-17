@@ -113,7 +113,8 @@ const ProductList = () => {
               setSelectedCategory("");
               setCurrentPage(1);
             }}
-            className={`w-full text-left px-4 py-2.5 rounded-xl transition-all duration-200 font-bold text-xs flex items-center justify-between group ${
+            aria-label="All Collections"
+            className={`w-full text-left px-4 py-2.5 rounded-xl transition-all duration-300 ease-in-out font-bold text-xs flex items-center justify-between group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
               selectedCategory === "" 
               ? 'bg-primary text-white shadow-md shadow-primary/20' 
               : 'text-slate-600 hover:bg-slate-50 hover:text-primary'
@@ -128,7 +129,8 @@ const ProductList = () => {
                 setSelectedCategory(cat.id.toString());
                 setCurrentPage(1);
               }}
-              className={`w-full text-left px-4 py-2.5 rounded-xl transition-all duration-200 font-bold text-xs flex justify-between items-center group ${
+              aria-label={`Filter by ${cat.name}`}
+              className={`w-full text-left px-4 py-2.5 rounded-xl transition-all duration-300 ease-in-out font-bold text-xs flex justify-between items-center group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 selectedCategory === cat.id.toString() 
                 ? 'bg-primary text-white shadow-md shadow-primary/20' 
                 : 'text-slate-600 hover:bg-slate-50 hover:text-primary'
@@ -147,18 +149,28 @@ const ProductList = () => {
 
       {/* Advanced Toggles */}
       <div className="p-6 border-b border-slate-100 space-y-4">
-        <div className="flex items-center justify-between group cursor-pointer" onClick={() => setIsAvailable(!isAvailable)}>
+        <button 
+          className="w-full flex items-center justify-between group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg" 
+          onClick={() => setIsAvailable(!isAvailable)}
+          aria-checked={isAvailable}
+          role="switch"
+        >
            <span className="text-xs font-bold text-slate-700 group-hover:text-primary transition-colors">In Stock Only</span>
            <div className={`w-10 h-6 rounded-full transition-colors duration-300 relative ${isAvailable ? 'bg-primary' : 'bg-slate-200'}`}>
               <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 shadow-sm ${isAvailable ? 'translate-x-5' : 'translate-x-1'}`}></div>
            </div>
-        </div>
-        <div className="flex items-center justify-between group cursor-pointer" onClick={() => setOnSale(!onSale)}>
+        </button>
+        <button 
+          className="w-full flex items-center justify-between group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg" 
+          onClick={() => setOnSale(!onSale)}
+          aria-checked={onSale}
+          role="switch"
+        >
            <span className="text-xs font-bold text-slate-700 group-hover:text-primary transition-colors">On Sale</span>
            <div className={`w-10 h-6 rounded-full transition-colors duration-300 relative ${onSale ? 'bg-primary' : 'bg-slate-200'}`}>
               <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 shadow-sm ${onSale ? 'translate-x-5' : 'translate-x-1'}`}></div>
            </div>
-        </div>
+        </button>
       </div>
 
       {/* Rating Filter */}
@@ -243,7 +255,7 @@ const ProductList = () => {
 
   return (
     <div className="pt-24 md:pt-28 pb-20 bg-slate-50 min-h-screen">
-      <div className="container-wide">
+      <div className="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-8">
           <div className="max-w-2xl">
@@ -264,7 +276,8 @@ const ProductList = () => {
             {/* Mobile Filter Toggle */}
             <button 
               onClick={() => setIsMobileFilterOpen(true)}
-              className="lg:hidden w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white border border-slate-200 text-slate-600 font-bold text-sm shadow-sm hover:border-primary/30 transition-all"
+              aria-label="Open Filters"
+              className="lg:hidden w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white border border-slate-200 text-slate-600 font-bold text-sm shadow-sm hover:border-primary/30 hover:bg-slate-50 transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             >
               <Filter size={18} /> Filters
             </button>
@@ -306,7 +319,7 @@ const ProductList = () => {
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters (Desktop) */}
-          <aside className="hidden lg:block w-72 space-y-6">
+          <aside className="hidden lg:block w-72 flex-shrink-0 space-y-6">
             <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden lg:sticky lg:top-32">
                {filterContentJsx}
             </div>
@@ -324,29 +337,32 @@ const ProductList = () => {
                  <div className="flex gap-1.5">
                     <button 
                       onClick={() => setViewMode('grid')}
-                      className={`p-2 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-primary text-white shadow-sm' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-600'}`}
+                      aria-label="Grid View"
+                      className={`p-2 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${viewMode === 'grid' ? 'bg-primary text-white shadow-sm' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-600'}`}
                     >
                       <LayoutGrid size={16} />
                     </button>
                     <button 
                       onClick={() => setViewMode('list')}
-                      className={`p-2 rounded-xl transition-all ${viewMode === 'list' ? 'bg-primary text-white shadow-sm' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-600'}`}
+                      aria-label="List View"
+                      className={`p-2 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${viewMode === 'list' ? 'bg-primary text-white shadow-sm' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-600'}`}
                     >
                       <List size={16} />
                     </button>
                  </div>
                </div>
                
-               <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+               <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto flex-grow justify-end max-w-2xl">
                   {/* Search Bar Moved Here */}
-                  <div className="relative w-full sm:w-64 group">
+                  <div className="relative w-full sm:w-64 sm:max-w-xs group">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
                       <Search size={16} />
                     </div>
                     <input 
                       type="text" 
                       placeholder="Search gifts..."
-                      className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-50 border-none focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-inner transition-all text-sm"
+                      aria-label="Search products"
+                      className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-inner transition-all text-sm"
                       value={searchQuery}
                       onChange={(e) => {
                         setSearchQuery(e.target.value);
@@ -417,11 +433,12 @@ const ProductList = () => {
                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest hidden sm:inline">Sort:</span>
                     <select 
                       value={sortBy}
+                      aria-label="Sort products"
                       onChange={(e) => {
                         setSortBy(e.target.value);
                         setCurrentPage(1);
                       }}
-                      className="bg-slate-50 border-none rounded-xl px-4 py-2.5 text-xs font-bold text-slate-700 outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer shadow-inner w-full sm:w-auto"
+                      className="bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-xs font-bold text-slate-700 outline-none focus:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transition-all cursor-pointer shadow-inner w-full sm:w-auto"
                     >
                       <option value="-created_at">Newest First</option>
                       <option value="created_at">Oldest First</option>
@@ -443,7 +460,7 @@ const ProductList = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6"
                 >
                    {[1,2,3,4,5,6,7,8,9,10,11,12].map(n => <ProductCardSkeleton key={n} />)}
                 </motion.div>
@@ -454,7 +471,7 @@ const ProductList = () => {
                   animate={{ opacity: 1 }}
                   className={`${
                     viewMode === 'grid' 
-                      ? 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6' 
+                      ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6' 
                       : 'flex flex-col gap-6'
                   }`}
                 >
@@ -462,19 +479,20 @@ const ProductList = () => {
                     <Link 
                       key={product.id}
                       to={`/products/${product.id}`}
-                      className="group"
+                      className="group flex flex-col h-full"
                     >
                       <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: idx * 0.03 }}
-                        className={`bg-white rounded-3xl border border-slate-100 hover:border-primary/20 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 ${viewMode === 'list' ? 'flex flex-col md:flex-row' : ''}`}
+                        transition={{ delay: idx * 0.03, duration: 0.5, ease: "easeOut" }}
+                        className={`bg-white rounded-2xl md:rounded-3xl border border-slate-100 hover:border-primary/20 transition-all duration-500 ease-out overflow-hidden shadow-sm hover:shadow-premium-hover hover:-translate-y-1 hover:scale-[1.02] flex flex-col focus-within:ring-2 focus-within:ring-primary focus-within:outline-none ${viewMode === 'list' ? 'md:flex-row' : 'h-full'}`}
                       >
-                        <div className={`relative overflow-hidden bg-white ${viewMode === 'list' ? 'md:w-64 flex-shrink-0 p-4' : 'h-60 p-6'}`}>
+                        <div className={`relative overflow-hidden bg-white flex items-center justify-center ${viewMode === 'list' ? 'md:w-64 flex-shrink-0 p-4 aspect-square md:aspect-auto' : 'aspect-square p-4 sm:p-6'}`}>
                           <img 
                             src={getImageUrl(product.image) || `https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=800&q=80`} 
-                            className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                            className="w-full h-full object-contain transition-all duration-700 ease-in-out group-hover:scale-105"
                             alt={product.name}
+                            loading="lazy"
                           />
                           
                           {/* Badges */}
@@ -540,7 +558,7 @@ const ProductList = () => {
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="text-center py-32 bg-white rounded-3xl border-2 border-dashed border-slate-100"
+                  className="text-center py-32 bg-white rounded-3xl border border-slate-100 shadow-sm"
                 >
                    <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-200">
                       <Package size={40} />
@@ -559,11 +577,12 @@ const ProductList = () => {
 
             {/* Pagination Controls */}
             {totalCount > 20 && (
-              <div className="mt-12 flex justify-center items-center gap-2">
+              <div className="mt-12 flex justify-center items-center gap-1 sm:gap-2 flex-wrap">
                 <button 
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-primary disabled:opacity-50 transition-all"
+                  aria-label="Previous Page"
+                  className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-primary disabled:opacity-50 transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   <ChevronRight size={20} className="rotate-180" />
                 </button>
@@ -600,12 +619,13 @@ const ProductList = () => {
                       key={idx}
                       onClick={() => typeof page === 'number' && setCurrentPage(page)}
                       disabled={typeof page !== 'number'}
-                      className={`w-10 h-10 rounded-xl font-bold text-xs transition-all ${
+                      aria-label={typeof page === 'number' ? `Page ${page}` : "Ellipsis"}
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl font-bold text-xs transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                         typeof page !== 'number' 
                           ? 'bg-transparent text-slate-400 cursor-default'
                           : currentPage === page 
-                          ? 'bg-primary text-white shadow-lg shadow-primary/20' 
-                          : 'bg-white border border-slate-200 text-slate-600 hover:border-primary/40'
+                          ? 'bg-primary text-white shadow-md shadow-primary/20' 
+                          : 'bg-white border border-slate-200 text-slate-600 hover:border-primary/40 hover:bg-slate-50'
                       }`}
                     >
                       {page}
@@ -616,7 +636,8 @@ const ProductList = () => {
                 <button 
                   onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / 20), p + 1))}
                   disabled={currentPage === Math.ceil(totalCount / 20)}
-                  className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-primary disabled:opacity-50 transition-all"
+                  aria-label="Next Page"
+                  className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-primary disabled:opacity-50 transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   <ChevronRight size={20} />
                 </button>
