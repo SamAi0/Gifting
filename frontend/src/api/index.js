@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
+// Smart IP Resolution for Mobile/Network testing
+if (typeof window !== 'undefined' && API_BASE_URL.includes('localhost') && window.location.hostname !== 'localhost') {
+  console.log(`[Smart IP] Switching localhost to ${window.location.hostname}`);
+  API_BASE_URL = API_BASE_URL.replace('localhost', window.location.hostname);
+}
+
 if (!API_BASE_URL) {
   console.warn('VITE_API_BASE_URL is not defined in environment variables.');
 }
@@ -14,6 +21,13 @@ export const getImageUrl = (path, useCors = false) => {
 
   let formattedPath = path.startsWith('/') ? path : `/${path}`;
   
+  // Robustness fix: Ensure the path starts with /static/ or /media/ if it's a internal product path
+  if (!formattedPath.startsWith('/static/') && !formattedPath.startsWith('/media/') && !formattedPath.startsWith('/cors-')) {
+    if (formattedPath.includes('products/')) {
+      formattedPath = `/static${formattedPath.startsWith('/') ? '' : '/'}${formattedPath}`;
+    }
+  }
+
   // If useCors is true, we route through our custom CORS-enabled endpoints
   if (useCors) {
     if (formattedPath.startsWith('/static/')) {
@@ -23,8 +37,11 @@ export const getImageUrl = (path, useCors = false) => {
     }
   }
 
-  const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
-  return encodeURI(`${baseUrl}${formattedPath}`);
+  // Remove potential double slashes (except for protocols)
+  const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '').replace(/\/$/, '');
+  const fullUrl = `${baseUrl}${formattedPath}`.replace(/([^:])\/\//g, '$1/');
+  
+  return encodeURI(fullUrl);
 };
 
 
