@@ -87,7 +87,7 @@ const Home = () => {
 
       {/* Featured Stats */}
       <section className="relative z-30 -mt-12 mb-6">
-        <div className="container-custom">
+        <div className="container-home">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             {[
               { label: 'Happy Clients', value: '500+', icon: User },
@@ -113,7 +113,7 @@ const Home = () => {
 
       {/* Trending Products */}
       <section className="py-6 md:py-8 bg-slate-50/50 bg-pattern">
-        <div className="container-custom">
+        <div className="container-home">
           <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
             <div className="text-center md:text-left">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">Trending Collections</h2>
@@ -195,7 +195,7 @@ const Home = () => {
 
       {/* Why Choose Us */}
       <section className="py-6 md:py-8 bg-white overflow-hidden">
-        <div className="container-custom">
+        <div className="container-home">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -254,7 +254,7 @@ const Home = () => {
 
       {/* Testimonials */}
       <section className="py-6 md:py-8 bg-slate-900 text-white relative">
-        <div className="container-custom">
+        <div className="container-home">
           <div className="text-center mb-10">
             <span className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-3 inline-block">Voices of Trust</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What Corporate Visionaries Say</h2>
@@ -321,7 +321,7 @@ const Home = () => {
 
       {/* CTA Section */}
       <section className="py-6 md:py-8 bg-white">
-        <div className="container-custom">
+        <div className="container-home">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
