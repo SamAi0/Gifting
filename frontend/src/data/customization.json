@@ -40023,7 +40023,7 @@
     "productId": 466,
     "productName": "Black Diamond pen 2016 ",
     "slug": "black-diamond-pen-2016",
-    "baseImage": "/static/products/RC_Black_Diamond_pen_2016 .png",
+    "baseImage": "/static/products/RC_Black_Diamond_pen_2016.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -40378,7 +40378,7 @@
     "productId": 471,
     "productName": "Calender Pen 2038 Blue",
     "slug": "calender-pen-2038-blue",
-    "baseImage": "/static/products/RC_Calender_Pen_2038_Blue.png",
+    "baseImage": "/static/products/RC_Calender_Pen_2038_Blue.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -40520,7 +40520,7 @@
     "productId": 473,
     "productName": "Calender Pen 2038 Purple",
     "slug": "calender-pen-2038-purple",
-    "baseImage": "/static/products/RC_Calender_Pen_2038_Purple.png",
+    "baseImage": "/static/products/RC_Calender_Pen_2038_Purple.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -40591,7 +40591,7 @@
     "productId": 474,
     "productName": "Calender Pen 2038 Red",
     "slug": "calender-pen-2038-red",
-    "baseImage": "/static/products/RC_Calender_Pen_2038_Red.png",
+    "baseImage": "/static/products/RC_Calender_Pen_2038_Red.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -40662,7 +40662,7 @@
     "productId": 475,
     "productName": "Calender Pen 2038 Tan",
     "slug": "calender-pen-2038-tan",
-    "baseImage": "/static/products/RC_Calender_Pen_2038_Tan.png",
+    "baseImage": "/static/products/RC_Calender_Pen_2038_Tan.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -43502,7 +43502,7 @@
     "productId": 515,
     "productName": "Crosi Pen 2030",
     "slug": "crosi-pen-2030",
-    "baseImage": "/static/products/RC_Crosi_Pen_2030.png",
+    "baseImage": "/static/products/RC_Crosi_Pen_2030.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -43573,7 +43573,7 @@
     "productId": 516,
     "productName": "Crown Pen 2031 Black",
     "slug": "crown-pen-2031-black",
-    "baseImage": "/static/products/RC_Crown_Pen_2031_Black.png",
+    "baseImage": "/static/products/RC_Crown_Pen_2031_Black.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -43644,7 +43644,7 @@
     "productId": 517,
     "productName": "Crown Pen 2031 Blue",
     "slug": "crown-pen-2031-blue",
-    "baseImage": "/static/products/RC_Crown_Pen_2031_Blue.png",
+    "baseImage": "/static/products/RC_Crown_Pen_2031_Blue.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -43715,7 +43715,7 @@
     "productId": 518,
     "productName": "Crown Pen 2031 Red",
     "slug": "crown-pen-2031-red",
-    "baseImage": "/static/products/RC_Crown_Pen_2031_Red.png",
+    "baseImage": "/static/products/RC_Crown_Pen_2031_Red.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -61954,7 +61954,7 @@
     "productId": 779,
     "productName": "Thick Plastic Pen 2037 Blue",
     "slug": "thick-plastic-pen-2037-blue",
-    "baseImage": "/static/products/RC_Thick_Plastic_Pen_2037_Blue.png",
+    "baseImage": "/static/products/RC_Thick_Plastic_Pen_2037_Blue.avif",
     "zones": [
       {
         "id": "name-1",
@@ -62025,7 +62025,7 @@
     "productId": 780,
     "productName": "Thick Plastic Pen 2037 Green",
     "slug": "thick-plastic-pen-2037-green",
-    "baseImage": "/static/products/RC_Thick_Plastic_Pen_2037_Green.png",
+    "baseImage": "/static/products/RC_Thick_Plastic_Pen_2037_Green.webp",
     "zones": [
       {
         "id": "name-1",
@@ -62096,7 +62096,7 @@
     "productId": 781,
     "productName": "Thick Plastic Pen 2037 Pink",
     "slug": "thick-plastic-pen-2037-pink",
-    "baseImage": "/static/products/RC_Thick_Plastic_Pen_2037_Pink.png",
+    "baseImage": "/static/products/RC_Thick_Plastic_Pen_2037_Pink.webp",
     "zones": [
       {
         "id": "name-1",
@@ -62167,7 +62167,7 @@
     "productId": 782,
     "productName": "Thick Plastic Pen 2037 Yellow",
     "slug": "thick-plastic-pen-2037-yellow",
-    "baseImage": "/static/products/RC_Thick_Plastic_Pen_2037_Yellow.png",
+    "baseImage": "/static/products/RC_Thick_Plastic_Pen_2037_Yellow.webp",
     "zones": [
       {
         "id": "name-1",
@@ -62238,7 +62238,7 @@
     "productId": 783,
     "productName": "Tik tik Curve Pen 2041 Black",
     "slug": "tik-tik-curve-pen-2041-black",
-    "baseImage": "/static/products/RC_Tik_tik_Curve_Pen_2041_Black.png",
+    "baseImage": "/static/products/RC_Tik_tik_Curve_Pen_2041_Black.jpg",
     "zones": [
       {
         "id": "name-1",

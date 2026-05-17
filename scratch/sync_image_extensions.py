@@ -20,7 +20,7 @@ def fix_extensions():
     # Map lowercase name without extension to actual filename
     file_map = {}
     for f in all_files:
-        name_no_ext = os.path.splitext(f)[0].lower()
+        name_no_ext = os.path.splitext(f)[0].lower().strip()
         file_map[name_no_ext] = f
 
     fixed_count = 0
@@ -36,7 +36,7 @@ def fix_extensions():
         
         # Check if the file exists
         if not os.path.exists(full_path):
-            name_no_ext = os.path.splitext(filename)[0].lower()
+            name_no_ext = os.path.splitext(filename)[0].lower().strip()
             if name_no_ext in file_map:
                 new_filename = file_map[name_no_ext]
                 new_base_image = f"/static/products/{new_filename}"

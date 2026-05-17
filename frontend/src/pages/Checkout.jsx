@@ -53,15 +53,16 @@ const Checkout = () => {
     
     const subtotal = Number(cart.total_price) || 0;
     const shipping = subtotal > 5000 ? 0 : 250;
-    const tax = Number((subtotal * 0.18).toFixed(2));
     const discount = appliedCoupon ? Number((subtotal * (appliedCoupon.discount_percent / 100)).toFixed(2)) : 0;
+    const taxableSubtotal = subtotal - discount;
+    const tax = Number((taxableSubtotal * 0.18).toFixed(2));
     
     return {
       subtotal,
       tax,
       shipping,
       discount,
-      total: subtotal + tax + shipping - discount
+      total: taxableSubtotal + tax + shipping
     };
   }, [cart, appliedCoupon]);
 
