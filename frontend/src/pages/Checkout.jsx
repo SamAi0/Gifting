@@ -13,11 +13,11 @@ const Checkout = () => {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
-  const [businessName, setBusinessName] = useState("");
-  const [gstNumber, setGstNumber] = useState("");
+
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [couponError, setCouponError] = useState("");
+
   const navigate = useNavigate();
   const initialized = useRef(false);
 
@@ -52,9 +52,9 @@ const Checkout = () => {
     if (!cart) return { subtotal: 0, tax: 0, shipping: 0, discount: 0, total: 0 };
     
     const subtotal = Number(cart.total_price) || 0;
-    const tax = subtotal * 0.18;
     const shipping = subtotal > 5000 ? 0 : 250;
-    const discount = appliedCoupon ? (appliedCoupon.discount_type === 'PERCENTAGE' ? (subtotal * appliedCoupon.discount_value / 100) : appliedCoupon.discount_value) : 0;
+    const tax = Number((subtotal * 0.18).toFixed(2));
+    const discount = appliedCoupon ? Number((subtotal * (appliedCoupon.discount_percent / 100)).toFixed(2)) : 0;
     
     return {
       subtotal,
@@ -165,9 +165,7 @@ const Checkout = () => {
         const orderRes = await api.post('orders/create-order/', {
           address_id: selectedAddress,
           payment_method: 'ONLINE',
-          coupon_code: couponCode,
-          business_name: businessName,
-          gst_number: gstNumber
+          coupon_code: couponCode
         });
 
         const { razorpay_order_id, amount, key, order_id } = orderRes.data;
@@ -209,9 +207,7 @@ const Checkout = () => {
         await api.post('orders/create-order/', {
           address_id: selectedAddress,
           payment_method: 'COD',
-          coupon_code: couponCode,
-          business_name: businessName,
-          gst_number: gstNumber
+          coupon_code: couponCode
         });
         setOrderComplete(true);
         fetchCart();
@@ -385,6 +381,7 @@ const Checkout = () => {
               </form>
             </motion.section>
 
+
             {/* Payment Method Selection */}
             <motion.section 
                initial={{ opacity: 0, y: 20 }}
@@ -447,51 +444,10 @@ const Checkout = () => {
                )}
             </motion.section>
 
-            {/* Business Information (Optional) */}
-            <motion.section 
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ delay: 0.2 }}
-               className="bg-white rounded-[3rem] p-8 md:p-12 shadow-premium border border-slate-100"
-            >
-               <div className="flex items-center gap-4 mb-10">
-                 <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center">
-                    <ShieldCheck size={24} />
-                 </div>
-                 <div>
-                    <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Business Details <span className="text-slate-300 font-medium text-lg ml-2">(Optional)</span></h2>
-                    <p className="text-xs text-slate-400 font-medium">Add GST details for corporate tax invoicing.</p>
-                 </div>
-               </div>
-
-               <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Business Name</label>
-                     <input 
-                       type="text" 
-                       placeholder="e.g. Acme Corp Pvt Ltd"
-                       className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium"
-                       value={businessName}
-                       onChange={(e) => setBusinessName(e.target.value)}
-                     />
-                  </div>
-                  <div className="space-y-2">
-                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">GST Number</label>
-                     <input 
-                       type="text" 
-                       placeholder="27AAAAA0000A1Z5"
-                       maxLength={15}
-                       className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary focus:outline-none transition-all text-slate-700 font-medium uppercase"
-                       value={gstNumber}
-                       onChange={(e) => setGstNumber(e.target.value.toUpperCase())}
-                     />
-                  </div>
-               </div>
-            </motion.section>
           </div>
 
           {/* Right Sidebar: Summary */}
-          <div className="lg:col-span-4 sticky top-32">
+          <div className="lg:col-span-4 lg:sticky lg:top-32">
             <motion.div 
                initial={{ opacity: 0, x: 20 }}
                animate={{ opacity: 1, x: 0 }}
