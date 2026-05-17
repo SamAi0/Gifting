@@ -3,13 +3,15 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     CartView, CartItemViewSet, AddressViewSet, 
     CreateOrderView, VerifyPaymentView, OrderViewSet,
-    UserOrderListView, PincodeCheckView, MergeCartView, ValidateCouponView
+    UserOrderListView, PincodeCheckView, MergeCartView, ValidateCouponView,
+    SaveForLaterViewSet
 )
 
 router = DefaultRouter()
 router.register(r'cart-items', CartItemViewSet, basename='cart-item')
 router.register(r'addresses', AddressViewSet, basename='address')
 router.register(r'all-orders', OrderViewSet, basename='all-orders')
+router.register(r'save-for-later', SaveForLaterViewSet, basename='save-for-later')
 
 urlpatterns = [
     path('', include(router.urls)),

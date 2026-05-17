@@ -16,19 +16,19 @@ JSON_PATH = r"c:\Users\Asus\Downloads\New folder\Gifting\frontend\src\data\custo
 def get_category(name):
     name_lower = name.lower()
     if 'pen' in name_lower and 'keychain' in name_lower:
-        return Category.objects.get(id=15) # Pen & Keychain Sets
+        return Category.objects.get(id=17) # Pen & KeyChains Sets
     if 'diary' in name_lower or 'notebook' in name_lower:
-        return Category.objects.get(id=14) # Diary & Notebook Sets
-    if 'advocate' in name_lower:
-        return Category.objects.get(id=11)
-    if 'ca set' in name_lower:
-        return Category.objects.get(id=12)
-    if 'doctor' in name_lower:
-        return Category.objects.get(id=13)
-    if 'gift set' in name_lower:
-        return Category.objects.get(id=9) # Corporate Gift Sets
+        return Category.objects.get(id=16) # Diaries
+    if 'bottle' in name_lower or 'flask' in name_lower or 'mug' in name_lower:
+        return Category.objects.get(id=18) # Water Bottles & Gifts
+    if 'stationery' in name_lower:
+        return Category.objects.get(id=19) # Stationery
+    if 'office' in name_lower or 'card holder' in name_lower or 'organizer' in name_lower:
+        return Category.objects.get(id=20) # Office Gifts
+    if 'hamper' in name_lower:
+        return Category.objects.get(id=1) # Gift Hampers
     
-    return Category.objects.get(id=7) # Gift Sets (Default)
+    return Category.objects.get(id=22) # Gift Sets (Default)
 
 def main():
     with open(JSON_PATH, 'r', encoding='utf-8') as f:

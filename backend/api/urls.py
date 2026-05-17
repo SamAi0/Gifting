@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     TestimonialListView, SettingsDetailView, ContactCreateView, 
-    BulkInquiryCreateView, AdminStatsView
+    BulkInquiryCreateView, AdminStatsView, AdminGlobalSearchView
 )
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('contact/', ContactCreateView.as_view(), name='contact-create'),
     path('bulk-inquiry/', BulkInquiryCreateView.as_view(), name='bulk-inquiry-create'),
     path('admin/stats/', AdminStatsView.as_view(), name='admin-stats'),
+    path('admin/search/', AdminGlobalSearchView.as_view(), name='admin-search'),
 ]
