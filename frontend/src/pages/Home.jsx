@@ -66,7 +66,7 @@ const Home = () => {
                 </span>
                 <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px] ml-1">Premium Corporate Gifting</span>
               </div>
-              <h1 className="text-5xl md:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
                 Crafting <span className="text-primary italic font-serif">Unforgettable</span> Corporate Moments
               </h1>
               <p className="text-lg text-slate-300 mb-8 max-w-xl leading-relaxed font-light">

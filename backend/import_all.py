@@ -77,12 +77,11 @@ def import_all():
         
         if created:
             created_count += 1
-            # print(f"[NEW] Created product: {name}")
         else:
+            # Force update critical fields from JSON
+            product.name = name
+            product.image = image
             product.customization_config = json.dumps(zones)
-            # Update image if it was missing or different
-            if not product.image:
-                product.image = image
             product.save()
             updated_count += 1
     

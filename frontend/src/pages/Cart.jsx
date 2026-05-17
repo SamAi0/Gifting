@@ -35,9 +35,9 @@ const Cart = () => {
 
   return (
     <div className="pt-20 pb-20 bg-slate-50 min-h-screen">
-      <div className="container-wide px-4 sm:px-8 lg:px-12">
+      <div className="container-custom px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">Your <span className="text-primary">Selection</span></h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Your <span className="text-primary">Selection</span></h1>
           <Link to="/products" className="text-slate-400 hover:text-primary font-bold text-sm flex items-center gap-2 transition-colors">
             <ChevronLeft size={18} /> Continue Shopping
           </Link>

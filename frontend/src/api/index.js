@@ -21,6 +21,13 @@ export const getImageUrl = (path, useCors = false) => {
 
   let formattedPath = path.startsWith('/') ? path : `/${path}`;
   
+  // Robustness fix: Ensure the path starts with /static/ or /media/ if it's a internal product path
+  if (!formattedPath.startsWith('/static/') && !formattedPath.startsWith('/media/') && !formattedPath.startsWith('/cors-')) {
+    if (formattedPath.includes('products/')) {
+      formattedPath = `/static${formattedPath.startsWith('/') ? '' : '/'}${formattedPath}`;
+    }
+  }
+
   // If useCors is true, we route through our custom CORS-enabled endpoints
   if (useCors) {
     if (formattedPath.startsWith('/static/')) {
@@ -30,8 +37,11 @@ export const getImageUrl = (path, useCors = false) => {
     }
   }
 
-  const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
-  return encodeURI(`${baseUrl}${formattedPath}`);
+  // Remove potential double slashes (except for protocols)
+  const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '').replace(/\/$/, '');
+  const fullUrl = `${baseUrl}${formattedPath}`.replace(/([^:])\/\//g, '$1/');
+  
+  return encodeURI(fullUrl);
 };
 
 

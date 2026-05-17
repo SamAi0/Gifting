@@ -58124,7 +58124,7 @@
     "productId": 717,
     "productName": "Mobile Stand Pen Rotate 2040 Red",
     "slug": "mobile-stand-pen-rotate-2040-red",
-    "baseImage": "/static/products/RC_Mobile_Stand_Pen_Rotate_2040_Red.png",
+    "baseImage": "/static/products/RC_Mobile_Stand_Pen_Rotate_2040_Red.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -58195,7 +58195,7 @@
     "productId": 718,
     "productName": "Mobile Stand Pen Rotate 2040 White",
     "slug": "mobile-stand-pen-rotate-2040-white",
-    "baseImage": "/static/products/RC_Mobile_Stand_Pen_Rotate_2040_White.png",
+    "baseImage": "/static/products/RC_Mobile_Stand_Pen_Rotate_2040_White.webp",
     "zones": [
       {
         "id": "name-1",
@@ -58337,7 +58337,7 @@
     "productId": 720,
     "productName": "Multifunctional Pen 2048 Black",
     "slug": "multifunctional-pen-2048-black",
-    "baseImage": "/static/products/RC_Multifunctional_Pen_2048_Black.png",
+    "baseImage": "/static/products/RC_Multifunctional_Pen_2048_Black.webp",
     "zones": [
       {
         "id": "name-1",
@@ -58408,7 +58408,7 @@
     "productId": 721,
     "productName": "Multifunctional Pen 2048 Blue",
     "slug": "multifunctional-pen-2048-blue",
-    "baseImage": "/static/products/RC_Multifunctional_Pen_2048_Blue.png",
+    "baseImage": "/static/products/RC_Multifunctional_Pen_2048_Blue.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -59899,7 +59899,7 @@
     "productId": 742,
     "productName": "Plastic Tik Tik Pen 2043 Blue",
     "slug": "plastic-tik-tik-pen-2043-blue",
-    "baseImage": "/static/products/RC_Plastic_Tik_Tik_Pen_2043_Blue.png",
+    "baseImage": "/static/products/RC_Plastic_Tik_Tik_Pen_2043_Blue.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -62881,7 +62881,7 @@
     "productId": 784,
     "productName": "Tik tik Curve Pen 2041 Blue",
     "slug": "tik-tik-curve-pen-2041-blue",
-    "baseImage": "/static/products/RC_Tik_tik_Curve_Pen_2041_Blue.png",
+    "baseImage": "/static/products/RC_Tik_tik_Curve_Pen_2041_Blue.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -62952,7 +62952,7 @@
     "productId": 785,
     "productName": "Tik tik Curve Pen 2041 Red",
     "slug": "tik-tik-curve-pen-2041-red",
-    "baseImage": "/static/products/RC_Tik_tik_Curve_Pen_2041_Red.png",
+    "baseImage": "/static/products/RC_Tik_tik_Curve_Pen_2041_Red.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -63094,7 +63094,7 @@
     "productId": 787,
     "productName": "Tik Tik Side Cut Clip Pen 2034 Black",
     "slug": "tik-tik-side-cut-clip-pen-2034-black",
-    "baseImage": "/static/products/RC_Tik_Tik_Side_Cut_Clip_Pen_2034_Black.png",
+    "baseImage": "/static/products/Tik_Tik_Side_Cut_Clip_Pen_2034_Black.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -63165,7 +63165,7 @@
     "productId": 788,
     "productName": "Tik Tik Side Cut Clip Pen 2034 Blue",
     "slug": "tik-tik-side-cut-clip-pen-2034-blue",
-    "baseImage": "/static/products/RC_Tik_Tik_Side_Cut_Clip_Pen_2034_Blue.png",
+    "baseImage": "/static/products/RC_Tik_Tik_Side_Cut_Clip_Pen_2034_Blue.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -63236,7 +63236,7 @@
     "productId": 789,
     "productName": "Tik Tik Side Cut Clip Pen 2034 Red",
     "slug": "tik-tik-side-cut-clip-pen-2034-red",
-    "baseImage": "/static/products/RC_Tik_Tik_Side_Cut_Clip_Pen_2034_Red.png",
+    "baseImage": "/static/products/RC_Tik_Tik_Side_Cut_Clip_Pen_2034_Red.jpg",
     "zones": [
       {
         "id": "name-1",
@@ -63591,7 +63591,7 @@
     "productId": 794,
     "productName": "Uper Thick Body Gold Clip Pen 2012",
     "slug": "uper-thick-body-gold-clip-pen-2012",
-    "baseImage": "/static/products/RC_Uper_Thick_Body_Gold_Clip_Pen_2012.png",
+    "baseImage": "/static/products/RC_Uper_Thick_Body_Gold_Clip_Pen_2012.jpg",
     "zones": [
       {
         "id": "name-1",
