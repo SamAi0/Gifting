@@ -185,7 +185,7 @@ class Product(models.Model):
         self.save()
 
     def get_price_for_quantity(self, quantity):
-        base_price = self.price
+        base_price = self.discount_price if self.discount_price else self.price
         discount = Decimal('0')
         if quantity >= 500:
             discount = Decimal('0.15')
@@ -193,7 +193,7 @@ class Product(models.Model):
             discount = Decimal('0.10')
         elif quantity >= 100:
             discount = Decimal('0.05')
-        return self.price * (Decimal('1.0') - discount)
+        return base_price * (Decimal('1.0') - discount)
 
     def __str__(self):
         return self.name

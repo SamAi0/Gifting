@@ -7,7 +7,7 @@ from datetime import timedelta
 from .models import Product, Category, Review, Wishlist, Attribute
 from api.serializers import (
     ProductSerializer, CategorySerializer, ReviewSerializer, 
-    WishlistSerializer, AttributeValueSerializer
+    WishlistSerializer, AttributeValueSerializer, AttributeSerializer
 )
 from api.permissions import IsOwnerOrReadOnly
 from rest_framework.pagination import PageNumberPagination
@@ -15,7 +15,7 @@ from rest_framework.pagination import PageNumberPagination
 
 class AttributeViewSet(viewsets.ModelViewSet):
     queryset = Attribute.objects.all()
-    serializer_class = AttributeValueSerializer # We use this to show attributes and their values if needed
+    serializer_class = AttributeSerializer
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [permissions.IsAdminUser()]

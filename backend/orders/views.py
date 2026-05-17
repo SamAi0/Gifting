@@ -201,6 +201,21 @@ class CreateOrderView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
+        # Auto-revert stock for stale pending orders (older than 30 minutes)
+        from datetime import timedelta
+        from django.utils import timezone
+        stale_time = timezone.now() - timedelta(minutes=30)
+        stale_orders = Order.objects.filter(status='PENDING', created_at__lt=stale_time)
+        for stale_order in stale_orders:
+            try:
+                with transaction.atomic():
+                    stale_order.status = 'CANCELLED'
+                    stale_order.save()
+                    for item in stale_order.items.all():
+                        Product.objects.filter(id=item.product.id).update(stock=F('stock') + item.quantity)
+            except Exception as e:
+                logger.error(f"Error reverting stock for stale order {stale_order.id}: {str(e)}")
+
         # Use get_or_create to avoid RelatedObjectDoesNotExist if cart hasn't been initialized
         cart, _ = Cart.objects.get_or_create(user=request.user)
         
@@ -229,13 +244,10 @@ class CreateOrderView(views.APIView):
         preferred_delivery_date = request.data.get('preferred_delivery_date')
         
         subtotal = cart.total_price
-        shipping_charges = Decimal('0.00') if subtotal > Decimal('5000.00') else Decimal('250.00')
-        tax_amount = (subtotal * Decimal('0.18')).quantize(Decimal('0.01'))
         
         coupon = None
         discount = Decimal('0.00')
         if coupon_code:
-            from django.utils import timezone
             coupon = Coupon.objects.filter(
                 code=coupon_code, 
                 active=True, 
@@ -246,7 +258,12 @@ class CreateOrderView(views.APIView):
             if coupon:
                 discount = (subtotal * Decimal(coupon.discount_percent) / Decimal('100.00')).quantize(Decimal('0.01'))
 
-        total_amount = subtotal + shipping_charges + tax_amount - discount
+        # Standard GST: Calculate tax on net taxable subtotal (post-discount)
+        taxable_subtotal = subtotal - discount
+        tax_amount = (taxable_subtotal * Decimal('0.18')).quantize(Decimal('0.01'))
+        shipping_charges = Decimal('0.00') if subtotal > Decimal('5000.00') else Decimal('250.00')
+        
+        total_amount = taxable_subtotal + shipping_charges + tax_amount
 
         razorpay_order_id = None
         
