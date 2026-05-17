@@ -405,7 +405,7 @@ const ProductDetail = () => {
   return (
     <>
       <div className="pt-24 md:pt-28 pb-12 bg-slate-50 min-h-screen">
-        <div className="container-wide px-4 sm:px-6 lg:px-8">
+        <div className="container-product px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6 overflow-x-auto whitespace-nowrap scrollbar-hide">
             <Link to="/" className="hover:text-primary transition-colors">Home</Link>
@@ -417,12 +417,12 @@ const ProductDetail = () => {
             <span className="text-slate-900 truncate">{product.name}</span>
           </nav>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="grid lg:grid-cols-[42%_58%] gap-12 items-start">
             {/* Visual Area */}
             <div className="lg:sticky lg:top-32">
                <motion.div 
                  layout
-                 className="glass-card overflow-hidden relative border-slate-200/50 bg-white min-h-[300px] md:min-h-[500px] lg:min-h-[600px] flex items-center justify-center"
+                 className="glass-card overflow-hidden relative border-slate-200/50 bg-white min-h-[300px] md:min-h-[400px] lg:min-h-[480px] flex items-center justify-center"
                >
                   {isCustomizing && customizationConfig ? (
                     <CanvasCustomizer 
@@ -439,7 +439,7 @@ const ProductDetail = () => {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       src={getImageUrl(selectedVariant ? selectedVariant.image : product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"} 
-                      className="w-full h-full max-h-[600px] object-contain p-8 transition-transform duration-700 hover:scale-105"
+                      className="w-full h-full max-h-[450px] object-contain p-8 transition-transform duration-700 hover:scale-105"
                       alt={product.name}
                     />
                   )}
@@ -627,7 +627,7 @@ const ProductDetail = () => {
                         <StarRating rating={parseFloat(product.average_rating)} />
                         <span className="text-slate-400 text-xs font-bold">({product.review_count} Reviews)</span>
                       </div>
-                      <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight tracking-tight">{product.name}</h1>
+                      <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 leading-tight tracking-tight">{product.name}</h1>
                       
                       {/* Pricing */}
                       <div className="flex flex-col gap-1 mb-6">

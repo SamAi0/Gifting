@@ -47,6 +47,13 @@ def sync_customization_zones():
             else:
                 product = Product.objects.get(id=product_id)
             
+            # Update basic info
+            if item.get('productName'):
+                product.name = item.get('productName')
+            
+            if item.get('baseImage'):
+                product.image = item.get('baseImage')
+            
             # Extract zones only (without productId, productName, slug, baseImage)
             zones = item.get('zones', [])
             
