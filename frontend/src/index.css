@@ -63,15 +63,15 @@
   }
 
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8;
   }
 
   .container-product {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8;
   }
 
   .container-wide {
-    @apply max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8;
   }
 }
 
