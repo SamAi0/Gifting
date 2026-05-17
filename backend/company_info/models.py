@@ -28,8 +28,12 @@ class Settings(models.Model):
     def __str__(self):
         return self.company_name
     
-    def save(self, *args, **kwargs):
-        # Ensure only one instance of Settings exists
+    def clean(self):
+        from django.core.exceptions import ValidationError
         if not self.pk and Settings.objects.exists():
-            return
+            raise ValidationError("Only one instance of Business Information settings can exist.")
+        super().clean()
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
         return super().save(*args, **kwargs)

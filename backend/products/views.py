@@ -7,7 +7,7 @@ from datetime import timedelta
 from .models import Product, Category, Review, Wishlist, Attribute
 from api.serializers import (
     ProductSerializer, CategorySerializer, ReviewSerializer, 
-    WishlistSerializer, AttributeValueSerializer
+    WishlistSerializer, AttributeValueSerializer, AttributeSerializer
 )
 from api.permissions import IsOwnerOrReadOnly
 from rest_framework.pagination import PageNumberPagination
@@ -15,7 +15,7 @@ from rest_framework.pagination import PageNumberPagination
 
 class AttributeViewSet(viewsets.ModelViewSet):
     queryset = Attribute.objects.all()
-    serializer_class = AttributeValueSerializer # We use this to show attributes and their values if needed
+    serializer_class = AttributeSerializer
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [permissions.IsAdminUser()]
@@ -40,7 +40,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         return [permissions.AllowAny()]
 
     def get_queryset(self):
-        queryset = Product.objects.select_related('category').all()
+        queryset = super().get_queryset()
         category = self.request.query_params.get('category', None)
         is_trending = self.request.query_params.get('is_trending', None)
         is_available = self.request.query_params.get('is_available', None)
@@ -70,7 +70,8 @@ class ProductViewSet(viewsets.ModelViewSet):
                 Q(description__icontains=search) |
                 Q(sku__icontains=search) |
                 Q(tags__icontains=search) |
-                Q(category__name__icontains=search)
+                Q(category__name__icontains=search) |
+                Q(brand__name__icontains=search)
             ).distinct()
 
         if min_price:
@@ -90,14 +91,18 @@ class ProductViewSet(viewsets.ModelViewSet):
         if len(query) < 2:
             return Response([])
         
+        from .models import Brand
         products = Product.objects.filter(name__icontains=query)[:5]
         categories = Category.objects.filter(name__icontains=query)[:3]
+        brands = Brand.objects.filter(name__icontains=query)[:2]
         
         results = []
         for p in products:
-            results.append({"type": "product", "id": p.id, "text": p.name, "slug": p.slug})
+            results.append({"type": "product", "id": p.id, "text": p.name, "slug": p.slug, "image": p.image})
         for c in categories:
             results.append({"type": "category", "id": c.id, "text": c.name})
+        for b in brands:
+            results.append({"type": "brand", "id": b.id, "text": b.name})
             
         return Response(results)
 
@@ -134,7 +139,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(products, many=True)
         return Response(serializer.data)
 
-class CategoryListView(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.ModelViewSet):
     """
     ViewSet for viewing and editing categories.
     """

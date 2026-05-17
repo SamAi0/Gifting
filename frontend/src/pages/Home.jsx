@@ -53,20 +53,23 @@ const Home = () => {
           />
         </div>
 
-        <div className="relative z-20 w-full px-6 md:px-16 lg:px-24 py-12">
+        <div className="relative z-20 w-full px-6 md:px-16 lg:px-24 pt-16 pb-12 md:pt-32 md:pb-16">
           <div className="max-w-4xl text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-white/10 backdrop-blur-md text-primary-light border border-white/10 text-xs font-bold uppercase tracking-widest mb-8">
-                <Star size={14} className="fill-primary-light" /> #1 Corporate Gifting Partner
-              </span>
-              <h1 className="text-5xl md:text-8xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
+              <div className="flex flex-col gap-4 mb-6">
+                <span className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-white/10 backdrop-blur-md text-primary-light border border-white/10 text-[10px] font-black uppercase tracking-widest w-fit">
+                  <Star size={12} className="fill-primary-light" /> #1 Corporate Gifting Partner
+                </span>
+                <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px] ml-1">Premium Corporate Gifting</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
                 Crafting <span className="text-primary italic font-serif">Unforgettable</span> Corporate Moments
               </h1>
-              <p className="text-xl text-slate-300 mb-10 max-w-xl leading-relaxed font-light">
+              <p className="text-lg text-slate-300 mb-8 max-w-xl leading-relaxed font-light">
                 Premium, customizable gifting solutions that transform professional relationships into lasting partnerships.
               </p>
               <div className="flex flex-col sm:flex-row gap-5">
@@ -84,7 +87,7 @@ const Home = () => {
 
       {/* Featured Stats */}
       <section className="relative z-30 -mt-12 mb-6">
-        <div className="container-custom">
+        <div className="container-home">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             {[
               { label: 'Happy Clients', value: '500+', icon: User },
@@ -110,7 +113,7 @@ const Home = () => {
 
       {/* Trending Products */}
       <section className="py-6 md:py-8 bg-slate-50/50 bg-pattern">
-        <div className="container-custom">
+        <div className="container-home">
           <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
             <div className="text-center md:text-left">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">Trending Collections</h2>
@@ -192,7 +195,7 @@ const Home = () => {
 
       {/* Why Choose Us */}
       <section className="py-6 md:py-8 bg-white overflow-hidden">
-        <div className="container-custom">
+        <div className="container-home">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -251,7 +254,7 @@ const Home = () => {
 
       {/* Testimonials */}
       <section className="py-6 md:py-8 bg-slate-900 text-white relative">
-        <div className="container-custom">
+        <div className="container-home">
           <div className="text-center mb-10">
             <span className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-3 inline-block">Voices of Trust</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What Corporate Visionaries Say</h2>
@@ -318,7 +321,7 @@ const Home = () => {
 
       {/* CTA Section */}
       <section className="py-6 md:py-8 bg-white">
-        <div className="container-custom">
+        <div className="container-home">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

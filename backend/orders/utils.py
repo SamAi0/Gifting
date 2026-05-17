@@ -62,11 +62,13 @@ def generate_invoice_pdf(order):
         data.append([item.product.name, str(item.quantity), f"₹{item.price}", f"₹{item.price * item.quantity}"])
     
     # Summary rows
-    data.append(['', '', 'Subtotal:', f"₹{sum(i.price * i.quantity for i in order.items.all())}"])
+    subtotal = sum(i.price * i.quantity for i in order.items.all())
+    data.append(['', '', 'Subtotal:', f"₹{subtotal}"])
     data.append(['', '', 'Shipping:', f"₹{order.shipping_charges}"])
     data.append(['', '', 'Tax (18%):', f"₹{order.tax_amount}"])
     if order.coupon:
-        discount = (order.total_amount * order.coupon.discount_percent / 100) # Simplified
+        from decimal import Decimal
+        discount = (subtotal * Decimal(order.coupon.discount_percent) / Decimal('100.00')).quantize(Decimal('0.01'))
         data.append(['', '', 'Discount:', f"-₹{discount}"])
     data.append(['', '', 'Total:', f"₹{order.total_amount}"])
 
