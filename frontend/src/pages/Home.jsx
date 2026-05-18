@@ -124,7 +124,7 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {trendingProducts.length > 0 ? (
               trendingProducts.map((product, idx) => (
                 <motion.div
@@ -136,46 +136,46 @@ const Home = () => {
                   className="group"
                 >
                   <Link to={`/products/${product.id}`} className="group block">
-                    <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500">
-                      <div className="aspect-[4/5] overflow-hidden">
+                    <div className="relative bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-premium hover-lift transition-all duration-500">
+                      <div className="aspect-square p-4 sm:p-6 overflow-hidden bg-white flex items-center justify-center relative">
                         <img
                           src={getImageUrl(product.image) || "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000"}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                           alt={product.name}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <span className="bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest border border-white/20 scale-90 group-hover:scale-100 transition-all duration-500">View Details</span>
+                        <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          <span className="bg-white text-slate-900 font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">View Details</span>
                         </div>
                       </div>
 
                       {/* Badges */}
-                      <div className="absolute top-5 left-5 flex flex-col gap-2">
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-col gap-1.5">
                         {product.badge_text && (
                           <span
-                            className="text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg text-white"
+                            className="text-[8px] sm:text-[10px] font-black px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full uppercase tracking-widest shadow-lg text-white"
                             style={{ backgroundColor: product.badge_color || 'var(--color-primary)' }}
                           >
                             {product.badge_text}
                           </span>
                         )}
                         {product.customization_config && (
-                          <span className="bg-white/90 backdrop-blur-md text-primary text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm border border-primary/10">
+                          <span className="bg-white/90 backdrop-blur-md text-primary text-[8px] sm:text-[10px] font-extrabold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full uppercase tracking-widest shadow-sm border border-primary/10">
                             Customizable
                           </span>
                         )}
                       </div>
 
-                      <div className="p-8">
-                        <p className="text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-3">{product.category_name}</p>
-                        <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors line-clamp-1">{product.name}</h3>
-                        <div className="flex justify-between items-center pt-4 border-t border-slate-100">
-                          <div className="flex items-center gap-2">
-                            <span className="text-2xl font-bold text-slate-900">₹{product.price}</span>
+                      <div className="p-4 sm:p-6">
+                        <p className="text-primary text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] mb-1.5 sm:mb-2">{product.category_name}</p>
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-primary transition-colors line-clamp-1">{product.name}</h3>
+                        <div className="flex justify-between items-center pt-3 sm:pt-4 border-t border-slate-100">
+                          <div className="flex items-center gap-1.5 sm:gap-2">
+                            <span className="text-base sm:text-lg md:text-xl font-bold text-slate-900">₹{product.price}</span>
                             {product.discount_price && (
-                              <span className="text-sm text-slate-400 line-through">₹{product.discount_price}</span>
+                              <span className="text-[10px] sm:text-xs text-slate-400 line-through">₹{product.discount_price}</span>
                             )}
                           </div>
-                          <div className="text-primary-light font-black text-[10px] uppercase tracking-widest">
+                          <div className="text-primary-light font-black text-[9px] sm:text-[10px] uppercase tracking-widest">
                             Explore
                           </div>
                         </div>
@@ -186,7 +186,7 @@ const Home = () => {
               ))
             ) : (
               [1, 2, 3, 4].map(n => (
-                <div key={n} className="h-[450px] bg-slate-200 animate-pulse rounded-[2rem]"></div>
+                <div key={n} className="h-[320px] sm:h-[400px] bg-slate-200 animate-pulse rounded-2xl md:rounded-3xl"></div>
               ))
             )}
           </div>
