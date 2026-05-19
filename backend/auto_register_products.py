@@ -38,7 +38,10 @@ def main():
             data = []
 
     existing_images = {os.path.basename(item['baseImage']) for item in data}
-    files = [f for f in os.listdir(static_products_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+    existing_slugs = {item.get('slug') for item in data if item.get('slug')}
+    
+    # Support png, jpg, jpeg, webp, and avif formats
+    files = [f for f in os.listdir(static_products_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.avif'))]
     
     new_files = [f for f in files if f not in existing_images]
     print(f"Found {len(new_files)} new images to register.")
@@ -56,7 +59,16 @@ def main():
         # Remove 'RC ' prefix if exists
         display_name = re.sub(r'^RC\s+', '', display_name, flags=re.IGNORECASE)
         
-        slug = slugify(display_name)
+        # Clean multiple spaces that might result from replacing dashes/underscores
+        display_name = re.sub(r'\s+', ' ', display_name).strip()
+        
+        base_slug = slugify(display_name)
+        slug = base_slug
+        counter = 1
+        while slug in existing_slugs:
+            slug = f"{base_slug}-{counter}"
+            counter += 1
+        existing_slugs.add(slug)
         
         # Default zones: 1 Text, 1 Logo
         new_entry = {
