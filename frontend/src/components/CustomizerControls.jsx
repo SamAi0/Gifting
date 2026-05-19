@@ -10,8 +10,7 @@ const CustomizerControls = ({
   setLogoPreviews, 
   placement, setPlacement,
   designInstructions, setDesignInstructions,
-  maxTextZones, 
-  maxImageZones, 
+  maxZones, 
   onReset, 
   warningMessage 
 }) => {
@@ -48,7 +47,7 @@ const CustomizerControls = ({
   };
 
   const addTextEntry = () => {
-    if (textEntries.length < maxTextZones) {
+    if (textEntries.length + logoFiles.length < maxZones) {
       setTextEntries(prev => [...prev, { id: Date.now(), text: '' }]);
     }
   };
@@ -160,10 +159,10 @@ const CustomizerControls = ({
               <LogoUploader 
                 files={logoFiles} 
                 onFilesChange={(newFiles) => {
-                  if (newFiles.length <= maxImageZones) {
+                  if (newFiles.length + textEntries.length <= maxZones) {
                     setLogoFiles(newFiles);
                   } else {
-                    alert(`You can upload a maximum of ${maxImageZones} logo(s) for this product.`);
+                    alert(`You can customize a maximum of ${maxZones} total elements (logos + text lines) for this product.`);
                   }
                 }} 
                 onPreviewChange={(mainPreview, allPreviews) => setLogoPreviews(allPreviews)} 
@@ -181,7 +180,7 @@ const CustomizerControls = ({
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                   <Type size={12} className="text-primary" /> Personalized Text
                 </label>
-                {textEntries.length < maxTextZones && (
+                {textEntries.length + logoFiles.length < maxZones && (
                   <button onClick={addTextEntry} className="text-[10px] font-black text-primary uppercase tracking-widest flex items-center gap-1 hover:opacity-80 transition-opacity">
                     <Plus size={12} /> Add Another Line
                   </button>
@@ -265,11 +264,15 @@ const CustomizerControls = ({
                   </div>
                   <div className="flex justify-between items-center pb-2 border-b border-slate-200/50">
                     <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Text Lines</span>
-                    <span className="text-[10px] font-black text-slate-700 uppercase">{textEntries.length} / {maxTextZones}</span>
+                    <span className="text-[10px] font-black text-slate-700 uppercase">{textEntries.length}</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-2 border-b border-slate-200/50">
+                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Logos Used</span>
+                    <span className="text-[10px] font-black text-slate-700 uppercase">{logoFiles.length}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Logos Used</span>
-                    <span className="text-[10px] font-black text-slate-700 uppercase">{logoFiles.length} / {maxImageZones}</span>
+                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Total Customizations</span>
+                    <span className="text-[10px] font-black text-slate-700 uppercase">{textEntries.length + logoFiles.length} / {maxZones}</span>
                   </div>
                </div>
             </div>
