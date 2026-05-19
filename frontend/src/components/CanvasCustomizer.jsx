@@ -207,6 +207,7 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
 
         const totalZones = productConfig.zones.length;
 
+        let textZoneIdx = 0;
         for (let i = 0; i < totalZones; i++) {
           const zone = productConfig.zones[i];
           let obj = objects.find(o => o.data?.zoneId === zone.id && !o.data?.isBoundingBox);
@@ -220,9 +221,10 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
           if (targetType === 'text') {
             // If we have a text entry for this index, use it. 
             // Otherwise, targetValue remains null which triggers placeholder.
-            if (i < textEntries.length) {
-              targetValue = textEntries[i].text;
+            if (textZoneIdx < textEntries.length) {
+              targetValue = textEntries[textZoneIdx].text;
             }
+            textZoneIdx++;
           } else if (targetType === 'image') {
             // Logo fills from the end of the image-type zones if possible
             // Simplified: if it's an image zone, try to find a logo
