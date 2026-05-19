@@ -579,8 +579,7 @@ const ProductDetail = () => {
                         setPlacement={setPlacement}
                         designInstructions={designInstructions}
                         setDesignInstructions={setDesignInstructions}
-                        maxTextZones={customizationConfig.zones.filter(z => (z.type || 'text') === 'text').length}
-                        maxImageZones={customizationConfig.zones.filter(z => z.type === 'image').length}
+                        maxZones={customizationConfig.zones.length}
                         onReset={() => {
                           setTextEntries([{ id: Date.now(), text: '' }]);
                           setTextColor('#000000');
