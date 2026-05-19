@@ -10,7 +10,8 @@ const CustomizerControls = ({
   setLogoPreviews, 
   placement, setPlacement,
   designInstructions, setDesignInstructions,
-  maxZones, 
+  maxTextZones, 
+  maxImageZones, 
   onReset, 
   warningMessage 
 }) => {
@@ -42,15 +43,12 @@ const CustomizerControls = ({
   const activePreset = colorOptions.find(c => c.value === textColor);
   const isCustomColor = !activePreset;
 
-  const totalUsed = textEntries.length + logoFiles.length;
-  const remaining = maxZones - totalUsed;
-
   const updateTextEntry = (id, text) => {
     setTextEntries(prev => prev.map(entry => entry.id === id ? { ...entry, text } : entry));
   };
 
   const addTextEntry = () => {
-    if (textEntries.length + logoFiles.length < maxZones) {
+    if (textEntries.length < maxTextZones) {
       setTextEntries(prev => [...prev, { id: Date.now(), text: '' }]);
     }
   };
@@ -159,7 +157,17 @@ const CustomizerControls = ({
               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                 <ImageIcon size={12} className="text-primary" /> Corporate Logo
               </label>
-              <LogoUploader files={logoFiles} onFilesChange={setLogoFiles} onPreviewChange={(mainPreview, allPreviews) => setLogoPreviews(allPreviews)} />
+              <LogoUploader 
+                files={logoFiles} 
+                onFilesChange={(newFiles) => {
+                  if (newFiles.length <= maxImageZones) {
+                    setLogoFiles(newFiles);
+                  } else {
+                    alert(`You can upload a maximum of ${maxImageZones} logo(s) for this product.`);
+                  }
+                }} 
+                onPreviewChange={(mainPreview, allPreviews) => setLogoPreviews(allPreviews)} 
+              />
             </section>
           </div>
         )}
@@ -173,7 +181,7 @@ const CustomizerControls = ({
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                   <Type size={12} className="text-primary" /> Personalized Text
                 </label>
-                {remaining > 0 && (
+                {textEntries.length < maxTextZones && (
                   <button onClick={addTextEntry} className="text-[10px] font-black text-primary uppercase tracking-widest flex items-center gap-1 hover:opacity-80 transition-opacity">
                     <Plus size={12} /> Add Another Line
                   </button>
@@ -255,9 +263,13 @@ const CustomizerControls = ({
                     <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Placement</span>
                     <span className="text-[10px] font-black text-slate-700 uppercase">{placement}</span>
                   </div>
+                  <div className="flex justify-between items-center pb-2 border-b border-slate-200/50">
+                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Text Lines</span>
+                    <span className="text-[10px] font-black text-slate-700 uppercase">{textEntries.length} / {maxTextZones}</span>
+                  </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Zones Used</span>
-                    <span className="text-[10px] font-black text-slate-700 uppercase">{totalUsed} / {maxZones}</span>
+                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Logos Used</span>
+                    <span className="text-[10px] font-black text-slate-700 uppercase">{logoFiles.length} / {maxImageZones}</span>
                   </div>
                </div>
             </div>
