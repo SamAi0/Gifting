@@ -42,9 +42,6 @@ const CustomizerControls = ({
   const activePreset = colorOptions.find(c => c.value === textColor);
   const isCustomColor = !activePreset;
 
-  const totalUsed = textEntries.length + logoFiles.length;
-  const remaining = maxZones - totalUsed;
-
   const updateTextEntry = (id, text) => {
     setTextEntries(prev => prev.map(entry => entry.id === id ? { ...entry, text } : entry));
   };
@@ -159,7 +156,17 @@ const CustomizerControls = ({
               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                 <ImageIcon size={12} className="text-primary" /> Corporate Logo
               </label>
-              <LogoUploader files={logoFiles} onFilesChange={setLogoFiles} onPreviewChange={(mainPreview, allPreviews) => setLogoPreviews(allPreviews)} />
+              <LogoUploader 
+                files={logoFiles} 
+                onFilesChange={(newFiles) => {
+                  if (newFiles.length + textEntries.length <= maxZones) {
+                    setLogoFiles(newFiles);
+                  } else {
+                    alert(`You can customize a maximum of ${maxZones} total elements (logos + text lines) for this product.`);
+                  }
+                }} 
+                onPreviewChange={(mainPreview, allPreviews) => setLogoPreviews(allPreviews)} 
+              />
             </section>
           </div>
         )}
@@ -173,7 +180,7 @@ const CustomizerControls = ({
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                   <Type size={12} className="text-primary" /> Personalized Text
                 </label>
-                {remaining > 0 && (
+                {textEntries.length + logoFiles.length < maxZones && (
                   <button onClick={addTextEntry} className="text-[10px] font-black text-primary uppercase tracking-widest flex items-center gap-1 hover:opacity-80 transition-opacity">
                     <Plus size={12} /> Add Another Line
                   </button>
@@ -255,9 +262,17 @@ const CustomizerControls = ({
                     <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Placement</span>
                     <span className="text-[10px] font-black text-slate-700 uppercase">{placement}</span>
                   </div>
+                  <div className="flex justify-between items-center pb-2 border-b border-slate-200/50">
+                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Text Lines</span>
+                    <span className="text-[10px] font-black text-slate-700 uppercase">{textEntries.length}</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-2 border-b border-slate-200/50">
+                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Logos Used</span>
+                    <span className="text-[10px] font-black text-slate-700 uppercase">{logoFiles.length}</span>
+                  </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Zones Used</span>
-                    <span className="text-[10px] font-black text-slate-700 uppercase">{totalUsed} / {maxZones}</span>
+                    <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Total Customizations</span>
+                    <span className="text-[10px] font-black text-slate-700 uppercase">{textEntries.length + logoFiles.length} / {maxZones}</span>
                   </div>
                </div>
             </div>

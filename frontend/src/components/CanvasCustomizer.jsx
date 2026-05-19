@@ -213,27 +213,22 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
           const left = (zone.x / 1000) * 500;
           const top = (zone.y / 1000) * 500;
 
-          // TWO-WAY MAPPING LOGIC
+          // Bi-directional mapping logic:
+          // 1. Personalized text starts from Zone 1 (index 0) and grows upwards.
+          // 2. Logos grow backwards starting from the very last zone (totalZones - 1).
           let targetType = zone.type || 'text';
           let targetValue = null;
 
-          if (targetType === 'text') {
-            // If we have a text entry for this index, use it. 
-            // Otherwise, targetValue remains null which triggers placeholder.
-            if (i < textEntries.length) {
-              targetValue = textEntries[i].text;
-            }
-          } else if (targetType === 'image') {
-            // Logo fills from the end of the image-type zones if possible
-            // Simplified: if it's an image zone, try to find a logo
-            if (logoPreviews && logoPreviews.length > 0) {
-                // Find which image zone this is (0th image zone gets 0th logo)
-                const imageZones = productConfig.zones.filter(z => z.type === 'image');
-                const imgZoneIdx = imageZones.findIndex(z => z.id === zone.id);
-                if (imgZoneIdx !== -1 && imgZoneIdx < logoPreviews.length) {
-                    targetValue = logoPreviews[imgZoneIdx];
-                }
-            }
+          if (textEntries && i < textEntries.length) {
+            targetType = 'text';
+            targetValue = textEntries[i].text;
+          } else if (logoPreviews && logoPreviews.length > 0 && i >= totalZones - logoPreviews.length) {
+            targetType = 'image';
+            const logoIdx = i - (totalZones - logoPreviews.length);
+            targetValue = logoPreviews[logoIdx];
+          } else {
+            targetType = zone.type || 'text';
+            targetValue = null;
           }
 
           // Clean up if type changed or no targetType
