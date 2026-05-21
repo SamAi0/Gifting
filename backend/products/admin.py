@@ -41,7 +41,7 @@ class AttributeValueAdmin(admin.ModelAdmin):
 class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     inlines = [ProductVariantInline, ProductImageInline]
     def formfield_for_dbfield(self, db_field, request, **kwargs):
-        if db_field.name == 'customization_config':
+        if db_field.name in ['customization_config', 'key_features', 'specifications']:
             kwargs['widget'] = SafeJSONEditorWidget(mode='code')
         return super().formfield_for_dbfield(db_field, request, **kwargs)
 
@@ -93,6 +93,10 @@ class ProductAdmin(ImportExportMixin, SimpleHistoryAdmin):
     fieldsets = (
         ('General Info', {
             'fields': (('name', 'sku'), ('category', 'brand'), 'description', 'tags', ('image', 'image_file', 'image_preview_large'))
+        }),
+        ('Detailed Specs & Features', {
+            'fields': ('key_features', 'specifications'),
+            'description': 'Enter key features as a JSON array of strings and specifications as a JSON dictionary.'
         }),
         ('Pricing & Inventory', {
             'fields': (('price', 'discount_price'), ('stock', 'weight'), ('is_trending', 'is_bulk_only', 'is_active', 'is_deleted')),
