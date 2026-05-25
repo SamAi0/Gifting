@@ -84,10 +84,8 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 python seed_data.py          # Creates admin/admin123
-python manage.py runserver 
-or 
-python manage.py runserver 0.0.0.0:8000
-
+python sync_customization.py # Syncs product customization data
+python manage.py runserver
 ```
 
 ### **Frontend Setup**
