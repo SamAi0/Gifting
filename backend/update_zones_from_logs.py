@@ -13,54 +13,78 @@ from products.models import Product
 
 INPUT_LOGS = """
 products/31
-set cardholder name zones 1-Cardholder text ,2-Keychain text,3-Pen text
- Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 695, "y": 311, "angle": 229
+set cardholder name zones 1-Cardholder text ,2-Text,3-Pen text
+  Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 677, "y": 302, "angle": 229
 CanvasCustomizer.jsx:117 --------------------------
 CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 399, "y": 537, "angle": 327
-CanvasCustomizer.jsx:117 --------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-3] 
-CanvasCustomizer.jsx:116 "x": 273, "y": 591, "angle": 234
-CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:116 "x": 389, "y": 534, "angle": 327
+CanvasCustomizer.jsx:117 ----------------------------------
 
 products/32
 set cardholder name zones 1-Cardholder text,2-Pen text
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 582, "y": 556, "angle": 279
+CanvasCustomizer.jsx:117 ------------------
+
+....
+
+products/36
+set cardholder name zones 1-Cardholder text,2-Pen text
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 519, "y": 502, "angle": 277
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 701, "y": 528, "angle": 280
+CanvasCustomizer.jsx:117 --------------------------
+
+
+products/37
+set placeholder name zones 1-Your name,2-Pen text
 --------------------------
 CanvasCustomizer.jsx:115  Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 582, "y": 545, "angle": 279
+CanvasCustomizer.jsx:116 "x": 497, "y": 515, "angle": 277
 CanvasCustomizer.jsx:117 --------------------------
 CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 684, "y": 638, "angle": 279
+CanvasCustomizer.jsx:116 "x": 713, "y": 549, "angle": 278
+CanvasCustomizer.jsx:117 --------------------------
 
 
-products/33
-set cardholder name zones 1-Cardholder text,2-Pen text
+
+
+
+
+products/38
+set placeholder name zones 1-Your name,2-Pen text
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 392, "y": 443, "angle": 342
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 468, "y": 772, "angle": 338
+CanvasCustomizer.jsx:117 --------------------------
+
+
+
+
+
+
+
+products/39
+set placeholder name zones 1 -Pen text, and 2 zone-extra text and remove, 3rd zone
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 542, "y": 621, "angle": 271
+
+
+
+
+
+
+
+products/40
+set placeholder name zones 1 -Pen text, and 2 zone-extra text and remove, 3rd zone
+--------------------------
 CanvasCustomizer.jsx:115  Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 591, "y": 541, "angle": 281
-CanvasCustomizer.jsx:117 --------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 704, "y": 566, "angle": 281
-CanvasCustomizer.jsx:117 --------------------------
-
-
-products/34
-set cardholder name zones 1-Cardholder text,2-Pen text
- Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 438, "y": 708, "angle": 9
-CanvasCustomizer.jsx:117 --------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 706, "y": 514, "angle": 279
-CanvasCustomizer.jsx:117 --------------------------
-
-
-products/35
-set cardholder name zones 1-Cardholder text,2-Pen text
- Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 448, "y": 736, "angle": 0
-CanvasCustomizer.jsx:117 --------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 704, "y": 624, "angle": 280
+CanvasCustomizer.jsx:116 "x": 612, "y": 634, "angle": 282
 CanvasCustomizer.jsx:117 --------------------------
 """
 
@@ -69,7 +93,6 @@ def parse_logs(log_text):
     current_db_id = None
     current_zone = None
     
-    # We will process log text block by block or line by line
     lines = log_text.strip().split('\n')
     for line in lines:
         line = line.strip()
@@ -87,24 +110,29 @@ def parse_logs(log_text):
             current_zone = None
             continue
             
-        # Match zone names configuration line (e.g. set cardholder name zones 1-Cardholder text ,2-Keychain text,3-Pen text)
+        # Match zone names configuration line
         if current_db_id and 'zones' in line:
-            zones_part_match = re.search(r'zones\s+(.*)', line)
-            if zones_part_match:
-                zones_str = zones_part_match.group(1)
-                # Split by comma
-                parts = [p.strip() for p in zones_str.split(',') if p.strip()]
-                for part in parts:
-                    # part could be: 1-Cardholder text or 1-Cardholder text 
-                    subparts = part.split('-', 1)
-                    if len(subparts) == 2:
-                        num = subparts[0].strip()
-                        name = subparts[1].strip()
-                        zone_id = f"zone-{num}"
-                        data[current_db_id]['zone_names'][zone_id] = name
+            if "remove" in line and "3rd" in line:
+                data[current_db_id]['zone_names'] = {
+                    'zone-1': 'Pen text',
+                    'zone-2': 'extra text'
+                }
+            else:
+                zones_part_match = re.search(r'zones\s+(.*)', line)
+                if zones_part_match:
+                    zones_str = zones_part_match.group(1)
+                    # Split by comma
+                    parts = [p.strip() for p in zones_str.split(',') if p.strip()]
+                    for part in parts:
+                        subparts = part.split('-', 1)
+                        if len(subparts) == 2:
+                            num = subparts[0].strip()
+                            name = subparts[1].strip()
+                            zone_id = f"zone-{num}"
+                            data[current_db_id]['zone_names'][zone_id] = name
             continue
             
-        # Match Zone Update line (e.g. Zone Update [zone-1])
+        # Match Zone Update line
         zone_match = re.search(r'Zone Update\s+\[(.*?)\]', line)
         if zone_match:
             current_zone = zone_match.group(1)
@@ -168,15 +196,12 @@ def main():
             zone_names = info['zone_names']
             zone_coords = info['zone_coords']
             
-            # We want to reconstruct the zones list, keeping only the zones specified in the logs
-            # First, index the existing zones for lookup
+            # Reconstruct the zones list, keeping only the zones specified in the logs
             existing_zones_by_id = {z.get('id'): z for z in item.get('zones', [])}
             
             new_zones = []
-            # The keys of zone_names represent the target zones we want to keep
-            # Let's iterate in order (zone-1, zone-2, zone-3, etc.)
             for zone_id in sorted(zone_names.keys()):
-                # Default zone structure if not found (just in case)
+                # Default zone structure if not found
                 default_zone = {
                     "id": zone_id,
                     "name": zone_names[zone_id],
@@ -196,7 +221,12 @@ def main():
                 
                 # Update properties
                 name = zone_names[zone_id]
-                coords = zone_coords.get(zone_id, {'x': 400, 'y': 200, 'angle': 0})
+                # Fallback to existing coordinates if not in log
+                coords = zone_coords.get(zone_id, {
+                    'x': zone_data.get('x', 400),
+                    'y': zone_data.get('y', 200),
+                    'angle': zone_data.get('angle', 0)
+                })
                 
                 print(f"  Zone {zone_id}:")
                 print(f"    Name: '{zone_data.get('name')}' -> '{name}'")
@@ -211,7 +241,6 @@ def main():
                 
                 new_zones.append(zone_data)
                 
-            # Replace the zones list with the updated and filtered one
             item['zones'] = new_zones
             updated_products_count += 1
             
