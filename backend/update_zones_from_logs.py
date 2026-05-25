@@ -12,79 +12,106 @@ django.setup()
 from products.models import Product
 
 INPUT_LOGS = """
-products/31
-set cardholder name zones 1-Cardholder text ,2-Text,3-Pen text
-  Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 677, "y": 302, "angle": 229
-CanvasCustomizer.jsx:117 --------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 389, "y": 534, "angle": 327
-CanvasCustomizer.jsx:117 ----------------------------------
+products/41
 
-products/32
-set cardholder name zones 1-Cardholder text,2-Pen text
- Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 582, "y": 556, "angle": 279
-CanvasCustomizer.jsx:117 ------------------
-
-....
-
-products/36
-set cardholder name zones 1-Cardholder text,2-Pen text
- Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 519, "y": 502, "angle": 277
-CanvasCustomizer.jsx:117 --------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 701, "y": 528, "angle": 280
-CanvasCustomizer.jsx:117 --------------------------
-
-
-products/37
-set placeholder name zones 1-Your name,2-Pen text
---------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 497, "y": 515, "angle": 277
-CanvasCustomizer.jsx:117 --------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 713, "y": 549, "angle": 278
-CanvasCustomizer.jsx:117 --------------------------
-
-
-
-
-
-
-products/38
-set placeholder name zones 1-Your name,2-Pen text
- Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 392, "y": 443, "angle": 342
-CanvasCustomizer.jsx:117 --------------------------
-CanvasCustomizer.jsx:115  Zone Update [zone-2] 
-CanvasCustomizer.jsx:116 "x": 468, "y": 772, "angle": 338
-CanvasCustomizer.jsx:117 --------------------------
-
-
-
-
-
-
-
-products/39
 set placeholder name zones 1 -Pen text, and 2 zone-extra text and remove, 3rd zone
  Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 542, "y": 621, "angle": 271
+CanvasCustomizer.jsx:116 "x": 574, "y": 663, "angle": 284
+CanvasCustomizer.jsx:117 --------------------------
 
 
-
-
-
-
-
-products/40
+products/42
 set placeholder name zones 1 -Pen text, and 2 zone-extra text and remove, 3rd zone
 --------------------------
 CanvasCustomizer.jsx:115  Zone Update [zone-1] 
-CanvasCustomizer.jsx:116 "x": 612, "y": 634, "angle": 282
+CanvasCustomizer.jsx:116 "x": 625, "y": 523, "angle": 255
+CanvasCustomizer.jsx:117 --------------------------
+
+
+
+products/43
+set placeholder name zones1Your Name,zone2-Top Text (Optional),zone3-Bottom Text (Optional)
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 374, "y": 160, "angle": 340
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 502, "y": 468, "angle": 338
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-3] 
+CanvasCustomizer.jsx:116 "x": 622, "y": 754, "angle": 338
+
+
+
+products/44
+set placeholder name zones 1-Your name,2-Extra text
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 495, "y": 918, "angle": 358
+
+
+
+products/45
+set placeholder name zones 1-Your name,zones2-pen text
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 803, "y": 702, "angle": 0
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 520, "y": 526, "angle": 256
+CanvasCustomizer.jsx:117 --------------------------
+
+
+products/46
+set placeholder name zones1Your Name,zone2-Top Text (Optional),zone3-Bottom Text (Optional)
+--------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 714, "y": 486, "angle": 0
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 477, "y": 130, "angle": 0
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-3] 
+CanvasCustomizer.jsx:116 "x": 474, "y": 863, "angle": 0
+CanvasCustomizer.jsx:117 --------------------------
+
+
+
+products/47
+
+set placeholder name zones 1-Your name,2-Nickname
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 608, "y": 552, "angle": 262
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 454, "y": 721, "angle": 263
+CanvasCustomizer.jsx:117 ----------------------
+
+
+products/48
+
+set placeholder name zones 1-Your name,2-Nickname
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 490, "y": 340, "angle": 305
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 606, "y": 424, "angle": 305
+CanvasCustomizer.jsx:117 --------------------------
+
+products/49
+
+set placeholder name zones 1-Your name,2-Pen text
+ Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 593, "y": 918, "angle": 11
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 727, "y": 430, "angle": 270
+CanvasCustomizer.jsx:117 --------------------------
+
+products/50
+set placeholder name zones 1-Your name,2-Pen text
+Zone Update [zone-1] 
+CanvasCustomizer.jsx:116 "x": 541, "y": 812, "angle": 0
+CanvasCustomizer.jsx:117 --------------------------
+CanvasCustomizer.jsx:115  Zone Update [zone-2] 
+CanvasCustomizer.jsx:116 "x": 204, "y": 581, "angle": 268
 CanvasCustomizer.jsx:117 --------------------------
 """
 
@@ -99,13 +126,13 @@ def parse_logs(log_text):
         if not line:
             continue
             
-        # Match product id line (e.g. products/31)
+        # Match product id line (e.g. products/41)
         prod_match = re.search(r'products/(\d+)', line)
         if prod_match:
             current_db_id = int(prod_match.group(1))
             data[current_db_id] = {
-                'zone_names': {},  # maps "zone-1" -> "Cardholder text"
-                'zone_coords': {}  # maps "zone-1" -> {'x': 695, 'y': 311, 'angle': 229}
+                'zone_names': {},  # maps "zone-1" -> "Your name"
+                'zone_coords': {}  # maps "zone-1" -> {'x': 574, 'y': 663, 'angle': 284}
             }
             current_zone = None
             continue
@@ -118,18 +145,16 @@ def parse_logs(log_text):
                     'zone-2': 'extra text'
                 }
             else:
-                zones_part_match = re.search(r'zones\s+(.*)', line)
-                if zones_part_match:
-                    zones_str = zones_part_match.group(1)
-                    # Split by comma
-                    parts = [p.strip() for p in zones_str.split(',') if p.strip()]
-                    for part in parts:
-                        subparts = part.split('-', 1)
-                        if len(subparts) == 2:
-                            num = subparts[0].strip()
-                            name = subparts[1].strip()
-                            zone_id = f"zone-{num}"
-                            data[current_db_id]['zone_names'][zone_id] = name
+                cleaned = re.sub(r'^set\s+.*?zones\s*', '', line).strip()
+                parts = [p.strip() for p in cleaned.split(',') if p.strip()]
+                for p in parts:
+                    m = re.search(r'(?:zones?|zone)?\s*(\d+)\s*-\s*(.*)', p)
+                    if not m:
+                        m = re.search(r'(?:zones?|zone)?\s*(\d+)\s*(.*)', p)
+                    if m:
+                        num = m.group(1)
+                        name = m.group(2).strip()
+                        data[current_db_id]['zone_names'][f'zone-{num}'] = name
             continue
             
         # Match Zone Update line

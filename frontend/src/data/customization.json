@@ -2289,24 +2289,24 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Pen text",
         "type": "text",
-        "x": 400,
-        "y": 160,
+        "x": 574,
+        "y": 663,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 284,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "PEN TEXT"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "extra text",
         "type": "text",
         "x": 400,
         "y": 220,
@@ -2319,24 +2319,7 @@
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
-      },
-      {
-        "id": "zone-3",
-        "name": "Zone 3",
-        "type": "text",
-        "x": 400,
-        "y": 280,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 300,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "fill": "#ffffff",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
+        "placeholder": "EXTRA TEXT"
       }
     ]
   },
@@ -2348,24 +2331,24 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Pen text",
         "type": "text",
-        "x": 400,
-        "y": 160,
+        "x": 625,
+        "y": 523,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 255,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "PEN TEXT"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "extra text",
         "type": "text",
         "x": 400,
         "y": 220,
@@ -2378,24 +2361,7 @@
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
-      },
-      {
-        "id": "zone-3",
-        "name": "Zone 3",
-        "type": "text",
-        "x": 400,
-        "y": 280,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 300,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "fill": "#ffffff",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
+        "placeholder": "EXTRA TEXT"
       }
     ]
   },
@@ -2407,54 +2373,54 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Your Name",
         "type": "text",
-        "x": 400,
+        "x": 374,
         "y": 160,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 340,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "YOUR NAME"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "Top Text (Optional)",
         "type": "text",
-        "x": 400,
-        "y": 220,
+        "x": 502,
+        "y": 468,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 338,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "TOP TEXT (OPTIONAL)"
       },
       {
         "id": "zone-3",
-        "name": "Zone 3",
+        "name": "Bottom Text (Optional)",
         "type": "text",
-        "x": 400,
-        "y": 280,
+        "x": 622,
+        "y": 754,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 338,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
+        "placeholder": "BOTTOM TEXT (OPTIONAL)"
       }
     ]
   },
@@ -2466,24 +2432,24 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Your name",
         "type": "text",
-        "x": 360,
-        "y": 216,
+        "x": 495,
+        "y": 918,
         "originX": "center",
         "originY": "center",
-        "angle": 270,
+        "angle": 358,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
+        "fontSize": 20,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "PEN 1"
+        "placeholder": "YOUR NAME"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "Extra text",
         "type": "text",
         "x": 400,
         "y": 220,
@@ -2496,7 +2462,7 @@
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "EXTRA TEXT"
       }
     ]
   },
@@ -2508,10 +2474,10 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Your name",
         "type": "text",
-        "x": 400,
-        "y": 160,
+        "x": 803,
+        "y": 702,
         "originX": "center",
         "originY": "center",
         "angle": 0,
@@ -2521,24 +2487,24 @@
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "YOUR NAME"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "pen text",
         "type": "text",
-        "x": 400,
-        "y": 220,
+        "x": 520,
+        "y": 526,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 256,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "PEN TEXT"
       }
     ]
   },
@@ -2550,10 +2516,10 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Your Name",
         "type": "text",
-        "x": 400,
-        "y": 160,
+        "x": 714,
+        "y": 486,
         "originX": "center",
         "originY": "center",
         "angle": 0,
@@ -2563,14 +2529,14 @@
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "YOUR NAME"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "Top Text (Optional)",
         "type": "text",
-        "x": 400,
-        "y": 220,
+        "x": 477,
+        "y": 130,
         "originX": "center",
         "originY": "center",
         "angle": 0,
@@ -2580,14 +2546,14 @@
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "TOP TEXT (OPTIONAL)"
       },
       {
         "id": "zone-3",
-        "name": "Zone 3",
+        "name": "Bottom Text (Optional)",
         "type": "text",
-        "x": 400,
-        "y": 280,
+        "x": 474,
+        "y": 863,
         "originX": "center",
         "originY": "center",
         "angle": 0,
@@ -2597,7 +2563,7 @@
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
+        "placeholder": "BOTTOM TEXT (OPTIONAL)"
       }
     ]
   },
@@ -2609,54 +2575,37 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Your name",
         "type": "text",
-        "x": 400,
-        "y": 160,
+        "x": 608,
+        "y": 552,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 262,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "YOUR NAME"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "Nickname",
         "type": "text",
-        "x": 400,
-        "y": 220,
+        "x": 454,
+        "y": 721,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 263,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
-      },
-      {
-        "id": "zone-3",
-        "name": "Zone 3",
-        "type": "text",
-        "x": 400,
-        "y": 280,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 300,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "fill": "#ffffff",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
+        "placeholder": "NICKNAME"
       }
     ]
   },
@@ -2668,37 +2617,37 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Your name",
         "type": "text",
-        "x": 400,
-        "y": 160,
+        "x": 490,
+        "y": 340,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 305,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "YOUR NAME"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "Nickname",
         "type": "text",
-        "x": 400,
-        "y": 220,
+        "x": 606,
+        "y": 424,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 305,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "NICKNAME"
       }
     ]
   },
@@ -2710,54 +2659,37 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Your name",
         "type": "text",
-        "x": 400,
-        "y": 160,
+        "x": 593,
+        "y": 918,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 11,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
+        "fontSize": 20,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "YOUR NAME"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "Pen text",
         "type": "text",
-        "x": 400,
-        "y": 220,
+        "x": 727,
+        "y": 430,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 270,
         "maxWidth": 300,
-        "maxChars": 15,
+        "maxChars": 20,
         "fontFamily": "Outfit, sans-serif",
         "fontSize": 12,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
-      },
-      {
-        "id": "zone-3",
-        "name": "Zone 3",
-        "type": "text",
-        "x": 400,
-        "y": 280,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 300,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "fill": "#ffffff",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
+        "placeholder": "PEN TEXT"
       }
     ]
   },
@@ -2769,54 +2701,37 @@
     "zones": [
       {
         "id": "zone-1",
-        "name": "Zone 1",
+        "name": "Your name",
         "type": "text",
-        "x": 400,
-        "y": 160,
+        "x": 541,
+        "y": 812,
         "originX": "center",
         "originY": "center",
         "angle": 0,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
+        "fontSize": 20,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "YOUR NAME"
       },
       {
         "id": "zone-2",
-        "name": "Zone 2",
+        "name": "Pen text",
         "type": "text",
-        "x": 400,
-        "y": 220,
+        "x": 204,
+        "y": 581,
         "originX": "center",
         "originY": "center",
-        "angle": 0,
+        "angle": 268,
         "maxWidth": 300,
         "maxChars": 15,
         "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
+        "fontSize": 20,
         "fill": "#ffffff",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
-      },
-      {
-        "id": "zone-3",
-        "name": "Zone 3",
-        "type": "text",
-        "x": 400,
-        "y": 280,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 300,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "fill": "#ffffff",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
+        "placeholder": "PEN TEXT"
       }
     ]
   },
