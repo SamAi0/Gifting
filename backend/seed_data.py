@@ -3,7 +3,6 @@ import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
-python manage.py runserver
 
 from django.contrib.auth.models import User
 from products.models import Category, Product
@@ -29,14 +28,12 @@ if not Settings.objects.exists():
 
 # Create categories
 categories = [
-    "Gift Hampers"
+    "Gift Hampers",
     "Diaries",
-    "Office Gifts"
+    "Office Gifts",
     "Pen & KeyChains Sets",
     "Water Bottles & Gifts",
     "Stationery",
-    
-    
 ]
 
 for cat_name in categories:
