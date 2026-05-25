@@ -79,12 +79,15 @@ The standout feature of the platform, powered by **Fabric.js**:
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate
+.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 python seed_data.py          # Creates admin/admin123
-python manage.py runserver
+python manage.py runserver 
+or 
+python manage.py runserver 0.0.0.0:8000
+
 ```
 
 ### **Frontend Setup**
