@@ -181,7 +181,7 @@ class Product(models.Model):
                 'diaries': 3,
                 'pen-keychains-sets': 3,
                 'water-bottles': 4,
-                'stationery': 2,
+                'stationery': 3,
                 'office-gifts': 3,
                 'gift-sets': 2,
                 'drinkware': 3,
