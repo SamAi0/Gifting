@@ -174,6 +174,32 @@ class Product(models.Model):
                     self.sku = new_sku
                     break
 
+        # Enforce category-based zone limits
+        if self.category:
+            slug_name = self.category.slug
+            zone_limits = {
+                'diaries': 3,
+                'pen-keychains-sets': 3,
+                'water-bottles': 4,
+                'stationery': 2,
+                'office-gifts': 3,
+                'gift-sets': 2,
+                'drinkware': 3,
+                'accessories': 2
+            }
+            limit = zone_limits.get(slug_name, 3) # default to 3
+            
+            if self.customization_config:
+                try:
+                    zones = json.loads(self.customization_config)
+                    if isinstance(zones, str):
+                        zones = json.loads(zones)
+                    if isinstance(zones, list) and len(zones) > limit:
+                        zones = zones[:limit]
+                        self.customization_config = json.dumps(zones)
+                except Exception:
+                    pass
+
         # Compress image before saving
         if self.image_file and not self.id: # Only compress on first upload
             self.compress_image(self.image_file)
