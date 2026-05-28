@@ -188,6 +188,8 @@ class Product(models.Model):
                 'accessories': 2
             }
             limit = zone_limits.get(slug_name, 3) # default to 3
+            if self.slug and 'pen-stand' in self.slug:
+                limit = 3
             
             if self.customization_config:
                 try:
