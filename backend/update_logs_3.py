@@ -10,7 +10,7 @@ django.setup()
 
 from products.models import Product
 
-text = open(r'd:\Gifting\logs_101_150.txt', 'r', encoding='utf-8').read()
+text = open(r'd:\Gifting\logs_151_200.txt', 'r', encoding='utf-8').read()
 products = re.split(r'products/(\d+)', text)
 log_updates = {}
 for i in range(1, len(products), 2):
