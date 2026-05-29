@@ -188,15 +188,21 @@ class Product(models.Model):
                 'accessories': 2
             }
             limit = zone_limits.get(slug_name, 3) # default to 3
+            if self.slug and 'pen-stand' in self.slug:
+                limit = 3
             
             if self.customization_config:
                 try:
                     zones = json.loads(self.customization_config)
                     if isinstance(zones, str):
                         zones = json.loads(zones)
-                    if isinstance(zones, list) and len(zones) > limit:
-                        zones = zones[:limit]
-                        self.customization_config = json.dumps(zones)
+                    if isinstance(zones, list):
+                        # Allow extra-X zones without counting against the category limits
+                        extra_count = sum(1 for z in zones if isinstance(z, dict) and z.get('id', '').startswith('extra-'))
+                        adjusted_limit = limit + extra_count
+                        if len(zones) > adjusted_limit:
+                            zones = zones[:adjusted_limit]
+                            self.customization_config = json.dumps(zones)
                 except Exception:
                     pass
 
