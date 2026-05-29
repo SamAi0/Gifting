@@ -36,17 +36,23 @@ def fix_media_names():
         if not product.image:
             continue
             
-        old_path = product.image.name # e.g., 'products/Sr 240 Pen & Keychain.png'
+        # product.image is a CharField (string), not an ImageField with a .name attribute
+        old_path = product.image
         old_filename = os.path.basename(old_path)
         new_filename = safe_filename(old_filename)
         
         if old_filename == new_filename:
             continue
             
-        new_path = os.path.join('products', new_filename).replace('\\', '/')
-        
-        actual_old_file_path = os.path.join('media', old_path)
-        actual_new_file_path = os.path.join('media', new_path)
+        # Determine correct directories based on static vs media paths
+        if old_path.startswith('/static/'):
+            new_path = f"/static/products/{new_filename}"
+            actual_old_file_path = os.path.join('static', 'products', old_filename)
+            actual_new_file_path = os.path.join('static', 'products', new_filename)
+        else:
+            new_path = os.path.join('products', new_filename).replace('\\', '/')
+            actual_old_file_path = os.path.join('media', old_path)
+            actual_new_file_path = os.path.join('media', new_path)
         
         print(f"Renaming: {old_filename} -> {new_filename}")
         
@@ -63,8 +69,8 @@ def fix_media_names():
         else:
             print(f"  Warning: File {actual_old_file_path} not found on disk.")
             
-        # Update database
-        product.image.name = new_path
+        # Update database CharField
+        product.image = new_path
         product.save()
         print(f"  Updated DB: {old_path} -> {new_path}")
 

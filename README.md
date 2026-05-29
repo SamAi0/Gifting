@@ -42,11 +42,8 @@ Ensure you have **Python 3.10+** and **Node.js 18+** installed on your system.
 ```bash
 # Navigate to the backend directory
 cd backend
-
 # Create a virtual environment
 python -m venv venv
-<<<<<<< HEAD
-
 # Activate the virtual environment
 # On Windows (PowerShell):
 venv\Scripts\Activate.ps1
@@ -54,16 +51,12 @@ venv\Scripts\Activate.ps1
 venv\Scripts\activate.bat
 # On macOS/Linux:
 source venv/bin/activate
-
 # Install dependencies
-=======
 .\venv\Scripts\Activate.ps1
->>>>>>> origin/harshada
 pip install -r requirements.txt
 
 # Apply database migrations
 python manage.py migrate
-<<<<<<< HEAD
 
 # Seed administrative accounts and default category metadata
 # (Creates default superuser account: username 'admin' and password 'admin123')
@@ -73,10 +66,8 @@ python seed_data.py
 python seed_products.py
 
 # Start the Django development server
-=======
 python seed_data.py          # Creates admin/admin123
 python sync_customization.py # Syncs product customization data
->>>>>>> origin/harshada
 python manage.py runserver
 ```
 
