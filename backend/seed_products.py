@@ -4,7 +4,7 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
-from products.models import Category, Product
+from products.models import Category, Product, default_customization_config
 
 def seed_products():
     # Ensure categories exist
@@ -23,11 +23,40 @@ def seed_products():
         custom_data_lookup = []
 
     def get_config_for_product(product_id):
+        # Map of ID to name for seeding
+        id_to_name = {
+            1: "Premium Ceramic Mug",
+            2: "Luxury Leather Notebook",
+            3: "Silver Metallic Pen",
+            4: "Classic Pen & Keychain Duo",
+            5: "Stylish Pen & Keyring",
+            6: "Executive Trio (Sr 125)",
+            7: "Corporate Gift Set (Sr 126)",
+            8: "Perfumo Luxury Set (Sr 135)",
+            9: "Red Elastic Notebook Set (Sr 139)",
+            10: "Black Mars Notebook Set (Sr 144)",
+            11: "Premium Pen & Keychain (Sr 238)",
+            12: "Elegant Pen & Cardholder (Sr 242)",
+            13: "Male & Female Perfume Set (Sr 243)",
+            14: "Copper Hydration Set (Sr 264)",
+            15: "HydroX Black Gift Set (Sr 294)",
+            16: "HydroX White Gift Set (Sr 295)",
+            17: "Red Elastic Diary Set (Sr 140)",
+            18: "Black Mars Diary Set (Sr 145)",
+            19: "Executive Pen & Keychain (Sr 240)",
+            20: "Professional Pen & Cardholder (Sr 247)"
+        }
         # Match by productId from customization.json
         for c in custom_data_lookup:
             if c.get('productId') == product_id:
                 return json.dumps(c.get('zones', []))
-        return None
+        # Match by name fallback
+        name = id_to_name.get(product_id)
+        if name:
+            for c in custom_data_lookup:
+                if c.get('productName') == name:
+                    return json.dumps(c.get('zones', []))
+        return default_customization_config()
 
     products_data = [
         {
