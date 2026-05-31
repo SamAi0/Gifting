@@ -16,12 +16,20 @@ const Home = () => {
           fetchProducts({ page_size: 24 }), // Fetch enough products for variety
           fetchTestimonials()
         ]);
-        const products = prodRes.data.results || prodRes.data;
-        // Randomly shuffle products to show a diverse selection
-        const shuffled = [...products].sort(() => 0.5 - Math.random());
-        setTrendingProducts(shuffled.slice(0, 12));
-        const testimonialsData = testimRes.data.results || testimRes.data;
-        setTestimonials(testimonialsData.slice(0, 3));
+        const products = prodRes.data?.results || prodRes.data;
+        if (Array.isArray(products)) {
+          const shuffled = [...products].sort(() => 0.5 - Math.random());
+          setTrendingProducts(shuffled.slice(0, 12));
+        } else {
+          setTrendingProducts([]);
+        }
+        
+        const testimonialsData = testimRes.data?.results || testimRes.data;
+        if (Array.isArray(testimonialsData)) {
+          setTestimonials(testimonialsData.slice(0, 3));
+        } else {
+          setTestimonials([]);
+        }
       } catch (error) {
         console.error("Error loading home data:", error);
       }
@@ -262,7 +270,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.length > 0 ? (
+            {Array.isArray(testimonials) && testimonials.length > 0 ? (
               testimonials.map((testimonial) => (
                 <motion.div
                   key={testimonial.id}

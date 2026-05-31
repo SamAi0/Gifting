@@ -26,8 +26,10 @@ def safe_filename(filename):
 def fix_media_names():
     media_root = 'media/products'
     if not os.path.exists(media_root):
-        print(f"Directory {media_root} not found.")
-        return
+        print(f"Directory {media_root} not found on disk, skipping media directory scan.")
+    else:
+        # Create a placeholder or skip
+        pass
 
     print("Checking products in database...")
     products = Product.objects.all()
@@ -75,16 +77,17 @@ def fix_media_names():
         print(f"  Updated DB: {old_path} -> {new_path}")
 
     # Also check for any files on disk that are NOT in the DB but need renaming
-    print("\nChecking for remaining files on disk...")
-    for filename in os.listdir(media_root):
-        new_filename = safe_filename(filename)
-        if filename != new_filename:
-            old_file_path = os.path.join(media_root, filename)
-            new_file_path = os.path.join(media_root, new_filename)
-            
-            if not os.path.exists(new_file_path):
-                print(f"Renaming orphaned file: {filename} -> {new_filename}")
-                os.rename(old_file_path, new_file_path)
+    if os.path.exists(media_root):
+        print("\nChecking for remaining files on disk...")
+        for filename in os.listdir(media_root):
+            new_filename = safe_filename(filename)
+            if filename != new_filename:
+                old_file_path = os.path.join(media_root, filename)
+                new_file_path = os.path.join(media_root, new_filename)
+                
+                if not os.path.exists(new_file_path):
+                    print(f"Renaming orphaned file: {filename} -> {new_filename}")
+                    os.rename(old_file_path, new_file_path)
 
 if __name__ == "__main__":
     fix_media_names()

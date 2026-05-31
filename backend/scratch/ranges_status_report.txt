@@ -1,0 +1,2919 @@
+============================================================
+PRODUCT RANGES CUSTOMIZATION COORDINATES STATUS REPORT
+============================================================
+
+RANGE: 270 - 320 (Target 51 products)
+------------------------------------------------------------
+1. Django Database Status:
+   - Total products found in DB range: 51
+   - Products with zones in DB: 51
+2. customization.json Status:
+   - Total products found in JSON: 51
+
+3. References in raw workspace logs/files:
+   - File: logs_261_270.txt
+     Matched Product IDs: [270]
+
+Detailed list of configured products in this range:
+   - ID: 270 | Name: Rc Cardholder Pen Keychain Set Ckp 126 Blue | Slug: rc-cardholder-pen-keychain-set-ckp-126-blue
+     Database Zones:
+       * zone-270-1 (None): x=500, y=200, angle=0
+       * zone-270-2 (None): x=500, y=300, angle=0
+       * zone-270-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-270-1 (None): x=500, y=200, angle=0
+       * zone-270-2 (None): x=500, y=300, angle=0
+       * zone-270-3 (None): x=500, y=400, angle=0
+       * zone-270-4 (None): x=500, y=500, angle=0
+       * zone-270-5 (None): x=500, y=600, angle=0
+   - ID: 271 | Name: Rc Cardholder Pen Set Cp 119 Blue | Slug: rc-cardholder-pen-set-cp-119-blue
+     Database Zones:
+       * zone-271-1 (None): x=657, y=262, angle=0
+       * zone-271-2 (None): x=272, y=500, angle=270
+       * zone-271-3 (None): x=651, y=558, angle=0
+     JSON Zones:
+       * zone-271-1 (None): x=657, y=262, angle=0
+       * zone-271-2 (None): x=272, y=500, angle=270
+       * zone-271-3 (None): x=651, y=558, angle=0
+       * zone-271-4 (None): x=653, y=601, angle=0
+       * zone-271-5 (None): x=653, y=651, angle=0
+   - ID: 272 | Name: Rc Cardholder Pen Set Cp 123 Blue | Slug: rc-cardholder-pen-set-cp-123-blue
+     Database Zones:
+       * zone-272-1 (None): x=500, y=700, angle=0
+       * zone-272-2 (None): x=500, y=800, angle=0
+       * zone-272-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-272-1 (None): x=500, y=700, angle=0
+       * zone-272-2 (None): x=500, y=800, angle=0
+       * zone-272-3 (None): x=500, y=400, angle=0
+       * zone-272-4 (None): x=500, y=200, angle=0
+       * zone-272-5 (None): x=500, y=300, angle=90
+   - ID: 273 | Name: Rc Cardholder Pen Set Cp 123 Tan | Slug: rc-cardholder-pen-set-cp-123-tan
+     Database Zones:
+       * zone-273-1 (None): x=500, y=200, angle=0
+       * zone-273-2 (None): x=500, y=300, angle=0
+       * zone-273-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-273-1 (None): x=500, y=200, angle=0
+       * zone-273-2 (None): x=500, y=300, angle=0
+       * zone-273-3 (None): x=500, y=400, angle=0
+       * zone-273-4 (None): x=500, y=500, angle=0
+       * zone-273-5 (None): x=500, y=600, angle=0
+   - ID: 274 | Name: Rc Cardholder Pen Set Cp 117 Blue | Slug: rc-cardholder-pen-set-cp-117-blue
+     Database Zones:
+       * zone-274-1 (None): x=319, y=282, angle=0
+       * zone-274-2 (None): x=802, y=540, angle=268
+       * zone-274-3 (None): x=325, y=579, angle=0
+     JSON Zones:
+       * zone-274-1 (None): x=319, y=282, angle=0
+       * zone-274-2 (None): x=802, y=540, angle=268
+       * zone-274-3 (None): x=325, y=579, angle=0
+       * zone-274-4 (None): x=327, y=619, angle=0
+       * zone-274-5 (None): x=331, y=655, angle=0
+   - ID: 275 | Name: Rc Cardholder Pen Set Cp 117 Brown | Slug: rc-cardholder-pen-set-cp-117-brown
+     Database Zones:
+       * zone-275-1 (None): x=500, y=700, angle=0
+       * zone-275-2 (None): x=500, y=800, angle=0
+       * zone-275-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-275-1 (None): x=500, y=700, angle=0
+       * zone-275-2 (None): x=500, y=800, angle=0
+       * zone-275-3 (None): x=500, y=400, angle=0
+       * zone-275-4 (None): x=500, y=200, angle=344
+       * zone-275-5 (None): x=500, y=300, angle=253
+   - ID: 276 | Name: Rc Cardholder Pen Set Cp 117 Tan | Slug: rc-cardholder-pen-set-cp-117-tan
+     Database Zones:
+       * zone-276-1 (None): x=500, y=200, angle=0
+       * zone-276-2 (None): x=500, y=300, angle=0
+       * zone-276-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-276-1 (None): x=500, y=200, angle=0
+       * zone-276-2 (None): x=500, y=300, angle=0
+       * zone-276-3 (None): x=500, y=400, angle=0
+       * zone-276-4 (None): x=500, y=500, angle=0
+       * zone-276-5 (None): x=500, y=600, angle=0
+   - ID: 277 | Name: Rc Cardholder Pen Set Cp 118 Blue | Slug: rc-cardholder-pen-set-cp-118-blue
+     Database Zones:
+       * zone-277-1 (None): x=105, y=266, angle=271
+       * zone-277-2 (None): x=477, y=310, angle=269
+       * zone-277-3 (None): x=855, y=720, angle=0
+     JSON Zones:
+       * zone-277-1 (None): x=105, y=266, angle=271
+       * zone-277-2 (None): x=477, y=310, angle=269
+       * zone-277-3 (None): x=855, y=720, angle=0
+       * zone-277-4 (None): x=192, y=620, angle=0
+       * zone-277-5 (None): x=191, y=570, angle=0
+   - ID: 278 | Name: Rc Crock Diary D 212 | Slug: rc-crock-diary-d-212
+     Database Zones:
+       * zone-278-1 (None): x=500, y=700, angle=0
+       * zone-278-2 (None): x=500, y=800, angle=0
+       * zone-278-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-278-1 (None): x=500, y=700, angle=0
+       * zone-278-2 (None): x=500, y=800, angle=0
+       * zone-278-3 (None): x=500, y=400, angle=0
+       * zone-278-4 (None): x=500, y=200, angle=0
+       * zone-278-5 (None): x=500, y=300, angle=92
+   - ID: 279 | Name: Rc Elastic Dairy D 201 Blue | Slug: rc-elastic-dairy-d-201-blue
+     Database Zones:
+       * zone-279-1 (None): x=500, y=200, angle=0
+       * zone-279-2 (None): x=500, y=300, angle=0
+       * zone-279-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-279-1 (None): x=500, y=200, angle=0
+       * zone-279-2 (None): x=500, y=300, angle=0
+       * zone-279-3 (None): x=500, y=400, angle=0
+       * zone-279-4 (None): x=500, y=500, angle=0
+       * zone-279-5 (None): x=500, y=600, angle=0
+   - ID: 280 | Name: Rc Elastic Dairy D 201 Brown | Slug: rc-elastic-dairy-d-201-brown
+     Database Zones:
+       * zone-280-1 (None): x=323, y=302, angle=0
+       * zone-280-2 (None): x=810, y=573, angle=91
+       * zone-280-3 (None): x=639, y=381, angle=82
+     JSON Zones:
+       * zone-280-1 (None): x=323, y=302, angle=0
+       * zone-280-2 (None): x=810, y=573, angle=91
+       * zone-280-3 (None): x=639, y=381, angle=82
+       * zone-280-4 (None): x=613, y=639, angle=80
+       * zone-280-5 (None): x=319, y=692, angle=0
+   - ID: 281 | Name: Rc Elastic Dairy D 201 Red | Slug: rc-elastic-dairy-d-201-red
+     Database Zones:
+       * zone-281-1 (None): x=500, y=700, angle=0
+       * zone-281-2 (None): x=500, y=800, angle=0
+       * zone-281-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-281-1 (None): x=500, y=700, angle=0
+       * zone-281-2 (None): x=500, y=800, angle=0
+       * zone-281-3 (None): x=500, y=400, angle=0
+       * zone-281-4 (None): x=500, y=200, angle=0
+       * zone-281-5 (None): x=500, y=300, angle=88
+   - ID: 282 | Name: Rc Elastic Dairy D 201 White | Slug: rc-elastic-dairy-d-201-white
+     Database Zones:
+       * zone-282-1 (None): x=500, y=200, angle=0
+       * zone-282-2 (None): x=500, y=300, angle=0
+       * zone-282-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-282-1 (None): x=500, y=200, angle=0
+       * zone-282-2 (None): x=500, y=300, angle=0
+       * zone-282-3 (None): x=500, y=400, angle=0
+       * zone-282-4 (None): x=500, y=500, angle=0
+       * zone-282-5 (None): x=500, y=600, angle=0
+   - ID: 283 | Name: Rc Emboss Magnet Diary D 210 Black | Slug: rc-emboss-magnet-diary-d-210-black
+     Database Zones:
+       * zone-283-1 (None): x=373, y=256, angle=0
+       * zone-283-2 (None): x=717, y=359, angle=88
+       * zone-283-3 (None): x=853, y=424, angle=83
+     JSON Zones:
+       * zone-283-1 (None): x=373, y=256, angle=0
+       * zone-283-2 (None): x=717, y=359, angle=88
+       * zone-283-3 (None): x=853, y=424, angle=83
+       * zone-283-4 (None): x=373, y=542, angle=0
+       * zone-283-5 (None): x=367, y=579, angle=0
+   - ID: 284 | Name: Rc Emboss Magnet Diary D 210 Tan | Slug: rc-emboss-magnet-diary-d-210-tan
+     Database Zones:
+       * zone-284-1 (None): x=500, y=700, angle=0
+       * zone-284-2 (None): x=500, y=800, angle=0
+       * zone-284-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-284-1 (None): x=500, y=700, angle=0
+       * zone-284-2 (None): x=500, y=800, angle=0
+       * zone-284-3 (None): x=500, y=400, angle=0
+       * zone-284-4 (None): x=500, y=200, angle=0
+       * zone-284-5 (None): x=500, y=300, angle=88
+   - ID: 285 | Name: Rc Flip Magnet Diary D 206 Black | Slug: rc-flip-magnet-diary-d-206-black
+     Database Zones:
+       * zone-285-1 (None): x=500, y=200, angle=0
+       * zone-285-2 (None): x=500, y=300, angle=0
+       * zone-285-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-285-1 (None): x=500, y=200, angle=0
+       * zone-285-2 (None): x=500, y=300, angle=0
+       * zone-285-3 (None): x=500, y=400, angle=0
+       * zone-285-4 (None): x=500, y=500, angle=0
+       * zone-285-5 (None): x=500, y=600, angle=0
+   - ID: 286 | Name: Rc Flip Magnet Diary D 206 Tan | Slug: rc-flip-magnet-diary-d-206-tan
+     Database Zones:
+       * zone-286-1 (None): x=468, y=173, angle=0
+       * zone-286-2 (None): x=500, y=300, angle=0
+       * zone-286-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-286-1 (None): x=468, y=173, angle=0
+       * zone-286-2 (None): x=500, y=300, angle=0
+       * zone-286-3 (None): x=500, y=400, angle=0
+       * zone-286-4 (None): x=500, y=500, angle=0
+       * zone-286-5 (None): x=500, y=600, angle=0
+   - ID: 287 | Name: Rc Flip Slim Magnet Diary D 217 Brown | Slug: rc-flip-slim-magnet-diary-d-217-brown
+     Database Zones:
+       * zone-287-1 (None): x=500, y=200, angle=0
+       * zone-287-2 (None): x=500, y=300, angle=0
+       * zone-287-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-287-1 (None): x=500, y=200, angle=0
+       * zone-287-2 (None): x=500, y=300, angle=0
+       * zone-287-3 (None): x=500, y=400, angle=0
+       * zone-287-4 (None): x=500, y=200, angle=0
+       * zone-287-5 (None): x=500, y=600, angle=0
+   - ID: 288 | Name: Rc Flip Slim Magnet Diary D 217 Grey | Slug: rc-flip-slim-magnet-diary-d-217-grey
+     Database Zones:
+       * zone-288-1 (None): x=500, y=200, angle=0
+       * zone-288-2 (None): x=500, y=300, angle=0
+       * zone-288-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-288-1 (None): x=500, y=200, angle=0
+       * zone-288-2 (None): x=500, y=300, angle=0
+       * zone-288-3 (None): x=500, y=400, angle=0
+       * zone-288-4 (None): x=500, y=500, angle=0
+       * zone-288-5 (None): x=500, y=600, angle=0
+   - ID: 289 | Name: Rc Golden Border Magnet Diary D 207 Black | Slug: rc-golden-border-magnet-diary-d-207-black
+     Database Zones:
+       * zone-289-1 (None): x=468, y=150, angle=0
+       * zone-289-2 (None): x=500, y=300, angle=0
+       * zone-289-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-289-1 (None): x=468, y=150, angle=0
+       * zone-289-2 (None): x=500, y=300, angle=0
+       * zone-289-3 (None): x=500, y=400, angle=0
+       * zone-289-4 (None): x=500, y=500, angle=0
+       * zone-289-5 (None): x=500, y=600, angle=0
+   - ID: 290 | Name: Rc Golden Border Magnet Diary D 207 Blue | Slug: rc-golden-border-magnet-diary-d-207-blue
+     Database Zones:
+       * zone-290-1 (None): x=500, y=200, angle=0
+       * zone-290-2 (None): x=500, y=300, angle=0
+       * zone-290-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-290-1 (None): x=500, y=200, angle=0
+       * zone-290-2 (None): x=500, y=300, angle=0
+       * zone-290-3 (None): x=500, y=400, angle=0
+       * zone-290-4 (None): x=500, y=200, angle=0
+       * zone-290-5 (None): x=500, y=600, angle=0
+   - ID: 291 | Name: Rc Golden Border Magnet Diary D 207 Brown | Slug: rc-golden-border-magnet-diary-d-207-brown
+     Database Zones:
+       * zone-291-1 (None): x=500, y=200, angle=0
+       * zone-291-2 (None): x=500, y=300, angle=0
+       * zone-291-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-291-1 (None): x=500, y=200, angle=0
+       * zone-291-2 (None): x=500, y=300, angle=0
+       * zone-291-3 (None): x=500, y=400, angle=0
+       * zone-291-4 (None): x=500, y=500, angle=0
+       * zone-291-5 (None): x=500, y=600, angle=0
+   - ID: 292 | Name: Rc Golden Border Magnet Diary D 207 Red | Slug: rc-golden-border-magnet-diary-d-207-red
+     Database Zones:
+       * zone-292-1 (None): x=453, y=153, angle=0
+       * zone-292-2 (None): x=500, y=300, angle=0
+       * zone-292-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-292-1 (None): x=453, y=153, angle=0
+       * zone-292-2 (None): x=500, y=300, angle=0
+       * zone-292-3 (None): x=500, y=400, angle=0
+       * zone-292-4 (None): x=500, y=500, angle=0
+       * zone-292-5 (None): x=500, y=600, angle=0
+   - ID: 293 | Name: Rc Jari Dairy D 202 Blue | Slug: rc-jari-dairy-d-202-blue
+     Database Zones:
+       * zone-293-1 (None): x=500, y=200, angle=0
+       * zone-293-2 (None): x=500, y=300, angle=0
+       * zone-293-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-293-1 (None): x=500, y=200, angle=0
+       * zone-293-2 (None): x=500, y=300, angle=0
+       * zone-293-3 (None): x=500, y=400, angle=0
+       * zone-293-4 (None): x=500, y=200, angle=0
+       * zone-293-5 (None): x=500, y=600, angle=0
+   - ID: 294 | Name: Rc Jari Dairy D 202 Tan | Slug: rc-jari-dairy-d-202-tan
+     Database Zones:
+       * zone-294-1 (None): x=500, y=200, angle=0
+       * zone-294-2 (None): x=500, y=300, angle=0
+       * zone-294-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-294-1 (None): x=500, y=200, angle=0
+       * zone-294-2 (None): x=500, y=300, angle=0
+       * zone-294-3 (None): x=500, y=400, angle=0
+       * zone-294-4 (None): x=500, y=500, angle=0
+       * zone-294-5 (None): x=500, y=600, angle=0
+   - ID: 295 | Name: Rc Magnet Diary D 203 Black | Slug: rc-magnet-diary-d-203-black
+     Database Zones:
+       * zone-295-1 (None): x=446, y=418, angle=269
+       * zone-295-2 (None): x=500, y=648, angle=0
+       * zone-295-3 (None): x=496, y=696, angle=0
+     JSON Zones:
+       * zone-295-1 (None): x=446, y=418, angle=269
+       * zone-295-2 (None): x=500, y=648, angle=0
+       * zone-295-3 (None): x=496, y=696, angle=0
+       * zone-295-4 (None): x=498, y=746, angle=0
+       * zone-295-5 (None): x=493, y=790, angle=0
+   - ID: 296 | Name: Rc Magnet Diary D 203 Blue | Slug: rc-magnet-diary-d-203-blue
+     Database Zones:
+       * zone-296-1 (None): x=500, y=700, angle=0
+       * zone-296-2 (None): x=500, y=800, angle=0
+       * zone-296-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-296-1 (None): x=500, y=700, angle=0
+       * zone-296-2 (None): x=500, y=800, angle=0
+       * zone-296-3 (None): x=500, y=400, angle=0
+       * zone-296-4 (None): x=500, y=200, angle=91
+       * zone-296-5 (None): x=500, y=300, angle=0
+   - ID: 297 | Name: Rc Magnet Diary D 203 Tan | Slug: rc-magnet-diary-d-203-tan
+     Database Zones:
+       * zone-297-1 (None): x=500, y=400, angle=0
+       * zone-297-2 (None): x=500, y=500, angle=0
+       * zone-297-3 (None): x=500, y=600, angle=0
+     JSON Zones:
+       * zone-297-1 (None): x=500, y=400, angle=0
+       * zone-297-2 (None): x=500, y=500, angle=0
+       * zone-297-3 (None): x=500, y=600, angle=0
+       * zone-297-4 (None): x=500, y=700, angle=0
+       * zone-297-5 (None): x=500, y=800, angle=0
+   - ID: 298 | Name: Rc Magnet Diary D 203 White | Slug: rc-magnet-diary-d-203-white
+     Database Zones:
+       * zone-298-1 (None): x=557, y=425, angle=91
+       * zone-298-2 (None): x=367, y=720, angle=270
+       * zone-298-3 (None): x=607, y=696, angle=0
+     JSON Zones:
+       * zone-298-1 (None): x=557, y=425, angle=91
+       * zone-298-2 (None): x=367, y=720, angle=270
+       * zone-298-3 (None): x=607, y=696, angle=0
+       * zone-298-4 (None): x=611, y=746, angle=0
+       * zone-298-5 (None): x=599, y=792, angle=0
+   - ID: 299 | Name: Rc Mobile Packet Diary D 209 Black | Slug: rc-mobile-packet-diary-d-209-black
+     Database Zones:
+       * zone-299-1 (None): x=500, y=700, angle=0
+       * zone-299-2 (None): x=500, y=300, angle=0
+       * zone-299-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-299-1 (None): x=500, y=700, angle=0
+       * zone-299-2 (None): x=500, y=300, angle=0
+       * zone-299-3 (None): x=500, y=400, angle=0
+       * zone-299-4 (None): x=500, y=200, angle=270
+       * zone-299-5 (None): x=500, y=300, angle=270
+   - ID: 300 | Name: Rc Mobile Packet Diary D 209 Blue | Slug: rc-mobile-packet-diary-d-209-blue
+     Database Zones:
+       * zone-300-1 (None): x=500, y=200, angle=0
+       * zone-300-2 (None): x=500, y=300, angle=0
+       * zone-300-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-300-1 (None): x=500, y=200, angle=0
+       * zone-300-2 (None): x=500, y=300, angle=0
+       * zone-300-3 (None): x=500, y=400, angle=0
+       * zone-300-4 (None): x=500, y=500, angle=0
+       * zone-300-5 (None): x=500, y=600, angle=0
+   - ID: 301 | Name: Rc Mobile Packet Diary D 209 Brown | Slug: rc-mobile-packet-diary-d-209-brown
+     Database Zones:
+       * zone-301-1 (None): x=577, y=526, angle=270
+       * zone-301-2 (None): x=392, y=312, angle=268
+       * zone-301-3 (None): x=378, y=729, angle=270
+     JSON Zones:
+       * zone-301-1 (None): x=577, y=526, angle=270
+       * zone-301-2 (None): x=392, y=312, angle=268
+       * zone-301-3 (None): x=378, y=729, angle=270
+       * zone-301-4 (None): x=583, y=786, angle=0
+       * zone-301-5 (None): x=579, y=829, angle=0
+   - ID: 302 | Name: Rc Mobile Packet Diary D 209 Grey | Slug: rc-mobile-packet-diary-d-209-grey
+     Database Zones:
+       * zone-302-1 (None): x=500, y=700, angle=0
+       * zone-302-2 (None): x=500, y=800, angle=0
+       * zone-302-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-302-1 (None): x=500, y=700, angle=0
+       * zone-302-2 (None): x=500, y=800, angle=0
+       * zone-302-3 (None): x=500, y=400, angle=0
+       * zone-302-4 (None): x=500, y=200, angle=270
+       * zone-302-5 (None): x=500, y=300, angle=268
+   - ID: 303 | Name: Rc Mobile Packet Magnet Diary D 208 Black | Slug: rc-mobile-packet-magnet-diary-d-208-black
+     Database Zones:
+       * zone-303-1 (None): x=500, y=200, angle=0
+       * zone-303-2 (None): x=500, y=300, angle=0
+       * zone-303-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-303-1 (None): x=500, y=200, angle=0
+       * zone-303-2 (None): x=500, y=300, angle=0
+       * zone-303-3 (None): x=500, y=400, angle=0
+       * zone-303-4 (None): x=500, y=500, angle=0
+       * zone-303-5 (None): x=500, y=600, angle=0
+   - ID: 304 | Name: Rc Mobile Packet Magnet Diary D 208 Blue | Slug: rc-mobile-packet-magnet-diary-d-208-blue
+     Database Zones:
+       * zone-304-1 (None): x=681, y=258, angle=31
+       * zone-304-2 (None): x=216, y=300415, angle=355
+       * zone-304-3 (None): x=366, y=577, angle=326
+     JSON Zones:
+       * zone-304-1 (None): x=681, y=258, angle=31
+       * zone-304-2 (None): x=216, y=300415, angle=355
+       * zone-304-3 (None): x=366, y=577, angle=326
+       * zone-304-4 (None): x=532, y=641, angle=0
+       * zone-304-5 (None): x=528, y=692, angle=0
+   - ID: 305 | Name: Rc Mobile Packet Magnet Diary D 208 Grey | Slug: rc-mobile-packet-magnet-diary-d-208-grey
+     Database Zones:
+       * zone-305-1 (None): x=500, y=700, angle=0
+       * zone-305-2 (None): x=500, y=800, angle=0
+       * zone-305-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-305-1 (None): x=500, y=700, angle=0
+       * zone-305-2 (None): x=500, y=800, angle=0
+       * zone-305-3 (None): x=500, y=400, angle=0
+       * zone-305-4 (None): x=500, y=200, angle=33
+       * zone-305-5 (None): x=500, y=300, angle=339
+   - ID: 306 | Name: Rc Mobile Packet Magnet Diary D 208 Tan | Slug: rc-mobile-packet-magnet-diary-d-208-tan
+     Database Zones:
+       * zone-306-1 (None): x=500, y=200, angle=0
+       * zone-306-2 (None): x=500, y=300, angle=0
+       * zone-306-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-306-1 (None): x=500, y=200, angle=0
+       * zone-306-2 (None): x=500, y=300, angle=0
+       * zone-306-3 (None): x=500, y=400, angle=0
+       * zone-306-4 (None): x=500, y=500, angle=0
+       * zone-306-5 (None): x=500, y=600, angle=0
+   - ID: 307 | Name: Rc N Crw Diary D 222 | Slug: rc-n-crw-diary-d-222
+     Database Zones:
+       * zone-307-1 (None): x=675, y=262, angle=34
+       * zone-307-2 (None): x=226, y=415, angle=339
+       * zone-307-3 (None): x=379, y=611, angle=329
+     JSON Zones:
+       * zone-307-1 (None): x=675, y=262, angle=34
+       * zone-307-2 (None): x=226, y=415, angle=339
+       * zone-307-3 (None): x=379, y=611, angle=329
+       * zone-307-4 (None): x=729, y=5633, angle=0
+       * zone-307-5 (None): x=727, y=681, angle=0
+   - ID: 308 | Name: Rc N Csm Diary D 221 | Slug: rc-n-csm-diary-d-221
+     Database Zones:
+       * zone-308-1 (None): x=500, y=700, angle=0
+       * zone-308-2 (None): x=500, y=800, angle=0
+       * zone-308-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-308-1 (None): x=500, y=700, angle=0
+       * zone-308-2 (None): x=500, y=800, angle=0
+       * zone-308-3 (None): x=500, y=400, angle=0
+       * zone-308-4 (None): x=500, y=200, angle=0
+       * zone-308-5 (None): x=500, y=600, angle=0
+   - ID: 309 | Name: Rc N Csp Diary D 224 | Slug: rc-n-csp-diary-d-224
+     Database Zones:
+       * zone-309-1 (None): x=500, y=200, angle=0
+       * zone-309-2 (None): x=500, y=300, angle=0
+       * zone-309-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-309-1 (None): x=500, y=200, angle=0
+       * zone-309-2 (None): x=500, y=300, angle=0
+       * zone-309-3 (None): x=500, y=400, angle=0
+       * zone-309-4 (None): x=500, y=500, angle=0
+       * zone-309-5 (None): x=500, y=600, angle=0
+   - ID: 310 | Name: Rc N Cwa Diary D 225 | Slug: rc-n-cwa-diary-d-225
+     Database Zones:
+       * zone-310-1 (None): x=483, y=137, angle=0
+       * zone-310-2 (None): x=500, y=300, angle=0
+       * zone-310-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-310-1 (None): x=483, y=137, angle=0
+       * zone-310-2 (None): x=500, y=300, angle=0
+       * zone-310-3 (None): x=500, y=400, angle=0
+       * zone-310-4 (None): x=500, y=500, angle=0
+       * zone-310-5 (None): x=500, y=600, angle=0
+   - ID: 311 | Name: Rc Organizer N Stpd 332 | Slug: rc-organizer-n-stpd-332
+     Database Zones:
+       * zone-311-1 (None): x=500, y=200, angle=0
+       * zone-311-2 (None): x=500, y=300, angle=0
+       * zone-311-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-311-1 (None): x=500, y=200, angle=0
+       * zone-311-2 (None): x=500, y=300, angle=0
+       * zone-311-3 (None): x=500, y=400, angle=0
+       * zone-311-4 (None): x=500, y=200, angle=0
+       * zone-311-5 (None): x=500, y=600, angle=0
+   - ID: 312 | Name: Rc Organizer N Trb 0-320 | Slug: rc-organizer-n-trb-0-320
+     Database Zones:
+       * zone-312-1 (None): x=500, y=200, angle=0
+       * zone-312-2 (None): x=500, y=300, angle=0
+       * zone-312-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-312-1 (None): x=500, y=200, angle=0
+       * zone-312-2 (None): x=500, y=300, angle=0
+       * zone-312-3 (None): x=500, y=400, angle=0
+       * zone-312-4 (None): x=500, y=500, angle=0
+       * zone-312-5 (None): x=500, y=600, angle=0
+   - ID: 313 | Name: Rc Organizer N Trp 0-322 | Slug: rc-organizer-n-trp-0-322
+     Database Zones:
+       * zone-313-1 (None): x=500, y=127, angle=0
+       * zone-313-2 (None): x=500, y=300, angle=0
+       * zone-313-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-313-1 (None): x=500, y=127, angle=0
+       * zone-313-2 (None): x=500, y=300, angle=0
+       * zone-313-3 (None): x=500, y=400, angle=0
+       * zone-313-4 (None): x=500, y=500, angle=0
+       * zone-313-5 (None): x=500, y=600, angle=0
+   - ID: 314 | Name: Rc Organizer N Tss 0-321 | Slug: rc-organizer-n-tss-0-321
+     Database Zones:
+       * zone-314-1 (None): x=500, y=200, angle=0
+       * zone-314-2 (None): x=500, y=300, angle=0
+       * zone-314-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-314-1 (None): x=500, y=200, angle=0
+       * zone-314-2 (None): x=500, y=300, angle=0
+       * zone-314-3 (None): x=500, y=400, angle=0
+       * zone-314-4 (None): x=500, y=200, angle=0
+       * zone-314-5 (None): x=500, y=600, angle=0
+   - ID: 315 | Name: Rc Organizer P Srca 0-323 | Slug: rc-organizer-p-srca-0-323
+     Database Zones:
+       * zone-315-1 (None): x=500, y=200, angle=0
+       * zone-315-2 (None): x=500, y=300, angle=0
+       * zone-315-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-315-1 (None): x=500, y=200, angle=0
+       * zone-315-2 (None): x=500, y=300, angle=0
+       * zone-315-3 (None): x=500, y=400, angle=0
+       * zone-315-4 (None): x=500, y=500, angle=0
+       * zone-315-5 (None): x=500, y=600, angle=0
+   - ID: 316 | Name: Rc Pen Keychain Set Kp 101 Blue | Slug: rc-pen-keychain-set-kp-101-blue
+     Database Zones:
+       * zone-316-1 (None): x=470, y=156, angle=0
+       * zone-316-2 (None): x=500, y=300, angle=0
+       * zone-316-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-316-1 (None): x=470, y=156, angle=0
+       * zone-316-2 (None): x=500, y=300, angle=0
+       * zone-316-3 (None): x=500, y=400, angle=0
+       * zone-316-4 (None): x=500, y=500, angle=0
+       * zone-316-5 (None): x=500, y=600, angle=0
+   - ID: 317 | Name: Rc Pen Keychain Set Kp 101 Tan | Slug: rc-pen-keychain-set-kp-101-tan
+     Database Zones:
+       * zone-317-1 (None): x=500, y=200, angle=0
+       * zone-317-2 (None): x=500, y=300, angle=0
+       * zone-317-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-317-1 (None): x=500, y=200, angle=0
+       * zone-317-2 (None): x=500, y=300, angle=0
+       * zone-317-3 (None): x=500, y=400, angle=0
+       * zone-317-4 (None): x=500, y=200, angle=88
+       * zone-317-5 (None): x=500, y=300, angle=270
+   - ID: 318 | Name: Rc Pen Keychain Set Kp 102 Blue | Slug: rc-pen-keychain-set-kp-102-blue
+     Database Zones:
+       * zone-318-1 (None): x=500, y=200, angle=0
+       * zone-318-2 (None): x=500, y=300, angle=0
+       * zone-318-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-318-1 (None): x=500, y=200, angle=0
+       * zone-318-2 (None): x=500, y=300, angle=0
+       * zone-318-3 (None): x=500, y=400, angle=0
+       * zone-318-4 (None): x=500, y=500, angle=0
+       * zone-318-5 (None): x=500, y=600, angle=0
+   - ID: 319 | Name: Rc Pen Keychain Set Kp 102 Red | Slug: rc-pen-keychain-set-kp-102-red
+     Database Zones:
+       * zone-319-1 (None): x=500, y=200, angle=0
+       * zone-319-2 (None): x=500, y=300, angle=0
+       * zone-319-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-319-1 (None): x=500, y=200, angle=0
+       * zone-319-2 (None): x=500, y=300, angle=0
+       * zone-319-3 (None): x=500, y=400, angle=0
+       * zone-319-4 (None): x=500, y=500, angle=0
+       * zone-319-5 (None): x=500, y=600, angle=0
+   - ID: 320 | Name: Rc Pen Keychain Set Kp 102 White | Slug: rc-pen-keychain-set-kp-102-white
+     Database Zones:
+       * zone-320-1 (None): x=500, y=200, angle=0
+       * zone-320-2 (None): x=500, y=300, angle=0
+       * zone-320-3 (None): x=500, y=400, angle=0
+     JSON Zones:
+       * zone-320-1 (None): x=500, y=200, angle=0
+       * zone-320-2 (None): x=500, y=300, angle=0
+       * zone-320-3 (None): x=500, y=400, angle=0
+       * zone-320-4 (None): x=500, y=500, angle=0
+       * zone-320-5 (None): x=500, y=600, angle=0
+
+============================================================
+
+RANGE: 500 - 600 (Target 101 products)
+------------------------------------------------------------
+1. Django Database Status:
+   - Total products found in DB range: 101
+   - Products with zones in DB: 101
+2. customization.json Status:
+   - Total products found in JSON: 101
+
+3. References in raw workspace logs/files:
+   - None
+
+Detailed list of configured products in this range:
+   - ID: 500 | Name: Cardholder 1225 | Slug: cardholder-1225
+     Database Zones:
+       * name-1 (None): x=589, y=248, angle=332
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=340, y=620, angle=330
+       * extra-2 (None): x=646, y=356, angle=0
+     JSON Zones:
+       * name-1 (None): x=589, y=248, angle=332
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=340, y=620, angle=330
+       * extra-2 (None): x=646, y=356, angle=0
+   - ID: 501 | Name: Cardholder 1226 | Slug: cardholder-1226
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 502 | Name: Cardholder 1227 | Slug: cardholder-1227
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 503 | Name: Cardholder 1228 | Slug: cardholder-1228
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 504 | Name: Cardholder 1229 | Slug: cardholder-1229
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 505 | Name: Cardholder 1230 | Slug: cardholder-1230
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 506 | Name: Cardholder 1231 | Slug: cardholder-1231
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 507 | Name: Cardholder 1232 | Slug: cardholder-1232
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 508 | Name: Cardholder 1233 | Slug: cardholder-1233
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 509 | Name: Cardholder 1234 | Slug: cardholder-1234
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 510 | Name: Cardholder 1234 Black | Slug: cardholder-1234-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 511 | Name: Coffee Pen 2036 | Slug: coffee-pen-2036
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 512 | Name: Container Pen Stand 1398 Blue | Slug: container-pen-stand-1398-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 513 | Name: Container Pen Stand 1398 grey | Slug: container-pen-stand-1398-grey
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 514 | Name: Container Pen Stand 1398 Maroon | Slug: container-pen-stand-1398-maroon
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 515 | Name: Container Pen Stand 1398 Red | Slug: container-pen-stand-1398-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 516 | Name: Container Pen Stand 1399 | Slug: container-pen-stand-1399
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 517 | Name: Crosi Pen 2030 | Slug: crosi-pen-2030
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 518 | Name: Crown Pen 2031 Black | Slug: crown-pen-2031-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 519 | Name: Crown Pen 2031 Blue | Slug: crown-pen-2031-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 520 | Name: Crown Pen 2031 Red | Slug: crown-pen-2031-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 521 | Name: Cup 1200ML 913 Black | Slug: cup-1200ml-913-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 522 | Name: Cup 1200ML 913 blue | Slug: cup-1200ml-913-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 523 | Name: Cup 1200ML 913 Pink | Slug: cup-1200ml-913-pink
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 524 | Name: Cup 1200ML 913 Purple | Slug: cup-1200ml-913-purple
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 525 | Name: Cup 1200ML 913 white | Slug: cup-1200ml-913-white
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 526 | Name: Cup 896 Black | Slug: cup-896-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 527 | Name: Cup 896 Grey | Slug: cup-896-grey
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 528 | Name: Cup 896 Pink | Slug: cup-896-pink
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 529 | Name: Cup 896 White | Slug: cup-896-white
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 530 | Name: Cup 897 black | Slug: cup-897-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 531 | Name: Cup 897 brown | Slug: cup-897-brown
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 532 | Name: Cup 897 Green&Red | Slug: cup-897-greenred
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 533 | Name: Cup 897 pink&blue | Slug: cup-897-pinkblue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 534 | Name: Cup 898 black | Slug: cup-898-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 535 | Name: Cup 898 Green | Slug: cup-898-green
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 536 | Name: Cup 898 Red | Slug: cup-898-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 537 | Name: Cup 898 Yellow | Slug: cup-898-yellow
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 538 | Name: Cup 899 | Slug: cup-899
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 539 | Name: Cup 900 black | Slug: cup-900-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 540 | Name: Cup 900 stainless steel | Slug: cup-900-stainless-steel
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 541 | Name: Cup 901 | Slug: cup-901
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 542 | Name: Cup 902 | Slug: cup-902
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 543 | Name: Cup 903 | Slug: cup-903
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 544 | Name: Cup 904 | Slug: cup-904
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 545 | Name: Cup 905 | Slug: cup-905
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 546 | Name: Cup 906 | Slug: cup-906
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 547 | Name: Cup 907 | Slug: cup-907
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 548 | Name: Cup 908 | Slug: cup-908
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 549 | Name: Cup 909 | Slug: cup-909
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 550 | Name: Cup 90ML 999 Black | Slug: cup-90ml-999-black
+     Database Zones:
+       * name-1 (None): x=450, y=810, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=430, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=450, y=810, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=430, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 551 | Name: Cup 90ML 999 Blue | Slug: cup-90ml-999-blue
+     Database Zones:
+       * name-1 (None): x=452, y=776, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=485, y=365, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=452, y=776, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=485, y=365, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 552 | Name: Cup 90ML 999 Green | Slug: cup-90ml-999-green
+     Database Zones:
+       * name-1 (None): x=470, y=806, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=502, y=388, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=470, y=806, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=502, y=388, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 553 | Name: Cup 90ML 999 Pink | Slug: cup-90ml-999-pink
+     Database Zones:
+       * name-1 (None): x=472, y=804, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=386, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=472, y=804, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=386, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 554 | Name: Cup 90ML 999 White | Slug: cup-90ml-999-white
+     Database Zones:
+       * name-1 (None): x=456, y=794, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=498, y=384, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=456, y=794, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=498, y=384, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 555 | Name: Cup 910 | Slug: cup-910
+     Database Zones:
+       * name-1 (None): x=390, y=400, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=366, y=610, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=390, y=400, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=366, y=610, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 556 | Name: Cup 911 | Slug: cup-911
+     Database Zones:
+       * name-1 (None): x=336, y=740, angle=272
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=268, y=486, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=336, y=740, angle=272
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=268, y=486, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 557 | Name: Cup 912 | Slug: cup-912
+     Database Zones:
+       * name-1 (None): x=374, y=710, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=460, y=444, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=374, y=710, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=460, y=444, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 558 | Name: Cup 914 Black | Slug: cup-914-black
+     Database Zones:
+       * name-1 (None): x=504, y=554, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=490, y=794, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=504, y=554, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=490, y=794, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 559 | Name: Cup 914 Yellow | Slug: cup-914-yellow
+     Database Zones:
+       * name-1 (None): x=484, y=546, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=488, y=832, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=484, y=546, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=488, y=832, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 560 | Name: Cup 915 Black | Slug: cup-915-black
+     Database Zones:
+       * name-1 (None): x=634, y=746, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=382, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=634, y=746, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=382, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 561 | Name: Cup 915 Pink | Slug: cup-915-pink
+     Database Zones:
+       * name-1 (None): x=650, y=758, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=366, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=650, y=758, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=366, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 562 | Name: Cup 915 Red | Slug: cup-915-red
+     Database Zones:
+       * name-1 (None): x=622, y=766, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=364, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=622, y=766, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=364, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 563 | Name: Cup 915 Steel | Slug: cup-915-steel
+     Database Zones:
+       * name-1 (None): x=616, y=738, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=496, y=370, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=616, y=738, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=496, y=370, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 564 | Name: Cup 916 Black | Slug: cup-916-black
+     Database Zones:
+       * name-1 (None): x=588, y=768, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=506, y=466, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=588, y=768, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=506, y=466, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 565 | Name: Cup 917 White | Slug: cup-917-white
+     Database Zones:
+       * name-1 (None): x=552, y=768, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=510, y=464, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=552, y=768, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=510, y=464, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 566 | Name: Cup 918 | Slug: cup-918
+     Database Zones:
+       * name-1 (None): x=628, y=744, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=430, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=628, y=744, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=430, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 567 | Name: Cup 919 | Slug: cup-919
+     Database Zones:
+       * name-1 (None): x=610, y=708, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=502, y=400, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=610, y=708, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=502, y=400, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 568 | Name: Cup 922 | Slug: cup-922
+     Database Zones:
+       * name-1 (None): x=156, y=458, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=406, y=400, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=156, y=458, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=406, y=400, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 569 | Name: cup 923 | Slug: cup-923
+     Database Zones:
+       * name-1 (None): x=182, y=538, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=424, y=392, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=182, y=538, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=424, y=392, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 570 | Name: Cup 924 | Slug: cup-924
+     Database Zones:
+       * name-1 (None): x=506, y=760, angle=267
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=486, y=512, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=506, y=760, angle=267
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=486, y=512, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 571 | Name: Cup 925 | Slug: cup-925
+     Database Zones:
+       * name-1 (None): x=572, y=716, angle=272
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=438, y=502, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=572, y=716, angle=272
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=438, y=502, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 572 | Name: Cup 926 | Slug: cup-926
+     Database Zones:
+       * name-1 (None): x=490, y=686, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=410, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=490, y=686, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=410, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 573 | Name: Cup 927 | Slug: cup-927
+     Database Zones:
+       * name-1 (None): x=648, y=732, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=456, y=406, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=648, y=732, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=456, y=406, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 574 | Name: Cup 928 | Slug: cup-928
+     Database Zones:
+       * name-1 (None): x=494, y=792, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=342, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=494, y=792, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=342, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 575 | Name: Cup 929 | Slug: cup-929
+     Database Zones:
+       * name-1 (None): x=508, y=796, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=358, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=508, y=796, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=358, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 576 | Name: Cup 930 | Slug: cup-930
+     Database Zones:
+       * name-1 (None): x=816, y=554, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=506, y=382, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=816, y=554, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=506, y=382, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 577 | Name: Cup 931 | Slug: cup-931
+     Database Zones:
+       * name-1 (None): x=764, y=598, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=366, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=764, y=598, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=366, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 578 | Name: Cup 932 | Slug: cup-932
+     Database Zones:
+       * name-1 (None): x=810, y=618, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=398, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=810, y=618, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=398, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 579 | Name: Cup 933 | Slug: cup-933
+     Database Zones:
+       * name-1 (None): x=822, y=608, angle=268
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=488, y=416, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=822, y=608, angle=268
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=488, y=416, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 580 | Name: Cup 934 | Slug: cup-934
+     Database Zones:
+       * name-1 (None): x=566, y=740, angle=272
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=502, y=458, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=566, y=740, angle=272
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=502, y=458, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 581 | Name: Cup 935 | Slug: cup-935
+     Database Zones:
+       * name-1 (None): x=610, y=712, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=488, y=406, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=610, y=712, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=488, y=406, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 582 | Name: Cup 936 | Slug: cup-936
+     Database Zones:
+       * name-1 (None): x=590, y=748, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=496, y=380, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=590, y=748, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=496, y=380, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 583 | Name: Cup 937 | Slug: cup-937
+     Database Zones:
+       * name-1 (None): x=600, y=720, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=414, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=600, y=720, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=414, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 584 | Name: Cup 938 | Slug: cup-938
+     Database Zones:
+       * name-1 (None): x=638, y=732, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=488, y=408, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=638, y=732, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=488, y=408, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 585 | Name: Cup 939 | Slug: cup-939
+     Database Zones:
+       * name-1 (None): x=622, y=684, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=496, y=402, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=622, y=684, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=496, y=402, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 586 | Name: Cup 940 Black | Slug: cup-940-black
+     Database Zones:
+       * name-1 (None): x=602, y=714, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=426, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=602, y=714, angle=271
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=494, y=426, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 587 | Name: Cup 940 Green | Slug: cup-940-green
+     Database Zones:
+       * name-1 (None): x=624, y=726, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=492, y=410, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=624, y=726, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=492, y=410, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 588 | Name: Cup 940 Navy | Slug: cup-940-navy
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 589 | Name: Cup 940 Red | Slug: cup-940-red
+     Database Zones:
+       * name-1 (None): x=614, y=724, angle=268
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=490, y=376, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=614, y=724, angle=268
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=490, y=376, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 590 | Name: Cup 940 White | Slug: cup-940-white
+     Database Zones:
+       * name-1 (None): x=606, y=704, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=492, y=430, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=606, y=704, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=492, y=430, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 591 | Name: Cup 985 | Slug: cup-985
+     Database Zones:
+       * name-1 (None): x=512, y=646, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=326, y=482, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=512, y=646, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=326, y=482, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 592 | Name: Cup 986 | Slug: cup-986
+     Database Zones:
+       * name-1 (None): x=488, y=730, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=314, y=482, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=488, y=730, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=314, y=482, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 593 | Name: Cup 987 Brown | Slug: cup-987-brown
+     Database Zones:
+       * name-1 (None): x=578, y=582, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=402, y=360, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=578, y=582, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=402, y=360, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 594 | Name: Cup 987 Pink | Slug: cup-987-pink
+     Database Zones:
+       * name-1 (None): x=498, y=740, angle=266
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=432, y=474, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=498, y=740, angle=266
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=432, y=474, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 595 | Name: Cup 987 white | Slug: cup-987-white
+     Database Zones:
+       * name-1 (None): x=564, y=696, angle=267
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=384, y=380, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=564, y=696, angle=267
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=384, y=380, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 596 | Name: Cup 988 Black | Slug: cup-988-black
+     Database Zones:
+       * name-1 (None): x=722, y=652, angle=272
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=394, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=722, y=652, angle=272
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=500, y=394, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 597 | Name: Cup 988 White | Slug: cup-988-white
+     Database Zones:
+       * name-1 (None): x=748, y=694, angle=275
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=496, y=436, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=748, y=694, angle=275
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=496, y=436, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 598 | Name: Cup 989 Black | Slug: cup-989-black
+     Database Zones:
+       * name-1 (None): x=574, y=620, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=314, y=460, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=574, y=620, angle=269
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=314, y=460, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 599 | Name: Cup 989 Blue | Slug: cup-989-blue
+     Database Zones:
+       * name-1 (None): x=566, y=614, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=264, y=442, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=566, y=614, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=264, y=442, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+   - ID: 600 | Name: Cup 989 darkgreen | Slug: cup-989-darkgreen
+     Database Zones:
+       * name-1 (None): x=578, y=640, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=274, y=496, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=578, y=640, angle=270
+       * logo-1 (None): x=500, y=250, angle=0
+       * extra-1 (None): x=274, y=496, angle=0
+       * extra-2 (None): x=500, y=450, angle=0
+
+============================================================
+
+RANGE: 830 - 880 (Target 51 products)
+------------------------------------------------------------
+1. Django Database Status:
+   - Total products found in DB range: 51
+   - Products with zones in DB: 51
+2. customization.json Status:
+   - Total products found in JSON: 51
+
+3. References in raw workspace logs/files:
+   - None
+
+Detailed list of configured products in this range:
+   - ID: 830 | Name: Brown Certicate Folder (Portrait) 1504 | Slug: brown-certicate-folder-portrait-1504
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 831 | Name: BTC 4231 Pen Stand 1462 | Slug: btc-4231-pen-stand-1462
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 832 | Name: BTC 4269 Pen Stand 1465 | Slug: btc-4269-pen-stand-1465
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 833 | Name: BTC 4299 Pen Stand 1461 | Slug: btc-4299-pen-stand-1461
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 834 | Name: Cola bottle 500ml 1835 | Slug: cola-bottle-500ml-1835
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 835 | Name: Cola bottle 500ml 1836 | Slug: cola-bottle-500ml-1836
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 836 | Name: Cola bottle((1litr)1816 | Slug: cola-bottle1litr1816
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 837 | Name: Cola Steel Bottle (1Ltr) 1837 | Slug: cola-steel-bottle-1ltr-1837
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 838 | Name: Cola Steel Bottle (500Ltr) 1839 | Slug: cola-steel-bottle-500ltr-1839
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 839 | Name: Cola Steel Bottle (750ml) 1838 | Slug: cola-steel-bottle-750ml-1838
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 840 | Name: Colour Copper Bottle 1928 green | Slug: colour-copper-bottle-1928-green
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 841 | Name: Colour Copper Bottle 1928 maroon | Slug: colour-copper-bottle-1928-maroon
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 842 | Name: Colour Copper Bottle 1928 | Slug: colour-copper-bottle-1928
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 843 | Name: Colour Copper Set 1937 | Slug: colour-copper-set-1937
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 844 | Name: Copper Glass 1933 | Slug: copper-glass-1933
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 845 | Name: Copper Printed Pot 1931 (1) | Slug: copper-printed-pot-1931-1
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 846 | Name: Copper Printed Pot 1931 (2) | Slug: copper-printed-pot-1931-2
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 847 | Name: Copper Set 1935 | Slug: copper-set-1935
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 848 | Name: Cow bottle (1liter) 1814 | Slug: cow-bottle-1liter-1814
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 849 | Name: Cow Handle bottle 750ml 1833 | Slug: cow-handle-bottle-750ml-1833
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 850 | Name: Cow Handle bottle 750ml 1834 | Slug: cow-handle-bottle-750ml-1834
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 851 | Name: Crock Bottle (500ml) 1843 | Slug: crock-bottle-500ml-1843
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 852 | Name: Cup Bottle (500ml) 1844 | Slug: cup-bottle-500ml-1844
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 853 | Name: Cute Rabbit Bottle 1887 blue | Slug: cute-rabbit-bottle-1887-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 854 | Name: Cute Rabbit Bottle 1887 cream | Slug: cute-rabbit-bottle-1887-cream
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 855 | Name: Cute Rabbit Bottle 1887 pink | Slug: cute-rabbit-bottle-1887-pink
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 856 | Name: Damroo bottle 1815 | Slug: damroo-bottle-1815
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 857 | Name: Dual colour Bottle 1876 | Slug: dual-colour-bottle-1876
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 858 | Name: Ecofriendly Bottle 1924 blue | Slug: ecofriendly-bottle-1924-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 859 | Name: Ecofriendly Bottle 1924 white | Slug: ecofriendly-bottle-1924-white
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 860 | Name: Foldable & Adjustable Mobile Stand black 1714 | Slug: foldable-adjustable-mobile-stand-black-1714
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 861 | Name: Foldable & Adjustable Mobile Stand white 1715 | Slug: foldable-adjustable-mobile-stand-white-1715
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 862 | Name: Foldable Metal Mobile Stand 1712 | Slug: foldable-metal-mobile-stand-1712
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 863 | Name: Foldable Plastic Mobile Stand 1713 | Slug: foldable-plastic-mobile-stand-1713
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 864 | Name: Glass Bottle with Sleeve (500ml) 1847 | Slug: glass-bottle-with-sleeve-500ml-1847
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 865 | Name: Glass Bottle(1Ltr) 1859 | Slug: glass-bottle1ltr-1859
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 866 | Name: Golden Handle Bottle 1908 black | Slug: golden-handle-bottle-1908-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 867 | Name: Golden Handle Bottle 1908 red | Slug: golden-handle-bottle-1908-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 868 | Name: Gripper Glass Green Tea Bottle 1883 blue | Slug: gripper-glass-green-tea-bottle-1883-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 869 | Name: Gripper Glass Green Tea Bottle 1883 yellow | Slug: gripper-glass-green-tea-bottle-1883-yellow
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 870 | Name: Handle Straight (750ml)1819 | Slug: handle-straight-750ml1819
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 871 | Name: Handle Straight bottle (750ml)1820 | Slug: handle-straight-bottle-750ml1820
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 872 | Name: Jute File 1505 | Slug: jute-file-1505
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 873 | Name: Jute File 1506 | Slug: jute-file-1506
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 874 | Name: Jute File 1507 | Slug: jute-file-1507
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 875 | Name: Jute File 1508 | Slug: jute-file-1508
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 876 | Name: Jute Natural Bag 1509 | Slug: jute-natural-bag-1509
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 877 | Name: Jute White File 1510 | Slug: jute-white-file-1510
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 878 | Name: Lighter Shape Water Bottle 1941 blue | Slug: lighter-shape-water-bottle-1941-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 879 | Name: Lighter Shape Water Bottle 1941 red | Slug: lighter-shape-water-bottle-1941-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 880 | Name: Lighter Shape Water Bottle 1941 yellow | Slug: lighter-shape-water-bottle-1941-yellow
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+
+============================================================
+
+RANGE: 1101 - 1158 (Target 58 products)
+------------------------------------------------------------
+1. Django Database Status:
+   - Total products found in DB range: 58
+   - Products with zones in DB: 58
+2. customization.json Status:
+   - Total products found in JSON: 58
+
+3. References in raw workspace logs/files:
+   - None
+
+Detailed list of configured products in this range:
+   - ID: 1101 | Name: Purse Pen Keychain Set PPK 805 Black | Slug: purse-pen-keychain-set-ppk-805-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1102 | Name: Purse Pen Keychain Set PPK 805 Brown | Slug: purse-pen-keychain-set-ppk-805-brown
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1103 | Name: Retractable Pen 2003 Black | Slug: retractable-pen-2003-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1104 | Name: Retractable Pen 2003 Blue | Slug: retractable-pen-2003-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1105 | Name: Retractable Pen 2003 Red | Slug: retractable-pen-2003-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1106 | Name: Round Top Pen 2006 Black | Slug: round-top-pen-2006-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1107 | Name: Round Top Pen 2006 Blue | Slug: round-top-pen-2006-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1108 | Name: Round Top Pen 2006 Brown | Slug: round-top-pen-2006-brown
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1109 | Name: Round Top Pen 2006 Grey | Slug: round-top-pen-2006-grey
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1110 | Name: Shiny Black Pen 2011 | Slug: shiny-black-pen-2011
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1111 | Name: Shiny Gold Pem 2010 | Slug: shiny-gold-pem-2010
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1112 | Name: Slender Gold Pen 2008 | Slug: slender-gold-pen-2008
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1113 | Name: Slim 3 Ring Pen 2005 | Slug: slim-3-ring-pen-2005
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1114 | Name: Slim Cross Pen 1968 pink | Slug: slim-cross-pen-1968-pink
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1115 | Name: Slim Cross Pen 1968 silver | Slug: slim-cross-pen-1968-silver
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1116 | Name: Slim Cross Pen 1968 yellow&silver | Slug: slim-cross-pen-1968-yellowsilver
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1117 | Name: Slim Cross Pen 1968 yellow | Slug: slim-cross-pen-1968-yellow
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1118 | Name: Slim Touch Pen 1955 | Slug: slim-touch-pen-1955
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1119 | Name: Slim Touch Pen 1956 | Slug: slim-touch-pen-1956
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1120 | Name: Slim Touch Pen 1957 | Slug: slim-touch-pen-1957
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1121 | Name: Slim Touch Pen 1958 | Slug: slim-touch-pen-1958
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1122 | Name: Slim Touch Pen 1959 | Slug: slim-touch-pen-1959
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1123 | Name: Slim Touch Pen 1960 | Slug: slim-touch-pen-1960
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1124 | Name: Slim Touch Pen 1985 | Slug: slim-touch-pen-1985
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1125 | Name: Small Top Pen 1978 Black | Slug: small-top-pen-1978-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1126 | Name: Small Top Pen 1978 Blue | Slug: small-top-pen-1978-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1127 | Name: Small Top Pen 1978 Red | Slug: small-top-pen-1978-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1128 | Name: Small Top Pen 1978 White | Slug: small-top-pen-1978-white
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1129 | Name: Speed Pen 2002 Blue | Slug: speed-pen-2002-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1130 | Name: Speed Pen 2002 Pink | Slug: speed-pen-2002-pink
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1131 | Name: Structure Parker Pen 1974 Golden | Slug: structure-parker-pen-1974-golden
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1132 | Name: Structure Parker Pen 1974 silver | Slug: structure-parker-pen-1974-silver
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1133 | Name: TIE Shape Clip Pen 1980 | Slug: tie-shape-clip-pen-1980
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1134 | Name: TIE Shape Clip Pen 1981 | Slug: tie-shape-clip-pen-1981
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1135 | Name: Tik Tik colourful Pen 2003 Black | Slug: tik-tik-colourful-pen-2003-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1136 | Name: Tik Tik colourful Pen 2003 Blue | Slug: tik-tik-colourful-pen-2003-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1137 | Name: Tik Tik colourful Pen 2003 Red | Slug: tik-tik-colourful-pen-2003-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1138 | Name: Tik Tik Pen 1983 | Slug: tik-tik-pen-1983
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1139 | Name: Tik Tik Pen 1984 Black | Slug: tik-tik-pen-1984-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1140 | Name: Tik Tik Pen 1984 Brown | Slug: tik-tik-pen-1984-brown
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1141 | Name: Tik Tik Pen 1984 Tan | Slug: tik-tik-pen-1984-tan
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1142 | Name: tik Tik Rubber Coated Pen 1986 Black | Slug: tik-tik-rubber-coated-pen-1986-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1143 | Name: tik Tik Rubber Coated Pen 1986 Tan | Slug: tik-tik-rubber-coated-pen-1986-tan
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1144 | Name: tik Tik Rubber Coated Pen 1987 Blue | Slug: tik-tik-rubber-coated-pen-1987-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1145 | Name: tik Tik Rubber Coated Pen 1987 Grey | Slug: tik-tik-rubber-coated-pen-1987-grey
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1146 | Name: Tik Tik Side Cut Clip Pen 2034 Blue | Slug: tik-tik-side-cut-clip-pen-2034-blue
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1147 | Name: Tik Tik Side Cut Clip Pen 2034 Red | Slug: tik-tik-side-cut-clip-pen-2034-red
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1148 | Name: Touch Pen Single ring 1966 Black | Slug: touch-pen-single-ring-1966-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1149 | Name: Touch Pen Single ring 1966 White | Slug: touch-pen-single-ring-1966-white
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1150 | Name: Touch Pen Three Ring 1961 | Slug: touch-pen-three-ring-1961
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1151 | Name: Touch Pen Three Ring 1962 | Slug: touch-pen-three-ring-1962
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1152 | Name: Travel Pouch 1054 Black | Slug: travel-pouch-1054-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1153 | Name: Travel Pouch 1054 Brown | Slug: travel-pouch-1054-brown
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1154 | Name: Travel Pouch 1054 Green | Slug: travel-pouch-1054-green
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1155 | Name: U Clip Mettalic Parker Pen 1976 | Slug: u-clip-mettalic-parker-pen-1976
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1156 | Name: U Clip Parker Rose gold Pen 1977 | Slug: u-clip-parker-rose-gold-pen-1977
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1157 | Name: U Clip Pen 1979 Black | Slug: u-clip-pen-1979-black
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+   - ID: 1158 | Name: U Clip Pen 1979 White | Slug: u-clip-pen-1979-white
+     Database Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+     JSON Zones:
+       * name-1 (None): x=500, y=150, angle=0
+       * extra-1 (None): x=500, y=350, angle=0
+       * logo-2 (None): x=500, y=450, angle=0
+       * logo-1 (None): x=500, y=250, angle=0
+
+============================================================
+
