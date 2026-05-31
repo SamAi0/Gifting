@@ -39,3 +39,4 @@ categories = [
 for cat_name in categories:
     Category.objects.get_or_create(name=cat_name)
 print(f"Created/Verified {len(categories)} categories.")
+
