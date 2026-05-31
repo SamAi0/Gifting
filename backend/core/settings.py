@@ -41,8 +41,6 @@ if 'RENDER' in os.environ:
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,gifting-82j5.onrender.com,.netlify.app').split(',')
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
-if DEBUG:
-    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -218,7 +216,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_THROTTLE_RATES': {
         'user': '10000/day',
-        'anon': '1000000/day',
+        'anon': '1000/day',
         'login': '10/minute',  # Slightly more relaxed for dev
         'signup': '10/hour',
     }
