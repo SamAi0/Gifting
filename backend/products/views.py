@@ -30,7 +30,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     """
     ViewSet for viewing and editing products.
     """
-    queryset = Product.objects.select_related('category').all().order_by('-created_at')
+    queryset = Product.objects.select_related('category').all().order_by('id')
     serializer_class = ProductSerializer
     pagination_class = ProductPagination
     
@@ -49,7 +49,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         search = self.request.query_params.get('search', None)
         min_price = self.request.query_params.get('min_price', None)
         max_price = self.request.query_params.get('max_price', None)
-        ordering = self.request.query_params.get('ordering', '-created_at')
+        ordering = self.request.query_params.get('ordering', 'id')
         
         if category:
             queryset = queryset.filter(category_id=category)
@@ -79,7 +79,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         if max_price:
             queryset = queryset.filter(price__lte=max_price)
         
-        valid_orderings = ['price', '-price', 'name', '-name', 'created_at', '-created_at', 'popularity_score', '-popularity_score', 'average_rating', '-average_rating']
+        valid_orderings = ['id', '-id', 'price', '-price', 'name', '-name', 'created_at', '-created_at', 'popularity_score', '-popularity_score', 'average_rating', '-average_rating']
         if ordering in valid_orderings:
             queryset = queryset.order_by(ordering)
             
