@@ -9,7 +9,9 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+
 backend/media/
+
 # Django static/media
 backend/staticfiles/
 backend/db.sqlite3
