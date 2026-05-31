@@ -42,8 +42,10 @@ Ensure you have **Python 3.10+** and **Node.js 18+** installed on your system.
 ```bash
 # Navigate to the backend directory
 cd backend
+
 # Create a virtual environment
 python -m venv venv
+
 # Activate the virtual environment
 # On Windows (PowerShell):
 venv\Scripts\Activate.ps1
@@ -51,8 +53,8 @@ venv\Scripts\Activate.ps1
 venv\Scripts\activate.bat
 # On macOS/Linux:
 source venv/bin/activate
+
 # Install dependencies
-.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
 # Apply database migrations
@@ -66,8 +68,6 @@ python seed_data.py
 python seed_products.py
 
 # Start the Django development server
-python seed_data.py          # Creates admin/admin123
-python sync_customization.py # Syncs product customization data
 python manage.py runserver
 ```
 
