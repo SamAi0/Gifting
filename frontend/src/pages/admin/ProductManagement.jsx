@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import api, { fetchCategories, createProduct, updateProduct, deleteProduct } from '../../api';
+import api, { fetchCategories, createProduct, updateProduct, deleteProduct, getImageUrl } from '../../api';
 import { 
   Plus, 
   Search, 
@@ -73,7 +73,7 @@ const ProductManagement = () => {
         is_bulk_only: product.is_bulk_only,
         customization_zones: product.customization_zones || []
       });
-      setImagePreview(product.image);
+      setImagePreview(getImageUrl(product.image));
     } else {
       setEditingProduct(null);
       setFormData({
@@ -208,7 +208,7 @@ const ProductManagement = () => {
                 <tr key={product.id} className="hover:bg-white/5 transition-colors group">
                   <td className="px-6 py-4">
                     <div className="flex items-center">
-                      <img src={product.image} alt={product.name} className="w-12 h-12 rounded-lg bg-gray-800 mr-4 border border-white/5 object-cover" />
+                      <img src={getImageUrl(product.image)} alt={product.name} className="w-12 h-12 rounded-lg bg-gray-800 mr-4 border border-white/5 object-cover" />
                       <div>
                         <span className="font-semibold block">{product.name}</span>
                         {product.is_trending && <span className="text-[10px] text-emerald-500 font-bold uppercase">Trending</span>}
