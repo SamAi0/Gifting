@@ -33,3 +33,5 @@ frontend/build/
 # --------------------
 .DS_Store
 Thumbs.db
+backend/scratch/db.sqlite3
+backend/db.sqlite3
