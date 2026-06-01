@@ -2776,6 +2776,24 @@
                 "opacity": 0.9,
                 "placeholder": "Pen text",
                 "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -2819,6 +2837,24 @@
                 "fill": "#ffffff",
                 "opacity": 0.9,
                 "placeholder": "Pen text",
+                "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
                 "minFontSize": 10
             }
         ]
@@ -2957,8 +2993,8 @@
                 "id": "zone-1",
                 "name": "Zone 1",
                 "type": "text",
-                "x": 532,
-                "y": 633,
+                "x": 622,
+                "y": 653,
                 "originX": "center",
                 "originY": "center",
                 "angle": 271,
@@ -2975,11 +3011,11 @@
                 "id": "zone-2",
                 "name": "Zone 2",
                 "type": "text",
-                "x": 389,
-                "y": 506,
+                "x": 552,
+                "y": 513,
                 "originX": "center",
                 "originY": "center",
-                "angle": 269,
+                "angle": 336,
                 "maxWidth": 300,
                 "maxChars": 15,
                 "fontFamily": "Outfit, sans-serif",
@@ -2987,6 +3023,24 @@
                 "fill": "#ffffff",
                 "opacity": 0.9,
                 "placeholder": "keychain text",
+                "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
                 "minFontSize": 10
             }
         ]
@@ -3133,8 +3187,8 @@
                 "id": "zone-1",
                 "name": "Zone 1",
                 "type": "text",
-                "x": 560,
-                "y": 578,
+                "x": 666,
+                "y": 694,
                 "originX": "center",
                 "originY": "center",
                 "angle": 269,
@@ -3151,8 +3205,8 @@
                 "id": "zone-2",
                 "name": "Zone 2",
                 "type": "text",
-                "x": 389,
-                "y": 481,
+                "x": 459,
+                "y": 619,
                 "originX": "center",
                 "originY": "center",
                 "angle": 269,
@@ -3163,6 +3217,24 @@
                 "fill": "#ffffff",
                 "opacity": 0.9,
                 "placeholder": "Pen text",
+                "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
                 "minFontSize": 10
             }
         ]
@@ -3208,6 +3280,24 @@
                 "opacity": 0.9,
                 "placeholder": "Pen text",
                 "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -3251,6 +3341,24 @@
                 "fill": "#ffffff",
                 "opacity": 0.9,
                 "placeholder": "Pen text",
+                "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
                 "minFontSize": 10
             }
         ]
@@ -3296,6 +3404,24 @@
                 "opacity": 0.9,
                 "placeholder": "Pen text",
                 "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -3339,6 +3465,24 @@
                 "fill": "#ffffff",
                 "opacity": 0.9,
                 "placeholder": "Pen text",
+                "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
                 "minFontSize": 10
             }
         ]
@@ -3384,6 +3528,24 @@
                 "opacity": 0.9,
                 "placeholder": "Pen text",
                 "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -3415,8 +3577,26 @@
                 "id": "zone-2",
                 "name": "Zone 2",
                 "type": "text",
-                "x": 618,
-                "y": 724,
+                "x": 723,
+                "y": 494,
+                "originX": "center",
+                "originY": "center",
+                "angle": 268,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Pen text",
+                "minFontSize": 10
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 400,
+                "y": 200,
                 "originX": "center",
                 "originY": "center",
                 "angle": 0,
@@ -3426,7 +3606,7 @@
                 "fontSize": 12,
                 "fill": "#ffffff",
                 "opacity": 0.9,
-                "placeholder": "Pen text",
+                "placeholder": "extra text",
                 "minFontSize": 10
             }
         ]
@@ -7040,6 +7220,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -7588,6 +7786,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -7647,6 +7863,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -7706,6 +7940,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -7765,6 +8017,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -7824,6 +8094,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -7883,6 +8171,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -7942,6 +8248,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -8077,6 +8401,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -8136,6 +8478,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -8195,6 +8555,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -8254,6 +8632,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle Text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -8355,6 +8751,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Pen text"
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 755,
+                "y": 291,
+                "originX": "center",
+                "originY": "center",
+                "angle": 292,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Text",
+                "minFontSize": 10
             }
         ]
     },
@@ -8397,6 +8811,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Pen text"
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 763,
+                "y": 281,
+                "originX": "center",
+                "originY": "center",
+                "angle": 18,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Text",
+                "minFontSize": 10
             }
         ]
     },
@@ -8725,6 +9157,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Extra text",
+                "minFontSize": 10
             }
         ]
     },
@@ -8767,6 +9217,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Pen text"
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 792,
+                "y": 395,
+                "originX": "center",
+                "originY": "center",
+                "angle": 256,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Bottle text",
+                "minFontSize": 10
             }
         ]
     },
@@ -9121,6 +9589,42 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Your name"
+            },
+            {
+                "id": "zone-3",
+                "name": "Zone 3",
+                "type": "text",
+                "x": 617,
+                "y": 683,
+                "originX": "center",
+                "originY": "center",
+                "angle": 270,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Keychian",
+                "minFontSize": 10
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 322,
+                "y": 723,
+                "originX": "center",
+                "originY": "center",
+                "angle": 270,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Text",
+                "minFontSize": 10
             }
         ]
     },
@@ -9179,7 +9683,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-175-4",
@@ -9255,7 +9759,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-176-4",
@@ -9331,7 +9835,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-177-4",
@@ -9407,7 +9911,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-178-4",
@@ -9483,7 +9987,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-179-4",
@@ -9559,7 +10063,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-180-4",
@@ -9635,7 +10139,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-181-4",
@@ -9711,7 +10215,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-182-4",
@@ -9787,7 +10291,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-183-4",
@@ -9863,7 +10367,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-184-4",
@@ -9939,7 +10443,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-185-4",
@@ -10015,7 +10519,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Nickname and 4-Bottle Text"
+                "placeholder": "Nickname"
             },
             {
                 "id": "zone-186-4",
@@ -10091,7 +10595,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Nickname and 4-Bottle Text"
+                "placeholder": "Nickname"
             },
             {
                 "id": "zone-187-4",
@@ -10167,7 +10671,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Nickname and 4-Bottle Text"
+                "placeholder": "Nickname"
             },
             {
                 "id": "zone-188-4",
@@ -10243,7 +10747,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Nickname and 4-Bottle Text"
+                "placeholder": "Nickname"
             },
             {
                 "id": "zone-189-4",
@@ -10319,7 +10823,7 @@
                 "minFontSize": 10,
                 "fill": "#000000",
                 "opacity": 0.9,
-                "placeholder": "Text and 4-Bottle Text"
+                "placeholder": "Text"
             },
             {
                 "id": "zone-190-4",
@@ -10400,11 +10904,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 675,
+                "y": 709,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 86,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -10476,11 +10980,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 704,
+                "y": 711,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 89,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -10552,11 +11056,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 657,
+                "y": 680,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 90,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -10628,11 +11132,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 721,
+                "y": 599,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 94,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -10704,11 +11208,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 702,
+                "y": 608,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 89,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -10780,11 +11284,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 663,
+                "y": 693,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 90,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -10856,11 +11360,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 748,
+                "y": 632,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 91,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -10932,11 +11436,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 701,
+                "y": 713,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 88,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11008,11 +11512,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 703,
+                "y": 596,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 95,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11084,11 +11588,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 693,
+                "y": 691,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 92,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11160,11 +11664,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 789,
+                "y": 653,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 41,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11236,11 +11740,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 753,
+                "y": 577,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 39,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11312,11 +11816,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 657,
+                "y": 688,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 92,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11388,11 +11892,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 706,
+                "y": 591,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 94,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11464,11 +11968,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 753,
+                "y": 579,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 30,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11540,11 +12044,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 786,
+                "y": 642,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 281,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11616,11 +12120,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 677,
+                "y": 687,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 88,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11692,11 +12196,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 725,
+                "y": 250,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 308,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11768,11 +12272,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 698,
+                "y": 710,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 89,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11844,11 +12348,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 654,
+                "y": 701,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 360,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -11920,8 +12424,8 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 643,
+                "y": 323,
                 "originX": "center",
                 "originY": "center",
                 "angle": 0,
@@ -11996,11 +12500,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 893,
+                "y": 679,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 266,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12072,11 +12576,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 213,
+                "y": 623,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 272,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12148,11 +12652,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 176,
+                "y": 614,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 271,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12224,11 +12728,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 202,
+                "y": 610,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 270,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12300,11 +12804,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 226,
+                "y": 619,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 270,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12376,11 +12880,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 216,
+                "y": 630,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 273,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12452,11 +12956,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 216,
+                "y": 612,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 267,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12528,11 +13032,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 206,
+                "y": 623,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 270,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12604,11 +13108,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 210,
+                "y": 620,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 269,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12680,11 +13184,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 620,
+                "y": 620,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 171,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12832,11 +13336,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 607,
+                "y": 636,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 260,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -12908,11 +13412,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 608,
+                "y": 635,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 260,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -36852,11 +37356,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 703,
+                "y": 624,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 94,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -36928,11 +37432,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 682,
+                "y": 719,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 91,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37004,11 +37508,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 671,
+                "y": 689,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 91,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37080,11 +37584,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 659,
+                "y": 699,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 95,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37156,11 +37660,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 758,
+                "y": 586,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 36,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37232,11 +37736,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 676,
+                "y": 687,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 93,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37308,11 +37812,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 676,
+                "y": 695,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 86,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37384,11 +37888,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 668,
+                "y": 708,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 88,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37460,8 +37964,8 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 644,
+                "y": 336,
                 "originX": "center",
                 "originY": "center",
                 "angle": 0,
@@ -37536,11 +38040,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 888,
+                "y": 653,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 267,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37612,11 +38116,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 206,
+                "y": 638,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 270,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37688,11 +38192,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 178,
+                "y": 647,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 268,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37764,11 +38268,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 166,
+                "y": 630,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 269,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37840,11 +38344,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 631,
+                "y": 630,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 175,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
@@ -37912,6 +38416,24 @@
                 "fill": "#000000",
                 "opacity": 0.9,
                 "placeholder": "Bottle text"
+            },
+            {
+                "id": "zone-4",
+                "name": "Zone 4",
+                "type": "text",
+                "x": 400,
+                "y": 200,
+                "originX": "center",
+                "originY": "center",
+                "angle": 0,
+                "maxWidth": 300,
+                "maxChars": 15,
+                "fontFamily": "Outfit, sans-serif",
+                "fontSize": 12,
+                "fill": "#ffffff",
+                "opacity": 0.9,
+                "placeholder": "Keychain",
+                "minFontSize": 10
             }
         ]
     },
@@ -37975,11 +38497,11 @@
             {
                 "id": "text-zone-4",
                 "type": "text",
-                "x": 500,
-                "y": 500,
+                "x": 686,
+                "y": 716,
                 "originX": "center",
                 "originY": "center",
-                "angle": 0,
+                "angle": 87,
                 "maxWidth": 400,
                 "maxChars": 15,
                 "fontFamily": "Inter, sans-serif",
