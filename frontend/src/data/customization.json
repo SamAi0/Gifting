@@ -10962,6 +10962,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11021,6 +11038,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11080,6 +11114,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11139,6 +11190,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11198,6 +11266,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11257,6 +11342,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11316,6 +11418,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "PenText"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11375,6 +11494,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "PenText"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Cup text"
       }
     ]
   },
@@ -11434,6 +11570,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "PenText"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11493,6 +11646,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "PenText"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11552,6 +11722,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "PenText"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11611,6 +11798,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "PenText"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Keychain"
       }
     ]
   },
@@ -11670,6 +11874,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -11729,6 +11950,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -11788,6 +12026,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -11847,6 +12102,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -11906,6 +12178,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -11965,6 +12254,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -12024,6 +12330,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -12083,6 +12406,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Nickname"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -12142,6 +12482,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Nickname"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -12201,6 +12558,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Nickname"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -12260,6 +12634,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -12395,6 +12786,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Keychain"
       }
     ]
   },
@@ -12454,6 +12862,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Keychain"
       }
     ]
   },
@@ -12513,6 +12938,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Pen text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -12537,7 +12979,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "YourName"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-242-2",
@@ -12572,6 +13014,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Pen text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -12614,23 +13073,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional Text"
-      },
-      {
-        "id": "zone-244-3",
-        "type": "text",
-        "x": 895,
-        "y": 655,
-        "originX": "center",
-        "originY": "center",
-        "angle": 270,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "PEN TEXT"
       }
     ]
   },
@@ -12673,23 +13115,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional Text"
-      },
-      {
-        "id": "zone-245-3",
-        "type": "text",
-        "x": 500,
-        "y": 400,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
@@ -12732,23 +13157,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional Text"
-      },
-      {
-        "id": "zone-247-3",
-        "type": "text",
-        "x": 847,
-        "y": 475,
-        "originX": "center",
-        "originY": "center",
-        "angle": 270,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Pen Text"
       }
     ]
   },
@@ -12791,23 +13199,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "optional text"
-      },
-      {
-        "id": "zone-248-3",
-        "type": "text",
-        "x": 500,
-        "y": 400,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
@@ -12849,7 +13240,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Keychain"
+        "placeholder": "Text"
       },
       {
         "id": "zone-250-3",
@@ -12867,23 +13258,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-250-4",
-        "type": "text",
-        "x": 315,
-        "y": 659,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
       }
     ]
   },
@@ -12943,23 +13317,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-251-4",
-        "type": "text",
-        "x": 500,
-        "y": 200,
-        "originX": "center",
-        "originY": "center",
-        "angle": 358,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
       }
     ]
   },
@@ -13019,23 +13376,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-253-4",
-        "type": "text",
-        "x": 363,
-        "y": 663,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
       }
     ]
   },
@@ -13095,23 +13435,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-254-4",
-        "type": "text",
-        "x": 500,
-        "y": 200,
-        "originX": "center",
-        "originY": "center",
-        "angle": 359,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
       }
     ]
   },
@@ -13230,23 +13553,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-257-4",
-        "type": "text",
-        "x": 500,
-        "y": 200,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
       }
     ]
   },
@@ -13289,23 +13595,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional"
-      },
-      {
-        "id": "zone-259-3",
-        "type": "text",
-        "x": 414,
-        "y": 659,
-        "originX": "center",
-        "originY": "center",
-        "angle": 269,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
@@ -13348,23 +13637,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional"
-      },
-      {
-        "id": "zone-260-3",
-        "type": "text",
-        "x": 500,
-        "y": 400,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
@@ -13407,23 +13679,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional"
-      },
-      {
-        "id": "zone-262-3",
-        "type": "text",
-        "x": 441,
-        "y": 663,
-        "originX": "center",
-        "originY": "center",
-        "angle": 268,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Pen Text"
       }
     ]
   },
@@ -13466,23 +13721,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional"
-      },
-      {
-        "id": "zone-263-3",
-        "type": "text",
-        "x": 500,
-        "y": 400,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
@@ -36574,6 +36812,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36633,6 +36888,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36692,6 +36964,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36751,6 +37040,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36810,6 +37116,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "PenText"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36869,6 +37192,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "PenText"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36928,6 +37268,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36987,6 +37344,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -37046,6 +37420,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -37105,6 +37496,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -37164,6 +37572,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Nickname"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Bottle text"
       }
     ]
   },
@@ -37223,6 +37648,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -37341,6 +37783,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Pen text"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -37383,23 +37842,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional Text"
-      },
-      {
-        "id": "zone-243-3",
-        "type": "text",
-        "x": 500,
-        "y": 400,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
@@ -37442,23 +37884,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional Text"
-      },
-      {
-        "id": "zone-246-3",
-        "type": "text",
-        "x": 500,
-        "y": 400,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
@@ -37518,23 +37943,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-249-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
       }
     ]
   },
@@ -37594,23 +38002,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-252-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
       }
     ]
   },
@@ -37712,23 +38103,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional"
-      },
-      {
-        "id": "zone-258-3",
-        "type": "text",
-        "x": 500,
-        "y": 400,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
@@ -37771,23 +38145,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Optional"
-      },
-      {
-        "id": "zone-261-3",
-        "type": "text",
-        "x": 500,
-        "y": 400,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 3 TEXT"
       }
     ]
   },
