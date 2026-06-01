@@ -138,7 +138,7 @@ const ProductManagement = () => {
       });
 
       if (selectedImage) {
-        data.append('image', selectedImage);
+        data.append('image_file', selectedImage);
       }
 
       if (editingProduct) {

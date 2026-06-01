@@ -82,7 +82,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'sku', 'slug', 'description', 'price', 'discount_price', 
             'category', 'category_name', 'brand', 'brand_details',
-            'image', 'images', 'variants', 'customization_zones', 'customization_config',
+            'image', 'image_file', 'images', 'variants', 'customization_zones', 'customization_config',
             'key_features', 'specifications',
             'is_trending', 'is_bulk_only', 'is_active', 'stock', 'weight', 
             'badge_text', 'badge_color', 'tags', 'meta_title', 'meta_description',
