@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import api from '../../api';
+import api, { getImageUrl } from '../../api';
 import { Search, X, Package, ShoppingBag, User, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -92,7 +92,7 @@ const AdminGlobalSearch = () => {
                     <div className="space-y-2">
                       {results.products.map(product => (
                         <Link key={product.id} to={`/admin/products?edit=${product.id}`} className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 transition-colors group">
-                          <img src={product.image} className="w-10 h-10 rounded-lg object-cover" alt="" />
+                          <img src={getImageUrl(product.image)} className="w-10 h-10 rounded-lg object-cover" alt="" />
                           <div className="flex-grow">
                             <p className="text-sm font-semibold text-white group-hover:text-[#D91656]">{product.name}</p>
                             <p className="text-[10px] text-gray-500">₹{product.price} • SKU: {product.sku}</p>

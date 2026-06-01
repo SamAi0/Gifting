@@ -39,9 +39,20 @@ class AttributeValueSerializer(serializers.ModelSerializer):
 
 class ProductVariantSerializer(serializers.ModelSerializer):
     attribute_values_details = AttributeValueSerializer(source='attribute_values', many=True, read_only=True)
+    image = serializers.SerializerMethodField()
     class Meta:
         model = ProductVariant
         fields = ['id', 'attribute_values', 'attribute_values_details', 'color_name', 'image', 'stock', 'is_active']
+        
+    def get_image(self, obj):
+        if obj.image_file:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.image_file.url)
+            return obj.image_file.url
+        if not obj.image:
+            return None
+        return obj.image
 
 class ReviewSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(source='user.username', read_only=True)

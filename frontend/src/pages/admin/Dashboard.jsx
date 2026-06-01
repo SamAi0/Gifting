@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api from '../../api';
+import api, { getImageUrl } from '../../api';
 import { 
   Package, 
   ShoppingCart, 
@@ -146,7 +146,7 @@ const Dashboard = () => {
             {stats.popular_products?.map((product) => (
               <div key={product.id} className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors">
                 <div className="flex items-center">
-                  <img src={product.image} alt={product.name} className="w-12 h-12 rounded-lg bg-gray-800 mr-4 object-cover border border-white/5" />
+                  <img src={getImageUrl(product.image)} alt={product.name} className="w-12 h-12 rounded-lg bg-gray-800 mr-4 object-cover border border-white/5" />
                   <div>
                     <p className="font-semibold text-sm">{product.name}</p>
                     <p className="text-xs text-gray-500">{product.category_name}</p>
