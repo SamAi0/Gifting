@@ -19,32 +19,39 @@ log_files = glob.glob(r'd:\Gifting\*.txt')
 product_placeholders = {}
 
 for file in log_files:
-    with open(file, 'r', encoding='utf-8', errors='ignore') as f:
-        lines = f.readlines()
-        current_product = None
-        for line in lines:
-            line = line.strip()
-            
-            m_prod = re.match(r'^products/(\d+)', line, re.IGNORECASE)
-            if m_prod:
-                current_product = int(m_prod.group(1))
-            
-            if current_product and 'set placeholder name' in line.lower():
-                matches = re.findall(r'(?:zone\s*)?(\d+)\s*-\s*([^,\n]*)', line, flags=re.IGNORECASE)
-                if matches:
-                    if current_product not in product_placeholders:
-                        product_placeholders[current_product] = {}
-                    for z_idx, p_text in matches:
-                        p_text = p_text.strip()
-                        if p_text and not p_text.lower().startswith('remove'):
-                            product_placeholders[current_product][z_idx] = p_text
-                current_product = None 
+    lines = []
+    try:
+        with open(file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+    except UnicodeDecodeError:
+        try:
+            with open(file, 'r', encoding='utf-16') as f:
+                lines = f.readlines()
+        except UnicodeError:
+            with open(file, 'r', encoding='utf-8', errors='ignore') as f:
+                lines = f.readlines()
+                
+    current_product = None
+    for line in lines:
+        line = line.strip()
+        
+        m_prod = re.match(r'^products/(\d+)', line, re.IGNORECASE)
+        if m_prod:
+            current_product = int(m_prod.group(1))
+        
+        if current_product and 'set placeholder name' in line.lower():
+            matches = re.findall(r'(?:zone\s*)?(\d+)\s*-\s*([^,\n]*)', line, flags=re.IGNORECASE)
+            if matches:
+                if current_product not in product_placeholders:
+                    product_placeholders[current_product] = {}
+                for z_idx, p_text in matches:
+                    p_text = p_text.strip()
+                    if p_text and not p_text.lower().startswith('remove'):
+                        product_placeholders[current_product][z_idx] = p_text
+            current_product = None 
 
 updated_zones = 0
 for db_id, placeholders in product_placeholders.items():
-    if not (61 <= db_id <= 270):
-        continue
-    
     try:
         slug = Product.objects.get(id=db_id).slug
     except Product.DoesNotExist:
