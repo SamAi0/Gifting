@@ -4463,13 +4463,13 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-88-2",
         "type": "text",
-        "x": 792,
-        "y": 568,
+        "x": 802,
+        "y": 574,
         "originX": "center",
         "originY": "center",
         "angle": 270,
@@ -4480,7 +4480,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4505,7 +4505,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-89-2",
@@ -4522,7 +4522,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4547,7 +4547,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-90-2",
@@ -4564,7 +4564,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4589,7 +4589,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-91-2",
@@ -4606,7 +4606,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4631,7 +4631,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-92-2",
@@ -4648,7 +4648,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4673,7 +4673,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-93-2",
@@ -4690,7 +4690,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4715,7 +4715,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-94-2",
@@ -4732,7 +4732,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4757,7 +4757,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-95-2",
@@ -4774,7 +4774,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4799,7 +4799,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-96-2",
@@ -4816,7 +4816,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4841,7 +4841,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-97-2",
@@ -4858,7 +4858,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4883,7 +4883,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-98-2",
@@ -4900,7 +4900,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4925,7 +4925,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-99-2",
@@ -4942,7 +4942,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -4967,7 +4967,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 1 TEXT"
+        "placeholder": "Your name"
       },
       {
         "id": "zone-100-2",
@@ -4984,7 +4984,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 2 TEXT"
+        "placeholder": "Pen text"
       }
     ]
   },
@@ -7546,23 +7546,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-146-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -7622,23 +7605,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-147-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -7698,23 +7664,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-148-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -7774,23 +7723,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-149-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -7850,23 +7782,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-150-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -7926,23 +7841,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-151-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -8002,23 +7900,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-152-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -8154,23 +8035,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-154-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -8230,23 +8094,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-155-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -8306,23 +8153,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-156-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -8382,23 +8212,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle Text"
-      },
-      {
-        "id": "zone-157-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -8870,23 +8683,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle text"
-      },
-      {
-        "id": "zone-167-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "Extra text"
       }
     ]
   },
@@ -9030,23 +8826,6 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Bottle text"
-      },
-      {
-        "id": "zone-170-4",
-        "type": "text",
-        "x": 500,
-        "y": 500,
-        "originX": "center",
-        "originY": "center",
-        "angle": 0,
-        "maxWidth": 400,
-        "maxChars": 15,
-        "fontFamily": "Outfit, sans-serif",
-        "fontSize": 12,
-        "minFontSize": 12,
-        "fill": "#000000",
-        "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
       }
     ]
   },
@@ -9358,7 +9137,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-175-4",
@@ -9375,7 +9154,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -9434,7 +9213,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-176-4",
@@ -9451,7 +9230,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -9510,7 +9289,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-177-4",
@@ -9527,7 +9306,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -9586,7 +9365,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-178-4",
@@ -9603,7 +9382,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -9662,7 +9441,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-179-4",
@@ -9679,7 +9458,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -9738,7 +9517,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-180-4",
@@ -9755,7 +9534,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -9814,7 +9593,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-181-4",
@@ -9831,7 +9610,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -9890,7 +9669,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-182-4",
@@ -9907,7 +9686,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -9966,7 +9745,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-183-4",
@@ -9983,7 +9762,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -10042,7 +9821,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-184-4",
@@ -10059,7 +9838,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -10118,7 +9897,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-185-4",
@@ -10135,7 +9914,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -10194,7 +9973,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Nickname and 4-Bottle Text"
+        "placeholder": "Nickname"
       },
       {
         "id": "zone-186-4",
@@ -10211,7 +9990,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -10270,7 +10049,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Nickname and 4-Bottle Text"
+        "placeholder": "Nickname"
       },
       {
         "id": "zone-187-4",
@@ -10287,7 +10066,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -10346,7 +10125,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Nickname and 4-Bottle Text"
+        "placeholder": "Nickname"
       },
       {
         "id": "zone-188-4",
@@ -10363,7 +10142,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -10422,7 +10201,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Nickname and 4-Bottle Text"
+        "placeholder": "Nickname"
       },
       {
         "id": "zone-189-4",
@@ -10439,7 +10218,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -10498,7 +10277,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "Text and 4-Bottle Text"
+        "placeholder": "Text"
       },
       {
         "id": "zone-190-4",
@@ -10515,7 +10294,7 @@
         "minFontSize": 12,
         "fill": "#000000",
         "opacity": 0.9,
-        "placeholder": "ZONE 4 TEXT"
+        "placeholder": "Bottle Text"
       }
     ]
   },
@@ -10575,6 +10354,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -10634,6 +10430,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -10693,6 +10506,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -10752,6 +10582,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -10811,6 +10658,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -10870,6 +10734,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -10929,6 +10810,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -10988,6 +10886,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36507,6 +36422,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
@@ -36566,6 +36498,23 @@
         "fill": "#000000",
         "opacity": 0.9,
         "placeholder": "Cardholder"
+      },
+      {
+        "id": "text-zone-4",
+        "type": "text",
+        "x": 500,
+        "y": 500,
+        "originX": "center",
+        "originY": "center",
+        "angle": 0,
+        "maxWidth": 400,
+        "maxChars": 15,
+        "fontFamily": "Inter, sans-serif",
+        "fontSize": 12,
+        "minFontSize": 10,
+        "fill": "#000000",
+        "opacity": 1.0,
+        "placeholder": "Text"
       }
     ]
   },
