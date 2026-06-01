@@ -9,12 +9,18 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
-backend/media/
-# Django static/media
-backend/staticfiles/
-backend/db.sqlite3
 
-# Env files
+# Django media/static
+backend/media/
+backend/staticfiles/
+
+# SQLite databases
+db.sqlite3
+*.sqlite3
+backend/db.sqlite3
+backend/scratch/db.sqlite3
+
+# Environment files
 .env
 .env.*
 
@@ -33,8 +39,3 @@ frontend/build/
 # --------------------
 .DS_Store
 Thumbs.db
-backend/db.sqlite3
-*.sqlite3
-db.sqlite3
-backend/db.sqlite3
-backend/scratch/db.sqlite3
