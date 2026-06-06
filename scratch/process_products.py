@@ -1,11 +1,20 @@
 import os
+import sys
 import json
 import re
+import django
+
+# Setup Django environment so we can use models
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend')))
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+django.setup()
+
+from products.models import Product, Category
 
 # Path to the customization JSON
-JSON_PATH = r"c:\Users\Asus\Downloads\New folder\Gifting\frontend\src\data\customization.json"
+JSON_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend', 'src', 'data', 'customization.json'))
 # Path to the products images
-STATIC_PRODUCTS_PATH = r"c:\Users\Asus\Downloads\New folder\Gifting\backend\static\products"
+STATIC_PRODUCTS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend', 'static', 'products'))
 
 def slugify(text):
     text = text.lower()
@@ -59,44 +68,70 @@ def main():
         max_id = 0
 
     new_items_count = 0
-    files = sorted(os.listdir(STATIC_PRODUCTS_PATH))
     
-    for filename in files:
-        if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp')):
-            continue
+    if os.path.exists(STATIC_PRODUCTS_PATH):
+        files = sorted(os.listdir(STATIC_PRODUCTS_PATH))
+        for filename in files:
+            if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                continue
+                
+            base_image = f"/static/products/{filename}"
+            if base_image in existing_images:
+                continue
+                
+            name = clean_name(filename)
+            slug = slugify(name)
             
-        base_image = f"/static/products/{filename}"
-        if base_image in existing_images:
-            continue
+            # Ensure unique slug
+            base_slug = slug
+            counter = 1
+            while slug in existing_slugs:
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+                
+            max_id += 1
+            new_item = {
+                "productId": max_id,
+                "productName": name,
+                "slug": slug,
+                "baseImage": base_image,
+                "zones": generate_zones(max_id)
+            }
             
-        name = clean_name(filename)
-        slug = slugify(name)
-        
-        # Ensure unique slug
-        base_slug = slug
-        counter = 1
-        while slug in existing_slugs:
-            slug = f"{base_slug}-{counter}"
-            counter += 1
-            
-        max_id += 1
-        new_item = {
-            "productId": max_id,
-            "productName": name,
-            "slug": slug,
-            "baseImage": base_image,
-            "zones": generate_zones(max_id)
-        }
-        
-        data.append(new_item)
-        existing_slugs.add(slug)
-        new_items_count += 1
+            data.append(new_item)
+            existing_slugs.add(slug)
+            new_items_count += 1
+    else:
+        print(f"Warning: {STATIC_PRODUCTS_PATH} does not exist.")
 
     # Save back to JSON
     with open(JSON_PATH, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2)
 
     print(f"Successfully added {new_items_count} new products to customization.json")
+    
+    print("Syncing data to Database...")
+    # Clean the database to prevent duplicates on redeploy
+    Product.objects.all().delete()
+    print("Cleared existing products from DB.")
+    
+    default_category, _ = Category.objects.get_or_create(name="Gift Sets")
+    
+    db_items_count = 0
+    for item in data:
+        Product.objects.create(
+            name=item['productName'],
+            slug=item['slug'],
+            description=f"Premium {item['productName']} for corporate gifting.",
+            price=999.00,
+            category=default_category,
+            image=item['baseImage'],
+            customization_config=json.dumps(item.get('zones', [])),
+            is_active=True
+        )
+        db_items_count += 1
+        
+    print(f"Successfully inserted {db_items_count} products into Database.")
 
 if __name__ == "__main__":
     main()
