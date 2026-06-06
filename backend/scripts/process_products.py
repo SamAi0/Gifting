@@ -5,16 +5,27 @@ import re
 import django
 
 # Setup Django environment so we can use models
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend')))
+if '__file__' in globals():
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    BACKEND_DIR = os.path.abspath(os.path.join(BASE_DIR, '..'))
+else:
+    # If run via manage.py shell < scripts/process_products.py, CWD is backend/
+    BACKEND_DIR = os.getcwd()
+
+FRONTEND_DIR = os.path.abspath(os.path.join(BACKEND_DIR, '..', 'frontend'))
+
+if BACKEND_DIR not in sys.path:
+    sys.path.append(BACKEND_DIR)
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
 from products.models import Product, Category
+from django.contrib.auth import get_user_model
 
 # Path to the customization JSON
-JSON_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend', 'src', 'data', 'customization.json'))
+JSON_PATH = os.path.join(FRONTEND_DIR, 'src', 'data', 'customization.json')
 # Path to the products images
-STATIC_PRODUCTS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend', 'static', 'products'))
+STATIC_PRODUCTS_PATH = os.path.join(BACKEND_DIR, 'static', 'products')
 
 def slugify(text):
     text = text.lower()
@@ -132,6 +143,15 @@ def main():
         db_items_count += 1
         
     print(f"Successfully inserted {db_items_count} products into Database.")
+    
+    print("\nSetting up Admin User...")
+    User = get_user_model()
+    admin_password = os.environ.get('ADMIN_PASSWORD', 'admin124')
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser("admin", "admin@example.com", admin_password)
+        print("Superuser 'admin' created successfully.")
+    else:
+        print("Superuser 'admin' already exists.")
 
-if __name__ == "__main__":
+if __name__ in ("__main__", "__console__", "builtins", "__builtin__"):
     main()
