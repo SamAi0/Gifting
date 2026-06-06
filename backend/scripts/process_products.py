@@ -146,12 +146,13 @@ def main():
     
     print("\nSetting up Admin User...")
     User = get_user_model()
-    admin_password = os.environ.get('ADMIN_PASSWORD', 'admin124')
+    admin_password = os.environ.get('ADMIN_PASSWORD', 'admin123')
     if not User.objects.filter(username="admin").exists():
         User.objects.create_superuser("admin", "admin@example.com", admin_password)
         print("Superuser 'admin' created successfully.")
     else:
         print("Superuser 'admin' already exists.")
 
-if __name__ in ("__main__", "__console__", "builtins", "__builtin__"):
-    main()
+# When piped via manage.py shell < ..., __name__ may not be '__main__'.
+# Call main() unconditionally to ensure it always runs.
+main()
