@@ -44,7 +44,7 @@ def fix_images_advanced():
                         correct_filename = None
                         
                 if correct_filename:
-                    p.image = f"/static/products/{correct_filename}"
+                    p.image = f"/static/products/{urllib.parse.quote(correct_filename)}"
                     p.save(update_fields=['image'])
                     fixed_count += 1
                     print(f"Fixed: {filename} -> {correct_filename}")

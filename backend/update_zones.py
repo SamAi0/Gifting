@@ -4,7 +4,8 @@ import json
 import django
 import re
 
-sys.path.append(r"c:\Users\Asus\OneDrive\Pictures\Camera Roll 1\Gifting\backend")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(BASE_DIR)
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
@@ -279,7 +280,8 @@ for line in log_data.split('\n'):
             }
         current_zone = None
 
-customization_path = r"c:\Users\Asus\OneDrive\Pictures\Camera Roll 1\Gifting\frontend\src\data\customization.json"
+customization_path = os.path.join(BASE_DIR, '..', 'frontend', 'src', 'data', 'customization.json')
+customization_path = os.path.abspath(customization_path)
 
 try:
     with open(customization_path, 'r', encoding='utf-8') as f:

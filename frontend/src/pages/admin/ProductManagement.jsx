@@ -277,7 +277,7 @@ const ProductManagement = () => {
                    <div className="flex items-center gap-6">
                       <div className="w-32 h-32 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden relative group">
                         {imagePreview ? (
-                          <img src={imagePreview} className="w-full h-full object-cover" />
+                          <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
                         ) : (
                           <ImageIcon size={32} className="text-gray-600" />
                         )}

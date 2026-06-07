@@ -154,5 +154,6 @@ def main():
         print("Superuser 'admin' already exists.")
 
 # When piped via manage.py shell < ..., __name__ may not be '__main__'.
-# Call main() unconditionally to ensure it always runs.
-main()
+# Only run main if executed directly.
+if __name__ == '__main__' or 'manage' in getattr(sys.modules['__main__'], '__file__', ''):
+    main()
