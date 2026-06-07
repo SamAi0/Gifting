@@ -123,24 +123,61 @@ def main():
     
     print("Syncing data to Database...")
     # Clean the database to prevent duplicates on redeploy
-    Product.objects.all().delete()
+    Product.all_objects.all().delete()
     print("Cleared existing products from DB.")
     
-    default_category, _ = Category.objects.get_or_create(name="Gift Sets")
+    # Pre-create all categories
+    categories_map = {
+        "Gift Sets": Category.objects.get_or_create(name="Gift Sets")[0],
+        "Drinkware": Category.objects.get_or_create(name="Drinkware")[0],
+        "Diaries & Notebooks": Category.objects.get_or_create(name="Diaries & Notebooks")[0],
+        "Pens": Category.objects.get_or_create(name="Pens")[0],
+        "Office Accessories": Category.objects.get_or_create(name="Office Accessories")[0],
+        "Tech & Gadgets": Category.objects.get_or_create(name="Tech & Gadgets")[0],
+        "Keychains": Category.objects.get_or_create(name="Keychains")[0],
+        "Bags & Wallets": Category.objects.get_or_create(name="Bags & Wallets")[0]
+    }
     
     db_items_count = 0
+    products_to_create = []
+    
     for item in data:
-        Product.objects.create(
-            name=item['productName'],
-            slug=item['slug'],
-            description=f"Premium {item['productName']} for corporate gifting.",
-            price=999.00,
-            category=default_category,
-            image=item['baseImage'],
-            customization_config=json.dumps(item.get('zones', [])),
-            is_active=True
+        name = item['productName'].lower()
+        
+        # Determine category based on keywords
+        if any(k in name for k in ['set', 'combo', 'in 1', '4 in 1', '2 in 1', '3 in 1']):
+            cat = categories_map["Gift Sets"]
+        elif any(k in name for k in ['bottle', 'cup', 'mug', 'flask', 'glass', 'copper']):
+            cat = categories_map["Drinkware"]
+        elif any(k in name for k in ['diary', 'notebook', 'file', 'dairy']):
+            cat = categories_map["Diaries & Notebooks"]
+        elif 'pen' in name and 'stand' not in name:
+            cat = categories_map["Pens"]
+        elif any(k in name for k in ['stand', 'cardholder', 'organizer', 'holder']):
+            cat = categories_map["Office Accessories"]
+        elif any(k in name for k in ['pendrive', 'powerbank', 'speaker', 'clock']):
+            cat = categories_map["Tech & Gadgets"]
+        elif any(k in name for k in ['keychain', 'ring']):
+            cat = categories_map["Keychains"]
+        elif any(k in name for k in ['purse', 'wallet', 'bag', 'pouch']):
+            cat = categories_map["Bags & Wallets"]
+        else:
+            cat = categories_map["Gift Sets"] # default fallback
+            
+        products_to_create.append(
+            Product(
+                name=item['productName'],
+                slug=item['slug'],
+                description=f"Premium {item['productName']} for corporate gifting.",
+                price=999.00,
+                category=cat,
+                image=item['baseImage'],
+                customization_config=json.dumps(item.get('zones', [])),
+                is_active=True
+            )
         )
-        db_items_count += 1
+    Product.objects.bulk_create(products_to_create, batch_size=200, ignore_conflicts=True)
+    db_items_count = len(products_to_create)
         
     print(f"Successfully inserted {db_items_count} products into Database.")
     
