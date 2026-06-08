@@ -135,6 +135,29 @@ class ProductSerializer(serializers.ModelSerializer):
             return None
         return obj.image
 
+class ProductListSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source='category.name', read_only=True)
+    image = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Product
+        fields = [
+            'id', 'name', 'sku', 'slug', 'price', 'discount_price',
+            'category_name', 'image', 'image_file',
+            'is_trending', 'is_bulk_only', 'stock',
+            'badge_text', 'badge_color', 'popularity_score', 'average_rating', 'review_count'
+        ]
+        
+    def get_image(self, obj):
+        if obj.image_file:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.image_file.url)
+            return obj.image_file.url
+        if not obj.image:
+            return None
+        return obj.image
+
 class BulkInquirySerializer(serializers.ModelSerializer):
     class Meta:
         model = BulkInquiry

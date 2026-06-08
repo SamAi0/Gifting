@@ -6,9 +6,11 @@ from django.utils import timezone
 from datetime import timedelta
 from .models import Product, Category, Review, Wishlist, Attribute
 from api.serializers import (
-    ProductSerializer, CategorySerializer, ReviewSerializer, 
+    ProductSerializer, ProductListSerializer, CategorySerializer, ReviewSerializer, 
     WishlistSerializer, AttributeValueSerializer, AttributeSerializer
 )
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from api.permissions import IsOwnerOrReadOnly
 from rest_framework.pagination import PageNumberPagination
 
@@ -26,11 +28,12 @@ class ProductPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 100
 
+@method_decorator(cache_page(60 * 5), name='list')
 class ProductViewSet(viewsets.ModelViewSet):
     """
     ViewSet for viewing and editing products.
     """
-    queryset = Product.objects.select_related('category').all().order_by('-created_at')
+    queryset = Product.objects.select_related('category', 'brand').prefetch_related('images', 'variants', 'variants__attribute_values').all().order_by('-created_at')
     serializer_class = ProductSerializer
     pagination_class = ProductPagination
     
@@ -38,6 +41,11 @@ class ProductViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [permissions.IsAdminUser()]
         return [permissions.AllowAny()]
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return ProductListSerializer
+        return self.serializer_class
 
     def get_queryset(self):
         queryset = super().get_queryset()
