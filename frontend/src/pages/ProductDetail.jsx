@@ -88,10 +88,6 @@ const ProductDetail = () => {
   const [showBulkDetails, setShowBulkDetails] = useState(false);
   
   // UX Flow States
-  const [activeStep, setActiveStep] = useState(1); // 1: Branding, 2: Design, 3: Review
-
-  // New States for Placement and Instructions
-  const [placement, setPlacement] = useState('Front');
   const [designInstructions, setDesignInstructions] = useState('');
 
   const loadReviews = useCallback(async () => {
@@ -347,7 +343,6 @@ const ProductDetail = () => {
     const customizationData = {
       texts: textEntries,
       color: textColor,
-      placement: placement,
       instructions: designInstructions,
       timestamp: new Date().toISOString()
     };
@@ -532,23 +527,7 @@ const ProductDetail = () => {
                     className="space-y-8"
                   >
                     <div>
-                      <div className="flex justify-between items-center mb-6">
-                        <div className="flex gap-2">
-                           {[1, 2, 3].map((step) => (
-                             <div 
-                               key={step}
-                               className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${
-                                 activeStep === step 
-                                   ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110' 
-                                   : activeStep > step 
-                                     ? 'bg-green-500 text-white' 
-                                     : 'bg-slate-100 text-slate-400'
-                               }`}
-                             >
-                               {activeStep > step ? '✓' : step}
-                             </div>
-                           ))}
-                        </div>
+                      <div className="flex justify-end items-center mb-6">
                         <button 
                           onClick={() => setIsCustomizing(false)}
                           className="text-slate-400 hover:text-red-500 font-bold text-xs uppercase tracking-widest flex items-center gap-2"
@@ -557,17 +536,15 @@ const ProductDetail = () => {
                         </button>
                       </div>
                       <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
-                        {activeStep === 1 ? 'Branding Assets' : activeStep === 2 ? 'Personalize Design' : 'Review & Confirm'}
+                        Customize Your Design
                       </h2>
                       <p className="text-slate-500 mt-1 text-sm font-light">
-                        {activeStep === 1 ? 'Upload your corporate logo and brand colors.' : activeStep === 2 ? 'Customize your text entries and placement.' : 'Finalize your design and add instructions.'}
+                        Upload your logos, add text, and finalize your corporate gift.
                       </p>
                     </div>
                     
                     <div className="bg-white p-6 rounded-[2rem] border border-slate-200/50 shadow-premium">
                       <CustomizerControls 
-                        activeStep={activeStep}
-                        setActiveStep={setActiveStep}
                         textEntries={textEntries}
                         setTextEntries={setTextEntries}
                         textColor={textColor}
@@ -575,8 +552,6 @@ const ProductDetail = () => {
                         logoFiles={logoFiles}
                         setLogoFiles={setLogoFiles}
                         setLogoPreviews={setLogoPreviews}
-                        placement={placement}
-                        setPlacement={setPlacement}
                         designInstructions={designInstructions}
                         setDesignInstructions={setDesignInstructions}
                         maxZones={customizationConfig.zones.length}
@@ -585,7 +560,6 @@ const ProductDetail = () => {
                           setTextColor('#000000');
                           setLogoFiles([]);
                           setLogoPreviews([]);
-                          setPlacement('Front');
                           setDesignInstructions('');
                           setWarningMessage('');
                         }}
@@ -593,24 +567,16 @@ const ProductDetail = () => {
                       />
                     </div>
 
-                     {activeStep === 3 && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="space-y-4 pt-4"
-                      >
-                        <button 
-                          id="add-to-cart-btn"
-                          onClick={handleAddToCart}
-                          className="btn-primary w-full py-5 text-xl shadow-2xl shadow-primary/30"
-                        >
-                          Save & Add to Cart
-                        </button>
-                        <p className="text-center text-slate-400 text-xs font-medium flex items-center justify-center gap-2">
-                          <ShieldCheck size={14} /> Your customization details will be verified by our designers.
-                        </p>
-                      </motion.div>
-                     )}
+                    <button 
+                      id="add-to-cart-btn"
+                      onClick={handleAddToCart}
+                      className="hidden"
+                    >
+                      Save & Add to Cart
+                    </button>
+                    <p className="text-center text-slate-400 text-xs font-medium flex items-center justify-center gap-2 mt-4">
+                      <ShieldCheck size={14} /> Your customization details will be verified by our designers.
+                    </p>
                   </motion.div>
                 ) : (
                   <motion.div 
