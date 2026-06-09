@@ -17,6 +17,7 @@ const Cart = lazy(() => import('./pages/Cart'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 const MyOrders = lazy(() => import('./pages/MyOrders'));
 const Wishlist = lazy(() => import('./pages/Wishlist'));
+const BulkInquiries = lazy(() => import('./pages/BulkInquiries'));
 
 // Admin Pages
 const AdminLayout = lazy(() => import('./components/admin/AdminLayout'));
@@ -61,6 +62,7 @@ function App() {
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
+            <Route path="/bulk-inquiries" element={<BulkInquiries />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             

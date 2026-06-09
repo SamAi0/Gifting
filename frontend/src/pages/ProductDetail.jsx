@@ -378,6 +378,12 @@ const ProductDetail = () => {
     }
   };
 
+  const handleWhatsAppBulkOrder = () => {
+    const message = `Hi, I am interested in placing a bulk order for: *${product.name}*.%0A%0A*Link:* ${window.location.href}%0A*Quantity Needed:* ${quantity}%0A%0APlease share the best pricing!`;
+    const whatsappUrl = `https://wa.me/918657631208?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   if (loading) {
     return (
       <div className="pt-40 pb-40 text-center bg-slate-50 min-h-screen flex flex-col items-center justify-center">
@@ -765,6 +771,15 @@ const ProductDetail = () => {
                               </div>
                            </div>
                         </div>
+
+                        {/* WhatsApp Bulk Orders Button */}
+                        <button 
+                          onClick={handleWhatsAppBulkOrder}
+                          className="w-full mt-4 flex items-center justify-center gap-2 py-4 bg-[#25D366] text-white rounded-[1rem] font-bold text-sm shadow-lg shadow-[#25D366]/30 hover:bg-[#128C7E] transition-all"
+                        >
+                          <Phone size={18} fill="currentColor" />
+                          Bulk Orders on WhatsApp
+                        </button>
                       </div>
                     </div>
 

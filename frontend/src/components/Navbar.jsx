@@ -86,6 +86,20 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center space-x-5 border-l border-slate-200/50 pl-8">
+              <Link
+                to="/bulk-inquiries"
+                onClick={handleNavLinkClick}
+                className={`hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 border ${
+                  isScrolled 
+                    ? 'border-primary text-primary hover:bg-primary hover:text-white' 
+                    : location.pathname === '/' 
+                      ? 'border-white text-white hover:bg-white hover:text-primary' 
+                      : 'border-primary text-primary hover:bg-primary hover:text-white'
+                }`}
+              >
+                Bulk Inquiries
+              </Link>
+
               <Link 
                 to="/cart" 
                 className={`relative p-2 rounded-full transition-all duration-300 hover:bg-primary/10 hover:text-primary ${
@@ -261,6 +275,16 @@ const Navbar = () => {
                 }`}
               >
                 <Heart size={20} className="text-red-400" /> Wishlist
+              </Link>
+
+              <Link
+                to="/bulk-inquiries"
+                onClick={handleNavLinkClick}
+                className={`flex items-center gap-3 text-lg font-bold transition-colors ${
+                  location.pathname === '/bulk-inquiries' ? 'text-primary' : 'text-slate-600'
+                }`}
+              >
+                <Gift size={20} /> Bulk Inquiries
               </Link>
               
               {user?.is_staff && (
