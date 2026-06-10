@@ -111,8 +111,8 @@ const Footer = () => {
             © {new Date().getFullYear()} <span className="text-white font-bold">Soham Gift</span>. India.
           </p>
           <div className="flex gap-10">
-            <Link to="/privacy" className="text-slate-500 hover:text-white text-xs font-bold transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="text-slate-500 hover:text-white text-xs font-bold transition-colors">Terms of Service</Link>
+            <Link to="/privacy-policy" className="text-slate-500 hover:text-white text-xs font-bold transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="text-slate-500 hover:text-white text-xs font-bold transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
