@@ -89,7 +89,7 @@ const Wishlist = () => {
                         
                         <div className="flex gap-3">
                            <Link 
-                             to={`/products/${item.product}`}
+                             to={`/products/${item.product_details?.slug || item.product}`}
                              className="flex-grow btn-primary py-3 text-xs flex items-center justify-center gap-2"
                            >
                               View Details <ArrowRight size={14} />

@@ -33,7 +33,7 @@ const AnimatedPrice = ({ value, prefix = "₹" }) => {
 };
 
 const ProductDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { user } = useAuth();
@@ -90,12 +90,13 @@ const ProductDetail = () => {
   // UX Flow States
   const [designInstructions, setDesignInstructions] = useState('');
 
-  const loadReviews = useCallback(async () => {
+  const loadReviews = useCallback(async (productId) => {
+    if (!productId) return;
     setReviewsLoading(true);
     setUserReview(null);
     setIsEditingReview(false);
     try {
-      const res = await fetchReviews({ product: id });
+      const res = await fetchReviews({ product: productId });
       const reviewsData = res.data.results || res.data;
       setReviews(reviewsData);
       
@@ -124,12 +125,13 @@ const ProductDetail = () => {
     } finally {
       setReviewsLoading(false);
     }
-  }, [id, user]);
+  }, [user]);
 
-  const checkWishlist = useCallback(async () => {
+  const checkWishlist = useCallback(async (productId) => {
+    if (!productId) return;
     try {
       const res = await fetchWishlist();
-      const item = res.data.find(w => w.product === parseInt(id));
+      const item = res.data.find(w => w.product === parseInt(productId));
       if (item) {
         setIsInWishlist(true);
         setWishlistItemId(item.id);
@@ -139,12 +141,13 @@ const ProductDetail = () => {
     } catch (err) {
       console.error("Wishlist check error", err);
     }
-  }, [id]);
+  }, []);
 
   const loadProduct = useCallback(async () => {
+    if (!slug) return;
     setLoading(true);
     try {
-      const res = await fetchProductById(id);
+      const res = await fetchProductById(slug);
       const productData = res.data;
       setProduct(productData);
       
@@ -164,12 +167,12 @@ const ProductDetail = () => {
         relatedData = relatedRes.data.results || relatedRes.data;
       }
       
-      setRelatedProducts(relatedData.filter(p => p.id !== parseInt(id)).slice(0, 4));
+      setRelatedProducts(relatedData.filter(p => p.id !== productData.id).slice(0, 4));
 
       // Fetch Trending Products for the bottom section
       const trendingRes = await api.get('/products/', { params: { is_trending: 'true' } });
       const trendingData = trendingRes.data.results || trendingRes.data;
-      setTrendingProducts(trendingData.filter(p => p.id !== parseInt(id)).slice(0, 4));
+      setTrendingProducts(trendingData.filter(p => p.id !== productData.id).slice(0, 4));
 
       // Set random header for variety
       const titles = ['Popular Picks', 'Top Rated Gifts', 'Customers Loved', 'Trending Now'];
@@ -180,11 +183,11 @@ const ProductDetail = () => {
       });
       
       // Fetch Reviews
-      loadReviews();
+      loadReviews(productData.id);
       
       // Check Wishlist
       if (user) {
-        checkWishlist();
+        checkWishlist(productData.id);
       }
       
     } catch (error) {
@@ -192,7 +195,7 @@ const ProductDetail = () => {
     } finally {
       setLoading(false);
     }
-  }, [id, user, loadReviews, checkWishlist]);
+  }, [slug, user, loadReviews, checkWishlist]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -254,7 +257,7 @@ const ProductDetail = () => {
     }
 
     const formData = new FormData();
-    formData.append('product', id);
+    formData.append('product', product.id);
     formData.append('rating', newReview.rating);
     formData.append('comment', newReview.comment);
     if (newReview.image) formData.append('image', newReview.image);
@@ -275,8 +278,8 @@ const ProductDetail = () => {
       setTimeout(() => setShowToast(false), 3000);
       
       // Reload reviews and product
-      loadReviews();
-      const prodRes = await fetchProductById(id);
+      loadReviews(product.id);
+      const prodRes = await fetchProductById(slug);
       setProduct(prodRes.data);
     } catch (err) {
       console.error("Review submit error", err);

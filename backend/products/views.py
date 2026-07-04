@@ -36,6 +36,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.select_related('category', 'brand').prefetch_related('images', 'variants', 'variants__attribute_values').all().order_by('-created_at')
     serializer_class = ProductSerializer
     pagination_class = ProductPagination
+    lookup_field = 'slug'
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:

@@ -135,7 +135,7 @@ const Home = () => {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  <Link to={`/products/${product.id}`} className="group block">
+                  <Link to={`/products/${product.slug}`} className="group block">
                     <div className="relative bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-premium hover-lift transition-all duration-500">
                       <div className="aspect-square p-4 sm:p-6 overflow-hidden bg-white flex items-center justify-center relative">
                         <img
@@ -262,7 +262,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.length > 0 ? (
+            {Array.isArray(testimonials) && testimonials.length > 0 ? (
               testimonials.map((testimonial) => (
                 <motion.div
                   key={testimonial.id}

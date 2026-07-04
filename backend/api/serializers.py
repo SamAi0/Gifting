@@ -64,9 +64,10 @@ class WishlistSerializer(serializers.ModelSerializer):
         return {
             "id": obj.product.id,
             "name": obj.product.name,
+            "slug": obj.product.slug,
             "price": obj.product.price,
-            "image": obj.product.image,
-            "slug": obj.product.slug
+            "discount_price": obj.product.discount_price,
+            "image": obj.product.image or (obj.product.image_file.url if obj.product.image_file else None)
         }
 
 class ProductSerializer(serializers.ModelSerializer):

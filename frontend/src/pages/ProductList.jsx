@@ -399,7 +399,7 @@ const ProductList = () => {
                               {suggestions.map((item) => (
                                 <Link 
                                   key={item.id} 
-                                  to={`/products/${item.id}`}
+                                  to={`/products/${item.slug}`}
                                   className="flex items-center gap-4 px-4 py-3 hover:bg-slate-50 transition-colors group"
                                   onClick={() => setShowSuggestions(false)}
                                 >
@@ -478,7 +478,7 @@ const ProductList = () => {
                   {products.map((product, idx) => (
                     <Link 
                       key={product.id}
-                      to={`/products/${product.id}`}
+                      to={`/products/${product.slug}`}
                       className="group flex flex-col h-full"
                     >
                       <motion.div 
