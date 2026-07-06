@@ -315,7 +315,7 @@ const ProductDetail = () => {
 
   const bulkPricing = useMemo(() => {
     if (!product) return { unitPrice: 0, total: 0, savings: 0, discount: 0 };
-    const basePrice = product.discount_price || product.price;
+    const basePrice = parseFloat(product.discount_price) || parseFloat(product.price) || 0;
     let discount = 0;
     if (quantity >= 500) discount = 0.15;
     else if (quantity >= 250) discount = 0.10;
@@ -506,7 +506,7 @@ const ProductDetail = () => {
                       {relatedProducts.slice(0, 4).map((rel) => (
                         <Link 
                           key={rel.id} 
-                          to={`/products/${rel.id}`}
+                          to={`/products/${rel.slug}`}
                           className="group relative flex-shrink-0 w-44 h-44 rounded-[2rem] overflow-hidden border border-slate-200 bg-white hover:border-primary/30 transition-all shadow-sm"
                         >
                           <img 
@@ -607,7 +607,7 @@ const ProductDetail = () => {
                       {/* Pricing */}
                       <div className="flex flex-col gap-1 mb-6">
                         <div className="flex items-center gap-4 mb-4">
-                           {product.discount_price && (
+                           {parseFloat(product.discount_price) > 0 && parseFloat(product.discount_price) < parseFloat(product.price) && (
                              <span className="text-slate-400 line-through font-medium mr-2">₹{product.price}</span>
                            )}
                            <span className="text-5xl font-bold text-slate-900 tracking-tighter">
@@ -991,7 +991,7 @@ const ProductDetail = () => {
                   {trendingProducts.map((rel) => (
                     <Link 
                       key={rel.id} 
-                      to={`/products/${rel.id}`}
+                      to={`/products/${rel.slug}`}
                       className="group"
                     >
                       <div className="bg-white rounded-[2rem] overflow-hidden shadow-premium hover-lift transition-all duration-500 border border-slate-100">
