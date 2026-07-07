@@ -1,0 +1,533 @@
+﻿
+> C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:179:## Batch 6 Price Update (+60%)
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:180:
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:181:| Product | Old Base Price | New Price (+60%) |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:182:|---|---|---|
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:183:| RC Cup 985 | Rs. 100.0 | **Rs. 160** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:184:| RC Cup 986 | Rs. 150.0 | **Rs. 240** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:185:| RC Cup 987 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:186:| RC Cup 988 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:187:| RC 4 in 1 Ladies Set 1051 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:188:| Rc 4 in 1 gents set 1052 | Rs. 160.0 | **Rs. 256** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:189:| RC Big Size Passport Holder 1053 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:190:| RC Travel Pouch 1054 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:191:| RC Ipad Puch 1055 | Rs. 225.0 | **Rs. 360** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:192:| RC Paper Folder 1056 | Rs. 160.0 | **Rs. 256** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:193:| RC 3 in 1 set 1057 | Rs. 130.0 | **Rs. 208** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:194:| RC 2 in 1 Set 1058 | Rs. 150.0 | **Rs. 240** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:195:| RC Keychain 1101 | Rs. 15.0 | **Rs. 24** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:196:| RC Keychain 1102 | Rs. 15.0 | **Rs. 24** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:197:| RC Keychain 1103 | Rs. 15.0 | **Rs. 24** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:198:| RC Keychain 1104 | Rs. 24.0 | **Rs. 38** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:199:| RC Keychain 1105 | Rs. 15.0 | **Rs. 24** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:200:| RC Keychain 1106 | Rs. 15.0 | **Rs. 24** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:201:| RC Keychain 1107 | Rs. 18.5 | **Rs. 30** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:202:| RC Keychain 1108 | Rs. 23.0 | **Rs. 37** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:203:| RC Keychain 1109 | Rs. 15.0 | **Rs. 24** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:204:| RC Keychain 1110 | Rs. 28.0 | **Rs. 45** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:205:| RC Keychain 1111 | Rs. 28.0 | **Rs. 45** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:206:| RC Keychain 1112 | Rs. 30.0 | **Rs. 48** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:207:| RC Keychain 1114 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:208:| RC Keychain 1116 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:209:| RC Keychain 1115 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:210:| RC Keychain 1117 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:211:| RC Keychain 1118 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:212:| RC Keychain 1113 | Rs. 35.0 | **Rs. 56** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:213:| RC Keychain 1119 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:214:| RC Keychain 1120 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:215:| RC Keychain 1121 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:216:| RC Keychain 1122 | Rs. 34.0 | **Rs. 54** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:217:| RC Keychain 1123 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:218:| RC Keychain 1124 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:219:| RC Keychain 1125 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:220:| RC Keychain 1126 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:221:| RC Keychain 1127 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:222:| RC Keychain 1128 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:223:| RC Keychain 1129 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:224:| RC Keychain 1130 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:225:| RC Keychain 1131 | Rs. 32.0 | **Rs. 51** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:226:| RC Keychain 1132 | Rs. 8.0 | **Rs. 13** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:227:| RC Keychain 1133 | Rs. 39.0 | **Rs. 62** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:228:| RC Keychain 1134 | Rs. 38.0 | **Rs. 61** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:229:| RC Keychain 1135 | Rs. 9.0 | **Rs. 14** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:230:| RC Keychain 1136 | Rs. 10.0 | **Rs. 16** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:231:| RC Keychain 1137 | Rs. 11.0 | **Rs. 18** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:232:| RC Keychain 1138 | Rs. 24.0 | **Rs. 38** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:233:| RC Keychain 1139 | Rs. 22.0 | **Rs. 35** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:234:| RC Keychain 1140 | Rs. 25.0 | **Rs. 40** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:235:| RC Cardholder 1201 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:236:| RC Cardholder 1202 | Rs. 60.0 | **Rs. 96** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:237:| RC Cardholder 1204 | Rs. 55.0 | **Rs. 88** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:238:| RC Cardholder 1203 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:239:| RC Cardholder 1205 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:240:| RC Cardholder 1206 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:241:| RC Cardholder 1208 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:242:| RC Cardholder 1207 | Rs. 30.0 | **Rs. 48** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:243:| RC Cardholder 1209 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:244:| RC Cardholder 1210 | Rs. 40.0 | **Rs. 64** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:245:| RC Cardholder 1211 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:246:| RC Cardholder 1213 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:247:| RC Cardholder 1214 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:248:| RC Cardholder 1215 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:249:| RC Cardholder 1216 | Rs. 50.0 | **Rs. 80** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:250:| RC Cardholder 1217 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:251:| RC Cardholder 1218 | Rs. 60.0 | **Rs. 96** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:252:| RC Cardholder 1220 | Rs. 60.0 | **Rs. 96** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:253:| RC Cardholder 1221 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:254:| RC Cardholder 1222 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:255:| RC Cardholder 1223 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:256:| RC Cardholder 1224 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:257:| RC Cardholder 1225 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:258:| RC Cardholder 1226 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:259:| RC Cardholder 1228 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:260:| RC Cardholder 1227 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:261:| RC Cardholder 1229 | Rs. 70.0 | **Rs. 112** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:262:| RC Cardholder 1230 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:263:| RC Cardholder 1232 | Rs. 50.0 | **Rs. 80** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:264:| RC Cardholder 1231 | Rs. 55.0 | **Rs. 88** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:265:| RC Cardholder 1233 | Rs. 55.0 | **Rs. 88** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:266:| RC Cardholder 1234 | Rs. 80.0 | **Rs. 128** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:267:| RC Container Pen Stand 1398 | Rs. 300.0 | **Rs. 480** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:268:| RC Container Pen Stand 1399 | Rs. 325.0 | **Rs. 520** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:269:| RC 5010 pen Stand With light 1400 | Rs. 325.0 | **Rs. 520** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:270:| RC 18 Pen Stand Teacher 1401 | Rs. 230.0 | **Rs. 368** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:271:| RC 18 Pen Stand CA 1402 | Rs. 230.0 | **Rs. 368** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:272:| RC 18 Pen Stand Advovcate 1404 | Rs. 230.0 | **Rs. 368** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:273:| RC 18 Pen Stand Doctor 1403 | Rs. 230.0 | **Rs. 368** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:274:| RC 18 Pen Stand 1405 | Rs. 350.0 | **Rs. 560** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:275:| RC Pen Stand 1408 | Rs. 225.0 | **Rs. 360** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:276:| RC 6081 Pen Stand 1407 | Rs. 195.0 | **Rs. 312** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:277:| RC 05 Pen Stand 1409 | Rs. 260.0 | **Rs. 416** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:278:| RC 10 Pen Stand 1410 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:279:| RC 6045 Pen Stand 1411 | Rs. 220.0 | **Rs. 352** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:280:| RC 6061 Pen Stand 1412 | Rs. 180.0 | **Rs. 288** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:281:| RC 6008 Pen Stand 1414 | Rs. 180.0 | **Rs. 288** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:282:| RC 2750 Pen Stand 1413 | Rs. 280.0 | **Rs. 448** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:283:| RC 6021 Pen Stand 1415 | Rs. 190.0 | **Rs. 304** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:284:| RC 5202 Pen Stand 1423 | Rs. 130.0 | **Rs. 208** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:285:| RC 5154 Pen Stand 1417 | Rs. 115.0 | **Rs. 184** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:286:| RC 5153 Pen Stand 1418 | Rs. 130.0 | **Rs. 208** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:287:| RC 5143 Pen  Stand 1420 | Rs. 180.0 | **Rs. 288** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:288:| RC 2043 Pen Stand 1419 | Rs. 180.0 | **Rs. 288** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:289:| RC 2008 Pen Stand 1421 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:290:| RC 1067 Pen Stand 1422 | Rs. 170.0 | **Rs. 272** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:291:| RC 5202 Pen Stand 1423 | Rs. 135.0 | **Rs. 216** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:292:| RC 5204 Pen Stand 1424 | Rs. 160.0 | **Rs. 256** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:293:| RC 2016 Pen Stand 1426 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:294:| RC 2008 with Watch Pen Stand 1427 | Rs. 150.0 | **Rs. 240** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:295:| RC 1003 Pen Stand 1425 | Rs. 280.0 | **Rs. 448** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:296:| RC 7004 Pen Stand 1428 | Rs. 150.0 | **Rs. 240** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:297:| RC PLT 2009 Fish Design with Watch Pen Stand 1429 | Rs. 350.0 | **Rs. 560** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:298:| RC PLT 2029 Fish Design Pen Stand 1430 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:299:| RC PLT 2027 Pen Stand 1434 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:300:| RC PLT 2023 Rupees Pen Stand 1435 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:301:| RC PLT 2006 Antic Colour Pen Stand 1432 | Rs. 380.0 | **Rs. 608** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:302:| RC PAP 1106 Ashokstambh 1438 big | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:303:| RC PAP 1102 Ashokstambh 1436 | Rs. 290.0 | **Rs. 464** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:304:| RC PLT 2006 Pen Stand 1431 | Rs. 350.0 | **Rs. 560** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:305:| RC PLT 2030 Ashoka Pen Stand 1433 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:306:| RC PAP 1106 Ashokstambh 1438 big | Rs. 180.0 | **Rs. 288** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:307:| RC Digital Pen Stand Square 1440 | Rs. 180.0 | **Rs. 288** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:308:| RC Rotate Pen Stand Jari 1441 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:309:| RC Pen Stand Jari 1442 | Rs. 280.0 | **Rs. 448** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:310:| RC Hub with Pen Stand 1445 | Rs. 220.0 | **Rs. 352** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:311:| RC Plastic Pen Stand Square 1444 | Rs. 60.0 | **Rs. 96** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:312:| RC Pen Stand Jari 1443 | Rs. 280.0 | **Rs. 448** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:313:| RC  Wooden Rotate Pen Stand 1446 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:314:| RC  Wooden Pen Stand 1447 | Rs. 350.0 | **Rs. 560** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:315:| RC  Wooden Rotate with Clock Pen Stand 1448 | Rs. 300.0 | **Rs. 480** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:316:| RC  Wooden Pen Stand 1449 | Rs. 350.0 | **Rs. 560** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:317:| RC Round Pen Stand Jari 1450 | Rs. 60.0 | **Rs. 96** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:318:| RC Round Pen Stand 1451 | Rs. 250.0 | **Rs. 400** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:319:| RC BTC 439 Pen Stand 1452 | Rs. 550.0 | **Rs. 880** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:320:| RC BTC 4230 Pen Stand 1453 | Rs. 260.0 | **Rs. 416** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:321:| RC - BTC 4299 Pen Stand - 1461 | Rs. 350.0 | **Rs. 560** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:322:| RC - BTC 4231 Pen Stand - 1462 | Rs. 400.0 | **Rs. 640** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:323:| RC - BTC 4269 Pen Stand - 1465 | Rs. 450.0 | **Rs. 720** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:324:| RC -  Submarine Pen Stand  -1471 | Rs. 435.0 | **Rs. 696** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:325:| RC -  Black Certicate Folder (Landscape) - 1501 | Rs. 210.0 | **Rs. 336** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:326:| RC -  Brown Certicate Folder (Landscape)- 1503 | Rs. 210.0 | **Rs. 336** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:327:| RC -  Black Certicate Folder (Portrait) - 1502 | Rs. 210.0 | **Rs. 336** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:328:| RC - Brown Certicate Folder (Portrait)- 1504 | Rs. 210.0 | **Rs. 336** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:329:| RC - Jute File - 1505 | Rs. 220.0 | **Rs. 352** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:330:| RC - Jute File - 1506 | Rs. 235.0 | **Rs. 376** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:331:| RC - Jute File - 1507 | Rs. 260.0 | **Rs. 416** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:332:| RC - Jute File - 1508 | Rs. 275.0 | **Rs. 440** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:333:| RC - Jute Natural Bag - 1509 | Rs. 275.0 | **Rs. 440** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:334:| rc jute white file 1510 | Rs. 275.0 | **Rs. 440** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:335:| RC - Pendrive - 1601 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:336:| RC - Pendrive - 1602 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:337:| RC - Pendrive - 1603 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:338:| RC - Pendrive - 1604 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:339:| RC - Pendrive - 1605 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:340:| RC - Pendrive - 1606 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:341:| RC - Pendrive - 1609 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:342:| RC - Pendrive - 1608 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:343:| RC - Pendrive - 1607 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:344:| RC - Pendrive - 1611 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:345:| RC - Pendrive - 1612 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:346:| RC - Pendrive - 1613 white | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:347:| RC - Pendrive - 1614 black | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:348:| RC - Pendrive - 1615 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:349:| RC - Pendrive Box - 1618 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:350:| RC - Pendrive Box - 1620 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:351:| RC - Pendrive - 1621 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:352:| RC - Pendrive - 1622 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:353:| RC - Pendrive - 1623 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:354:| RC - Pendrive - 1624 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:355:| RC - Pendrive - 1626 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:356:| RC - Pendrive - 1628 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:357:| RC - Pendrive - 1629 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:358:| RC - Pendrive - 1630 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:359:| RC - Pendrive - 1631 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:360:| RC - Pendrive - 1632 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:361:| RC - Pendrive - 1633 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:362:| RC - Pendrive - 1634 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:363:| RC - Pendrive - 1635 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:364:| RC - Pendrive - 1636 bamboo | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:365:| RC - Pendrive - 1637 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:366:| RC - Pendrive - 1638 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:367:| RC - Pendrive - 1639 | Rs. Call | **Rs. Call (No Change)** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:368:| RC - Mobile Stand without Card Holder black 1702 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:369:| RC - Mobile Stand Hola - 1703 | Rs. 40.0 | **Rs. 64** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:370:| RC - Mobile Stand with Card Holder silver 1704 | Rs. 75.0 | **Rs. 120** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:371:| RC - Mobile Stand without Card Holder silver 1705 | Rs. 55.0 | **Rs. 88** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:372:| RC - Mobile Stand Golden 1706 | Rs. 180.0 | **Rs. 288** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:373:| RC - Mobile Stand with Pen Stand black 1707 | Rs. 85.0 | **Rs. 136** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:374:| RC - Mobile Stand with Pen Stand silver 1708 | Rs. 95.0 | **Rs. 152** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:375:| RC - Rotate Metal Mobile Stand - 1709 | Rs. 55.0 | **Rs. 88** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:376:| RC - Rotate Plastic Mobile Stand black 1710 | Rs. 45.0 | **Rs. 72** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:377:| RC - Foldable Metal Mobile Stand - 1712 | Rs. 75.0 | **Rs. 120** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:378:| RC - Foldable Plastic Mobile Stand - 1713 | Rs. 60.0 | **Rs. 96** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:379:| RC - Foldable & Adjustable Mobile Stand black 1714 | Rs. 40.0 | **Rs. 64** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:380:| RC - Foldable & Adjustable Mobile Stand white 1715 | Rs. 40.0 | **Rs. 64** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:381:| RC - Paper Holder Mobile Stand - 1717 | Rs. 85.0 | **Rs. 136** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:382:| RC - Mobile Stand with Card Holder & back pen stand 1718 | Rs. 120.0 | **Rs. 192** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:383:| RC - 90 Degree Mobile Stand - 1719 | Rs. 150.0 | **Rs. 240** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:384:| RC - Mobile Stand with Paper Holder &pen stand 1720 | Rs. 150.0 | **Rs. 240** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:385:| RC - Mobile Stand without Paper Holder with pen stand 1721 | Rs. 125.0 | **Rs. 200** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:386:| RC Mobile Stand with Tea Coaster  1722 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:387:| RC - Temperature bottle 1801 | Rs. 120.0 | **Rs. 192** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:388:| RC - Temperature bottle 1802  | Rs. 120.0 | **Rs. 192** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:389:| RC - Temperature bottle 1803 | Rs. 120.0 | **Rs. 192** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:390:| RC - Temperature bottle 1804 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:391:| RC - Rubber coated bottle 1808 | Rs. 220.0 | **Rs. 352** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:392:| RC - Rubber coated bottle 1807 | Rs. 220.0 | **Rs. 352** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:393:| RC - Transperant cup bottle 1806 | Rs. 200.0 | **Rs. 320** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:394:| RC - Transperant cup bottle 1805 | Rs. 200.0 | **Rs. 320** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:395:| RC - Rubber coated bottle 1809 | Rs. 220.0 | **Rs. 352** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:396:| RC - Rubber coated bottle 1810 | Rs. 220.0 | **Rs. 352** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:397:| RC - Rope bottle 1811 | Rs. 160.0 | **Rs. 256** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:398:| RC - Rope bottle 1812 | Rs. 160.0 | **Rs. 256** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:399:| RC - Sport bottle 1813 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:400:| RC - Cow bottle (1liter) 1814 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:401:| RC - Damroo bottle 1815 | Rs. 110.0 | **Rs. 176** |
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:402:
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:403:**Warning: The following products were not found:**
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:404:- 1059
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:405:- RC - Cardholder - 1212
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:406:- RC - Cardholder - 1219
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:407:- RC - 6054- Pen Stand - 1406
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:408:- RC - Wooden Pen Stand - A1428
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:409:- RC - BTC 4340 Pen Stand - 1454
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:410:- RC - BTC 4343 Pen Stand - 1455
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:411:- RC - M523 BTC4225 Pen Stand - 1456
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:412:- RC - M633 Pen Stand - 1457
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:413:- RC - M581 Pen Stand - 1458
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:414:- RC - M492 Pen Stand - 1459
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:415:- RC -M648 Pen Stand - 1460
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:416:- RC - M542 Pen Stand - 1463
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:417:- RC - M540 Pen Stand - 1464
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:418:- RC - M 512, BTC 320- Pen Stand - 1466
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:419:- RC - M311 Pen Stand - 1467
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:420:- RC - M 266 Pen Stand - 1468
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:421:- RC - Pen Stand - 1469
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:422:- RC - Calender Pen Stand (Metal) - 1470
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:423:- RC - Pendrive - 1610
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:424:- RC - Pendrive - 1616
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:425:- RC - Pendrive - 1617
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:426:- RC - Pendrive Box - 1619
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:427:- RC - Pendrive - 1625
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:428:- RC - Pendrive - 1627
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:429:- RC - 10000MH Powerbank - 1640
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:430:- RC - 10000MH Powerbank - 1641
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:431:- RC - 5000MH Powerbank - 1643
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:432:- RC - 5000MH Powerbank - 1642
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:433:- RC - Mobile Stand with Card Holder Black - 1701
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:434:- RC - Rotate Plastic Mobile Stand White - 1711
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:435:- RC - Wooden Mobile Stand - 1716
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:436:- RC - Cola Bottle (1Ltr) - 1816
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:437:- RC - Straight Bottle (1Ltr) - 1818
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:438:- RC - Handle Straight Bottle (750ml) - 1819
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:439:- RC - Handle Straight Bottle (750ml) - 1820
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:440:- RC - Warm Handle Bottle (500ml)- 1821
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:441:- RC - Warm Bottle (500ml) - 1822
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:442:- RC - Borosil Shape Bottle (800ml) - 1823
+  C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\.system_generated\tasks\task-1004.lo
+g:443:- RC - Borosil Shape Bottle (600ml) - 1824
+
+
