@@ -116,14 +116,14 @@ class ProductViewSet(viewsets.ModelViewSet):
         return Response(results)
 
     @action(detail=True, methods=['get'])
-    def related(self, request, pk=None):
+    def related(self, request, pk=None, slug=None):
         product = self.get_object()
         related = Product.objects.filter(category=product.category).exclude(id=product.id).order_by('-popularity_score')[:4]
         serializer = self.get_serializer(related, many=True)
         return Response(serializer.data)
 
     @action(detail=True, methods=['get'])
-    def frequently_bought_together(self, request, pk=None):
+    def frequently_bought_together(self, request, pk=None, slug=None):
         from orders.models import OrderItem
         product = self.get_object()
         # Find orders that contains this product
