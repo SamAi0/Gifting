@@ -1,8 +1,8 @@
 from rest_framework import generics, permissions
-from inquiries.models import BulkInquiry, ContactMessage
+from inquiries.models import BulkOrder, ContactMessage
 from company_info.models import Testimonial, Settings
 from .serializers import (
-    BulkInquirySerializer,
+    BulkOrderSerializer,
     ContactMessageSerializer, TestimonialSerializer, SettingsSerializer
 )
 from rest_framework.views import APIView
@@ -30,9 +30,9 @@ class ContactCreateView(generics.CreateAPIView):
     queryset = ContactMessage.objects.all()
     serializer_class = ContactMessageSerializer
 
-class BulkInquiryCreateView(generics.CreateAPIView):
-    queryset = BulkInquiry.objects.all()
-    serializer_class = BulkInquirySerializer
+class BulkOrderCreateView(generics.CreateAPIView):
+    queryset = BulkOrder.objects.all()
+    serializer_class = BulkOrderSerializer
 
 class AdminStatsView(APIView):
     permission_classes = [permissions.IsAdminUser]
@@ -59,7 +59,7 @@ class AdminStatsView(APIView):
             "total_products": Product.objects.count(),
             "total_orders": Order.objects.count(),
             "pending_orders": Order.objects.filter(status='PENDING').count(),
-            "total_inquiries": BulkInquiry.objects.count(),
+            "total_bulk_orders": BulkOrder.objects.count(),
             "total_revenue": float(revenue),
             "recent_orders": recent_orders,
             "popular_products": popular_products,

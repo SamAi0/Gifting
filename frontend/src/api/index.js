@@ -136,7 +136,7 @@ export const downloadInvoice = (orderId) => api.get(`orders/orders/${orderId}/in
 export const fetchTestimonials = () => api.get('testimonials/');
 export const fetchSettings = () => api.get('settings/');
 export const submitContact = (data) => api.post('contact/', data);
-export const submitBulkInquiry = (data) => api.post('bulk-inquiry/', data);
+export const submitBulkOrder = (data) => api.post('bulk-order/', data);
 export const fetchAdminStats = () => api.get('admin/stats/');
 
 export default api;

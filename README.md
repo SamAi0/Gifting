@@ -15,7 +15,7 @@ The crown jewel of the platform, powered by a customized **Fabric.js** implement
 *   **High-Resolution Mockups:** Generates 2x resolution PNGs for quote submissions.
 
 ### **2. B2B & E-Commerce Workflow**
-*   **Bulk Inquiry Engine:** Corporate clients can submit high-volume requests with their uploaded logo and live customization mockups attached.
+*   **Bulk Order Engine:** Corporate clients can submit high-volume requests with their uploaded logo and live customization mockups attached.
 *   **Direct Orders:** Fully integrated cart and checkout workflow backed by **Razorpay** integration.
 *   **Dual Admin System:** Manage operations using either the modern **React Dashboard** or the secure **Django Admin**.
 *   **Responsive & Smooth UI:** Responsive design built with React, styled using Tailwind CSS, and animated with Framer Motion.
@@ -245,7 +245,7 @@ All endpoints require standard JSON payloads and return JSON responses. Actions 
 | `/api/products/suggestions/` | `GET` | Public | Returns autocomplete text matches for products, categories, and brands matching query parameter `?q=`. |
 | `/api/products/<id>/related/` | `GET` | Public | Pulls up to 4 popular products belonging to the same category. |
 | `/api/categories/` | `GET` | Public | Retrieves all active catalog categories alongside their product counts. |
-| `/api/bulk-inquiry/` | `POST` | Public | Submits a B2B corporate quote inquiry. Supports multipart form data for uploading corporate logos and mockup images. |
+| `/api/bulk-order/` | `POST` | Public | Submits a B2B corporate quote inquiry. Supports multipart form data for uploading corporate logos and mockup images. |
 | `/api/auth/login/` | `POST` | Public | Accepts user credentials and returns a JWT access/refresh token pair. |
 | `/api/orders/create-order/` | `POST` | Authenticated | Places an order, establishing cart items and generating a Razorpay signature. |
 | `/api/reviews/` | `POST`/`PUT` | Authenticated | Creates or updates product feedback reviews. |

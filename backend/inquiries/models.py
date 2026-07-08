@@ -1,19 +1,19 @@
 from django.db import models
 
-class BulkInquiry(models.Model):
+class BulkOrder(models.Model):
     company_name = models.CharField(max_length=200)
     contact_person = models.CharField(max_length=200)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     message = models.TextField()
-    logo_file = models.ImageField(upload_to='bulk_inquiry_logos/', null=True, blank=True)
+    logo_file = models.ImageField(upload_to='bulk_order_logos/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"Bulk Inquiry from {self.company_name}"
+        return f"Bulk Order from {self.company_name}"
     
     class Meta:
-        verbose_name_plural = "Bulk Inquiries"
+        verbose_name_plural = "Bulk Orders"
 
 class ContactMessage(models.Model):
     name = models.CharField(max_length=200)

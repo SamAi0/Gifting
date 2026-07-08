@@ -61,7 +61,7 @@ python manage.py runserver
 
 - **`products/`**: Core catalog management (Categories, Products, Customization Zones).
 - **`orders/`**: E-commerce logic (Cart, Orders, Addresses, Razorpay integration).
-- **`inquiries/`**: B2B bulk inquiry handling with file attachment support.
+- **`inquiries/`**: B2B bulk order handling with file attachment support.
 - **`company_info/`**: Dynamic site content (Testimonials, Global Settings).
 - **`core/`**: JWT configuration, CORS settings, and static/media handling.
 

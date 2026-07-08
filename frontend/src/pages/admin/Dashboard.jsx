@@ -34,7 +34,7 @@ const Dashboard = () => {
     total_products: 0,
     total_orders: 0,
     pending_orders: 0,
-    total_inquiries: 0,
+    total_bulk_orders: 0,
     total_revenue: 0
   });
 
@@ -83,8 +83,8 @@ const Dashboard = () => {
           color="[#D91656]"
         />
         <StatCard 
-          title="New Inquiries" 
-          value={stats.total_inquiries} 
+          title="New Bulk Orders" 
+          value={stats.total_bulk_orders} 
           icon={<MessageSquare size={24} />} 
           trend="up" 
           trendValue="+5"

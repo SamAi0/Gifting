@@ -273,7 +273,7 @@ JAZZMIN_SETTINGS = {
         "products.Category": "fas fa-list",
         "orders.Order": "fas fa-shopping-cart",
         "orders.Cart": "fas fa-cart-plus",
-        "inquiries.BulkInquiry": "fas fa-envelope-open-text",
+        "inquiries.BulkOrder": "fas fa-envelope-open-text",
         "inquiries.ContactMessage": "fas fa-comment-alt",
     },
     "default_icon_parents": "fas fa-chevron-circle-right",

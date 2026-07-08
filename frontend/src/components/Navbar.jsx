@@ -87,7 +87,7 @@ const Navbar = () => {
 
             <div className="flex items-center space-x-5 border-l border-slate-200/50 pl-8">
               <Link
-                to="/bulk-inquiries"
+                to="/bulk-orders"
                 onClick={handleNavLinkClick}
                 className={`hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 border ${
                   isScrolled 
@@ -97,7 +97,7 @@ const Navbar = () => {
                       : 'border-primary text-primary hover:bg-primary hover:text-white'
                 }`}
               >
-                Bulk Inquiries
+                Bulk Orders
               </Link>
 
               <Link 
@@ -278,13 +278,13 @@ const Navbar = () => {
               </Link>
 
               <Link
-                to="/bulk-inquiries"
+                to="/bulk-orders"
                 onClick={handleNavLinkClick}
                 className={`flex items-center gap-3 text-lg font-bold transition-colors ${
-                  location.pathname === '/bulk-inquiries' ? 'text-primary' : 'text-slate-600'
+                  location.pathname === '/bulk-orders' ? 'text-primary' : 'text-slate-600'
                 }`}
               >
-                <Gift size={20} /> Bulk Inquiries
+                <Gift size={20} /> Bulk Orders
               </Link>
               
               {user?.is_staff && (

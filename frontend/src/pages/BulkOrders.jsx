@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-import BulkInquiryForm from '../components/BulkInquiryForm';
+import BulkOrderForm from '../components/BulkOrderForm';
 
-const BulkInquiries = () => {
+const BulkOrders = () => {
   return (
     <div className="pt-24 bg-slate-50 min-h-screen">
       <Helmet>
-        <title>Bulk Inquiries & Corporate Gifting | Soham Gift</title>
+        <title>Bulk Orders & Corporate Gifting | Soham Gift</title>
         <meta name="description" content="Contact us for bulk corporate gifting solutions. We offer tailored gifts and special pricing for Corporates, Event Planners, and Retail Stores." />
       </Helmet>
       
@@ -16,9 +16,9 @@ const BulkInquiries = () => {
         </div>
       </div>
       
-      <BulkInquiryForm />
+      <BulkOrderForm />
     </div>
   );
 };
 
-export default BulkInquiries;
+export default BulkOrders;

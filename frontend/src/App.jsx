@@ -17,7 +17,7 @@ const Cart = lazy(() => import('./pages/Cart'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 const MyOrders = lazy(() => import('./pages/MyOrders'));
 const Wishlist = lazy(() => import('./pages/Wishlist'));
-const BulkInquiries = lazy(() => import('./pages/BulkInquiries'));
+const BulkOrders = lazy(() => import('./pages/BulkOrders'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 
@@ -64,7 +64,7 @@ function App() {
             <Route path="/products/:slug" element={<ProductDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
-            <Route path="/bulk-inquiries" element={<BulkInquiries />} />
+            <Route path="/bulk-orders" element={<BulkOrders />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/login" element={<Login />} />

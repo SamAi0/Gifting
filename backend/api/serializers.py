@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from products.models import Product, Category, ProductVariant, Review, Wishlist, AttributeValue, Attribute, Brand, ProductImage
-from inquiries.models import BulkInquiry, ContactMessage
+from inquiries.models import BulkOrder, ContactMessage
 from company_info.models import Testimonial, Settings
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -159,9 +159,9 @@ class ProductListSerializer(serializers.ModelSerializer):
             return None
         return obj.image
 
-class BulkInquirySerializer(serializers.ModelSerializer):
+class BulkOrderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BulkInquiry
+        model = BulkOrder
         fields = '__all__'
 
 class ContactMessageSerializer(serializers.ModelSerializer):
