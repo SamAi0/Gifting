@@ -48,7 +48,7 @@ const BulkOrderForm = () => {
   };
 
   const handleWhatsApp = () => {
-    const message = `Hi, I am interested in Bulk Corporate Gifting.\n\n*Name:* ${formData.fullName}\n*Company:* ${formData.companyName}\n*Looking for:* ${formData.lookingFor}\n\nPlease share more details.`;
+    const message = `Hi, I am interested in Bulk Corporate Gifting.\n\n*Name:* ${formData.fullName}\n*Company:* ${formData.companyName}\n*Contact Number:* ${formData.phone}\n*Business Email:* ${formData.email}\n*Employee Count:* ${formData.employeeCount}\n*Looking for:* ${formData.lookingFor}\n\nPlease share more details.`;
     const whatsappUrl = `https://wa.me/918657631208?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
