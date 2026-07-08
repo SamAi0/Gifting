@@ -9,7 +9,8 @@ const BulkOrderForm = () => {
     phone: '',
     companyName: '',
     employeeCount: '0-10',
-    lookingFor: 'Joining Kits'
+    lookingFor: 'Joining Kits',
+    customMessage: ''
   });
   const [status, setStatus] = useState('idle'); // 'idle', 'submitting', 'success', 'error'
 
@@ -28,7 +29,7 @@ const BulkOrderForm = () => {
         contact_person: formData.fullName,
         email: formData.email,
         phone: formData.phone,
-        message: `Employee Count: ${formData.employeeCount}\nLooking For: ${formData.lookingFor}`
+        message: `Employee Count: ${formData.employeeCount}\nLooking For: ${formData.lookingFor}\nCustom Message: ${formData.customMessage}`
       };
       
       await submitBulkOrder(payload);
@@ -39,7 +40,8 @@ const BulkOrderForm = () => {
         phone: '',
         companyName: '',
         employeeCount: '0-10',
-        lookingFor: 'Joining Kits'
+        lookingFor: 'Joining Kits',
+        customMessage: ''
       });
     } catch (error) {
       console.error('Failed to submit bulk order:', error);
@@ -48,7 +50,7 @@ const BulkOrderForm = () => {
   };
 
   const handleWhatsApp = () => {
-    const message = `Hi, I am interested in Bulk Corporate Gifting.\n\n*Name:* ${formData.fullName}\n*Company:* ${formData.companyName}\n*Contact Number:* ${formData.phone}\n*Business Email:* ${formData.email}\n*Employee Count:* ${formData.employeeCount}\n*Looking for:* ${formData.lookingFor}\n\nPlease share more details.`;
+    const message = `Hi, I am interested in Bulk Corporate Gifting.\n\n*Name:* ${formData.fullName}\n*Company:* ${formData.companyName}\n*Contact Number:* ${formData.phone}\n*Business Email:* ${formData.email}\n*Employee Count:* ${formData.employeeCount}\n*Looking for:* ${formData.lookingFor}\n*Custom Requirements:* ${formData.customMessage}\n\nPlease share more details.`;
     const whatsappUrl = `https://wa.me/918657631208?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -156,6 +158,11 @@ const BulkOrderForm = () => {
                       <option value="Other">Other</option>
                     </select>
                   </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Custom Requirements / Message</label>
+                  <textarea name="customMessage" value={formData.customMessage} onChange={handleChange} rows="3" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:border-primary/50 focus:bg-white outline-none transition-all text-sm" placeholder="Any specific customization requests or brand colors?"></textarea>
                 </div>
 
                 {status === 'error' && (
