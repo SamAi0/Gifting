@@ -27,7 +27,7 @@ const AnimatedPrice = ({ value, prefix = "₹" }) => {
 
   return (
     <span>
-      {prefix}{Math.round(displayValue).toLocaleString()}
+      {parseFloat(value) === 0 ? "Rs. Call" : `${prefix}${Math.round(displayValue).toLocaleString()}`}
     </span>
   );
 };
@@ -1001,7 +1001,7 @@ const ProductDetail = () => {
                       <div className="p-8">
                         <h4 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors truncate">{rel.name}</h4>
                         <div className="flex items-center justify-between">
-                          <p className="text-xl font-bold text-slate-900">₹{rel.price}</p>
+                          <p className="text-xl font-bold text-slate-900">{parseFloat(rel.price) === 0 ? "Rs. Call" : `₹${rel.price}`}</p>
                           <StarRating rating={parseFloat(rel.average_rating)} size={10} />
                         </div>
                       </div>

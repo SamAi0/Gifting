@@ -4,8 +4,6 @@ ID,Product Name,Price
 3,pen,299.00
 4,pen and keychain,1100.00
 5,pen key,950.00
-6,sr 125 pen keychain cardholder,1599.00
-7,sr 126 pen keychain cardholder,1499.00
 8,sr 135 perfumo set wallet perfume pen cardholder,2999.00
 9,sr 139 red elastic pen diary,799.00
 10,sr 144 black mars pen diary,849.00
@@ -69,14 +67,14 @@ ID,Product Name,Price
 69,RC Thermos Cup Set Tc 131,1360.00
 70,RC 2 in 1 Black Crock Diary Set DP 313,304.00
 71,RC 2 in 1 Button Dairy Set DP 303,360.00
-73,RC 2 in 1 Capsule Magnet Diary Set,999.00
+73,RC 2 in 1 Capsule Magnet Diary Set,352.00
 77,RC 2 in 1 Crock Diary Set DP 312,288.00
 78,RC 2 in 1 Elastic Diary Set DP 301,224.00
 83,RC 2 in 1 Emboss Magnet  Diary-Set DP 310,384.00
 85,RC 2 in 1 Flip Magnet Dairy Set DP 304,384.00
 87,RC 2 in 1 Flip Slim Magnet Diary Set DP 317,400.00
-89,RC 2 in 1 Golden Border Magnet Diary Set,999.00
-93,RC 2 in 1 Jari Diary Set,999.00
+89,RC 2 in 1 Golden Border Magnet Diary Set,352.00
+93,RC 2 in 1 Jari Diary Set,352.00
 96,RC 2 in 1 Magnet Diary Set DP 302,320.00
 101,RC 2 in 1 Mobile Pocket Diary Set Dp 309,352.00
 105,RC 2 in 1 Mobile Pocket Magnet Dairy Set DP 308,384.00
@@ -152,10 +150,10 @@ ID,Product Name,Price
 275,RC N CSP Diary D 224,264.00
 276,RC N CWA Diary D 225,288.00
 277,RC Organizer N STPD 332,3360.00
-278,RC Organizer N TRB 0-320,999.00
-279,RC Organizer N TRP 0-322,999.00
-280,RC Organizer N TSS 0-321,999.00
-281,RC Organizer P SRCA 0-323,999.00
+278,RC Organizer N TRB 0-320,1040.00
+279,RC Organizer N TRP 0-322,880.00
+280,RC Organizer N TSS 0-321,0.00
+281,RC Organizer P SRCA 0-323,448.00
 295,RC Powerbank Diary N RAPD 325,2560.00
 296,RC Powerbank Diary N RBPD 327,2560.00
 297,RC Powerbank Diary N RCPD 328,3040.00
@@ -202,7 +200,7 @@ ID,Product Name,Price
 366,RC 5143 Pen  Stand 1420,288.00
 367,RC 5153 Pen Stand 1418,208.00
 368,RC 5154 Pen Stand 1417,184.00
-369,RC 5202 Pen Stand 1416,999.00
+369,RC 5202 Pen Stand 1416,208.00
 370,RC 5202 Pen Stand 1423,216.00
 371,RC 5204 Pen Stand 1424,256.00
 372,RC 5 in 1 Black Crock Diary Cardholder Bottle Pen Keychain Set DBKPC 605,864.00
@@ -210,7 +208,6 @@ ID,Product Name,Price
 374,RC 5 in 1 Capsule Magnet Diary Cardholder Bottle Pen Keychain Set DBKPC 610,880.00
 375,RC 5 in 1 Crock Diary Cardholder Bottle Pen Keychain Set DBKPC 607,864.00
 376,RC 5 in 1 Elastic Diary Set DBKPC 601,760.00
-380,RC 5 in 1 Elastic Diary with Fflip Cup Set DBKPC 603 Red,999.00
 381,RC 5 in 1 Elastic Diary with Flip Cup Set DBKPC 603,1088.00
 384,RC 5 in 1 Magnet Diary Cardholder Powerbank Pen Keychain Set DBKPC 611,1120.00
 385,RC 5 in 1 Magnet Diary Set DBKPC 602,88.00
@@ -244,7 +241,7 @@ ID,Product Name,Price
 418,RC 7 in 1 Elastic Diary Mobile Stand Bottle  Cup Cardholder Pen Pendrive Set DCPPBCM 716,1280.00
 419,RC 7 in 1 Elastic Diary Mobile Stand Bottle  Powerbank Cardholder Pendrive Pen Set DCPPBMP 715,1568.00
 420,RC 7 in 1 Magnet Diary Bottle Cup Mobile Stand Cardholder Pen Keychain Set DBCMCPK 720,1640.00
-421,RC Belt Purse Bottle Set BBP 817,999.00
+421,RC Belt Purse Bottle Set BBP 817,624.00
 422,RC Belt Purse Set BP 818,288.00
 427,RC Big Size Passport Holder 1053,176.00
 431,RC Black Diamond pen 2016,72.00
@@ -291,13 +288,13 @@ ID,Product Name,Price
 480,RC Crosi Pen 2030,128.00
 481,RC Crown Pen 2031,120.00
 484,RC Cup 1200ML 913,520.00
-489,RC Cup 896,999.00
+489,RC Cup 896,608.00
 493,RC Cup 897,520.00
-495,RC Cup 897 Green&Red,999.00
-496,RC Cup 897 pink&blue,999.00
+495,RC Cup 897 Green&Red,520.00
+496,RC Cup 897 pink&blue,520.00
 497,RC Cup 898,288.00
 501,RC Cup 899,288.00
-502,RC Cup 900 black,999.00
+502,RC Cup 900 black,384.00
 503,RC Cup 900 stainless steel,384.00
 504,RC Cup 901,208.00
 505,RC Cup 902,208.00
@@ -314,7 +311,7 @@ ID,Product Name,Price
 520,RC Cup 912,448.00
 521,RC Cup 914,96.00
 523,RC Cup 915,352.00
-526,RC Cup 915 Steel,999.00
+526,RC Cup 915 Steel,352.00
 527,RC Cup 916 Black,480.00
 528,RC Cup 917 White,480.00
 529,RC Cup 918,232.00
@@ -342,13 +339,13 @@ ID,Product Name,Price
 555,RC Cup 986,240.00
 556,RC Cup 987,400.00
 559,RC Cup 988,400.00
-561,RC Cup 989,999.00
+561,RC Cup 989,448.00
 563,RC Cup 989 darkgreen,448.00
 570,RC Cup 990,352.00
-573,RC Cup 991 pink&black,999.00
-574,RC Cup 991 pink&green,999.00
+573,RC Cup 991 pink&black,520.00
+574,RC Cup 991 pink&green,520.00
 575,RC Cup 991 purple&teal,520.00
-576,RC Cup 991 purple&white,999.00
+576,RC Cup 991 purple&white,520.00
 577,RC Cup 992,384.00
 578,RC Cup 993,240.00
 581,RC Cup 994,128.00
@@ -427,10 +424,10 @@ ID,Product Name,Price
 687,RC Paper Folder 1056,256.00
 691,RC PAP 1102 Ashokstambh 1436,464.00
 692,RC PAP 1106 Ashokstambh 1438 big,288.00
-693,RC PAP 1106 Ashokstambh 1439 small,999.00
-694,RC Passport Cover with-Luggage Tag Set PL 815 Baby Pink,999.00
+693,RC PAP 1106 Ashokstambh 1439 small,288.00
+694,RC Passport Cover with-Luggage Tag Set PL 815 Baby Pink,240.00
 695,RC Passport Cover with-Luggage Tag Set PL 815,240.00
-699,RC Passport Cover with-Luggage Tag Set PL 815 Light Blue,999.00
+699,RC Passport Cover with-Luggage Tag Set PL 815 Light Blue,240.00
 703,RC Pen Stand 1408,360.00
 704,RC Pen Stand Jari 1442,448.00
 705,RC Pen Stand Jari 1443,448.00
@@ -468,13 +465,12 @@ ID,Product Name,Price
 764,RC 4 in 1 Powerbank Diary Set PD 501,4000.00
 766,RC Big Square Magnet Diary D 220 Black Marble,192.00
 767,RC Big Square Magnet Diary D 220 Red Marble,192.00
-785,logo,999.00
-786,clock with pen stand,999.00
-787,Corporate Table Top Pen & Mobile Stand,999.00
-788,Cricket Gift pen stand,999.00
-789,Leather USB Drive,999.00
-791,multicolor Analog Desktop Organizer Set with calendar,999.00
-796,Perpetual Calendar Pen Holder with LCD display digital clock pen holder,999.00
+786,clock with pen stand,320.00
+787,Corporate Table Top Pen & Mobile Stand,400.00
+788,Cricket Gift pen stand,560.00
+789,Leather USB Drive,0.00
+791,multicolor Analog Desktop Organizer Set with calendar,304.00
+796,Perpetual Calendar Pen Holder with LCD display digital clock pen holder,240.00
 797,RC -  Black Certicate Folder (Landscape) - 1501,336.00
 798,RC -  Black Certicate Folder (Portrait) - 1502,336.00
 799,RC -  Brown Certicate Folder (Landscape)- 1503,336.00
@@ -505,21 +501,19 @@ ID,Product Name,Price
 830,RC - Cola bottle 500ml 1835,288.00
 831,RC - Cola bottle 500ml 1836,288.00
 832,RC - Cola bottle((1litr)1816,176.00
-833,RC - Cola Steel Bottle (1Ltr) - 1837,999.00
+833,RC - Cola Steel Bottle (1Ltr) - 1837,448.00
 834,RC - Cola Steel Bottle (500Ltr) - 1839,264.00
 835,RC - Cola Steel Bottle (750ml) - 1838,400.00
 836,RC - Colour Copper Bottle - 1928,768.00
 839,RC - Colour Copper Set - 1937,1240.00
 840,RC - Copper Glass - 1933,192.00
 841,RC - Copper Printed Pot - 1931 (1),1040.00
-842,RC - Copper Printed Pot - 1931 (2),999.00
+842,RC - Copper Printed Pot - 1931 (2),1040.00
 843,RC - Copper Set - 1935,1104.00
 844,RC - Cow bottle (1liter) 1814,176.00
 845,RC - Cow Handle bottle 750ml 1833,216.00
 846,RC - Cow Handle bottle 750ml 1834,232.00
-847,rc crock bottle 500ml 1843,608.00
-848,rc cup bottle 500ml 1844,999.00
-849,RC - Cute Rabbit Bottle - 1887,999.00
+849,RC - Cute Rabbit Bottle - 1887,80.00
 850,RC - Cute Rabbit Bottle - 1887 cream,80.00
 852,RC - Damroo bottle 1815,176.00
 853,RC - Dual colour Bottle - 1876,224.00
@@ -539,14 +533,14 @@ ID,Product Name,Price
 870,RC - Jute File - 1507,416.00
 871,RC - Jute File - 1508,440.00
 872,RC - Jute Natural Bag - 1509,440.00
-873,RC - Jute White File - 1510,999.00
+873,RC - Jute White File - 1510,440.00
 874,RC - Lighter Shape Water Bottle - 1941,288.00
 877,RC - M540 Pen Stand - 1464,440.00
 878,RC - Mobile Stand Golden 1706,288.00
 879,RC - Mobile Stand Hola - 1703,64.00
 880,RC - Mobile Stand with Card Holder & back pen stand 1718,192.00
 881,RC - Mobile Stand with Card Holder silver 1704,120.00
-882,RC - Mobile Stand with Card Holder,999.00
+882,RC - Mobile Stand with Card Holder,88.00
 883,RC - Mobile Stand with Paper Holder &pen stand 1720,240.00
 884,RC - Mobile Stand with Pen Stand black 1707,136.00
 885,RC - Mobile Stand with Pen Stand silver 1708,152.00
@@ -559,52 +553,50 @@ ID,Product Name,Price
 892,RC - Multi Colour Cola Bottle - 1878,400.00
 894,RC - My Bottle 500ml - 1891,240.00
 896,RC - Paper Holder Mobile Stand - 1717,136.00
-897,RC - Pendrive - 1601,999.00
-898,RC - Pendrive - 1602,999.00
-899,RC - Pendrive - 1603,999.00
-900,RC - Pendrive - 1604,999.00
-901,RC - Pendrive - 1605,999.00
-902,RC - Pendrive - 1606,999.00
-904,RC - Pendrive - 1607,999.00
-905,RC - Pendrive - 1608,999.00
-906,RC - Pendrive - 1609,999.00
-907,RC - Pendrive - 1611,999.00
-908,RC - Pendrive - 1612,999.00
-909,RC - Pendrive - 1613 white,999.00
-910,RC - Pendrive - 1614 black,999.00
-911,RC - Pendrive - 1615,999.00
-912,RC - Pendrive - 1621,999.00
-916,RC - Pendrive - 1622,999.00
-917,RC - Pendrive - 1623,999.00
-918,RC - Pendrive - 1624,999.00
-919,RC - Pendrive - 1626,999.00
-920,RC - Pendrive - 1627blue,999.00
-921,RC - Pendrive - 1628,999.00
-922,RC - Pendrive - 1629,999.00
-923,RC - Pendrive - 1630,999.00
-924,RC - Pendrive - 1631,999.00
-925,RC - Pendrive - 1632,999.00
-926,RC - Pendrive - 1633,999.00
-927,RC - Pendrive - 1634,999.00
-928,RC - Pendrive - 1635,999.00
-929,RC - Pendrive - 1636 bamboo,999.00
-930,RC - Pendrive - 1636 wood,999.00
-931,RC - Pendrive - 1637,999.00
-932,RC - Pendrive - 1638,999.00
-933,RC - Pendrive - 1639,999.00
-934,RC - Pendrive Box - 1618,999.00
-935,RC - Pendrive Box - 1620,999.00
+897,RC - Pendrive - 1601,0.00
+898,RC - Pendrive - 1602,0.00
+899,RC - Pendrive - 1603,0.00
+900,RC - Pendrive - 1604,0.00
+901,RC - Pendrive - 1605,0.00
+902,RC - Pendrive - 1606,0.00
+904,RC - Pendrive - 1607,0.00
+905,RC - Pendrive - 1608,0.00
+906,RC - Pendrive - 1609,0.00
+907,RC - Pendrive - 1611,0.00
+908,RC - Pendrive - 1612,0.00
+909,RC - Pendrive - 1613 white,0.00
+910,RC - Pendrive - 1614 black,0.00
+911,RC - Pendrive - 1615,0.00
+912,RC - Pendrive - 1621,0.00
+916,RC - Pendrive - 1622,0.00
+917,RC - Pendrive - 1623,0.00
+918,RC - Pendrive - 1624,0.00
+919,RC - Pendrive - 1626,0.00
+920,RC - Pendrive - 1627blue,0.00
+921,RC - Pendrive - 1628,0.00
+922,RC - Pendrive - 1629,0.00
+923,RC - Pendrive - 1630,0.00
+924,RC - Pendrive - 1631,0.00
+925,RC - Pendrive - 1632,0.00
+926,RC - Pendrive - 1633,0.00
+927,RC - Pendrive - 1634,0.00
+928,RC - Pendrive - 1635,0.00
+930,RC - Pendrive - 1636 wood,0.00
+931,RC - Pendrive - 1637,0.00
+932,RC - Pendrive - 1638,0.00
+933,RC - Pendrive - 1639,0.00
+934,RC - Pendrive Box - 1618,0.00
+935,RC - Pendrive Box - 1620,0.00
 936,RC - Plastic Bottle - 1946 blac,288.00
-937,RC - Plastic Bottle - 1946,999.00
+937,RC - Plastic Bottle - 1946,288.00
 939,RC - Pouch  Bottle (500ml) - 1840,448.00
 940,RC - Printed Cola Bottle - 1877 green,336.00
-941,RC - Printed Copper Bottle - 1932 black,999.00
+941,RC - Printed Copper Bottle - 1932 black,688.00
 942,RC - Printed Copper Bottle - 1932 golden,688.00
 943,RC - Printed Copper Set - 1936,1200.00
 944,RC - Q7 Copper Bottle - 1930,608.00
 945,RC - Ring Bottle (500ml) - 1853,416.00
-946,rc ring bottle 500ml 1854,999.00
-947,RC - Ring Bottle (500ml) - 1855,999.00
+947,RC - Ring Bottle (500ml) - 1855,416.00
 948,RC - Rope bottle 1811,256.00
 949,RC - Rope bottle 1812,256.00
 950,RC - Rotate Metal Mobile Stand - 1709,88.00
@@ -618,11 +610,9 @@ ID,Product Name,Price
 958,RC - Rubber Coated Wooden Cap Bottle - 1863,416.00
 959,RC - Sipper Bottle - 1926,640.00
 961,RC - Slim Long Bottle - 1911,240.00
-962,RC - Slim Long Bottle - 1911 golden,999.00
-964,rc sport 1ltr bottle 1907,999.00
+962,RC - Slim Long Bottle - 1911 golden,240.00
 965,RC - Sport (1ltr) Bottle - 1907,496.00
-968,RC - Sport (800ltr) Bottle - 1906,999.00
-969,rc sport 800ltr bottle 1906,464.00
+968,RC - Sport (800ltr) Bottle - 1906,464.00
 972,RC - Sport bottle 1813,176.00
 973,RC - Sport bottle 750ml 1830,176.00
 974,RC - Sport bottle 750ml 1831,216.00
@@ -632,13 +622,13 @@ ID,Product Name,Price
 978,RC - Spot Copper Bottle - 1929,680.00
 979,RC - Spray Bottle - 1950,192.00
 982,RC - Steel  Bottle - 1848,192.00
-985,RC - Steel Glass without Clip - 1922,999.00
+985,RC - Steel Glass without Clip - 1922,176.00
 987,RC - Steel Glass without Clip - 1923,160.00
 989,RC - Straight bottle(1litr)1818,176.00
 990,RC - Straight Vaccum Bottle - 1918 black,288.00
-991,RC - Straight Vaccum Bottle - 1918pink,999.00
+991,RC - Straight Vaccum Bottle - 1918pink,288.00
 992,RC - Teddy Bottle - 1940 orangeblue,288.00
-993,RC - Teddy Bottle - 1940,999.00
+993,RC - Teddy Bottle - 1940,288.00
 994,RC - Temperature bottle 1801,192.00
 995,RC - Temperature bottle 1802 ,192.00
 996,RC - Temperature bottle 1803,192.00
@@ -678,7 +668,7 @@ ID,Product Name,Price
 1045,RC Big Top Pen Mettalic Black 1970,40.00
 1046,RC Big Top Pen Silver Clip 1972,40.00
 1049,RC Big Top single Ring Golden Pen 1992 ,88.00
-1050,RC Bottle A1954,999.00
+1050,RC Bottle A1954,400.00
 1051,RC CA Pen 1999,144.00
 1052,RC Coffee 2 in 1 Pen 1989 ,176.00
 1053,RC Colourful Touch Pen 1995,45.00
@@ -692,16 +682,16 @@ ID,Product Name,Price
 1064,RC Flipper Bottle 1948,192.00
 1065,RC Football Bottle 1954,400.00
 1068,RC Golden Top Pen 2004,56.00
-1069,RC Golden Top Pen 2004 Pink&Black,999.00
+1069,RC Golden Top Pen 2004 Pink&Black,56.00
 1071,RC Leather Finishing Pen 1993,144.00
 1073,RC Leather Sewing Pen 2005,104.00
 1075,RC Long Clip Pen 2002,45.00
 1079,RC Metallic Balck Roller Pen 1988,40.00
 1080,RC Mobile Stand with Tea Coaster  1722,176.00
-1081,RC Motivational Bottle 1952 orange&blue,999.00
+1081,RC Motivational Bottle 1952 orange&blue,176.00
 1082,RC Motivational Bottle 1952 pink&blue,176.00
-1083,RC Motivational Bottle 1952 Purple&Blue,999.00
-1084,RC Motivational Bottle 1952 purple&green,999.00
+1083,RC Motivational Bottle 1952 Purple&Blue,176.00
+1084,RC Motivational Bottle 1952 purple&green,176.00
 1085,RC Parker Pen 1973,45.00
 1086,RC Parker Roller Pen 1975,51.00
 1087,RC Parker Silver Clip Pen 2007,40.00
@@ -716,7 +706,7 @@ ID,Product Name,Price
 1108,RC Slender Gold Pen 2008,48.00
 1109,RC Slim 3 Ring Pen 2005,40.00
 1110,RC Slim Cross Pen 1968,27.00
-1112,RC Slim Cross Pen 1968 yellow&silver,999.00
+1112,RC Slim Cross Pen 1968 yellow&silver,27.00
 1114,RC Slim Touch Pen 1955,18.00
 1115,RC Slim Touch Pen 1956,19.00
 1116,RC Slim Touch Pen 1957,19.00
@@ -726,7 +716,7 @@ ID,Product Name,Price
 1120,RC Slim Touch Pen 1985,320.00
 1121,RC Small Top Pen 1978,40.00
 1125,RC Speed Pen 2002,48.00
-1127,RC Structure Parker Pen 1974 Golden,999.00
+1127,RC Structure Parker Pen 1974 Golden,56.00
 1128,RC Structure Parker Pen 1974 silver,56.00
 1129,RC TIE Shape Clip Pen 1980,88.00
 1130,RC TIE Shape Clip Pen 1981,104.00
@@ -742,27 +732,12 @@ ID,Product Name,Price
 1151,RC U Clip Mettalic Parker Pen 1976,72.00
 1152,RC U Clip Parker Rose gold Pen 1977,72.00
 1153,RC U Clip Pen 1979,40.00
-1155,Silver Metal Table Clock Pen Stand,999.00
-1156,silver plane pen holder stand,999.00
-1157,Tik Tik Side Cut Clip Pen 2034 Black,999.00
-1158,Wooden Table Clock With Pen Stand,999.00
-1159,rc 2 in 1 bottle with glass 1927,999.00
-1161,rc 2 in 1 sport bottle 1945,999.00
-1164,rc blue copper set 1934,999.00
-1165,rc cola steel bottle 1ltr 1837,448.00
-1166,rc cola steel bottle 750ml 1838,999.00
-1167,rc copper printed pot 1931 1,999.00
-1168,rc copper printed pot 1931 2,999.00
-1169,rc copper set 1935,999.00
-1172,rc jute file 1505,999.00
-1173,rc jute file 1506,999.00
-1174,rc jute file 1507,999.00
-1175,rc jute file 1508,999.00
-1176,rc jute white file 1510,440.00
-1177,rc pouch bottle 500ml 1840,999.00
-1178,rc ring bottle 500ml 1853,999.00
-1180,rc ring bottle 500ml 1855,416.00
-1187,rc steel bottle 1848 blue,999.00
-2023,RC - Crock Bottle (500ml) - 1843,999.00
+1155,Silver Metal Table Clock Pen Stand,400.00
+1156,silver plane pen holder stand,608.00
+1157,Tik Tik Side Cut Clip Pen 2034 Black,32.00
+1158,Wooden Table Clock With Pen Stand,520.00
+1187,rc steel bottle 1848 blue,192.00
+2023,RC - Crock Bottle (500ml) - 1843,608.00
 2024,RC - Cup Bottle (500ml) - 1844,288.00
 2122,RC - Ring Bottle (500ml) - 1854,416.00
+2355,RC - Pendrive - 1636 bamboo,0.00

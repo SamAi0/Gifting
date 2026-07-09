@@ -1,128 +1,115 @@
 import os
-import sys
-import json
 import django
-from decimal import Decimal
+import re
+from collections import defaultdict
+import glob
 
-# Setup Django environment
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
-from products.models import Product, Category, ProductVariant
+from products.models import Product
 
-def audit():
-    print("=" * 60)
-    print("PRODUCT DATA AUDIT - DEEP SCAN")
-    print("=" * 60)
-
+def audit_products():
+    print("## Checking for Duplicates and Unupdated Prices")
+    
+    # 1. Parse all batch scripts to get a mapping of code -> base price
+    base_prices = {}
+    batch_files = glob.glob('update_prices_batch*.py')
+    for fpath in batch_files:
+        with open(fpath, 'r', encoding='utf-8') as f:
+            content = f.read()
+            match = re.search(r'raw_data\s*=\s*\"\"\"(.*?)\"\"\"', content, re.DOTALL)
+            if match:
+                raw_data = match.group(1).strip()
+                lines = raw_data.split('\n')
+                current_name = ""
+                for line in lines:
+                    line = line.strip()
+                    if not line: continue
+                    if "Rs." in line or "Rs" in line or "rs." in line.lower() or "rs " in line.lower():
+                        parts = re.split(r'Rs\.?|rs\.?|Rs', line, flags=re.IGNORECASE)
+                        if len(parts) > 1 and parts[0].strip():
+                            name = parts[0].strip()
+                            price_str = parts[1].strip()
+                        else:
+                            name = current_name
+                            price_str = parts[-1].strip()
+                            
+                        # Extract code from name
+                        code_match = re.search(r'([A-Za-z0-9]+)$', name.replace(")", "").replace("(", "").strip())
+                        code = code_match.group(1).lower() if code_match else ""
+                        if not code.isdigit():
+                            n_match = re.search(r'([0-9]{3,4}[A-Za-z]?)', name)
+                            code = n_match.group(1).lower() if n_match else code
+                            
+                        if "Call" not in price_str and "call" not in price_str.lower():
+                            p_match = re.search(r'([0-9]+\.?[0-9]*)', price_str.replace(' ', ''))
+                            if p_match and code:
+                                base_prices[code] = float(p_match.group(1))
+                        current_name = ""
+                    else:
+                        if current_name: current_name += " " + line
+                        else: current_name = line
+                        
     products = Product.objects.all()
-    categories = Category.objects.all()
-    total_products = products.count()
     
-    errors = []
-    warnings = []
-    
-    # Trackers
-    names = []
-    prices = []
+    code_groups = defaultdict(list)
+    unupdated = []
     
     for p in products:
-        names.append(p.name)
-        prices.append(float(p.price))
+        name = p.name
+        price = float(p.price)
         
-        # 1. Price check (Placeholder check)
-        if p.price == 999.0:
-            warnings.append(f"[PLACEHOLDER] Product '{p.name}' has default price 999.0")
-        elif p.price <= 0:
-            errors.append(f"[ERROR] Product '{p.name}' has invalid price {p.price}")
+        # Extract number code from product name
+        code = None
+        parts = name.replace("-", " ").replace("(", " ").replace(")", " ").split()
+        if parts:
+            last = parts[-1].lower()
+            if any(char.isdigit() for char in last):
+                code = last
+            else:
+                n_match = re.search(r'([0-9]{3,4}[A-Za-z]?)', name)
+                if n_match:
+                    code = n_match.group(1).lower()
         
-        # 2. Description check
-        if not p.description or len(p.description.strip()) < 20:
-            warnings.append(f"[CONTENT] Product '{p.name}' has poor description: '{p.description}'")
+        if code:
+            code_groups[code].append(p)
             
-        # 3. Image check
-        if not p.image:
-            errors.append(f"[ERROR] Product '{p.name}' has NO image path")
-        else:
-            img_path = os.path.join('static', 'products', os.path.basename(p.image))
-            if not os.path.exists(img_path):
-                errors.append(f"[IMAGE] Product '{p.name}' image file NOT FOUND: {img_path}")
-
-        # 4. SEO Metadata check (Highly likely to be missing)
-        if not p.meta_title or p.meta_title == p.name:
-             warnings.append(f"[SEO] Product '{p.name}' missing unique meta_title")
-        if not p.meta_description or len(p.meta_description) < 50:
-             warnings.append(f"[SEO] Product '{p.name}' missing or short meta_description")
-
-        # 5. Structured Data check
-        try:
-            features = json.loads(p.key_features)
-            if not features or len(features) == 0:
-                warnings.append(f"[DATA] Product '{p.name}' has NO key features")
-        except:
-            errors.append(f"[ERROR] Product '{p.name}' has invalid JSON in key_features")
-
-        try:
-            specs = json.loads(p.specifications)
-            if not specs or len(specs) == 0:
-                 warnings.append(f"[DATA] Product '{p.name}' has NO specifications")
-        except:
-            errors.append(f"[ERROR] Product '{p.name}' has invalid JSON in specifications")
-
-    # 6. Global checks
-    from collections import Counter
-    name_counts = Counter(names)
-    dup_names = {name: count for name, count in name_counts.items() if count > 1}
-    if dup_names:
-        for name, count in dup_names.items():
-            errors.append(f"[DUPLICATE] Name '{name}' used {count} times")
-
-    # 7. Check synchronization with customization.json
-    json_path = os.path.join('..', 'frontend', 'src', 'data', 'customization.json')
-    if os.path.exists(json_path):
-        with open(json_path, 'r') as f:
-            custom_data = json.load(f)
-            json_slugs = {item.get('slug') for item in custom_data if item.get('slug')}
-            db_slugs = {p.slug for p in products}
+            # Check if price is still base price
+            if code in base_prices:
+                base = base_prices[code]
+                expected_new = round(base * 1.6)
+                if abs(price - base) < 2:  # Same as old price
+                    unupdated.append((p, base, expected_new))
+                elif price < base * 1.5 and price != 999.0 and price != 0: 
+                    unupdated.append((p, base, expected_new))
+    
+    # Check duplicate codes
+    duplicates = {code: prods for code, prods in code_groups.items() if len(prods) > 1}
+    
+    out_lines = []
+    out_lines.append("# Audit Report\n")
+    out_lines.append("## Duplicate Products (Grouped by Number Code)\n")
+    if not duplicates:
+        out_lines.append("No clear duplicates found based on numeric codes.\n")
+    else:
+        for code, prods in duplicates.items():
+            out_lines.append(f"**Code: {code.upper()}**")
+            for p in prods:
+                out_lines.append(f"- ID: {p.id} | Name: {p.name} | Price: Rs. {p.price}")
+            out_lines.append("")
             
-            missing_in_db = json_slugs - db_slugs
-            if missing_in_db:
-                errors.append(f"[SYNC] {len(missing_in_db)} products in JSON but MISSING from Database")
-    
-    # Summary
-    print(f"Total Products: {total_products}")
-    print(f"Total Categories: {categories.count()}")
-    print("-" * 60)
-    
-    # Categorize warnings
-    seo_warns = [w for w in warnings if "[SEO]" in w]
-    placeholder_warns = [w for w in warnings if "[PLACEHOLDER]" in w]
-    content_warns = [w for w in warnings if "[CONTENT]" in w]
-    data_warns = [w for w in warnings if "[DATA]" in w]
-    
-    print(f"ERRORS: {len(errors)}")
-    print(f"WARNINGS: {len(warnings)}")
-    print(f"  - SEO Issues: {len(seo_warns)}")
-    print(f"  - Placeholder Prices: {len(placeholder_warns)}")
-    print(f"  - Content Issues: {len(content_warns)}")
-    print(f"  - Structured Data Issues: {len(data_warns)}")
-    print("-" * 60)
-    
-    if errors:
-        print("\nTOP ERRORS:")
-        for err in errors[:20]:
-            print(err)
-        if len(errors) > 20:
-            print(f"... and {len(errors) - 20} more errors")
+    out_lines.append("\n## Products with Un-updated Prices (Still Base Price)\n")
+    if not unupdated:
+        out_lines.append("No unupdated prices detected based on parsed raw data.\n")
+    else:
+        for p, base, exp in unupdated:
+            out_lines.append(f"- ID: {p.id} | Name: {p.name} | Current Price: Rs. {p.price} | Base Was: Rs. {base} | Expected: Rs. {exp}")
             
-    if warnings:
-        print("\nSAMPLE WARNINGS:")
-        # Show a few of each type
-        for warns in [seo_warns[:3], placeholder_warns[:3], content_warns[:3], data_warns[:3]]:
-            for w in warns:
-                print(w)
-
+    with open(r'C:\Users\Asus\.gemini\antigravity-ide\brain\0b0b6385-9acb-47b0-88ab-49791b5084f4\audit_report.md', 'w', encoding='utf-8') as f:
+        f.write("\n".join(out_lines))
+        
+    print("Audit complete, wrote to audit_report.md")
 
 if __name__ == '__main__':
-    audit()
+    audit_products()

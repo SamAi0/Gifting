@@ -408,7 +408,7 @@ const ProductList = () => {
                                    </div>
                                    <div className="flex-grow">
                                       <p className="text-xs font-bold text-slate-900 group-hover:text-primary transition-colors">{item.name}</p>
-                                      <p className="text-[10px] text-slate-400">₹{item.price} • {item.category_name || item.type}</p>
+                                      <p className="text-[10px] text-slate-400">{parseFloat(item.price) === 0 ? "Rs. Call" : `₹${item.price}`} • {item.category_name || item.type}</p>
                                    </div>
                                 </Link>
                               ))}
@@ -537,7 +537,7 @@ const ProductList = () => {
                             
                             <div className="flex justify-between items-center">
                               <div className="flex items-center gap-2">
-                                <p className="text-xl font-bold text-slate-900 tracking-tight">₹{product.discount_price || product.price}</p>
+                                <p className="text-xl font-bold text-slate-900 tracking-tight">{parseFloat(product.discount_price || product.price) === 0 ? "Rs. Call" : `₹${product.discount_price || product.price}`}</p>
                                 {product.discount_price && (
                                   <p className="text-xs text-slate-400 line-through">₹{product.price}</p>
                                 )}
