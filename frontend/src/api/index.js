@@ -2,8 +2,8 @@ import axios from 'axios';
 
 let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
-// Smart IP Resolution for Mobile/Network testing
-if (typeof window !== 'undefined' && API_BASE_URL.includes('localhost') && window.location.hostname !== 'localhost') {
+// Smart IP Resolution for Mobile/Network testing (Only active in Dev environment)
+if (import.meta.env.DEV && typeof window !== 'undefined' && API_BASE_URL.includes('localhost') && window.location.hostname !== 'localhost') {
   console.log(`[Smart IP] Switching localhost to ${window.location.hostname}`);
   API_BASE_URL = API_BASE_URL.replace('localhost', window.location.hostname);
 }
@@ -21,10 +21,13 @@ export const getImageUrl = (path, useCors = false) => {
 
   let formattedPath = path.startsWith('/') ? path : `/${path}`;
   
-  // Robustness fix: Ensure the path starts with /static/ or /media/ if it's a internal product path
+  // Robustness fix: Ensure the path starts with /static/ or /media/ if it's an internal product path
   if (!formattedPath.startsWith('/static/') && !formattedPath.startsWith('/media/') && !formattedPath.startsWith('/cors-')) {
     if (formattedPath.includes('products/')) {
       formattedPath = `/static${formattedPath.startsWith('/') ? '' : '/'}${formattedPath}`;
+    } else {
+      // If it's just a bare filename (like "image.jpg")
+      formattedPath = `/static/products${formattedPath}`;
     }
   }
 

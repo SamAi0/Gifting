@@ -102,6 +102,30 @@ const ProductManagement = () => {
   };
 
   const handleAddZone = () => {
+    const zoneLimits = {
+      'diaries': 3,
+      'pen-keychains-sets': 3,
+      'water-bottles': 4,
+      'stationery': 2,
+      'office-gifts': 3,
+      'gift-sets': 2,
+      'drinkware': 3,
+      'accessories': 2
+    };
+    
+    const selectedCat = categories.find(c => c.id.toString() === formData.category?.toString());
+    const slug = selectedCat ? selectedCat.slug : '';
+    let limit = zoneLimits[slug] || 3;
+    
+    if (formData.name.toLowerCase().includes('pen stand')) {
+      limit = 3;
+    }
+
+    if (formData.customization_zones.length >= limit) {
+      alert(`Category "${selectedCat?.name || 'This category'}" only allows a maximum of ${limit} customization zones.`);
+      return;
+    }
+
     setFormData({
       ...formData,
       customization_zones: [
@@ -125,6 +149,17 @@ const ProductManagement = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (formData.discount_price && parseFloat(formData.discount_price) >= parseFloat(formData.price)) {
+      alert("Discount price must be less than the regular price.");
+      return;
+    }
+    
+    if (parseFloat(formData.stock) < 0) {
+      alert("Stock cannot be negative.");
+      return;
+    }
+
     setIsLoading(true);
 
     try {

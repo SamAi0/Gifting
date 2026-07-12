@@ -90,6 +90,24 @@ class ProductSerializer(serializers.ModelSerializer):
             'popularity_score', 'average_rating', 'review_count', 'created_at', 'updated_at'
         ]
     
+    def validate(self, data):
+        # Validate that discount price is less than price
+        price = data.get('price')
+        discount_price = data.get('discount_price')
+        
+        # Check against instance for PATCH requests where fields might be omitted
+        if price is None and self.instance:
+            price = self.instance.price
+            
+        if discount_price is None and self.instance:
+            discount_price = self.instance.discount_price
+
+        if price is not None and discount_price is not None:
+            if discount_price >= price:
+                raise serializers.ValidationError({"discount_price": "Discount price must be less than regular price."})
+                
+        return data
+    
     def validate_customization_config(self, value):
         import json
         if not value:

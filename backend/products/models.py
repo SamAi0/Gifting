@@ -142,14 +142,15 @@ class Product(models.Model):
         if not image_field:
             return
         img = Image.open(image_field)
-        if img.mode != 'RGB':
-            img = img.convert('RGB')
+        
+        if img.mode not in ('RGB', 'RGBA'):
+            img = img.convert('RGBA') if 'transparency' in img.info or getattr(img, 'is_animated', False) else img.convert('RGB')
         
         output = io.BytesIO()
-        img.save(output, format='JPEG', quality=70, optimize=True)
+        img.save(output, format='WEBP', quality=80, optimize=True)
         output.seek(0)
         
-        name = image_field.name.split('.')[0] + '.jpg'
+        name = image_field.name.rsplit('.', 1)[0] + '.webp'
         image_field.save(name, ContentFile(output.read()), save=False)
 
     def save(self, *args, **kwargs):
@@ -257,12 +258,14 @@ class ProductVariant(models.Model):
         if self.image_file and not self.id:
             # Compress variant image
             img = Image.open(self.image_file)
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
+            if img.mode not in ('RGB', 'RGBA'):
+                img = img.convert('RGBA') if 'transparency' in img.info or getattr(img, 'is_animated', False) else img.convert('RGB')
+            
             output = io.BytesIO()
-            img.save(output, format='JPEG', quality=70, optimize=True)
+            img.save(output, format='WEBP', quality=80, optimize=True)
             output.seek(0)
-            name = self.image_file.name.split('.')[0] + '.jpg'
+            
+            name = self.image_file.name.rsplit('.', 1)[0] + '.webp'
             self.image_file.save(name, ContentFile(output.read()), save=False)
         super().save(*args, **kwargs)
 
