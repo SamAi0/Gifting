@@ -6,9 +6,9 @@ import WhatsAppButton from './components/WhatsAppButton';
 import { ProtectedRoute, AdminRoute } from './components/ProtectedRoute';
 
 // Lazy load pages
-const Home = lazy(() => import('./pages/Home'));
-const ProductList = lazy(() => import('./pages/ProductList'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+import Home from './pages/Home';
+import ProductList from './pages/ProductList';
+import ProductDetail from './pages/ProductDetail';
 const Contact = lazy(() => import('./pages/Contact'));
 const About = lazy(() => import('./pages/About'));
 const Login = lazy(() => import('./pages/Login'));
