@@ -8,6 +8,7 @@ import {
   ArrowDownRight,
   MessageSquare
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import AdminGlobalSearch from '../../components/admin/AdminGlobalSearch';
 
@@ -97,7 +98,7 @@ const Dashboard = () => {
         <div className="bg-[#161b2a] border border-white/5 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-bold">Recent Orders</h3>
-            <button className="text-sm text-[#D91656] hover:underline font-medium">View All</button>
+            <Link to="/admin-panel/orders" className="text-sm text-[#D91656] hover:underline font-medium">View All</Link>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
@@ -140,7 +141,7 @@ const Dashboard = () => {
         <div className="bg-[#161b2a] border border-white/5 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-bold">Popular Products</h3>
-            <button className="text-sm text-[#D91656] hover:underline font-medium">View All</button>
+            <Link to="/admin-panel/products" className="text-sm text-[#D91656] hover:underline font-medium">View All</Link>
           </div>
           <div className="space-y-4">
             {stats.popular_products?.map((product) => (
