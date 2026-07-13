@@ -1,13 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
-import api from '../../api';
+import api, { getImageUrl } from '../../api';
 import { 
   Search, 
   Filter, 
-  Eye
+  Eye,
+  X,
+  Package,
+  Wand2
 } from 'lucide-react';
 
 const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const filteredOrders = orders; // Simple mapping for now
 
   const fetchOrders = useCallback(async () => {
@@ -101,7 +105,11 @@ const OrderManagement = () => {
                   </td>
                   <td className="px-6 py-4 font-bold text-white">₹{order.total_amount}</td>
                   <td className="px-6 py-4 text-right">
-                    <button className="p-2 hover:bg-white/10 rounded-lg text-[#D91656] transition-all">
+                    <button 
+                      onClick={() => setSelectedOrder(order)}
+                      className="p-2 hover:bg-white/10 rounded-lg text-[#D91656] transition-all"
+                      title="View Order Details & Mockups"
+                    >
                       <Eye size={18} />
                     </button>
                   </td>
@@ -116,6 +124,131 @@ const OrderManagement = () => {
           </table>
         </div>
       </div>
+
+      {/* Order Details Modal */}
+      {selectedOrder && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-[#161b2a] border border-white/10 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-white/5">
+              <div>
+                <h3 className="text-xl font-bold text-white">Order #ORD-{selectedOrder.id}</h3>
+                <p className="text-gray-400 text-sm mt-1">Customer: {selectedOrder.user_name || selectedOrder.user}</p>
+              </div>
+              <button onClick={() => setSelectedOrder(null)} className="p-2 hover:bg-white/10 rounded-lg text-gray-400 transition-all">
+                <X size={24} />
+              </button>
+            </div>
+            
+            <div className="p-6 overflow-y-auto space-y-6">
+              <h4 className="text-lg font-bold text-white flex items-center gap-2">
+                <Package size={18} className="text-[#D91656]" /> Items & Customizations
+              </h4>
+              
+              <div className="space-y-4">
+                {selectedOrder.items?.map((item) => {
+                  let parsedData = null;
+                  try {
+                    if (item.customization_data) {
+                      parsedData = typeof item.customization_data === 'string' 
+                        ? JSON.parse(item.customization_data) 
+                        : item.customization_data;
+                    }
+                  } catch (e) {
+                    console.error("Failed to parse customization data:", e);
+                  }
+
+                  const hasCustomization = item.customization_text || item.customization_image || item.logo_image || parsedData;
+
+                  return (
+                  <div key={item.id} className="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col sm:flex-row gap-6">
+                    <div className="w-24 h-24 bg-white/10 rounded-lg p-2 flex-shrink-0">
+                      {item.product_details?.image ? (
+                        <img src={getImageUrl(item.product_details.image)} alt={item.product_details.name} className="w-full h-full object-contain" />
+                      ) : (
+                         <div className="w-full h-full flex items-center justify-center text-gray-500"><Package size={24} /></div>
+                      )}
+                    </div>
+                    
+                    <div className="flex-grow space-y-3">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h5 className="font-bold text-white text-lg">{item.product_details?.name || 'Unknown Product'}</h5>
+                          <p className="text-sm text-gray-400">Qty: {item.quantity}</p>
+                        </div>
+                        <p className="font-bold text-[#D91656]">₹{item.price}</p>
+                      </div>
+
+                      {hasCustomization && (
+                        <div className="bg-black/20 p-4 rounded-lg border border-white/5 space-y-3 mt-2">
+                          <div className="flex items-center gap-2 text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">
+                            <Wand2 size={14} className="text-[#D91656]" /> Customization Details
+                          </div>
+                          
+                          {item.customization_text && (
+                            <p className="text-sm text-gray-300 bg-white/5 p-2 rounded border border-white/10">
+                              Text: <span className="font-mono text-white">"{item.customization_text}"</span>
+                            </p>
+                          )}
+
+                          {/* Render parsed customization data (texts, color, instructions) */}
+                          {parsedData && (
+                            <div className="space-y-2">
+                              {parsedData.texts && parsedData.texts.length > 0 && (
+                                <p className="text-sm text-gray-300 bg-white/5 p-2 rounded border border-white/10">
+                                  Custom Texts: <span className="font-mono text-white">"{parsedData.texts.map(t => t.text).join('", "')}"</span>
+                                </p>
+                              )}
+                              {parsedData.instructions && (
+                                <p className="text-sm text-gray-300 bg-white/5 p-2 rounded border border-white/10">
+                                  Instructions: <span className="text-white">"{parsedData.instructions}"</span>
+                                </p>
+                              )}
+                              {parsedData.color && (
+                                <p className="text-sm text-gray-300 flex items-center gap-2">
+                                  Selected Color: 
+                                  <span className="w-4 h-4 rounded-full border border-white/20 inline-block" style={{ backgroundColor: parsedData.color }}></span>
+                                  <span className="font-mono text-white text-xs">{parsedData.color}</span>
+                                </p>
+                              )}
+                            </div>
+                          )}
+                          
+                          {(item.customization_image || item.logo_image) && (
+                            <div className="flex flex-wrap gap-6 mt-3">
+                              {item.customization_image && (
+                                <div>
+                                  <p className="text-xs text-gray-400 mb-2">Mockup Preview (Click to view full size)</p>
+                                  <a href={getImageUrl(item.customization_image)} target="_blank" rel="noopener noreferrer" className="block w-24 h-24 rounded-lg bg-white/10 border border-white/20 hover:border-[#D91656] transition-colors cursor-zoom-in overflow-hidden flex items-center justify-center">
+                                    <img src={getImageUrl(item.customization_image)} alt="Mockup Preview" className="w-full h-full object-contain" />
+                                  </a>
+                                </div>
+                              )}
+                              {item.logo_image && (
+                                <div>
+                                  <p className="text-xs text-gray-400 mb-2">Uploaded Logo (Click to view full size)</p>
+                                  <a href={getImageUrl(item.logo_image)} target="_blank" rel="noopener noreferrer" className="block w-24 h-24 rounded-lg bg-white/10 border border-white/20 hover:border-[#D91656] transition-colors cursor-zoom-in overflow-hidden flex items-center justify-center">
+                                    <img src={getImageUrl(item.logo_image)} alt="Logo" className="w-full h-full object-contain" />
+                                  </a>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )})}
+              </div>
+            </div>
+            
+            <div className="p-6 border-t border-white/10 bg-white/5 flex justify-end">
+               <button onClick={() => setSelectedOrder(null)} className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors font-bold">
+                 Close
+               </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
