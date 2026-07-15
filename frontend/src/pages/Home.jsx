@@ -5,6 +5,10 @@ import { fetchProducts, fetchTestimonials, getImageUrl } from '../api';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 
+// Import all client logos dynamically using Vite's glob import
+const clientLogos = import.meta.glob('../assets/CLINT Logo/*.{jpg,jpeg,png}', { eager: true });
+const logosArray = Object.values(clientLogos).map(module => module.default);
+
 const Home = () => {
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
@@ -252,70 +256,88 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-6 md:py-8 bg-slate-900 text-white relative">
-        <div className="container-home">
-          <div className="text-center mb-10">
-            <span className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-3 inline-block">Voices of Trust</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Corporate Visionaries Say</h2>
-            <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
-          </div>
+      {/* Client Logos Section */}
+      <section className="py-12 md:py-16 bg-white border-t border-slate-100 overflow-hidden relative">
+        <div className="container-home mb-10 text-center">
+          <span className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-3 inline-block">Voices of Trust</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Our Trusted Corporate Clients</h2>
+          <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+          <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">
+            We are proud to have delivered premium gifting experiences to over 500+ esteemed organizations.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {Array.isArray(testimonials) && testimonials.length > 0 ? (
-              testimonials.map((testimonial) => (
-                <motion.div
-                  key={testimonial.id}
-                  whileHover={{ y: -5 }}
-                  className="bg-white/5 backdrop-blur-md p-6 rounded-[2rem] border border-white/10 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex gap-1 text-accent mb-6">
-                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill="currentColor" />)}
-                    </div>
-                    <p className="text-slate-300 text-base italic mb-8 leading-relaxed font-light">
-                      "{testimonial.content}"
-                    </p>
+        {/* Marquee Animation Styles */}
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes marquee-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+          }
+          .marquee-container {
+            display: flex;
+            width: fit-content;
+            animation: marquee 60s linear infinite;
+          }
+          .marquee-container-reverse {
+            display: flex;
+            width: fit-content;
+            animation: marquee-reverse 60s linear infinite;
+          }
+          .marquee-container:hover, .marquee-container-reverse:hover {
+            animation-play-state: paused;
+          }
+        `}} />
+
+        <div className="relative w-full overflow-hidden flex flex-col gap-6">
+          {/* Top fade gradients for smooth edges */}
+          <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+          {/* Marquee Wrappers */}
+          {logosArray.length > 0 ? (
+            <div className="flex flex-col gap-6">
+              {/* Row 1: Left to Right */}
+              <div className="marquee-container items-center">
+                {/* Double the array for seamless infinite scroll */}
+                {[...logosArray.slice(0, Math.ceil(logosArray.length / 2)), ...logosArray.slice(0, Math.ceil(logosArray.length / 2))].map((logoUrl, idx) => (
+                  <div 
+                    key={`row1-${idx}`} 
+                    className="flex-shrink-0 w-[120px] md:w-[160px] h-[80px] md:h-[100px] mx-4 sm:mx-8 flex items-center justify-center transition-transform duration-300 hover:scale-110"
+                  >
+                    <img 
+                      src={logoUrl} 
+                      alt={`Client Logo ${idx}`} 
+                      className="max-w-full max-h-full object-contain drop-shadow-sm mix-blend-multiply" 
+                    />
                   </div>
-                  <div className="flex items-center gap-4 pt-6 border-t border-white/5">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary font-black text-lg border border-primary/30">
-                      {testimonial.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white text-base">{testimonial.name}</h4>
-                      <p className="text-slate-500 text-xs font-medium">{testimonial.role || testimonial.company}</p>
-                    </div>
+                ))}
+              </div>
+
+              {/* Row 2: Right to Left */}
+              <div className="marquee-container-reverse items-center">
+                {[...logosArray.slice(Math.ceil(logosArray.length / 2)), ...logosArray.slice(Math.ceil(logosArray.length / 2))].map((logoUrl, idx) => (
+                  <div 
+                    key={`row2-${idx}`} 
+                    className="flex-shrink-0 w-[120px] md:w-[160px] h-[80px] md:h-[100px] mx-4 sm:mx-8 flex items-center justify-center transition-transform duration-300 hover:scale-110"
+                  >
+                    <img 
+                      src={logoUrl} 
+                      alt={`Client Logo ${idx}`} 
+                      className="max-w-full max-h-full object-contain drop-shadow-sm mix-blend-multiply" 
+                    />
                   </div>
-                </motion.div>
-              ))
-            ) : (
-              [1, 2, 3].map((n) => (
-                <motion.div
-                  key={n}
-                  whileHover={{ y: -5 }}
-                  className="bg-white/5 backdrop-blur-md p-6 rounded-[2rem] border border-white/10 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex gap-1 text-accent mb-6">
-                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill="currentColor" />)}
-                    </div>
-                    <p className="text-slate-300 text-base italic mb-8 leading-relaxed font-light">
-                      "The quality of gifts was exceptional, and the branding was perfectly executed. Our employees loved the Diwali hampers! Soham Gift is now our go-to partner."
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-4 pt-6 border-t border-white/5">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary font-black text-lg border border-primary/30">
-                      {n === 1 ? 'RK' : n === 2 ? 'SD' : 'AN'}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white text-base">{n === 1 ? 'Rajesh Kumar' : n === 2 ? 'Sneha Desai' : 'Arjun Nair'}</h4>
-                      <p className="text-slate-500 text-xs font-medium">{n === 1 ? 'HR Director, Tech Solutions' : 'Procurement Lead, Global Corp'}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))
-            )}
-          </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-10 text-slate-500">
+              Loading client logos...
+            </div>
+          )}
         </div>
       </section>
 
