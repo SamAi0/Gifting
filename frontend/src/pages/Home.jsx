@@ -263,7 +263,7 @@ const Home = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Our Trusted Corporate Clients</h2>
           <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-4"></div>
           <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">
-            We are proud to have delivered premium gifting experiences to over 500+ esteemed organizations.
+            We are proud to have delivered premium gifting experiences to over 100+ esteemed organizations.
           </p>
         </div>
 
@@ -342,30 +342,56 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-6 md:py-8 bg-white">
+      <section className="py-6 md:py-8 bg-white relative">
         <div className="container-home">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative rounded-[3rem] bg-slate-900 p-10 md:p-16 text-center text-white overflow-hidden shadow-2xl"
+            className="relative rounded-[2rem] bg-slate-900 p-8 md:p-12 text-center text-white overflow-hidden shadow-2xl border border-slate-800"
           >
-            {/* Background Glow */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-              <div className="absolute -top-1/2 -left-1/4 w-[100%] h-[100%] bg-primary rounded-full blur-[150px]"></div>
-              <div className="absolute -bottom-1/2 -right-1/4 w-[100%] h-[100%] bg-blue-600 rounded-full blur-[150px]"></div>
+            {/* Enhanced Background Effects */}
+            <div className="absolute inset-0 z-0">
+              <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+              <div className="absolute -top-[50%] -left-[10%] w-[60%] h-[150%] bg-primary/20 rounded-full blur-[120px] mix-blend-screen transform rotate-12"></div>
+              <div className="absolute -bottom-[50%] -right-[10%] w-[60%] h-[150%] bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen transform -rotate-12"></div>
             </div>
 
-            <div className="relative z-10 max-w-3xl mx-auto">
-              <Gift className="w-12 h-12 text-primary mx-auto mb-6 animate-bounce" />
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Ready to Elevate Your Gifting Experience?</h2>
-              <p className="text-base md:text-lg mb-10 text-slate-300 max-w-xl mx-auto font-light leading-relaxed">
-                Join 500+ companies that trust us for their premium corporate requirements. Get a personalized quote within 24 hours.
+            <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+              <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4 border border-primary/20 backdrop-blur-sm">
+                <Gift className="w-7 h-7 text-primary animate-pulse" />
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight tracking-tight">
+                Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Elevate</span> Your Gifting Experience?
+              </h2>
+              
+              <p className="text-base md:text-lg mb-8 text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Join 100+ top companies that trust us for their premium corporate requirements. Let's create something memorable for your team and clients.
               </p>
-              <div className="flex justify-center">
-                <Link to="/products" className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-bold px-16 py-6 rounded-2xl text-xl transition-all border border-white/10">
-                  Browse Catalog
+              
+              <div className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
+                <Link to="/products" className="group relative inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white font-bold px-8 py-3.5 rounded-xl text-base transition-all duration-300 overflow-hidden shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.3)] hover:shadow-[0_0_30px_rgba(var(--color-primary-rgb),0.5)] hover:-translate-y-0.5">
+                  <span className="relative z-10 flex items-center gap-2">Browse Catalog <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></span>
                 </Link>
+                
+                <Link to="/contact" className="group inline-flex items-center justify-center bg-white/5 backdrop-blur-md hover:bg-white/10 text-white font-bold px-8 py-3.5 rounded-xl text-base transition-all duration-300 border border-white/10 hover:border-white/20 hover:-translate-y-0.5">
+                  <span className="flex items-center gap-2">Request Custom Quote</span>
+                </Link>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-8 pt-6 border-t border-white/10">
+                {[
+                  { text: 'Custom Branding', icon: Star },
+                  { text: 'Pan India Delivery', icon: Truck },
+                  { text: 'Dedicated Account Manager', icon: ShieldCheck },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-slate-400 text-xs md:text-sm font-medium">
+                    <item.icon size={14} className="text-primary-light" />
+                    <span>{item.text}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>

@@ -46,6 +46,7 @@ const Footer = () => {
               {[
                 { name: 'Home', path: '/' },
                 { name: 'Our Catalog', path: '/products' },
+                { name: 'Bulk Orders', path: '/bulk-orders' },
                 { name: 'Contact Us', path: '/contact' },
                 { name: 'Our Story', path: '/about' },
               ].map((link) => (
@@ -64,10 +65,10 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">Collections</h4>
             <ul className="space-y-2">
               {[
-                { name: 'Gourmet Hampers', id: '1' },
-                { name: 'Office Gifts', id: '2' },
-                { name: 'Next-Gen Tech', id: '4' },
-                { name: 'Signature Sets', id: '7' },
+                { name: 'Corporate Gift Sets', id: '16' },
+                { name: 'Drinkware', id: '2' },
+                { name: 'Tech & Gadgets', id: '6' },
+                { name: 'Office Gifts', id: '11' },
               ].map((cat) => (
                 <li key={cat.id}>
                   <Link to={`/products?category=${cat.id}`} className="text-slate-400 hover:text-white transition-colors flex items-center justify-between group text-sm font-medium">

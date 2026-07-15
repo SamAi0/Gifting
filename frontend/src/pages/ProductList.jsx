@@ -122,7 +122,7 @@ const ProductList = () => {
           >
             All Collections
           </button>
-          {categories.map((cat) => (
+          {categories.filter(cat => cat.product_count > 0).map((cat) => (
             <button 
               key={cat.id}
               onClick={() => {
