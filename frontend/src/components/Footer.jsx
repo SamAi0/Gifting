@@ -31,8 +31,13 @@ const Footer = () => {
               Elevating corporate gifting with personalized, premium solutions that leave a lasting impression.
             </p>
             <div className="flex gap-3">
-              {[InstagramIcon, LinkedinIcon, FacebookIcon, TwitterIcon].map((Icon, idx) => (
-                <a key={idx} href="#" className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary transition-all duration-300 group">
+              {[
+                { Icon: InstagramIcon, url: "https://www.instagram.com/sohamdigitalpress" },
+                { Icon: LinkedinIcon, url: "#" },
+                { Icon: FacebookIcon, url: "#" },
+                { Icon: TwitterIcon, url: "#" }
+              ].map(({ Icon, url }, idx) => (
+                <a key={idx} href={url} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary transition-all duration-300 group">
                   <Icon className="w-4 h-4 text-slate-400 group-hover:text-white" />
                 </a>
               ))}

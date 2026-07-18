@@ -35,7 +35,8 @@ class ProductViewSet(viewsets.ModelViewSet):
     """
     queryset = Product.objects.select_related('category', 'brand').prefetch_related('images', 'variants', 'variants__attribute_values').all().order_by('-created_at')
     serializer_class = ProductSerializer
-    pagination_class = ProductPagination
+    # pagination_class = ProductPagination  # Disabled as per user request for single-page view
+    pagination_class = None
     lookup_field = 'slug'
     
     def get_permissions(self):

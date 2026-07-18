@@ -576,7 +576,7 @@ const ProductList = () => {
             </AnimatePresence>
 
             {/* Pagination Controls */}
-            {totalCount > 20 && (
+            {false && (
               <div className="mt-12 flex justify-center items-center gap-1 sm:gap-2 flex-wrap">
                 <button 
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
