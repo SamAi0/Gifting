@@ -110,10 +110,18 @@ const CanvasCustomizer = ({ productConfig, textEntries, textColor, logoPreviews,
           const x = Math.round((obj.left / canvasWidth) * 1000);
           const y = Math.round((obj.top / canvasHeight) * 1000);
           const angle = Math.round(obj.angle || 0);
+          const width = Math.round(((obj.width * (obj.scaleX || 1)) / canvasWidth) * 1000);
+          const height = Math.round(((obj.height * (obj.scaleY || 1)) / canvasHeight) * 1000);
+          const fontSize = obj.fontSize ? Math.round(obj.fontSize * (obj.scaleY || 1)) : null;
           
           // console.clear(); // Removed to keep other debug logs visible
           console.log(`%c Zone Update [${obj.data.zoneId}] `, 'background: #D91656; color: white; font-weight: bold;');
-          console.log(`"x": ${x}, "y": ${y}, "angle": ${angle}`);
+          
+          let logStr = `"x": ${x}, "y": ${y}, "angle": ${angle}, "width": ${width}, "height": ${height}`;
+          if (fontSize !== null) {
+              logStr += `, "fontSize": ${fontSize}`;
+          }
+          console.log(logStr);
           console.log(`--------------------------`);
         };
 
