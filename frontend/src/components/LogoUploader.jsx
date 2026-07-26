@@ -1,9 +1,10 @@
 import { useState, useRef } from 'react';
-import { Upload, X, FileText, File as FileIcon, AlertCircle, Info } from 'lucide-react';
+import { Upload, X, FileText, File as FileIcon, AlertCircle, Info, ChevronDown } from 'lucide-react';
 
 const LogoUploader = ({ files, onFilesChange, onPreviewChange }) => {
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState('');
+  const [isGuidelinesOpen, setIsGuidelinesOpen] = useState(false);
   const inputRef = useRef(null);
 
   const ACCEPTED_FORMATS = [
@@ -211,23 +212,38 @@ const LogoUploader = ({ files, onFilesChange, onPreviewChange }) => {
 
       {/* Guidelines */}
       <div className="pt-6 border-t border-slate-100">
-        <h4 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
-          <Info size={16} className="text-primary" /> Guidelines
-        </h4>
-        <ul className="space-y-3">
-          {[
-            'Upload the correct quantity of photos according to the selected specification to avoid quantity mismatch.',
-            'Share high-resolution images to ensure clear and sharp prints; low-resolution images may appear blurry or pixelated.',
-            'Text cannot be added to the print file due to design restrictions.',
-            'If the shared images are not suitable for the chosen specification, white borders may be added to the print file to ensure the best possible outcome.',
-            'Please select your image files or zip archive accordingly: max. 10 MB per file and max. 100 MB for full/total uploads.'
-          ].map((point, i) => (
-            <li key={i} className="flex gap-3 text-xs text-slate-500 leading-relaxed">
-              <span className="text-primary font-bold mt-0.5">•</span>
-              {point}
-            </li>
-          ))}
-        </ul>
+        <button 
+          onClick={(e) => {
+            e.preventDefault();
+            setIsGuidelinesOpen(!isGuidelinesOpen);
+          }}
+          className="w-full flex items-center justify-between text-sm font-bold text-slate-900 mb-2 p-2 hover:bg-slate-50 rounded-xl transition-colors"
+        >
+          <span className="flex items-center gap-2">
+            <Info size={16} className="text-primary" /> Guidelines
+          </span>
+          <ChevronDown 
+            size={16} 
+            className={`text-slate-400 transition-transform duration-300 ${isGuidelinesOpen ? 'rotate-180' : ''}`} 
+          />
+        </button>
+        
+        <div className={`overflow-hidden transition-all duration-300 ${isGuidelinesOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <ul className="space-y-3 px-2 mt-2">
+            {[
+              'Upload the correct quantity of photos according to the selected specification to avoid quantity mismatch.',
+              'Share high-resolution images to ensure clear and sharp prints; low-resolution images may appear blurry or pixelated.',
+              'Text cannot be added to the print file due to design restrictions.',
+              'If the shared images are not suitable for the chosen specification, white borders may be added to the print file to ensure the best possible outcome.',
+              'Please select your image files or zip archive accordingly: max. 10 MB per file and max. 100 MB for full/total uploads.'
+            ].map((point, i) => (
+              <li key={i} className="flex gap-3 text-xs text-slate-500 leading-relaxed">
+                <span className="text-primary font-bold mt-0.5">•</span>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
